@@ -1,0 +1,133 @@
+body{
+  background-image:url('../swimming-pool-gf0aed2820_1920.jpg');
+  background-size: 100%;
+  color:black;
+  font-family: inherit;
+  
+}
+.App {
+  text-align: center;
+  padding: 50px;
+ 
+}
+.navbar-brand {
+  float: right;
+  height: 39px;
+  padding: 14px 15px;
+  font-size: 20px;
+  line-height: 16px;
+  color: black;
+
+}
+
+
+.navbar {
+  position: relative;
+  background-color: paleturquoise;
+  left: 150px;
+  color: black;
+  min-height: 50px;
+  margin-bottom: 20px;
+  background-color: inherit;
+  border: 1px solid transparent;
+  width: 882px;
+}
+.navbar-default .navbar-brand {
+  color:black;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+.img {
+  width: 218px;
+  height: 222px;
+}
+
+.title{
+  height: 162px;
+  width: 160px;
+  position: relative;
+    left: 902px;
+
+}
+.pool{
+  
+   font-family: 'Times New Roman', Times, serif;
+   display: inline-table;
+   margin-bottom: 2%;
+   margin:8px;
+   background-color:white;
+}
+.pool:hover{
+  border: 2px solid aquamarine;
+  border-radius: 10px;
+  font-size: 16px;
+
+}
+
+.about{
+  font-size: 15px;
+  color:antiquewhite
+
+}
+.login_logout{
+  position: relative;
+    left: -281px;
+    font-size: 20px;
+    display: block;
+    color:cornsilk;
+
+
+}
+/* .TextBoxP{
+  display:inline-table;
+  
+} */
+
+.input {
+    border: 2px solid cornflowerblue;
+    border-radius: 26px;
+    text-align: center;
+}
+
+.button{
+  border-color: cornflowerblue;
+  position: relative;
+  top: 42px;
+  right: 209px;
+  border-radius: 10px;
+  margin: 5px;
+  width: 58px;
+}
+
+.li{
+  text-align: right;
+  font-size:18px;
+  text-align: right;
+  width: 226px;
+  font-size: 18px;
+  position: relative;
+  left: 650px;
+  border: 2px solid black;
+}
