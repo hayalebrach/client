@@ -2,20 +2,19 @@
 import './App.css';
 
 import { Routes, Route, Outlet } from "react-router";
-import Login from "./Login";
-import SignIn from './SignIn';
-import Courses from "./AddDetailsCours/Courses";
-import BuyTickets from "./BuyTickets";
-import Cart from './AddDetailsCard/Cart';
-import About from "./About";
-import Profile from "./Profile";
+import Login from "./Login/Login";
+import Courses from "./Courses/Courses";
+import BuyTickets from "./BuyTickets/BuyTickets";
+import Cart from './Cart/Cart';
+import About from "./About/About";
+import Profile from "./Profile/Profile";
 import GuessNavBar from './GuessNavBar';
-import AllPools from './AllPools';
+import AllPools from './AllPools/AllPools';
 import MainManagerNavBar from './MainManagerNavBar';
 import UserNavBar from "./UserNavBar";
-import ManagerEntery from "./ManagerEntery";
-import AllUsers from './AllUsers';
-import AllManagers from './AllManagers';
+import ManagerEntery from "./ManagerEntery/ManagerEntery";
+import AllUsers from './AllUsers/AllUsers';
+import AllManagers from './AllManagers/AllManagers';
 // import cardUpdate from './cardUpdate';
 // import courseUpdate from './courseUpdate';
 // import addSale from './addSale';
@@ -36,13 +35,12 @@ function App() {
 
   return (
     <>
-      <Test />
+      {/*<Test />*/}
      <div className="App" >
-      {/* <Routes >
+      <Routes >
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
         <Route path="users" element={<AllUsers />} />
-        <Route path="signIn" element={<SignIn />} />
         <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login />} />
         <Route path="home" element={<AllPools />} />
@@ -79,7 +77,7 @@ function App() {
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
         //------------------------------------------------
         <Route path="SplitButton" element={<SplitButton />} />
-      </Routes> */}
+      </Routes> 
 
     </div> 
     </>
