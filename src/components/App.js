@@ -1,46 +1,49 @@
 
 import './App.css';
 
-import {Routes,Route, Outlet} from "react-router";
-import Login from "./Login";
-import SignIn from './SignIn';
-import Courses from "./Courses";
-import BuyTickets from "./BuyTickets";
-import Cart from './Cart';
-import About from "./About";
-import Profile from"./Profile";
+import {Routes,Route, Outlet, useNavigate} from "react-router";
+import Login from "./Login/Login";
+import SignUp from './SignUp/SignUp';
+import Courses from "./Courses/Courses";
+import BuyTickets from "./BuyTickets/BuyTickets";
+import Cart from './Cart/Cart';
+import About from "./About/About";
+import Profile from"./Profile/Profile";
 import GuessNavBar from './GuessNavBar';
-
 import MainManagerNavBar from './MainManagerNavBar';
 import UserNavBar from "./UserNavBar";
-import ManagerEntery from "./ManagerEntery";
-import AllPools from './AllPools';
-import AllUsers from './AllUsers';
-import AllManagers from './AllManagers';
-// import cardUpdate from './cardUpdate';
-// import courseUpdate from './courseUpdate';
-// import addSale from './addSale';
-
-//import ManagerNavBar from './ManagerNavBar';
-import AddPool from "./AddPool";
+import ManagerEntery from "./ManagerEntery/ManagerEntery";
+import AllPools from './AllPools/AllPools';
+import AllUsers from './AllUsers/AllUsers';
+import AllManagers from './AllManagers/AllManagers';
+import AddPool from "./AddPool/AddPool";
 import ManagerNavBar from "./ManagerNavBar";
+import CourseDetails from './CourseDetails/CourseDetails';
+import CourseEnrollment from './CourseEnrollment/CourseEnrollment';
+import BuyingForm from './BuyingForm/BuyingForm';
+import FinishBuying from './FinishBuying/FinishBuying';
 
 function App() {
-  
+  let nav=useNavigate();
     return(
           <>
-        <div className="App" >
-
-       {/* <MainManagerNavBar /> */}
-       {/* <UserNavBar /> */}
-       
+          {/* <img src={`Pic/${pool.pic}.jpg`} */}
+         
+         <div className='smallDiv'>
+         <img src="../Pic/grocery-store.png" className="img1" onClick={()=>nav("./cart")}/>
+        <img src="../Pic/user.png" className="img2" onClick={()=>nav("./profile")}/>
+        <h3 className='f' onClick={()=>nav("./signUp")}>הרשמה</h3>
+        <h3 className='f' onClick={()=>nav("./login")}>התחברות</h3><br/>
+        </div>
+        
+        <div className="App" > 
+        
        <Outlet></Outlet>
-       {/* <ManagerNavBar /> */}
-    
+       
        <Routes >
         <Route path="" element={<GuessNavBar/>}/>
         <Route path="users" element={<AllUsers/>}/>
-        <Route path="signIn" element={<SignIn/>}/>
+        <Route path="signUp" element={<SignUp/>}/>
         <Route path="cart" element={<Cart/>} />
         <Route path="login" element={<Login/>} />
         <Route path="home" element={<AllPools/>}/>
@@ -56,12 +59,12 @@ function App() {
         <Route path="/UserNavBar/buyTickets" element={<BuyTickets/>}/>
         <Route path="/UserNavBar/about" element={<About/>}/>
         <Route path="/UserNavBar/AddPool" element={<AddPool/>}/>
-
+        <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment/>}/>
+        <Route path="/buyingForm" element={<BuyingForm/>}/>
+        <Route path="/buyingForm/finishBuying" element={<FinishBuying/>}/>
+        <Route path="/courseDetails" element={<CourseDetails/>}/>
         <Route path="/MainManagerNavBar/managers" element={<AllManagers/>}/>
         <Route path="/MainManagerNavBar/home" element={<AllPools/>}/>
-        
-        
-       
          <Route path="profile" element={<Profile/>}/>
         <Route path="cardUpdate" element={<cardUpdate/>}/>
         <Route path="courseUpdate" element={<courseUpdate/>}/>

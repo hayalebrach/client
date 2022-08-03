@@ -1,8 +1,11 @@
 import * as actionType from "../actions";
 import axios from "axios";
+
+
 //פונקצית הוספת משתמש
 export const addUser=(user)=>{
     return(dispach)=>{
+        
         axios.post("http://localhost:8080/חחחחחחחחחחחחחח",user).then(response=>{
             dispach(SaveUser({...user,id:response.data}))
         },
@@ -16,7 +19,7 @@ export const addUser=(user)=>{
 }
 export const SaveUser=(user)=>{
     return {
-        type:actionType.LOGIN,
+        type:actionType.SIGNUP,
         payload:user
     }
 }
@@ -37,6 +40,14 @@ export const login=(user)=>{
             console.log(err);
             console.log("קרתה שגיאה")
         })
+    }
+}
+
+export const FAKElogin=(user)=>{
+
+    return(dispach)=>{
+        dispach(Login(user));
+        alert("craaaazyyyy");
     }
 }
 export const Login=(user)=>{

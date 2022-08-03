@@ -1,13 +1,16 @@
 body{
-  background-image:url('../swimming-pool-gf0aed2820_1920.jpg');
+  background-image:url('../swimming-pool-gf0aed2820_1921.jpg');
   background-size: 100%;
   color:black;
   font-family: inherit;
+
   
 }
 .App {
   text-align: center;
-  padding: 50px;
+   
+    position: relative;
+    top: -105px;
  
 }
 .navbar-brand {
@@ -59,9 +62,19 @@ body{
 }
 
 
-.img {
-  width: 218px;
-  height: 222px;
+.img1 {
+  width: 33px;
+  height: 38px;
+  position: relative;
+  left: 78px;
+  top: 19px;
+}
+.img2{
+  width: 29px;
+    height: 28px;
+    position: relative;
+    top: 12px;
+
 }
 
 .title{
@@ -71,14 +84,14 @@ body{
     left: 902px;
 
 }
-.pool{
+/* .pool{
   
    font-family: 'Times New Roman', Times, serif;
    display: inline-table;
    margin-bottom: 2%;
    margin:8px;
    background-color:white;
-}
+} */
 .pool:hover{
   border: 2px solid aquamarine;
   border-radius: 10px;
@@ -86,11 +99,7 @@ body{
 
 }
 
-.about{
-  font-size: 15px;
-  color:antiquewhite
 
-}
 .login_logout{
   position: relative;
     left: -281px;
@@ -106,22 +115,35 @@ body{
 } */
 
 .input {
-    border: 2px solid cornflowerblue;
-    border-radius: 26px;
-    text-align: center;
+  border: 2px solid cornflowerblue;
+  border-radius: 26px;
+  text-align: center;
 }
 
 .button{
-  border-color: cornflowerblue;
-  position: relative;
-  top: 42px;
-  right: 209px;
-  border-radius: 10px;
-  margin: 5px;
-  width: 58px;
+border-color: cornflowerblue;
+position: relative;
+top: 42px;
+right: 209px;
+border-radius: 10px;
+margin: 5px;
+width: 58px;
 }
 
-.li{
+.cart{
+  height: 20px;
+  width: 20px;
+  position: relative;
+  left:200px;
+}
+.f{
+  width: 30px;
+    position: relative;
+    left: 134px;
+    top: -52px;
+}
+
+/* .li{
   text-align: right;
   font-size:18px;
   text-align: right;
@@ -130,4 +152,7 @@ body{
   position: relative;
   left: 650px;
   border: 2px solid black;
+} */
+.smallDiv{
+  z-index: 1;
 }

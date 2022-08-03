@@ -1,0 +1,15 @@
+.input {
+    border: 2px solid cornflowerblue;
+    border-radius: 26px;
+    text-align: center;
+  }
+  
+  .button{
+  border-color: cornflowerblue;
+  position: relative;
+  top: 42px;
+  right: 209px;
+  border-radius: 10px;
+  margin: 5px;
+  width: 58px;
+  }

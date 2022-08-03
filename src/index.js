@@ -11,11 +11,10 @@ import { BrowserRouter } from 'react-router-dom';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// const store=createStore(postReducer,composeEnhancers(applyMiddleware(thunk))   );
+// const store=createStore(postReducer,composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(<React.StrictMode>
     <BrowserRouter>
-    ניסוי הגלגול
     {/* <Provider store={store}> */}
     <App/>
     {/* </Provider> */}

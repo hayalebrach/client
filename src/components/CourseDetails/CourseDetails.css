@@ -1,0 +1,23 @@
+.courseDiv{
+  text-align: right;
+  width: 916px;
+  font-size: 15px;
+  color: black;
+  background-color: rgba(-174,0,59,0.4);
+  font-family: cursive;
+  position: relative;
+  left: 201px;
+  
+}
+.button1{
+  border-color: cornflowerblue;
+  position: relative;
+  top: 8px;
+  right:3px;
+  border-radius: 10px;
+  margin: 10px;
+  width: 93px;
+  
+  
+  }
+  

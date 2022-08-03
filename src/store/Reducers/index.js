@@ -13,14 +13,14 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         //הרשמה
-        case actionType.LOGIN:     
+        case actionType.SIGNUP:     
         return {
            ...state,
              users_arr:[...action.paload]
              
         };   
         //התחברות
-        case actionType.SIGNIN:
+        case actionType.LOGIN:
         return {
             ...state,
             current_user:action.paload             

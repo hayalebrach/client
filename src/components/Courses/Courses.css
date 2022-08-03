@@ -1,0 +1,36 @@
+.li{
+    text-align: right;
+  font-size:18px;
+  text-align: right;
+  width: 226px;
+  font-size: 18px;
+  position: relative;
+  left: 650px;
+  border: 2px solid black;
+}
+
+.div1{
+  width: 500px;
+  height: 450px;
+  margin: 60px auto 0;
+  padding: 35px;
+  margin-left: 7px;
+  border: 3px solid #fff;
+  border-radius: 29px;
+  width: 178px;
+    height: 103px;
+    color: white;
+  text-align: right;
+  position: relative;
+  background-color: rgba(0,0,0,0.6);
+  top: -54px;
+  display: inline-table;
+}
+
+.button1 {
+  border-color: cornflowerblue;
+  
+  border-radius: 10px;
+  margin: 5px;
+  width: 84px;
+}
