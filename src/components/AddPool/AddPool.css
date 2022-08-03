@@ -1,10 +1,24 @@
 .input {
-    border: 2px solid cornflowerblue;
-    border-radius: 26px;
-    text-align: center;
+  border: 2px solid cornflowerblue;
+  border-radius: 26px;
+  text-align: center;
 }
 
-.button{
+.h1 {
+  color: yellow;
+}
+
+.nav-link {
+  text-align: left;
+  height: 39px;
+  padding: 14px 15px;
+  font-size: 20px;
+  line-height: 16px;
+  color: black;
+
+}
+
+.button {
   border-color: cornflowerblue;
   position: relative;
   top: 42px;
@@ -13,3 +27,13 @@
   margin: 5px;
   width: 58px;
 }
+
+/* .nav-link:active{
+    text-align: left;
+    height: 39px;
+    padding: 14px 15px;
+    font-size: 20px;
+    line-height: 16px;
+    color: rgba(121, 113, 113, 0.582);
+    background-color:yellow;
+  } */

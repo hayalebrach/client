@@ -10,6 +10,8 @@ export default function UserNavBar(){
 
         <Link to="about" className="navbar-brand">אודות</Link>
 
+        <Link to="profile" className="navbar-brand">לפרופיל האישי</Link>
+
         <Link to="AddPool" className="navbar-brand"> להוספת בריכה</Link>
 
         <Link to="managerEntery" className="navbar-brand">יציאה</Link>

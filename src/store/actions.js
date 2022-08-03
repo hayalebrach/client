@@ -1,7 +1,7 @@
 //הרשמה
 export const LOGIN="LOGIN"
 //התחברות
-export const SIGNUP="SIGNUP"
+export const SIGNIN="SIGNIN"
 //רשימת קורסים
 export const LIST_COURS="LIST_COURS"
 //הצגת כרטיסים
