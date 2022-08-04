@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router"
 import "./BuyingForm.css"
-export default function BuyingForm(){
+const BuyingForm=()=>{
 
     let nav=useNavigate();
     return(<>
@@ -20,3 +20,4 @@ export default function BuyingForm(){
     )
 
 }
+export default BuyingForm;

@@ -1,47 +1,46 @@
 import { useRef } from "react";
-import "./Login.css";
-import { useNavigate } from "react-router";
 import { connect } from "react-redux";
-import { FAKElogin } from "../../store/Actions/Users";
+import { useNavigate } from "react-router";
+import React  from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import Input from "../Input";
+import * as yup from "yup";
+
+import "./Login.css"
+import { Link } from "react-router-dom";
+
+const schema = yup.object({
+    userName: yup.string().required(),
+    passwords: yup.number()
+}).required();
+
+const Login=()=>{
+    const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+});
+const onSubmit = data => console.log(data);
+let nav=useNavigate();
+
+const check=()=>{
+     nav("/UserNavBar");
+}
+return (<>
+<h1>התחברות</h1>
+    <form onSubmit={handleSubmit(onSubmit)}>
+     <div className="div1">
+         
+        <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" />
+        <Input register={register} errors={errors}  className="input"name="password" lablName="סיסמא" />
+        <Link to="signUp" className="navbar-brand">עדיין לא  רשום? עבור להרשמה</Link> 
+        <input type="submit" className="button" onClick={check}/>
+        </div>
+    </form></>
+)
+
+}
+
+export default Login;
 
 
-    
-const Login = (props) => {
-    
-    let nameInput = useRef(null);
-    let passwordInput = useRef(null);
-
-    let nav=useNavigate();
-     let product={};  
-    const change=(e)=>{
-           let { name, type, value } = e.target;
-           if (type === "number")
-                value =+value;
-           
-        product[name]=value;
-    }
-    
-    const checkManag=()=>{
-         if(product.password==0)
-         //props.FAKElogin({ UserName: nameInput.current.value, Password: passwordInput.current.value })
-         nav("/UserNavBar");
-    
-    }
-
-    return (<>
-    
-        <h2>התחברות</h2>
-        
-        
-        <input type="text"  className="input"placeholder="שם משתמש" ></input>
-        <input type="text" className="input"  placeholder="סיסמא" name="password" onChange={change}   ></input>
-        <input type="button" className="button" value="הכנס"   onClick={checkManag}
-          
-         ></input>
-    </>)
-    }
-    
-    export default  Login;
-
-    // export default  connect(null,{FAKElogin})(Login);
 

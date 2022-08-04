@@ -18,19 +18,21 @@
   border: 3px solid #fff;
   border-radius: 29px;
   width: 178px;
-    height: 103px;
-    color: white;
+  height: 103px;
+  color: white;
   text-align: right;
   position: relative;
   background-color: rgba(0,0,0,0.6);
   top: -54px;
+  left:-5px;
   display: inline-table;
 }
 
 .button1 {
   border-color: cornflowerblue;
-  
+  color: black;
   border-radius: 10px;
   margin: 5px;
   width: 84px;
 }
+body{text-align: center;}

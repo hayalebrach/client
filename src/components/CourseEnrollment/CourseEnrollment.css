@@ -7,7 +7,7 @@
     display: list-item;
     color: #fff;
     position: relative;
-    left: 103px;
+    
     margin: 10px;
    
   }
@@ -20,7 +20,7 @@
     margin: 5px;
     width: 84px;
   }
-.div2{
+.div{
       width: 500px;
       height: 347px;
       margin: 60px auto 0;

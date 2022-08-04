@@ -1,9 +1,29 @@
 
 import React ,{ useState } from "react";
 import { useNavigate } from "react-router";
+import Input from "../Input";
 import "./FinishBuying.css"
+import { useRef } from "react";
+import { connect } from "react-redux";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import * as yup from "yup";
+
+const schema = yup.object({
+   
+    password: yup.number(),
+    address: yup.string(),
+    phone: yup.number().positive().integer().required().max(10),
+    
+
+}).required();
 const FinishBuying=()=>{
+    const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+});
+const onSubmit = data => console.log(data);
     const [showPaypal,setShowPaypal]=useState(false);
     const [showCredit,setShowCredit]=useState(false);
     const [showDiv,setShowDiv]=useState(false);
@@ -18,8 +38,6 @@ const FinishBuying=()=>{
     const PayPal=()=>{
     setShowCredit(false);
     setShowPaypal(true);
-
-
     
     }
     const CreditCard=()=>{
@@ -41,25 +59,19 @@ const FinishBuying=()=>{
 
     <div className="div" id="div">
 
-    <h3 className="x">:שם</h3>
-    <input type="Text" name="UserName" className="input" />
-    <h3 className="x">:כתובת</h3>
-    <input type="Text" name="Address" className="input" />
-    <h3 className="x">:פלאפון</h3>
-    <input type="Text" name="Phone" className="input"/>
+    <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" />
+    <Input register={register} errors={errors}  className="input"name="address" lablName="כתובת" />
+    <Input register={register} errors={errors}  className="input"name="phone" lablName="פלאפון" />
+
     <h3 className="x">בחר שיטת תשלום:</h3><br/>
-
-
-    <div className="payments" id="payments">
-    <text >PayPal</text><input type="radio" name="x" onClick={PayPal}/><br/>
+    <Input register={register} errors={errors} type="radio" name="payment" lablName="Paypal" onClick={PayPal} />
+    <Input register={register} errors={errors} type="radio" name="payment" lablName="אשראי" onClick={CreditCard} />
 
     {showPaypal?
     <div className="paypal">
         <h3 id="paypal">:מספר החשבון</h3><br/>
         <input type="text" className="input" ></input>
     </div>:null}
-
-    <text >אשראי</text><input type="radio" name="x" onClick={CreditCard}/><br/>
 
    {showCredit? <div className="creditCard">
         <h3 id="creditCard1" >:מספר כרטיס</h3>
@@ -70,7 +82,7 @@ const FinishBuying=()=>{
         <input type="number" className="input" id="tinnyInput13"></input>
         
     </div>:null}
-    </div>
+    
     <input type="button" className="button" id="keepBuying" value="המשך לקנות" onClick={keepBuying} /><br/>
     <input type="button" value="!שלם"  className="button" id="pay" onClick={()=>{setShowDiv(true);setShowCredit(false);setShowPaypal(false); document.getElementById("div").style.visibility="hidden"}}></input>
     </div>

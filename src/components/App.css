@@ -131,3 +131,29 @@ body{
   left: 650px;
   border: 2px solid black;
 }
+.img1 {
+  width: 33px;
+  height: 38px;
+  position: relative;
+  left: -589px;
+  top: 19px;
+}
+.img2{
+  width: 29px;
+    height: 28px;
+    position: relative;
+    top: 20px;
+    right: 570px;
+
+}
+.f{
+  width: 30px;
+    position: relative;
+    left: 134px;
+    top: -52px;
+}
+.smallDiv{  
+  z-index: 1;
+  height: 0px;
+}
+

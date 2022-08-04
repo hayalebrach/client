@@ -17,9 +17,13 @@
   .button{
   border-color: cornflowerblue;
   position: relative;
-  top: 42px;
-  right: 209px;
+  top: 15px;
+  right: 50px;
   border-radius: 10px;
   margin: 5px;
   width: 58px;
+  }
+
+  body{
+    text-align: center;
   }

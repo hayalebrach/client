@@ -1,12 +1,31 @@
+import Input from "../Input";
 import "./CourseEnrollment.css";
+import { useRef } from "react";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router";
+import React  from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
 
+import * as yup from "yup";
 const text=()=>{
     document.getElementById("text").style.visibility="visible";
     document.getElementById("text").style.fontSize="25px";
     document.getElementById("div").style.visibility="hidden";
 }
+const schema = yup.object({
+    userName: yup.string().required(),
+    mail: yup.string().email().required(),
+    phone: yup.number().positive().integer().required().max(10),
+}).required();
 
-export default function CourseEnrollment(){
+
+const CourseEnrollment=()=>{
+    const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+});
+const onSubmit = data => console.log(data);
+    
     return <>
     <div id="text" className="text">
         <h1>!!!איזה יופיייי</h1>
@@ -17,15 +36,14 @@ export default function CourseEnrollment(){
 
     </div>
 
-    <div className="div2" id="div">
+    <div className="div" id="div">
         <h1 className="x">:הרשמה לקורס שחיה</h1>
-     <h3 className="x">:שם</h3>
-    <input type="text"  className="input"></input>
-    <h3 className="x">:מייל</h3>
-    <input type="email"  className="input"></input>
-    <h3 className="x">:פלאפון</h3>
-    <input type="number"  className="input"></input>
-    <input type="button" className="button" value="!הרשם" onClick={text}></input>
+        <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" />
+        <Input register={register} errors={errors} className="input" name="mail" lablName="מייל "/>
+        <Input register={register} errors={errors} className="input" name="phone" lablName="פלאפון"/>
+
+
+    <input type="button"  className="button" value="!הרשם" onClick={text}></input>
     </div>
     
     
@@ -34,3 +52,5 @@ export default function CourseEnrollment(){
 
 
 }
+
+export default CourseEnrollment;

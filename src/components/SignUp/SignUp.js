@@ -1,60 +1,53 @@
 import { useRef } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
+import React  from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import Input from "../Input";
+import * as yup from "yup";
 
 import "./SignUp.css"
+import { Link } from "react-router-dom";
 
+const schema = yup.object({
+    userName: yup.string().required(),
+    password: yup.number(),
+    mail: yup.string().email().required(),
+    phone: yup.number().positive().integer().required().max(10),
+    type: yup.number().positive().integer(),
+    authorization:yup.number().positive().integer().required()
+
+}).required();
 
 const SignUp=()=>{
+    const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema)
+});
+const onSubmit = data => console.log(data);
 
-    let nav=useNavigate();
-    let nameInput = useRef(null);
-    let passwordInput = useRef(null);
-    let EmailInput = useRef(null);
-    let StreetInput = useRef(null);
-    let CityInput = useRef(null);
-    let HouseNumInput = useRef(null);
-    let PhoneInput = useRef(null);
-    let Type= useRef(null);
-    let Authorization = useRef(null);
-    
-    if(HouseNumInput==null)
-    alert("tttttttttt");
-
-    return (<>
-
-    
-        <h2 >הרשמה</h2>
-        
-        <input type="text" placeholder="שם משתמש" className="input1" ref={nameInput}  ></input>
-        <input type="password" placeholder="סיסמא" className="input1" ref={passwordInput}  ></input>
-        <input type="email" placeholder="מייל" className="input1" ref={EmailInput}></input>
-        <input type="text" placeholder="עיר" className="input1" ref={StreetInput}  ></input>
-        <input type="text" placeholder="רחוב"className="input1"  ref={CityInput} ></input>
-        <input type="number" placeholder="מפר בית" className="input1" ref={HouseNumInput}  ></input>
-        <input type="text" placeholder="טלפון" className="input1" ref={PhoneInput}></input>
-        <input type="number" placeholder="סטטוס" className="input1" ref={Authorization}></input>
-        <input type="number" placeholder="זכר/נקבה"className="input1"  ref={Type} ></input>
-
+return (<>
+    <h1>הרשמה</h1>
+    <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="div1">
+        <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" />
+        <Input register={register} errors={errors} className="input" name="password" lablName="סיסמא" /> 
+        <Input register={register} errors={errors}className="input"  name="mail" lablName="מייל" />
+        <Input register={register} errors={errors}  className="input"name="phone" lablName="פלאפון" />
+        <Input register={register} errors={errors} className="input" name="type" lablName="זכר/נקבה" />
+        <Input register={register} errors={errors} className="input" name="authorization" lablName="הרשאה" />
         
 
-        <input type="button" value="הרשם"  className="button"  onClick={() => {
-            if( nameInput.current.value=="" ||passwordInput.current.value==""
-            ||EmailInput.current.value=="" ||  StreetInput.current.value=="" ||  HouseNumInput.current.value==""
-            || CityInput.current.value==""||PhoneInput.current.value=="" || Authorization.current.value==""
-            || Type.current.value=="")
-               alert("יש למלא את כל הפרטים!");
 
-             else
-             {
-                 alert("נרשם בהצלחה!");
-                 nav("/UserNavBar");
-              };
-        }}></input>
-        
-    </>)
+        <Link to="login" className="navbar-brand">כבר רשום? עבור להתחברות!</Link>
+        <input type="submit"value="הרשם" className="button" /></div>
+    </form>
+    </>
+);
 
 }
 
 export default SignUp;
-// export default connect(null, { signIn })(SignIn);
+
+
+
