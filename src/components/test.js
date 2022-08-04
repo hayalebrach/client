@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import Input from "./Input";
 import * as yup from "yup";
 
 const schema = yup.object({
@@ -9,14 +10,6 @@ const schema = yup.object({
     age: yup.number().positive().integer().required(),
     passwords: yup.number()
 }).required();
-
-const Input = ({ register, errors, name, lablName, className, type }) => {
-    <Fragment>
-        <label >{lablName} </label>
-        <input type={type} className={className} {...register(name)} />
-        <p>{errors[name]?.message}</p>
-    </Fragment>
-}
 
 export default function App() {
     const { register, handleSubmit, formState: { errors } } = useForm({

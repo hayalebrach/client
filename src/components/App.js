@@ -35,9 +35,11 @@ function App() {
 
   return (
     <>
-      {/*<Test />*/}
+      <Test/>
      <div className="App" >
-      <Routes >
+        
+  
+     {/*  <Routes >
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
         <Route path="users" element={<AllUsers />} />
@@ -77,9 +79,10 @@ function App() {
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
         //------------------------------------------------
         <Route path="SplitButton" element={<SplitButton />} />
-      </Routes> 
+      </Routes> */}
 
-    </div> 
+    </div>  
+   
     </>
 
   );
