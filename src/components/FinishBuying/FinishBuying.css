@@ -1,15 +1,15 @@
 
 .input {
-    padding:4px;
-    border: 2px solid cornflowerblue;
-    border-radius: 26px;
-   background-color:transparent;
-    display: list-item;
-    color: #fff;
-    position: relative;
-    left: 103px;
-    margin: 10px;
-    top:-50px;
+  padding: 4px;
+  border: 2px solid cornflowerblue;
+  border-radius: 26px;
+  background-color: transparent;
+  display: list-item;
+  color: #fff;
+  position: relative;
+  left: 7px;
+  margin: 10px;
+  top: -10px;
    
   }
 .x{

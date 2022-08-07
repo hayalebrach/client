@@ -54,6 +54,10 @@ function App() {
       <Routes >
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
+        <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
+        
+        <Route path="cart/UserNavBar" element={<UserNavBar />} />
+       
         <Route path="users" element={<AllUsers />} />
         <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login/>} />
@@ -66,8 +70,13 @@ function App() {
         <Route path="home" element={<AllPools />} />
         <Route path="managers" element={<AllManagers />} />
         <Route path="courses" element={<Courses />} />
+        <Route path="cart/UserNavBar/courses" element={<Courses />} />
+        
         <Route path="buyTickets" element={<BuyTickets />} />
+        <Route path=" cart/UserNavBar/buyTickets" element={<BuyTickets />} />
+       
         <Route path="about" element={<About />} />
+        <Route path="cart/UserNavBar/about" element={<About />} />
         <Route path="managerEntery" element={<ManagerEntery />} />
         <Route path="ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
