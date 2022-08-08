@@ -12,14 +12,14 @@ import { Link } from "react-router-dom";
 
 const schema = yup.object({
     userName: yup.string().required(),
-    passwords: yup.number()
+    password: yup.number()
 }).required();
 
 const Login=()=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
-const onSubmit = data => console.log(data);
+const onSubmit = data => {console.log(data); check()}
 let nav=useNavigate();
 
 const check=()=>{
@@ -33,7 +33,7 @@ return (<>
         <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" />
         <Input register={register} errors={errors}  className="input"name="password" lablName="סיסמא" />
         <Link to="signUp" className="navbar-brand">עדיין לא  רשום? עבור להרשמה</Link> 
-        <input type="submit" className="button" onClick={check}/>
+        <input type="submit" className="button" />
         </div>
     </form></>
 )

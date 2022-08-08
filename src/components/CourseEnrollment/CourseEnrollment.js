@@ -13,10 +13,11 @@ const text=()=>{
     document.getElementById("text").style.fontSize="25px";
     document.getElementById("div").style.visibility="hidden";
 }
+
 const schema = yup.object({
     userName: yup.string().required(),
     mail: yup.string().email().required(),
-    phone: yup.number().positive().integer().required().max(10),
+    phone: yup.number().positive().integer().required()
 }).required();
 
 
@@ -24,7 +25,8 @@ const CourseEnrollment=()=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
-const onSubmit = data => console.log(data);
+const onSubmit = data => {console.log(data);
+text();}
     
     return <>
     <div id="text" className="text">
@@ -38,12 +40,13 @@ const onSubmit = data => console.log(data);
 
     <div className="div" id="div">
         <h1 className="x">:הרשמה לקורס שחיה</h1>
+        
+        <form onSubmit={handleSubmit(onSubmit)}>
         <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" />
         <Input register={register} errors={errors} className="input" name="mail" lablName="מייל "/>
         <Input register={register} errors={errors} className="input" name="phone" lablName="פלאפון"/>
-
-
-    <input type="button"  className="button" value="!הרשם" onClick={text}></input>
+    <input type="submit"  className="button" value="!הרשם"></input>
+    </form>
     </div>
     
     
