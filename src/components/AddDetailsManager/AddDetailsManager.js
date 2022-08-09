@@ -1,34 +1,37 @@
-import Manager from "../../Models/Manager";
-import {useEffect, useState} from "react"
-import { useNavigate } from "react-router";
-const AddDetailsManager=(props)=>{
-    let nav=useNavigate();
-    //const [Managers,SetManagers]=useState([]);
+import React  from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import Input from "../Input";
+import * as yup from "yup";
+import {AddManager} from "../../store/Actions/Manager";
 
-   let Manager={
-       name:"",
-       phone:0,
-       email:""
+const schema = yup.object({
+    Name: yup.string().required(),
+    mail: yup.string().email().required(),
+    Phone: yup.number().positive().integer().required(),
+}).required();
+
+export default function AddDetailsManager() {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = (data) =>{     
+        AddManager(data);
+        console.log(data);
    }
-   const change=(e)=>{
-    let { name, type, value } = e.target;
-    if (type === "number")
-         value = +value;
- 
- Manager[name]=value;
-}
-const Sof=()=>{
- 
-    alert(Manager.name+" "+Manager.phone+" "+Manager.email);
-    //AllManagers.AddManager(Manager);
-    nav("/AddPool");
-}
     return (<>
-        <h1>AddDetailsManager</h1> 
-        <input type="text" placeholder="הכנס שם מלא" name="name"onChange={change}></input>
-        <input type="number" placeholder="הכנס פלאפון" name="phone"onChange={change}></input>
-        <input type="email" placeholder="הכנס כתובת דוא'ל" name="email"onChange={change}></input>
-        <button onClick={()=>{props.AddManager(Manager)}}>הוסף</button>
-            </>)
-    }
-    export default AddDetailsManager;
+                 <h1>AddDetailsManager</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Input register={register} errors={errors} name="Name" lablName="שם" className="" type="text"/>
+            <Input register={register} errors={errors} name="Phone" lablName="טלפון" className="" type="number" />
+            <Input register={register} errors={errors} name="mail" lablName="מייל" className="" type="text"/>
+            <input type="submit"/>
+        </form>
+        </>);
+}
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 const Input = ({ register, errors, name, lablName, className, type }) => {
     return <Fragment>
-        <label >{lablName} </label>
+        <label >{lablName} </label><br/>
         <input type={type} className={className} {...register(name)} />
         <p>{errors[name]?.message}</p>
     </Fragment>

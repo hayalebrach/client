@@ -1,7 +1,10 @@
 
 import {useEffect, useState} from "react"
+//import {useSelector} from 'react-redux';
+
 
 export default  function AllManagers(){
+  //const Managers = useSelector((state) => state.fakeManagers);
     const [Managers,SetManagers]=useState([]);
 
   useEffect(()=>{
@@ -27,7 +30,7 @@ export default  function AllManagers(){
     
     <ul>
         {
-            Managers.map(manager=><><br/> <li className="li"><text>שם:</text> {manager.name} <br/> <text> מספר מזהה:  </text> {manager.id} <br/>  {manager.email} <text> :מייל </text> </li>  </>)
+            Managers.map(Managers=><><br/> <li className="li"><text>שם:</text> {Managers.name} <br/> <text> מספר מזהה:  </text> <br/>  {Managers.email} <text> :מייל </text> </li>  </>)
         }
     </ul>
         

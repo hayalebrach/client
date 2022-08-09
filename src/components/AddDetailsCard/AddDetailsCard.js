@@ -1,28 +1,36 @@
-import {useNavigate}from "react-router";
-const AddDetailsCard=()=>{
-    let nav=useNavigate();
-    let Card={
-         price:0,
-         Amount:0
+import React  from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import Input from "../Input";
+import * as yup from "yup";
+import {AddCard} from "../../store/Actions/Card"
+
+const schema = yup.object({
+    Price: yup.number().positive().integer().required(),
+    Amount: yup.number().positive().integer().required()
+}).required();
+
+export default function AddDetailsCard() {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = (data) => {
+        AddCard(data);
+        console.log(data);
     }
-    const change=(e)=>{
-        let { name, type, value } = e.target;
-        if (type === "number")
-             value = +value;
-     
-     Card[name]=value;
-    }
-    let Sof=()=>{
-        alert("נוסף בהצלחה");
-        nav("/AddPool");
-    }
-return (
-    <>
-    <h1>AddDetailsCard</h1>
-    <input type="number" placeholder="מחיר:" name="price" onChange={change}></input><br/><br/>
-    <input type="number" placeholder="כמות כניסות:" name="Amount" onChange={change}></input><br/><br/>
-    <button onClick={Sof}>הוסף</button>
-    </>
-)
+
+    return (<>
+                 <h1>AddDetailsCard</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Input register={register} errors={errors} name="Price" lablName="מחיר" className="" type="number"/>
+            <Input register={register} errors={errors} name="Amount" lablName="כמות כניסות" className="" type="number" />
+            <input type="submit" onClick={()=>alert("AddDetailsCard")}/>
+        </form>
+        </>);
 }
-export default AddDetailsCard;
+
+
+
+
+
+

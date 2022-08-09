@@ -1,51 +1,50 @@
-import { useNavigate } from "react-router";
-const AddDetailsPool=()=>{
-    let nav=useNavigate();
-    let Pool={
-        name:"",
-        erea:"hhhhh ",
-        adress:"",
-        price:0,
-        MaxP:0,
-        phone:0
-    }
-    const change=(e)=>{
-        let { name, type, value } = e.target;
-         if (type === "number")
-         value = +value;
-        Pool[name]=value;
-    }
-    const Erea=(e)=>{
-        alert(e);
-        alert(Pool.erea);
-        // if(e==1)
-        // Pool[erea]="מרכז";
-        // if(e==2)
-        // Pool[erea]="צפון";
-        // if(e==3)
-        // Pool[erea]="דרום";
+import React  from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import Input from "../Input";
+import * as yup from "yup";
+import {AddPool} from "../../store/Actions/Pools"
+const schema = yup.object({
+    NamePool: yup.string().required(),  
+    Erea:yup.string().required(), 
+    Adress: yup.string().required(), 
+    Price: yup.number().positive().integer().required(),
+    numPeople: yup.number().positive().integer().required(),
+    Phone: yup.number().positive().integer().required()
+}).required();
 
-    }
-    const Sof=()=>{
-        // if(Pool.erea==1)
-        // alert()
-        alert(Pool.name+" "+Pool.adress+" "+Pool.MaxP);
-        //AllManagers.AddManager(Manager);
-        nav("/AddPool");
+export default function AddDetailsPool() {
+    const arr = [{ Id: 1, Name: "מרכז" }, { Id: 2, Name: "צפון" },{ Id:3, Name: "דרום" }]
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = (data) => {
+        data.Erea=arr[data.Erea-1].Name; 
+        AddPool(data);
+        console.log(data);
     }
     return (<>
-        <h1>AddDetailsPool</h1> 
-        <input type="text" placeholder="שם הבריכה" name="name"onChange={change}></input><br/><br/>
-        <input type="text" placeholder="כתובת" name="adress"onChange={change}></input><br/><br/>
-        <input type="number" placeholder="מחיר לבודד" name="price"onChange={change}></input><br/><br/>
-        <input type="number" placeholder="כמות אנשים" name="MaxP"onChange={change}></input><br/><br/>
-        <input type="number" placeholder="מספר טלפון" name="phone"onChange={change}></input><br/><br/>
-      
+                 <h1>AddDetailsPool</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Input register={register} errors={errors} name="NamePool" lablName="שם הבריכה" className="" type="text"/>
+           <label>איזור בארץ</label><br/>
+            <select  {...register("Erea")}>  
+                 {arr.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
+           </select><br/>
+            <Input register={register} errors={errors} name="Adress" lablName="כתובת" className="" type="text"/>
+            <Input register={register} errors={errors} name="Price" lablName="מחיר ליחיד" className="" type="number"/>
+            <Input register={register} errors={errors} name="numPeople" lablName="מס' אנשים" className="" type="number"/>
+            <Input register={register} errors={errors} name="Phone" lablName="טלפון" className="" type="number"/>
+            <input type="submit" onClick={()=>alert("AddDetailsPool")}/>
+        </form>
+        </>);
+}
 
-        <button onClick={Sof}>סימתי</button>
-            </>)
-    }
-    
-export default AddDetailsPool;
+
+
+
+
+
 
 

@@ -15,7 +15,7 @@ import UserNavBar from "./UserNavBar";
 import ManagerEntery from "./ManagerEntery/ManagerEntery";
 import AllUsers from './AllUsers/AllUsers';
 import AllManagers from './AllManagers/AllManagers';
-// import cardUpdate from './cardUpdate';
+ import cardUpdate from './cardUpdate';
 // import courseUpdate from './courseUpdate';
 // import addSale from './addSale';
 import CourseDetails from './CourseDetails/CourseDetails';

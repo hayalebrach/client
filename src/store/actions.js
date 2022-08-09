@@ -14,7 +14,7 @@ export const CHOOSE_COURS="CHOOSE_COURS"
 export const GET_POOLS="GET_POOLS"
 //הוספת בריכה
 export const ADD_POOLS="ADD_POOLS"
-
+//מחיקת בריכה
 export const DELETE_POOLS="DELETE_POOLS"
 //תשלום בכרטיס אשראי
 export const PAY_CRADIT_CARD="PAY_CRADIT_CARD"
@@ -30,6 +30,14 @@ export const GET_USERS="GTE_USERS"
 export const AVARGE_ORDERS="AVARGE_ORDERS"
 //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת
 export const GET_ORDERS="GTE_ORDERS"
+//הוספת מנהל
+export const ADD_MANAGER="ADD_MANAGER"
+//הוספת כרטיס
+ export const ADD_CARD="ADD_CARD";
+ //הוספת קורס
+ export const ADD_COURS="ADD_COURS";
+//הוספת מבצע
+export const ADD_SALE="ADD_SALE";
 
 
 

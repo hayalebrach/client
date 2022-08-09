@@ -1,32 +1,44 @@
-const AddDetailsSale=()=>{
-    let Sale={
-        name:"",
-        dis:"",
-        dateStart:0,
-        dateEnd:0,
-        numEnter:0,
-        price:0
+    import React  from "react";
+    import { useForm } from "react-hook-form";
+    import { yupResolver } from '@hookform/resolvers/yup';
+    import Input from "../Input";
+    import * as yup from "yup";
+    import {AddSale} from "../../store/Actions/Card"
+    const schema = yup.object({
+        Name: yup.string().required(),
+        Dis: yup.string().required(),
+        dateStart: yup.number().positive().integer().required(),
+        dateEnd: yup.number().positive().integer().required(),
+        numEnter: yup.number().positive().integer().required(),
+        Price: yup.number().positive().integer().required()
+    }).required();
+    
+    export default function AddDetailsSale() {
+        const { register, handleSubmit, formState: { errors } } = useForm({
+            resolver: yupResolver(schema)
+        });
+        const onSubmit = (data) => {
+            AddSale(data);
+            console.log(data);
+        }
+    
+        return (<>
+                     <h1>AddDetailsCard</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Input register={register} errors={errors} name="Name" lablName="כותרת" className="" type="text"/>
+                <Input register={register} errors={errors} name="Dis" lablName="תיאור" className="" type="text" />
+                <Input register={register} errors={errors} name="dateStart" lablName="תאריך התחלה" className="" type="number"/>
+                <Input register={register} errors={errors} name="dateEnd" lablName="תאריך סיום" className="" type="number"/>
+                <Input register={register} errors={errors} name="numEnter" lablName="מס' כניסות" className="" type="number"/>
+                <Input register={register} errors={errors} name="Price" lablName="מחיר" className="" type="number"/>
+                <input type="submit" onClick={()=>alert("AddDetailsSale")}/>
+            </form>
+            </>);
     }
-    const change=(e)=>{
-        let { name, type, value } = e.target;
-         if (type === "number")
-         value = +value;
-        Sale[name]=value;
-    }
-    const Sof=()=>{
-        alert("נוסף בהצלחה");
-    }
-    return (<>
-        <h1>AddDetailsSale</h1> 
-        <input type="text" placeholder="שם" name="name"onChange={change}></input><br/><br/>
-        <input type="text" placeholder="תיאור" name="dis"onChange={change}></input><br/><br/>
-        <input type="text" placeholder="תאריך התחלה" name="dateStart"onChange={change}></input><br/><br/>
-        <input type="text" placeholder="תאריך סיום" name="dateEnd"onChange={change}></input><br/><br/>
-        <input type="text" placeholder="מספר כניסות" name="numEnter"onChange={change}></input><br/><br/>
-        <input type="text" placeholder="מחיר" name="price"onChange={change}></input><br/><br/>
-
-        <button onClick={Sof}>סימתי</button>
-            </>)
-    }
-    export default AddDetailsSale;
-
+    
+    
+    
+    
+    
+    
+    
