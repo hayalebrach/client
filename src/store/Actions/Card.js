@@ -9,6 +9,12 @@ import axios from "axios";
 //       }
 //     }
 
+
+
+
+
+
+
 //פונקציה שמוסיפה כרטיס חדש
 export const AddCard=(card)=>{
     console.log(card);

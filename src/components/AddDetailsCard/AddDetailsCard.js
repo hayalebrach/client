@@ -5,6 +5,7 @@ import Input from "../Input";
 import * as yup from "yup";
 import {AddCard} from "../../store/Actions/Card"
 
+
 const schema = yup.object({
     Price: yup.number().positive().integer().required(),
     Amount: yup.number().positive().integer().required()
@@ -14,6 +15,7 @@ export default function AddDetailsCard() {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
+
     const onSubmit = (data) => {
         AddCard(data);
         console.log(data);

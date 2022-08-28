@@ -5,7 +5,7 @@ export default function AddPool(){
     <h1 className="h1">AddPool</h1>
  <ul className="nav flex-column">
   <li className="nav-item">
-  <Link to="AddDetailsManager" className="nav-link">לפרטי מנהל</Link>
+  <Link to="AddDetailsManager" className="nav-link">להוספת המנהל</Link>
   </li>
   <li className="nav-item">
   <Link to="AddDetailsSchedule" className="nav-link">לפרטי לוח זמנים</Link>
