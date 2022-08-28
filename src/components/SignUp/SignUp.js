@@ -14,7 +14,7 @@ const schema = yup.object({
     userName: yup.string().required(),
     password: yup.number(),
     mail: yup.string().email().required(),
-    phone: yup.number().positive().integer().required().max(10),
+    phone: yup.number().positive().integer().required(),
     type: yup.number().positive().integer(),
     authorization:yup.number().positive().integer().required()
 

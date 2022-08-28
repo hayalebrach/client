@@ -42,6 +42,7 @@ function App() {
       
       
       <div className='smallDiv'>
+        
          <img src="../Pic/grocery-store.png" className="img1" onClick={()=>nav("./cart")}/>
         <img src="../Pic/user.png" className="img2" onClick={()=>nav("./profile")}/>
         <h3 className='f' onClick={()=>nav("./signUp")}>הרשמה</h3>

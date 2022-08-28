@@ -15,7 +15,7 @@ const schema = yup.object({
     password: yup.number()
 }).required();
 
-const Login=()=>{
+const Login=(props)=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
@@ -23,6 +23,8 @@ const onSubmit = data => {console.log(data); check()}
 let nav=useNavigate();
 
 const check=()=>{
+    props.login({userName:userName,password:password})
+
      nav("/UserNavBar");
 }
 return (<>
@@ -40,7 +42,7 @@ return (<>
 
 }
 
-export default Login;
+export default connect(null, { login })(Login);
 
 
 

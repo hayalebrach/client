@@ -9,39 +9,34 @@ export const addUser=(user)=>{
 
         err=>{
             console.log(err);
-            console.log("קרתה שגיאה")
+            console.log("!שגיאה")
         })
 
     }
 }
-export const SaveUser=(user)=>{
-    return {
-        type:actionType.LOGIN,
-        payload:user
-    }
-}
+
 //פונקצית התחברות
 export const login=(user)=>{
     return(dispach)=>{
-        axios.post("http://localhost:8080/חחחחח",user).then(res=>{
+        axios.post("http://localhost:8080/login",user).then(res=>{
             
             if(res.data.success)
           {
               console.log("התחברת בהצלחה")
               console.log(res.data.user)
-              dispach(Login(res.data.user))}
+              dispach(SaveUser(res.data.user))}
             else
             alert(res.data.massage)
         },
         err=>{
             console.log(err);
-            console.log("קרתה שגיאה")
+            console.log("!שגיאה")
         })
     }
 }
-export const Login=(user)=>{
-    return{
-        type:"USER_CONNECT",
+export const SaveUser=(user)=>{
+    return {
+        type:actionType.LOGIN,
         payload:user
     }
 }

@@ -93,10 +93,9 @@ const reducer = (state = initialState, action) => {
         //הרשמה
         case actionType.LOGIN:     
         return {
-           ...state,
-             users_arr:[...action.paload]
-             
-        };   
+            ...state,
+            current_user:action.payload
+        }   
         //התחברות
         case actionType.SIGNIN:
         return {
