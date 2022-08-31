@@ -15,7 +15,7 @@ import UserNavBar from "./UserNavBar";
 import ManagerEntery from "./ManagerEntery/ManagerEntery";
 import AllUsers from './AllUsers/AllUsers';
 import AllManagers from './AllManagers/AllManagers';
- import cardUpdate from './cardUpdate';
+import cardUpdate from './cardUpdate';
 // import courseUpdate from './courseUpdate';
 // import addSale from './addSale';
 import CourseDetails from './CourseDetails/CourseDetails';
@@ -33,16 +33,38 @@ import CourseEnrollment from "./CourseEnrollment/CourseEnrollment"
 import SplitButton from './SplitButton';
 import BuyingForm from './BuyingForm/BuyingForm';
 import FinishBuying from './FinishBuying/FinishBuying';
-import Test from './test'
+
+
+
+// shallowEqual, useSelector,
 import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
+//import { shallowEqual, useSelector } from 'react-redux';
 function App() {
-  let nav=useNavigate();
+  let nav = useNavigate();
+
+  
+  // const { Cards, Managers } = useSelector(state => ({
+  //   Managers: state.Managers,
+  //   Cards: state.Cards
+  // }), shallowEqual);
+
+  // console.log(Cards, Managers)
+
+  // const { num, current_user } = useSelector(state => ({
+  //    num: state.num,
+  //    current_user: state.current_user
+  // }), shallowEqual);
+
+  // console.log(num, current_user)
+  
+
   return (
     <>
-      
-      
+
+
       <div className='smallDiv'>
+
         
          <img src="../Pic/grocery-store.png" className="img1" onClick={()=>nav("./cart")}/>
         <img src="../Pic/user.png" className="img2" onClick={()=>nav("./profile")}/>
@@ -105,11 +127,13 @@ function App() {
         <Route path="SplitButton" element={<SplitButton />} />
       </Routes>
 
-    </div>  
-   
-    </>
+     
 
-  );
+      </div>
+
+    </>)
+
+ 
 }
 
 export default App;

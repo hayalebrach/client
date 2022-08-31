@@ -2,15 +2,22 @@ import * as actionType from "../actions";
 
 const initialState = {
     //המערך המזויף של המנהלים
-    fakeManagers:
-    [
-      {id:"1111",name:"ליאל",email:"lieli@gmail.com",password:1212},
-      {id:"2222",name:"חיוש",email:"chayush@gmail.com",password:2212},
-      {id:"3333",name:"סיווני",email:"sivani@gmail.com",password:121572},
-      {id:"4444",name:"ספירוש",email:"sapirush@gmail.com",password:555545}
-    ], 
+    // Managers:
+    // [
+    //   {id:"1111",name:"ליאל",email:"lieli@gmail.com",password:1212},
+    //   {id:"2222",name:"חיוש",email:"chayush@gmail.com",password:2212},
+    //   {id:"3333",name:"סיווני",email:"sivani@gmail.com",password:121572},
+    //   {id:"4444",name:"ספירוש",email:"sapirush@gmail.com",password:555545}
+    // ], 
+    //המערך של ההרשאות
+    Role:[
+        {Id:1,Name:"מנהל ראשי"},
+        {Id:2,Name:"משתמש מזדמן"},
+        {Id:3,Name:" משתמש"},
+        {Id:4,Name:"מנהל בריכה"},
+    ],
     //המערך המזויף של כרטיסים
-    fakeCards:
+    Cards:
     [
         {type:"5 כניסות",price:120},
         {type:"10 כניסות",price:170},
@@ -18,7 +25,7 @@ const initialState = {
         {type:"50 כניסות",price:400}
     ],
     //המערך המזויף של הקורסים
-    fakeCourses:
+    Courses:
     [
         {name:"שחיה",email:"lieli@gmail.com",phone:"5333255"},
         {name:"ספורט",email:"chayush@gmail.com",phone:"05222552"},
@@ -29,7 +36,7 @@ const initialState = {
     Card:null,
     //-------------------------------
     //המערך המזויף של הבריכות
-    fakePools:
+    Pools:
     [
         {id:"1111",name:"בריכת האגם",phone:"123456789",address:"צפריר  אור יהודה",pic:'istockphoto-1148844017-1024x1024',dis:"גליל מערבי, אגם מונפורטבריכת שחייה ת"},
         {id:"2222",name:"פארק המים שפעים",phone:"123456789",address:"רמלה בן גוריון 15",pic:"istockphoto-1319918284-1024x1024",dis:"תל אביב והמרכז, שפיים פארק המים"},
@@ -38,16 +45,30 @@ const initialState = {
         {id:"5555",name:"בריכת יפה נוף",phone:"123456789",address:"יעד 30 לוד",pic:"istockphoto-1325939237-1024x1024",dis:"חיפה והכרמל, נשרמרכז בילוי, ספורט ופנאי  ה,"},
         {id:"6666",name:"בריכת המים",phone:"123456789",address:"השומר 30 אילת",pic:"swimming-pool-g8bee2e575_1920",dis:"חיפה והכרמל, נשרמרכז בילוי, ספורט ופנאי  ה,"}
     ],
-    sale_arr:[],
-    current_user:null,
-    pools_arr:[],
+    //המערך של המשתמשים
     users_arr:[],
+    //המשתמש הנוכחי
+    current_user:null,
+    
+    sale_arr:[],
+   
+    pools_arr:[],
+    
     cart:[],
     courses_arr:[],
-    num:null
+    num:7
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+
+          //התחברות-login
+          case actionType.LOGIN:
+            return {
+                ...state,
+                current_user:action.paload,       
+             }; 
+
+
         //   //עדכון מחיר לכרטיס
         //   case actionType.UPDATE_CARD:
         //       console.log("UPDATE_CARD");
@@ -69,7 +90,7 @@ const reducer = (state = initialState, action) => {
         case actionType.ADD_COURS:{
             return{
                 ...state,
-                fakeCourses:[...action.paload]
+                Courses:[...action.paload]
             }
         }
         //הוספת מנהל
@@ -77,7 +98,7 @@ const reducer = (state = initialState, action) => {
             return{
                 
                  ...state,
-                 fakeManagers:[...action.paload]
+                 Managers:[...action.paload]
 
             };
         }
@@ -86,27 +107,21 @@ const reducer = (state = initialState, action) => {
             return{
                 
                  ...state,
-                 fakeCards:[...action.paload]
+                 Cards:[...action.paload]
 
             };
         }
         //הרשמה
-        case actionType.LOGIN:     
+        case actionType.SIGNIN:     
         return {
             ...state,
             current_user:action.payload
-        }   
-        //התחברות
-        case actionType.SIGNIN:
-        return {
-            ...state,
-            current_user:action.paload             
-         };       
+        }        
         //הוספת בריכה
         case actionType.ADD_POOLS:
         return {
             ...state,
-            fakePools:[...action.paload]
+            Pools:[...action.paload]
         }
         //מחיקת בריכה
         case actionType.DELETE_POOLS:

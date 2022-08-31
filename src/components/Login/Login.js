@@ -1,25 +1,32 @@
-import { useRef } from "react";
-import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import React  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
+import {login} from "../../store/Actions/Users"
 
 import "./Login.css"
 import { Link } from "react-router-dom";
 
 const schema = yup.object({
     userName: yup.string().required(),
-    password: yup.number()
+    password: yup.number().positive().required()
 }).required();
 
 const Login=(props)=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
-const onSubmit = data => {console.log(data);check()}
+
+
+
+const onSubmit = (data) => {
+    login(data);
+    console.log(data); 
+    check()
+}
+
 let nav=useNavigate();
 
 const check=()=>{
