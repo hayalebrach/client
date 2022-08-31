@@ -35,6 +35,7 @@ import BuyingForm from './BuyingForm/BuyingForm';
 import FinishBuying from './FinishBuying/FinishBuying';
 import Test from './test'
 import SignUp from "./SignUp/SignUp";
+import BuyingHistory from './BuyingHistory/BuyingHistory';
 function App() {
   let nav=useNavigate();
   return (
@@ -56,26 +57,22 @@ function App() {
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
         <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
-        
         <Route path="cart/UserNavBar" element={<UserNavBar />} />
-       
+        <Route path="profile/history" element={<BuyingHistory />} />
+        
         <Route path="users" element={<AllUsers />} />
         <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login/>} />
         <Route path="signUp" element={<SignUp/>} />
         <Route path="/signUp/login" element={<Login/>} />
         <Route path="login/signUp" element={<SignUp/>} />
-        
         <Route path="courseDetails" element={<CourseDetails />} />
-
         <Route path="home" element={<AllPools />} />
         <Route path="managers" element={<AllManagers />} />
         <Route path="courses" element={<Courses />} />
         <Route path="cart/UserNavBar/courses" element={<Courses />} />
-        
         <Route path="buyTickets" element={<BuyTickets />} />
         <Route path=" cart/UserNavBar/buyTickets" element={<BuyTickets />} />
-       
         <Route path="about" element={<About />} />
         <Route path="cart/UserNavBar/about" element={<About />} />
         <Route path="managerEntery" element={<ManagerEntery />} />
@@ -88,13 +85,9 @@ function App() {
         <Route path="/UserNavBar/AddPool" element={<AddPool />} />
         <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment />} />
         <Route path="/buyingForm" element={<BuyingForm/>} />
-        
         <Route path="/MainManagerNavBar/managers" element={<AllManagers />} />
         <Route path="/MainManagerNavBar/home" element={<AllPools />} />
         <Route path="/buyingForm/finishBuying" element={<FinishBuying />} />
-        
-
-
         <Route path="profile" element={<Profile />} />
         <Route path="cardUpdate" element={<cardUpdate />} />
         <Route path="courseUpdate" element={<courseUpdate />} />

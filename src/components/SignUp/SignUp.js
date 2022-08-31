@@ -24,7 +24,8 @@ const SignUp=()=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
-const onSubmit = data => console.log(data);
+let nav=useNavigate();
+const onSubmit = data =>{ console.log(data) ;nav("/UserNavBar")};
 
 return (<>
     <h1>הרשמה</h1>
