@@ -8,13 +8,13 @@ import "./SignUp.css"
 import { Link } from "react-router-dom";
 import {AddUser} from "../../store/Actions/Users"
 const schema = yup.object({
+
     Name: yup.string().required(),
     Password: yup.number(),
     Email: yup.string().email().required(),
     Phone: yup.number().positive().integer().required(),
     Type: yup.number().positive().integer(),
     IdRole:yup.number().positive().integer().required()
-
 }).required();
 
 const SignUp=()=>{
@@ -22,6 +22,7 @@ const SignUp=()=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
+
 const onSubmit = (data) =>{ 
    dispatch(AddUser(data));
     console.log(data);
@@ -31,6 +32,7 @@ const onSubmit = (data) =>{
 const typeArr = [{ Id: 1, Name: "אישה" }, { Id: 2, Name: "גבר" }];
 
 const Role = useSelector((state) =>state.Role)
+
 
 return (<>
     <h1>הרשמה</h1>

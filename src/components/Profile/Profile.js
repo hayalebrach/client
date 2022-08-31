@@ -2,6 +2,10 @@ import { useNavigate } from "react-router"
 import "./Profile.css"
 export default  function Profile(){
     let nav=useNavigate();
+
+    const HistoryFunc=()=>{
+        nav("./history");
+    }
     return(<>
     <div className="Mdiv">
     
@@ -11,8 +15,9 @@ export default  function Profile(){
     liel@gmail.com   :מייל <br/><br/>
     כתובת: התמר 13 ראשון לציון <br/><br/>
     אמצעי תשלום: *****3311 <br/>
-    
+    <b onClick={HistoryFunc}>להסטוריית ההזמנות</b>
     </text>
+    
 
     <input type="button" className="button3" value="<-התנתק" onClick={()=>nav("./GuessNavBar")}></input>
 

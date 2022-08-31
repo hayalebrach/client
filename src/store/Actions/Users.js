@@ -1,5 +1,6 @@
  import * as actionType from "../actions";
  import axios from "axios";
+
 //כל המשתמשים
 export const getAllUser=()=>{
     return dispach=>{
@@ -45,5 +46,4 @@ export const login = (data) => {
 //              console.log("קרתה שגיאה")
 //          })
 //      }
-  }
-
+ }

@@ -26,7 +26,6 @@ const onSubmit = (data) => {
     console.log("lkjg");
     dispatch(login(data));
     console.log(currentUser); 
-    //check()
 }
 //let nav=useNavigate();
 // const check=()=>{

@@ -131,9 +131,7 @@ const reducer = (state = initialState, action) => {
                  Cards:[...action.paload]
 
             };
-        }
-          
-            
+        }       
         //הוספת בריכה
         case actionType.ADD_POOLS:
         return {
