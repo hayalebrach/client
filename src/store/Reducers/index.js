@@ -10,12 +10,9 @@ const initialState = {
     //   {id:"4444",name:"ספירוש",email:"sapirush@gmail.com",password:555545}
     // ], 
     //המערך של ההרשאות
-    Role:[
-        {Id:1,Name:"מנהל ראשי"},
-        {Id:2,Name:"משתמש מזדמן"},
-        {Id:3,Name:" משתמש"},
-        {Id:4,Name:"מנהל בריכה"},
-    ],
+   
+        
+   
     //המערך המזויף של כרטיסים
     Cards:
     [
@@ -46,10 +43,11 @@ const initialState = {
         {id:"6666",name:"בריכת המים",phone:"123456789",address:"השומר 30 אילת",pic:"swimming-pool-g8bee2e575_1920",dis:"חיפה והכרמל, נשרמרכז בילוי, ספורט ופנאי  ה,"}
     ],
     //המערך של המשתמשים
-    users_arr:[],
+    usersArr:[],
     //המשתמש הנוכחי
-    current_user:null,
-    
+    currentUser:"",
+    //כל ההרשאות
+    Role:[],
     sale_arr:[],
    
     pools_arr:[],
@@ -59,14 +57,37 @@ const initialState = {
     num:7
 }
 const reducer = (state = initialState, action) => {
+    
     switch (action.type) {
+        //כל ההרשראות
+        case actionType.ALL_ROLE:
+            return{
+                ...state,
+                Role:[...action.paload]
+            }
+        //הרשמה
+        case actionType.SIGNUP:     
+        return {
+           ...state,
+             users_arr:[...action.paload]
+             
+        }; 
+
+//למנהל הראשי-הצגת המשתמשים באתר
+          case actionType.GET_USERS:
+              return {
+                  ...state,
+                  usersArr:[...action.paload]
+                };
+
+
 
           //התחברות-login
           case actionType.LOGIN:
             return {
                 ...state,
-                current_user:action.paload,       
-             }; 
+                currentUser:action.payload
+             }
 
 
         //   //עדכון מחיר לכרטיס
@@ -111,14 +132,7 @@ const reducer = (state = initialState, action) => {
 
             };
         }
-        //הרשמה
-        case actionType.SIGNIN:     
-        return {
-           ...state,
-         
-             users_arr:[...action.paload]
-             
-        };   
+          
             
         //הוספת בריכה
         case actionType.ADD_POOLS:
@@ -150,8 +164,7 @@ const reducer = (state = initialState, action) => {
         case actionType.GET_CARDS:return state;
         //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת
         case actionType.GET_ORDERS:return state;
-        //למנהל הראשי-הצגת המשתמשים באתר
-        case actionType.GET_USERS:return state;
+        
         //תשלום בכרטיס אשראי
         case actionType.PAY_CRADIT_CARD:return state;
         //עדכון מחיר לקורס

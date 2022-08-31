@@ -1,7 +1,7 @@
 //הרשמה
 export const LOGIN="LOGIN"
 //התחברות
-export const SIGNIN="SIGNIN"
+export const SIGNUP="SIGNUP"
 //רשימת קורסים
 export const LIST_COURS="LIST_COURS"
 //הצגת כרטיסים
@@ -25,7 +25,7 @@ export const UPDATE_COURS="UPDATE_COURS"
 //עדכון שעות
 export const UPDATE_HOUR="UPDATE_HOUR"
 //למנהל הראשי-הצגת המשתמשים באתר
-export const GET_USERS="GTE_USERS"
+export const GET_USERS="GET_USERS"
 //ממוצע של כל ההזמנות
 export const AVARGE_ORDERS="AVARGE_ORDERS"
 //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת
@@ -38,7 +38,10 @@ export const ADD_MANAGER="ADD_MANAGER"
  export const ADD_COURS="ADD_COURS";
 //הוספת מבצע
 export const ADD_SALE="ADD_SALE";
-
+//הוספת הרשאות/תפקידים
+export const ADD_ROLE="ADD_ROLE";
+//כל ההרשראות
+export const ALL_ROLE="ALL_ROLE";
 
 
 

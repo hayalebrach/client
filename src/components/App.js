@@ -35,12 +35,12 @@ import BuyingForm from './BuyingForm/BuyingForm';
 import FinishBuying from './FinishBuying/FinishBuying';
 import Test from './test'
 import {useDispatch } from 'react-redux'
-
+import {useSelector} from "react-redux";
 // shallowEqual, useSelector,
 import SignUp from "./SignUp/SignUp";
 function App() {
   let nav = useNavigate();
-  const disptch=useDispatch();
+ const disptch=useDispatch();
   
   // const { Cards, Managers } = useSelector(state => ({
   //   Managers: state.Managers,
@@ -55,7 +55,8 @@ function App() {
   // }), shallowEqual);
 
   // console.log(num, current_user)
-  
+  const currentUser=useSelector(state =>state.currentUser)
+  console.log(currentUser);
 
   return (
     <>
@@ -113,7 +114,7 @@ function App() {
           <Route path="/buyingForm/finishBuying" element={<FinishBuying />} />
 
 
-
+          <Route path="AddDetailsManager" element={<AddDetailsManager />} />
           <Route path="profile" element={<Profile />} />
           <Route path="cardUpdate" element={<cardUpdate />} />
           <Route path="courseUpdate" element={<courseUpdate />} />

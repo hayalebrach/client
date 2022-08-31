@@ -1,4 +1,79 @@
- //const SplitButton = () => {
+
+
+// import { connect } from "react-redux";
+// import './LoginUser.css';
+// import { useNavigate } from "react-router";
+// import Box from '@mui/material/Box';
+// import TextField from '@mui/material/TextField';
+// import Grid from '@mui/material/Grid';
+// import Button from '@mui/material/Button';
+// import axios from "axios";
+// import { useState } from "react";
+// import { selectManagementTenant } from "../../action";
+
+
+// const LoginUser = (props) => {
+//   let nav = useNavigate();
+//   let user = {};
+
+
+//   const change = (e) => {
+//     let { type, name, value } = e.target;
+//     //props.state.user=user;
+
+//     if (type == "number")
+//       user[name] = +value;
+//     else
+//       user[name] = value;
+
+//   }
+
+
+//   const func = (e) => {
+
+//     e.preventDefault();
+//     alert("func");
+
+//     axios.post("https://localhost:44341/api/Tenant/PostTenantByNameAndPassword", user).then(res => {
+//       const tenant = res.data;
+//       console.log(tenant)
+//       if (tenant == null) {
+//         alert("שם משתמש או סיסמא שגויים");
+//       }
+//       else {
+//         if (tenant.Status == 1) {
+//           props.selectManagementTenant(true);
+//           nav("/Base/ManagerHome");
+//         }
+//         else
+//           nav("/Base/TanentHome")
+//       }
+//     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//const SplitButton = () => {
 //   const arr = [{ Id: 1, Name: "בני ברק" }, { Id: 2, Name: "ashdod" }]
 
 //   return (
@@ -79,18 +154,18 @@
 // }; */}
 
  const SplitButton =() =>{
-  
-  
+
+
 
 
 
 return(
   <>
-      
 
-  
-  
-  
+
+
+
+
   </>
 )
 
