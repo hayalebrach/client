@@ -36,14 +36,16 @@ export const login = (data) => {
 }
 // //הוספת משתמש
  export const AddUser=(data)=>{
-//      return(dispach)=> {
-//          axios.post("http://localhost:50157/api/user/AddUser?",data).then(res=>{
-//              console.log(res);
-//              dispach({type:actionType.SIGNUP,payload:res.data});
-//          },
-//          err=>{
-//              console.log(err)
-//              console.log("קרתה שגיאה")
-//          })
-//      }
+     return(dispach)=> {
+         console.log(data);
+         axios.post("http://localhost:50157/api/user/AddUser?",data)
+             .then(response=>{
+             dispach({type:actionType.SIGNUP,payload:response.data});
+         },
+         err=>{
+
+             console.log(err)
+             console.log("קרתה שגיאה")
+         })
+     }
  }
