@@ -33,8 +33,7 @@ import CourseEnrollment from "./CourseEnrollment/CourseEnrollment"
 import SplitButton from './SplitButton';
 import BuyingForm from './BuyingForm/BuyingForm';
 import FinishBuying from './FinishBuying/FinishBuying';
-import {useSelector,תuseDispatch } from "react-redux";
-
+import {useSelector,useDispatch } from "react-redux";
 // shallowEqual, useSelector,
 import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
@@ -42,6 +41,8 @@ import PoolWeb from './PoolWeb/PoolWeb';
 //import { shallowEqual, useSelector } from 'react-redux';
 function App() {
   let nav = useNavigate();
+  const dispatch=useDispatch();
+
   // const { Cards, Managers } = useSelector(state => ({
   //   Managers: state.Managers,
   //   Cards: state.Cards
@@ -55,16 +56,13 @@ function App() {
   // }), shallowEqual);
 
   // console.log(num, current_user)
-  const currentUser=useSelector(state =>state.currentUser)
-  console.log(currentUser);
+
 
   return (
     <>
 
 
       <div className='smallDiv'>
-
-        
          <img src="../Pic/grocery-store.png" className="img1" onClick={()=>nav("./cart")}/>
         <img src="../Pic/user.png" className="img2" onClick={()=>{if(currentUser!="")
           nav("./profile")
@@ -72,7 +70,6 @@ function App() {
         <h3 className='f' onClick={()=>nav("./signUp")}>הרשמה</h3>
         <h3 className='f' onClick={()=>nav("./login")}>התחברות</h3><br/>
         </div>
-
      <div className="App" >
         
       <Routes >

@@ -23,11 +23,11 @@
   margin: 5px;
   width: 58px;
   }
-.select{
-  
-  color: black;
- 
-}
+
   body{
     text-align: center;
+  }
+  .option{
+    width: 58px;
+    right: 50px;
   }

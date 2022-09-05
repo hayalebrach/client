@@ -51,6 +51,7 @@ const initialState = {
     
     //כל ההרשאות
     Role:[],
+
     sale_arr:[],
    
     pools_arr:[],
@@ -62,25 +63,30 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     
     switch (action.type) {
+        //הוספת הרשאה
+        case actionType.ADD_ROLE:
+           return{
+               ...state,
+               Role:[...state.Role,...action.payload]
+           }
         //כל ההרשראות
         case actionType.ALL_ROLE:
             return{
                 ...state,
-                Role:[...action.paload]
+                Role:action.payload
             }
         //הרשמה
         case actionType.SIGNUP:     
         return {
            ...state,
-             users_arr:[...action.paload]
+              usersArr:[...state.usersArr,...action.payload]
              
-        }; 
-
+        } 
 //למנהל הראשי-הצגת המשתמשים באתר
           case actionType.GET_USERS:
               return {
                   ...state,
-                  usersArr:[...action.paload]
+                  usersArr:[...action.payload]
                 };
 
 
@@ -98,7 +104,7 @@ const reducer = (state = initialState, action) => {
         //       console.log("UPDATE_CARD");
         //   return{
         //      ...state,
-        //      Card:action.paload
+        //      Card:action.payload
         //   } 
 
 
@@ -107,14 +113,14 @@ const reducer = (state = initialState, action) => {
         case actionType.ADD_SALE:{
             return{
                 ...state,
-                sale_arr:[...action.paload]
+                sale_arr:[...action.payload]
             }
         }
         //הוספת קורס
         case actionType.ADD_COURS:{
             return{
                 ...state,
-                Courses:[...action.paload]
+                Courses:[...action.payload]
             }
         }
         //הוספת מנהל
@@ -122,7 +128,7 @@ const reducer = (state = initialState, action) => {
             return{
                 
                  ...state,
-                 Managers:[...action.paload]
+                 Managers:[...action.payload]
 
             };
         }
@@ -131,7 +137,7 @@ const reducer = (state = initialState, action) => {
             return{
                 
                  ...state,
-                 Cards:[...action.paload]
+                 Cards:[...action.payload]
 
             };
         }       
@@ -139,7 +145,7 @@ const reducer = (state = initialState, action) => {
         case actionType.ADD_POOLS:
         return {
             ...state,
-            Pools:[...action.paload]
+            Pools:[...action.payload]
         }
         //מחיקת בריכה
         case actionType.DELETE_POOLS:
