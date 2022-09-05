@@ -1,15 +1,15 @@
 import * as actionType from "../actions";
 
 const initialState = {
-    //המערך המזויף של המנהלים
-    // Managers:
-    // [
-    //   {id:"1111",name:"ליאל",email:"lieli@gmail.com",password:1212},
-    //   {id:"2222",name:"חיוש",email:"chayush@gmail.com",password:2212},
-    //   {id:"3333",name:"סיווני",email:"sivani@gmail.com",password:121572},
-    //   {id:"4444",name:"ספירוש",email:"sapirush@gmail.com",password:555545}
-    // ], 
-    //המערך של ההרשאות
+   // המערך המזויף של המנהלים
+    Managers:
+    [
+      {id:"1111",name:"ליאל",email:"lieli@gmail.com",password:1212},
+      {id:"2222",name:"חיוש",email:"chayush@gmail.com",password:2212},
+      {id:"3333",name:"סיווני",email:"sivani@gmail.com",password:121572},
+      {id:"4444",name:"ספירוש",email:"sapirush@gmail.com",password:555545}
+    ], 
+   // המערך של ההרשאות
    
         
    
@@ -46,6 +46,9 @@ const initialState = {
     usersArr:[],
     //המשתמש הנוכחי
     currentUser:"",
+    //בריכה נוכחית
+    currentPool:"",
+    
     //כל ההרשאות
     Role:[],
     sale_arr:[],
@@ -151,6 +154,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pools_arr:[...newArr2]
             }
+
+        case actionType.SAVE_POOL:
+            return {
+                ...state,
+                currentPool:action.payload
+             }
+
 
         //ממוצע של כל ההזמנות
         

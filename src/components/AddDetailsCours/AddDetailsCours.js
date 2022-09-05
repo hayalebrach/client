@@ -1,6 +1,6 @@
 import React  from "react";
 import { useForm } from "react-hook-form";
-import {useSelector,shallowEqual} from 'react-redux'
+import {useSelector,shallowEqual,useDispatch} from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
@@ -16,6 +16,8 @@ const schema = yup.object({
 }).required();
 
 export default function AddDetailsCours() {
+    const Courses=useSelector(state =>state.Courses)
+    const dispatch = useDispatch();
     // const user=useSelector(state=>:state.user))
 
 // const {user,cu}=useSelector(state=>({user:state.user,cu:state.cu}),shallowEqual)
@@ -31,6 +33,10 @@ export default function AddDetailsCours() {
         //data.typeArr=typeArr[data.typeArr-1].Name; 
         AddCours(data);
         console.log(data);
+    }
+    const add=(data)=>{
+        dispatch(AddCours(data));
+
     }
 
     return (<>
@@ -50,7 +56,7 @@ export default function AddDetailsCours() {
             <Input register={register} errors={errors} name="endHour" lablName="שעת סיום" className="" type="number"/>
             <Input register={register} errors={errors} name="numPeople" lablName="מס' אנשים" className="" type="number"/>
             <Input register={register} errors={errors} name="Price" lablName="מחיר" className="" type="number"/>
-            <input type="submit" onClick={()=>alert("AddDetailsCours")}/>
+            <input type="submit" onClick={add}/>
         </form>
         </>);
 }

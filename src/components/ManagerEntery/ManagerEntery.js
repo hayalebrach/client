@@ -30,8 +30,8 @@ const checkManag=()=>{
  
     return(<>
     <h1> כניסת מנהל </h1>
-    <input type="text" className="input" placeholder="שם" ></input>
-    <input type="text" className="input" placeholder="סיסמא" name="password" onChange={change}></input>
+    <input type="text" className="input1" placeholder="שם" ></input>
+    <input type="text" className="input1" placeholder="סיסמא" name="password" onChange={change}></input>
     <input type="button" className="button" value="הכנס" onClick={checkManag} ></input>
 
     

@@ -1,30 +1,19 @@
 import {useEffect, useState} from "react"
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import {GetAllCourses} from "../../store/Actions/Cours";
 import "./Courses.css"
 export default function Courses(){
+  const Courses=useSelector(state =>state.Courses)
+  const dispatch = useDispatch();
   let nav=useNavigate();
-  const [Courses,SetCourses]=useState([]);
-
-  useEffect(()=>{
-      const fakeCourses=
-      [
-          {name:"שחיה",email:"lieli@gmail.com",phone:"5333255"},
-          {name:"ספורט",email:"chayush@gmail.com",phone:"05222552"},
-          {name:"ריצה",email:"sivani@gmail.com",phone:"0202225"},
-          {name:"לחימה",email:"sapirush@gmail.com",phone:"0325522"}
-      ];
-
-      SetCourses(fakeCourses);
-
-  },[])
-
+ 
   const details=()=>{
+    dispatch(GetAllCourses());
     nav("/courseDetails")
 
 
   }
-
- 
 
   return(
     <>

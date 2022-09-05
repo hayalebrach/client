@@ -38,6 +38,7 @@ import {useSelector,תuseDispatch } from "react-redux";
 // shallowEqual, useSelector,
 import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
+import PoolWeb from './PoolWeb/PoolWeb';
 //import { shallowEqual, useSelector } from 'react-redux';
 function App() {
   let nav = useNavigate();
@@ -65,21 +66,23 @@ function App() {
 
         
          <img src="../Pic/grocery-store.png" className="img1" onClick={()=>nav("./cart")}/>
-        <img src="../Pic/user.png" className="img2" onClick={()=>nav("./profile")}/>
+        <img src="../Pic/user.png" className="img2" onClick={()=>{if(currentUser!="")
+          nav("./profile")
+          else alert("עליך להתחבר כדי לצפות בפרופיל!")}}/>
         <h3 className='f' onClick={()=>nav("./signUp")}>הרשמה</h3>
         <h3 className='f' onClick={()=>nav("./login")}>התחברות</h3><br/>
         </div>
 
      <div className="App" >
         
-  
       <Routes >
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
         <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
         <Route path="cart/UserNavBar" element={<UserNavBar />} />
         <Route path="profile/history" element={<BuyingHistory />} />
-        
+        <Route path="home/poolWeb" element={<PoolWeb />} />
+        <Route path="poolWeb" element={<PoolWeb />} />
         <Route path="users" element={<AllUsers />} />
         <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login/>} />
@@ -90,11 +93,23 @@ function App() {
         <Route path="home" element={<AllPools />} />
         <Route path="managers" element={<AllManagers />} />
         <Route path="courses" element={<Courses />} />
+        <Route path="home/poolWeb/courses" element={<Courses />} />
+        <Route path="poolWeb/courses" element={<Courses />} />
+        
+       
         <Route path="cart/UserNavBar/courses" element={<Courses />} />
         <Route path="buyTickets" element={<BuyTickets />} />
-        <Route path=" cart/UserNavBar/buyTickets" element={<BuyTickets />} />
+        <Route path="cart/UserNavBar/buyTickets" element={<BuyTickets />} />
+        <Route path="poolWeb/buyTickets" element={<BuyTickets />} />
+       
+        <Route path="home/poolWeb/buyTickets" element={<BuyTickets />} />
+       
         <Route path="about" element={<About />} />
         <Route path="cart/UserNavBar/about" element={<About />} />
+        <Route path="home/poolWeb/about" element={<About />} />
+        <Route path="poolWeb/about" element={<About />} />
+        
+        
         <Route path="managerEntery" element={<ManagerEntery />} />
         <Route path="ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
@@ -121,6 +136,7 @@ function App() {
         <Route path="AddPool/AddDetailsCard" element={<AddDetailsCard />} />
         <Route path="AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
+        <Route path="addCourse" element={<AddDetailsCours />} />
         
         <Route path="SplitButton" element={<SplitButton />} />
       </Routes>

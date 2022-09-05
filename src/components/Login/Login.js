@@ -16,8 +16,8 @@ const schema = yup.object({
 
 const Login=()=>{
      
-    const currentUser=useSelector(state =>state.currentUser)
-const dispatch = useDispatch();
+    let currentUser=useSelector(state =>state.currentUser)
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
@@ -25,7 +25,8 @@ const dispatch = useDispatch();
 const onSubmit = (data) => { 
     console.log("lkjg");
     dispatch(login(data));
-    console.log(currentUser); 
+    
+    console.log(currentUser.userName ,"המשתמש:"); 
 }
 //let nav=useNavigate();
 // const check=()=>{

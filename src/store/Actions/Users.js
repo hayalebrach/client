@@ -17,12 +17,14 @@ export const getAllUser=()=>{
 export const login = (data) => {
     console.log(data.userName)
     return (dispatch) => { 
+        
         try {
+
             console.log("heyyy");
-            axios.get("http://localhost:50157/api/user/GetByIdAndPassword?", data)
+            axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?${data.userName}${data.password}`, data)
             .then(res => {
                 dispatch({type:actionType.LOGIN,payload:data});
-                console.log(res.data);
+                console.log("res.data");
             }).catch(err => {
                 console.log(err);
             })

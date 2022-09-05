@@ -13,3 +13,14 @@ export const AddPool=(pool)=>{
        
     }
 }
+export const savePool = (data) => {
+    console.log(data.name);
+    return (dispatch) => { 
+        console.log("LETS GOOOO");
+        dispatch({type:actionType.SAVE_POOL,payload:data});
+
+    }
+
+}
+
+

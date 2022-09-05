@@ -8,6 +8,20 @@ export const AddCours=(cours)=>{
         axios.put("",cours)
         .then(x=> dispatch({type:actionType.ADD_CARD,payload:cours}))
         .catch(err=>console.log(err))
+       console.log("DONE!!!");
+    }
+}
+
+export const GetAllCourses=()=>{
+    
+    return ()=>{
+        try{ axios.get("http://localhost:50157/api/Cours/getAllCourses")
+        .catch(err=>console.log(err))
+        }
+        catch (err) {
+          console.log(err);
+        }
+       
        
     }
 }
