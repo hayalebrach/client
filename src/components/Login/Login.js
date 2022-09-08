@@ -1,32 +1,44 @@
 //import { useNavigate } from "react-router";
-import React  from "react";
+import React,{useEffect}  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
 import {login,getAllUser} from "../../store/Actions/Users"
+import {getAllRole} from '../../store/Actions/Role' 
 import {useDispatch, useSelector} from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const schema = yup.object({
-    userName: yup.string().required(),
-    password: yup.number().positive().integer().required()
+    Name: yup.string().required(),
+    Password: yup.number().positive().integer().required()
 }).required();
 
 const Login=()=>{
-     
-    let currentUser=useSelector(state =>state.currentUser)
+   //פה אני מעדכנת על מנת שאני יוכל לבדוק אם מדובר במנהל
+   let nav=useNavigate();
+   useEffect(() => {
+    dispatch(getAllRole());
+}, []) 
+const Role = useSelector((state) =>state.Role);
+
+   const currentUser=useSelector((state)=>state.currentUser);
+
     const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
+
 const onSubmit = (data) => { 
-    console.log("lkjg");
     dispatch(login(data));
+    if(Role[currentUser.IdRole-1].TypeUser=="מנהל אתר")
+    nav("/MainManagerNavBar");
+    else
+    alert("!!!!!!!את תצליחי");
     
-    console.log(currentUser.userName ,"המשתמש:"); 
 }
 //let nav=useNavigate();
 // const check=()=>{
@@ -38,8 +50,8 @@ return (<>
     <form onSubmit={handleSubmit(onSubmit)}>
      <div className="div1">
          
-        <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" type="text"/>
-        <Input register={register} errors={errors}  className="input"name="password" lablName="סיסמא" type="number"/>
+        <Input register={register} errors={errors} className="input" name="Name" lablName="שם פרטי" type="text"/>
+        <Input register={register} errors={errors}  className="input"name="Password" lablName="סיסמא" type="number"/>
         <Link to="signUp" className="navbar-brand">עדיין לא  רשום? עבור להרשמה</Link> 
        
       

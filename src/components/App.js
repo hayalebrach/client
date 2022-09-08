@@ -12,7 +12,6 @@ import GuessNavBar from './GuessNavBar';
 import AllPools from './AllPools/AllPools';
 import MainManagerNavBar from './MainManagerNavBar';
 import UserNavBar from "./UserNavBar";
-import ManagerEntery from "./ManagerEntery/ManagerEntery";
 import AllUsers from './AllUsers/AllUsers';
 import AllManagers from './AllManagers/AllManagers';
 import cardUpdate from './cardUpdate';
@@ -38,11 +37,13 @@ import {useSelector,useDispatch } from "react-redux";
 import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
 import PoolWeb from './PoolWeb/PoolWeb';
+import Test from './test';
 //import { shallowEqual, useSelector } from 'react-redux';
 function App() {
   let nav = useNavigate();
   const dispatch=useDispatch();
-
+  const currentUser=useSelector((state)=>state.currentUser);
+  console.log(currentUser);
   // const { Cards, Managers } = useSelector(state => ({
   //   Managers: state.Managers,
   //   Cards: state.Cards
@@ -107,7 +108,6 @@ function App() {
         <Route path="poolWeb/about" element={<About />} />
         
         
-        <Route path="managerEntery" element={<ManagerEntery />} />
         <Route path="ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
         <Route path="UserNavBar" element={<UserNavBar />} />
@@ -125,17 +125,18 @@ function App() {
         <Route path="courseUpdate" element={<courseUpdate />} />
         <Route path="addSale" element={<addSale />} />
         {/* //------------הוספת בריכה------------------------ */}
-        <Route path="AddPool" element={<AddPool />} />
-        <Route path="AddPool/AddDetailsManager" element={<AddDetailsManager />} />
-        <Route path="AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
-        <Route path="AddPool/AddDetailsPool" element={<AddDetailsPool />} />
-        <Route path="AddPool/AddDetailsCours" element={<AddDetailsCours />} />
-        <Route path="AddPool/AddDetailsCard" element={<AddDetailsCard />} />
+        <Route path="MainManagerNavBar/AddPool" element={<AddPool />} />
+        <Route path="MainManagerNavBar/AddPool/AddDetailsManager" element={<AddDetailsManager />} />
+        <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
+        <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
+        <Route path="MainManagerNavBar/AddPool/AddDetailsCours" element={<AddDetailsCours />} />
+        <Route path="MainManagerNavBar/AddPool/AddDetailsCard" element={<AddDetailsCard />} />
         <Route path="AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
         <Route path="addCourse" element={<AddDetailsCours />} />
         
         <Route path="SplitButton" element={<SplitButton />} />
+        <Route path="Test/:flag" element={<Test flag="false"/>} />
       </Routes>
       </div>
 

@@ -82,15 +82,18 @@ const reducer = (state = initialState, action) => {
               usersArr:[...state.usersArr,...action.payload]
              
         } 
-//למנהל הראשי-הצגת המשתמשים באתר
+            //למנהל הראשי-הצגת המשתמשים באתר
           case actionType.GET_USERS:
               return {
                   ...state,
                   usersArr:[...action.payload]
                 };
-
-
-
+                //עדכון משתמש
+          case actionType.UPDATE_USER:
+              return{
+                  ...state,
+                  currentUser:action.payload
+              };
           //התחברות-login
           case actionType.LOGIN:
             return {

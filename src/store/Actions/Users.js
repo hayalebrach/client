@@ -15,16 +15,11 @@ export const getAllUser=()=>{
 }
 //לוגין
 export const login = (data) => {
-    console.log(data.userName)
-    return (dispatch) => { 
-        
+    return (dispatch) => {        
         try {
-
-            console.log("heyyy");
-            axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?${data.userName}${data.password}`, data)
+            axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?name=${data.Name}&password=${data.Password}`)
             .then(res => {
-                dispatch({type:actionType.LOGIN,payload:data});
-                console.log("res.data");
+                dispatch({type:actionType.LOGIN,payload:res.data});
             }).catch(err => {
                 console.log(err);
             })
@@ -51,3 +46,14 @@ export const login = (data) => {
          })
      }
  }
+
+ 
+// export const updateUser=(data)=>{
+//     console.log("p");
+//     console.log(data);
+//     return dispatch=>{
+//         axios.put("http://localhost:60342/api/user/Put?",data)
+//         .then(x=> dispatch({type:actionType.UPDATE_USER,payload:data}) )
+//         .catch(err=>console.log(err))
+//     }
+// } 

@@ -1,5 +1,6 @@
 import * as actionType from "../actions";
 import axios from "axios";
+//ייבוא של כל התפקידים
 export const getAllRole=()=>{
     return dispach=>{
         
@@ -11,10 +12,9 @@ export const getAllRole=()=>{
         .catch(err=> console.log(err) )
     }
 }
-
+//הוספת תפקיד
 export const AddRole=(data)=>{
     return dispach=>{
-        console.log("gfghresht")
         axios.post("http://localhost:50157/api/role/AddRole?",data)
         .then(response=>{
             console.log(response.data);

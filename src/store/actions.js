@@ -2,6 +2,8 @@
 export const LOGIN="LOGIN"
 //התחברות
 export const SIGNUP="SIGNUP"
+//עדכון המשתמש
+export const UPDATE_USER="UPDATE_USER"
 //רשימת קורסים
 export const LIST_COURS="LIST_COURS"
 //הצגת כרטיסים
