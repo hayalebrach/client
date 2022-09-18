@@ -15,7 +15,7 @@ const schema = yup.object({
     Phone: yup.number().positive().integer().required(),
     Type: yup.number().positive().integer(),
     LastEntery:yup.date('04/09/2022'),
-    IdRole:yup.number().positive().integer().required()
+    IdRole:yup.string().required()
 }).required();
 
 const SignUp=()=>{
@@ -26,14 +26,13 @@ const dispatch = useDispatch();
         dispatch(getAllRole());
     }, []) 
 
-    const typeArr = [{ Id: 1, Name: "אישה" }, { Id: 2, Name: "גבר" }];
+    const typeArr = [{ Id: 0, Name: "אישה" }, { Id: 1, Name: "גבר" }];
     const Role = useSelector((state) =>state.Role);
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
      });
 
     const onSubmit=(data)=>{ 
-        console.log(data);
         dispatch(AddUser(data));
     }
 return (<>
@@ -50,7 +49,7 @@ return (<>
            </select><br/>
             <label>תפקיד</label><br/>
             <select  {...register("IdRole")}  className="select" >  
-                 {Role.map(x => <option key={x.Id} value={x.Id}>{x.TypeUser}</option>)}
+                 {Role.map(x => <option key={x.TypeUser} value={x.Id}>{x.TypeUser}</option>)}
            </select><br/>
         <Link to="login" className="navbar-brand">כבר רשום? עבור להתחברות!</Link>
         <input type="submit" className="button"/></div>

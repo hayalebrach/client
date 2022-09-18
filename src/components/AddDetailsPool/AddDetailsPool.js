@@ -1,42 +1,58 @@
-import React  from "react";
+import React,{useEffect}  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
-import {AddPool} from "../../store/Actions/Pools"
+import {getAllErea,AddPool} from "../../store/Actions/Pools";
+import { useDispatch,useSelector ,shallowEqual} from "react-redux";
 const schema = yup.object({
-    NamePool: yup.string().required(),  
-    Erea:yup.string().required(), 
+    IdUser:yup.number().positive().integer().required(),
+    Name: yup.string().required(),  
+    IdErea:yup.string().required(), 
     Adress: yup.string().required(), 
     Price: yup.number().positive().integer().required(),
-    numPeople: yup.number().positive().integer().required(),
+    Amount: yup.number().positive().integer().required(),
     Phone: yup.number().positive().integer().required()
 }).required();
 
 export default function AddDetailsPool() {
-    const arr = [{ Id: 1, Name: "מרכז" }, { Id: 2, Name: "צפון" },{ Id:3, Name: "דרום" }]
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllErea());
+    }, []) 
+  const { Erea, currentUser } = useSelector(state => ({
+     Erea: state.Erea,
+     currentUser: state.currentUser
+  }), shallowEqual);
+  console.log(Erea)
+
+    console.log(currentUser.Id);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
+
     const onSubmit = (data) => {
-        data.Erea=arr[data.Erea-1].Name; 
-        AddPool(data);
+        dispatch(AddPool(data));
         console.log(data);
     }
     return (<>
-                 <h1>AddDetailsPool</h1>
+                 <h1>הוספת פרטי הבריכה</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input register={register} errors={errors} name="NamePool" lablName="שם הבריכה" className="" type="text"/>
-           <label>איזור בארץ</label><br/>
-            <select  {...register("Erea")}>  
-                 {arr.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
-           </select><br/>
+            <Input register={register} errors={errors} name="Name" lablName="שם הבריכה" className="" type="text"/>
             <Input register={register} errors={errors} name="Adress" lablName="כתובת" className="" type="text"/>
             <Input register={register} errors={errors} name="Price" lablName="מחיר ליחיד" className="" type="number"/>
-            <Input register={register} errors={errors} name="numPeople" lablName="מס' אנשים" className="" type="number"/>
+            <Input register={register} errors={errors} name="Amount" lablName="מס' אנשים" className="" type="number"/>
             <Input register={register} errors={errors} name="Phone" lablName="טלפון" className="" type="number"/>
-            <input type="submit" onClick={()=>alert("AddDetailsPool")}/>
+            <label>איזור בארץ</label><br/>
+            <select  {...register("IdErea")}  className="select" >  
+                 {Erea.map(x => <option key={x.Name} value={x.Id}>{x.Name}</option>)}
+           </select><br/>
+            
+            
+            <input type="number" className="" {...register("IdUser")} value={currentUser.Id}/> 
+            <input type="submit" className="button" value="אישור"/>
         </form>
         </>);
 }

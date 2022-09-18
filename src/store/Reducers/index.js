@@ -1,18 +1,6 @@
 import * as actionType from "../actions";
 
 const initialState = {
-   // המערך המזויף של המנהלים
-    Managers:
-    [
-      {id:"1111",name:"ליאל",email:"lieli@gmail.com",password:1212},
-      {id:"2222",name:"חיוש",email:"chayush@gmail.com",password:2212},
-      {id:"3333",name:"סיווני",email:"sivani@gmail.com",password:121572},
-      {id:"4444",name:"ספירוש",email:"sapirush@gmail.com",password:555545}
-    ], 
-   // המערך של ההרשאות
-   
-        
-   
     //המערך המזויף של כרטיסים
     Cards:
     [
@@ -31,30 +19,26 @@ const initialState = {
     ],
     //הכרטיס המבוקש
     Card:null,
-    //-------------------------------
-    //המערך המזויף של הבריכות
-    Pools:
-    [
-        {id:"1111",name:"בריכת האגם",phone:"123456789",address:"צפריר  אור יהודה",pic:'istockphoto-1148844017-1024x1024',dis:"גליל מערבי, אגם מונפורטבריכת שחייה ת"},
-        {id:"2222",name:"פארק המים שפעים",phone:"123456789",address:"רמלה בן גוריון 15",pic:"istockphoto-1319918284-1024x1024",dis:"תל אביב והמרכז, שפיים פארק המים"},
-        {id:"3333",name:"חמי הגעש",phone:"123456789",address:"התמר 13 צפת",pic:"istockphoto-1310081147-1024x1024",dis:"בריכות שחייה, מגלשות מים,, ג'קוזי, סאונה"},
-        {id:"4444",name:"בריכת החוף",phone:"123456789",address:"השקד 30 לוד",pic:"istockphoto-1311457374-1024x1024",dis:"חיפה והכרמל, נשרמרכז בילוי, ספורט ופנאי ה,"},
-        {id:"5555",name:"בריכת יפה נוף",phone:"123456789",address:"יעד 30 לוד",pic:"istockphoto-1325939237-1024x1024",dis:"חיפה והכרמל, נשרמרכז בילוי, ספורט ופנאי  ה,"},
-        {id:"6666",name:"בריכת המים",phone:"123456789",address:"השומר 30 אילת",pic:"swimming-pool-g8bee2e575_1920",dis:"חיפה והכרמל, נשרמרכז בילוי, ספורט ופנאי  ה,"}
-    ],
     //המערך של המשתמשים
     usersArr:[],
     //המשתמש הנוכחי
     currentUser:"",
     //בריכה נוכחית
     currentPool:"",
-    
+    //הוספת בריכה
+    poolsArr:[],
     //כל ההרשאות
     Role:[],
+    //כל האיזורים
+    Erea:[],
+    //כל הימים
+    Days:[],
+    //המערך של הלוח זמנים
+    Schedule:[],
 
     sale_arr:[],
    
-    pools_arr:[],
+    
     
     cart:[],
     courses_arr:[],
@@ -63,25 +47,61 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     
     switch (action.type) {
+        //הוספת לוח זמנים למערך שבstate החיצוני
+        case actionType.ADD_SCHEDULE_TO_ARRAY:
+            return{
+                ...state,
+                Schedule:[...state.Schedule,action.payload]
+            }
+        //כל הימים
+        case actionType.ALL_DAYS:
+            return{
+                ...state,
+                Days:action.payload
+            };
+        //הוספת בריכה
+        case actionType.ADD_POOL:{
+            return{
+                
+                 ...state,
+                 poolsArr:[...state.poolsArr,action.payload],
+                 currentPool:action.payload
+            };
+        }
+        //כל האיזורים
+        case actionType.ALL_EREAS:
+            return{
+                ...state,
+                Erea:action.payload
+            };
+        //הוספת מנהל
+        case actionType.ADD_MANAGER:{
+            return{
+                
+                 ...state,
+                 usersArr:[...state.usersArr,action.payload],
+                 currentUser:action.payload
+            };
+        }
         //הוספת הרשאה
         case actionType.ADD_ROLE:
            return{
                ...state,
                Role:[...state.Role,...action.payload]
-           }
+           };
         //כל ההרשראות
         case actionType.ALL_ROLE:
             return{
                 ...state,
                 Role:action.payload
-            }
+            };
         //הרשמה
-        case actionType.SIGNUP:     
-        return {
-           ...state,
-              usersArr:[...state.usersArr,...action.payload]
-             
-        } 
+        case actionType.SIGNUP:{
+              return {
+                  ...state,
+                  usersArr:[...state.usersArr,action.payload],
+                };
+            }
             //למנהל הראשי-הצגת המשתמשים באתר
           case actionType.GET_USERS:
               return {
@@ -99,7 +119,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser:action.payload
-             }
+             };
 
 
         //   //עדכון מחיר לכרטיס
@@ -117,24 +137,16 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 sale_arr:[...action.payload]
-            }
+            };
         }
         //הוספת קורס
         case actionType.ADD_COURS:{
             return{
                 ...state,
                 Courses:[...action.payload]
-            }
-        }
-        //הוספת מנהל
-        case actionType.ADD_MANAGER:{
-            return{
-                
-                 ...state,
-                 Managers:[...action.payload]
-
             };
         }
+        
         //הוספת כרטיס
         case actionType.ADD_CARD:{
             return{
@@ -144,12 +156,7 @@ const reducer = (state = initialState, action) => {
 
             };
         }       
-        //הוספת בריכה
-        case actionType.ADD_POOLS:
-        return {
-            ...state,
-            Pools:[...action.payload]
-        }
+
         //מחיקת בריכה
         case actionType.DELETE_POOLS:
             let newArr2=[...state.pools_arr];
@@ -164,13 +171,7 @@ const reducer = (state = initialState, action) => {
                 pools_arr:[...newArr2]
             }
 
-        case actionType.SAVE_POOL:
-            return {
-                ...state,
-                currentPool:action.payload
-             }
-
-
+        
         //ממוצע של כל ההזמנות
         
         //רכישת כרטיסים

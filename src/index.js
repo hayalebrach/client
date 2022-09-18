@@ -8,7 +8,6 @@ import { createStore, applyMiddleware ,compose} from 'redux';
 import  postReducer  from "./store/Reducers";
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
  const store=createStore(postReducer,composeEnhancers(applyMiddleware(thunk)));

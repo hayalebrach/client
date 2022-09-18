@@ -37,6 +37,7 @@ export const login = (data) => {
          console.log(data);
          axios.post("http://localhost:50157/api/user/AddUser?",data)
              .then(response=>{
+                console.log(response.data);
              dispach({type:actionType.SIGNUP,payload:response.data});
          },
          err=>{
@@ -46,7 +47,22 @@ export const login = (data) => {
          })
      }
  }
+ //הוספת מנהל
+ export const AddManager=(data)=>{
+    return(dispach)=> {
+        console.log(data);
+        axios.post("http://localhost:50157/api/user/AddUser?",data)
+            .then(response=>{
+               console.log(response.data);
+            dispach({type:actionType.ADD_MANAGER,payload:response.data});
+        },
+        err=>{
 
+            console.log(err)
+            console.log("קרתה שגיאה")
+        })
+    }
+}
  
 // export const updateUser=(data)=>{
 //     console.log("p");

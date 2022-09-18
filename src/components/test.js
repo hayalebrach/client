@@ -30,9 +30,9 @@
 // }
 // function deleteUser(){
 //     user.UserType=1;
-//     dispatch(updateUser(user))
+//     dispatch(updateUser(user));
 // }
-//     return (<>
+//     return (<>-
 //     <div className="div-user">
 //     {f.flag=="true"?
 //     <h2 className="h2-div-user"> עדכון פרופיל</h2>

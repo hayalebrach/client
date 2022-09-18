@@ -15,7 +15,9 @@ export const CHOOSE_COURS="CHOOSE_COURS"
 //הצגת כל הבריכות
 export const GET_POOLS="GET_POOLS"
 //הוספת בריכה
-export const ADD_POOLS="ADD_POOLS"
+export const ADD_POOL="ADD_POOL"
+//ייבוא של כל האיזורים
+export const ALL_EREAS="ALL_EREAS"
 //מחיקת בריכה
 export const DELETE_POOLS="DELETE_POOLS"
 //תשלום בכרטיס אשראי
@@ -44,8 +46,12 @@ export const ADD_SALE="ADD_SALE";
 export const ADD_ROLE="ADD_ROLE";
 //כל ההרשראות
 export const ALL_ROLE="ALL_ROLE";
-
-export const SAVE_POOL="SAVE_POOL";
+//כל הימים
+export const ALL_DAYS="ALL_DAYS";
+//הוספת לוח זמנים למערך שבסטייט החיצוני
+export const ADD_SCHEDULE_TO_ARRAY="ADD_SCHEDULE_TO_ARRAY";
+//קבלת לוח זמנים מהסטייט החיצוני
+export const GET_SCHEDULE="GET_SCHEDULE";
 
 
 

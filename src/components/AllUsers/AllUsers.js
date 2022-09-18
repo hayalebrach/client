@@ -1,30 +1,21 @@
-import {useEffect, useState} from "react"
-import {useSelector}from "react-redux";
+import {useEffect} from "react";
+import {getAllUser} from "../../store/Actions/Users"
+import {useSelector,useDispatch}from "react-redux";
 import "./AllUsers.css"
 export default function AllUsers(){
-  const usersArr=useSelector(state=>this.state.usersArr)
-  
-  // const [Users,SetUsers]=useState([]);
-
-  // useEffect(()=>{
-  //     const fakeUsers=
-  //     [
-  //         {id:"1111",name:"ליאל",email:"lieli@gmail.com",password:1212},
-  //         {id:"2222",name:"חיוש",email:"chayush@gmail.com",password:2212},
-  //         {id:"3333",name:"סיווני",email:"sivani@gmail.com",password:121572},
-  //         {id:"4444",name:"ספירוש",email:"sapirush@gmail.com",password:555545}
-  //     ];
-
-  //     SetUsers(fakeUsers);
-
-  // },[])
-
+  console.log("ה' איתך");
+  const dispatch=useDispatch();
+  useEffect(() => {
+    dispatch(getAllUser());
+}, [])
+const usersArr=useSelector((state)=>state.usersArr);
   return(
     <>
     <h1>משתמשים</h1>
     <ul>
         {
-            usersArr.map(usersArr=><><br/> <li className="li">{usersArr.name} {usersArr.id}  {usersArr.password} {usersArr.email}</li></> )
+            usersArr.map(usersArr=><><br/> <li className="li"> {usersArr.Id} {usersArr.Name} {usersArr.Password} {usersArr.Email}
+             <input type="button" value="עדכון" onClick={()=>alert(usersArr.Id)}/> <input type="button" value="מחיקה" onClick={()=>alert(usersArr.Id)}/></li></> )
         }
     </ul>
     

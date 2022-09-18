@@ -32,23 +32,24 @@ import CourseEnrollment from "./CourseEnrollment/CourseEnrollment"
 import SplitButton from './SplitButton';
 import BuyingForm from './BuyingForm/BuyingForm';
 import FinishBuying from './FinishBuying/FinishBuying';
-import {useSelector,useDispatch } from "react-redux";
+import {useSelector,useDispatch ,shallowEqual} from "react-redux";
 // shallowEqual, useSelector,
 import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
 import PoolWeb from './PoolWeb/PoolWeb';
+import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
 import Test from './test';
+
 //import { shallowEqual, useSelector } from 'react-redux';
 function App() {
   let nav = useNavigate();
   const dispatch=useDispatch();
-  const currentUser=useSelector((state)=>state.currentUser);
-  console.log(currentUser);
-  // const { Cards, Managers } = useSelector(state => ({
-  //   Managers: state.Managers,
-  //   Cards: state.Cards
-  // }), shallowEqual);
 
+  const { Schedule, currentUser } = useSelector(state => ({
+    currentUser: state.currentUser,
+    Schedule: state.Schedule
+  }), shallowEqual);
+console.log(Schedule);
   // console.log(Cards, Managers)
 
   // const { num, current_user } = useSelector(state => ({
@@ -81,7 +82,7 @@ function App() {
         <Route path="profile/history" element={<BuyingHistory />} />
         <Route path="home/poolWeb" element={<PoolWeb />} />
         <Route path="poolWeb" element={<PoolWeb />} />
-        <Route path="users" element={<AllUsers />} />
+        <Route path="MainManagerNavBar/AllUsers" element={<AllUsers />} />
         <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login/>} />
         <Route path="signUp" element={<SignUp/>} />
@@ -114,7 +115,6 @@ function App() {
         <Route path="/UserNavBar/courses" element={<Courses />} />
         <Route path="/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="/UserNavBar/about" element={<About />} />
-        <Route path="/UserNavBar/AddPool" element={<AddPool />} />
         <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment />} />
         <Route path="/buyingForm" element={<BuyingForm/>} />
         <Route path="/MainManagerNavBar/managers" element={<AllManagers />} />
@@ -125,7 +125,10 @@ function App() {
         <Route path="courseUpdate" element={<courseUpdate />} />
         <Route path="addSale" element={<addSale />} />
         {/* //------------הוספת בריכה------------------------ */}
-        <Route path="MainManagerNavBar/AddPool" element={<AddPool />} />
+        <Route path="MainManagerNavBar/AddPool"element={<AddPool />} />
+        <Route path="AddPool"element={<AddPool />} />
+        <Route path="AddDetailsPool" element={<AddDetailsPool/>} />
+        <Route path="AddPool/AddDetailsPool"element={<AddPool/>} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsManager" element={<AddDetailsManager />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
@@ -133,10 +136,12 @@ function App() {
         <Route path="MainManagerNavBar/AddPool/AddDetailsCard" element={<AddDetailsCard />} />
         <Route path="AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
-        <Route path="addCourse" element={<AddDetailsCours />} />
         
+        <Route path="ShowSchedule" element={<ShowSchedule />} />
+        
+        <Route path="addCourse" element={<AddDetailsCours />} />
         <Route path="SplitButton" element={<SplitButton />} />
-        <Route path="Test/:flag" element={<Test flag="false"/>} />
+       {/* //<Route path="Test/:flag" element={<Test flag="false"/>} /> */}
       </Routes>
       </div>
 

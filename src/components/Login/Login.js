@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
-import {login,getAllUser} from "../../store/Actions/Users"
+import {login} from "../../store/Actions/Users"
 import {getAllRole} from '../../store/Actions/Role' 
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector,shallowEqual} from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
@@ -22,31 +22,29 @@ const Login=()=>{
    useEffect(() => {
     dispatch(getAllRole());
 }, []) 
-const Role = useSelector((state) =>state.Role);
-
-   const currentUser=useSelector((state)=>state.currentUser);
+   const {currentUser ,Role} = useSelector(state => ({
+    currentUser: state.currentUser,
+    Role:state.Role
+ }), shallowEqual);
 
     const dispatch = useDispatch();
-
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
 
 const onSubmit = (data) => { 
     dispatch(login(data));
-    if(Role[currentUser.IdRole-1].TypeUser=="מנהל אתר")
+    let x=Role[currentUser.IdRole-1];
+    console.log(x.TypeUser);
+    console.log(currentUser.Id);
+    if(x.TypeUser=="מנהל אתר")   
     nav("/MainManagerNavBar");
     else
-    alert("!!!!!!!את תצליחי");
+    nav("/UserNavBar");
     
 }
-//let nav=useNavigate();
-// const check=()=>{
-//      nav("/UserNavBar");
-//}
 return (<>
 <h1>התחברות</h1>
-       <button onClick={()=>dispatch(getAllUser())}>כל המשתמשים</button>
     <form onSubmit={handleSubmit(onSubmit)}>
      <div className="div1">
          
