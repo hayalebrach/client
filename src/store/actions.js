@@ -14,6 +14,8 @@ export const CHOOSE_CARD="CHOOSE_CARD"
 export const CHOOSE_COURS="CHOOSE_COURS"
 //הצגת כל הבריכות
 export const GET_POOLS="GET_POOLS"
+//הצגת כל הקורסים לבריכה מסויימת
+export const GET_COURSES="GET_COURSES"
 //הוספת בריכה
 export const ADD_POOLS="ADD_POOLS"
 //מחיקת בריכה
@@ -31,7 +33,7 @@ export const GET_USERS="GET_USERS"
 //ממוצע של כל ההזמנות
 export const AVARGE_ORDERS="AVARGE_ORDERS"
 //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת
-export const GET_ORDERS="GTE_ORDERS"
+export const GET_ORDERS="GET_ORDERS"
 //הוספת מנהל
 export const ADD_MANAGER="ADD_MANAGER"
 //הוספת כרטיס
@@ -46,6 +48,8 @@ export const ADD_ROLE="ADD_ROLE";
 export const ALL_ROLE="ALL_ROLE";
 
 export const SAVE_POOL="SAVE_POOL";
+
+export const RESET_USER="RESET_USER";
 
 
 

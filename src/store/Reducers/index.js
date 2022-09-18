@@ -21,21 +21,14 @@ const initialState = {
         {type:"20 כניסות",price:200},
         {type:"50 כניסות",price:400}
     ],
-    //המערך המזויף של הקורסים
-    Courses:
-    [
-        {name:"שחיה",email:"lieli@gmail.com",phone:"5333255"},
-        {name:"ספורט",email:"chayush@gmail.com",phone:"05222552"},
-        {name:"ריצה",email:"sivani@gmail.com",phone:"0202225"},
-        {name:"לחימה",email:"sapirush@gmail.com",phone:"0325522"}
-    ],
+    
     //הכרטיס המבוקש
     Card:null,
     //-------------------------------
     //המערך המזויף של הבריכות
     Pools:
     [
-        {id:"1111",name:"בריכת האגם",phone:"123456789",address:"צפריר  אור יהודה",pic:'istockphoto-1148844017-1024x1024',dis:"גליל מערבי, אגם מונפורטבריכת שחייה ת"},
+        {id:"1",name:"בריכת האגם",phone:"123456789",address:"צפריר  אור יהודה",pic:'istockphoto-1148844017-1024x1024',dis:"גליל מערבי, אגם מונפורטבריכת שחייה ת",IdUser:"5"},
         {id:"2222",name:"פארק המים שפעים",phone:"123456789",address:"רמלה בן גוריון 15",pic:"istockphoto-1319918284-1024x1024",dis:"תל אביב והמרכז, שפיים פארק המים"},
         {id:"3333",name:"חמי הגעש",phone:"123456789",address:"התמר 13 צפת",pic:"istockphoto-1310081147-1024x1024",dis:"בריכות שחייה, מגלשות מים,, ג'קוזי, סאונה"},
         {id:"4444",name:"בריכת החוף",phone:"123456789",address:"השקד 30 לוד",pic:"istockphoto-1311457374-1024x1024",dis:"חיפה והכרמל, נשרמרכז בילוי, ספורט ופנאי ה,"},
@@ -86,9 +79,23 @@ const reducer = (state = initialState, action) => {
           case actionType.GET_USERS:
               return {
                   ...state,
-                  usersArr:[...action.payload]
+                  usersArr:action.payload
                 };
-                //עדכון משתמש
+          //מציג קורסים לבריכה
+           case actionType.GET_COURSES:
+                    return {
+                        ...state,
+                        courses_arr:action.payload
+                      };
+
+       //מציג בריכות
+        case actionType.GET_POOLS:
+            return {
+                ...state,
+                pools_arr:[...action.payload]
+              };
+          
+          //עדכון משתמש
           case actionType.UPDATE_USER:
               return{
                   ...state,
@@ -123,7 +130,7 @@ const reducer = (state = initialState, action) => {
         case actionType.ADD_COURS:{
             return{
                 ...state,
-                Courses:[...action.payload]
+                Courses:[...state.Courses,action.payload]
             }
         }
         //הוספת מנהל
@@ -143,7 +150,18 @@ const reducer = (state = initialState, action) => {
                  Cards:[...action.payload]
 
             };
-        }       
+        }     
+        
+        //איפוס משתמש
+        case actionType.RESET_USER:{
+            return{
+                ...state,
+                 currentUser:"",
+                 
+
+            };
+        }     
+
         //הוספת בריכה
         case actionType.ADD_POOLS:
         return {
@@ -169,7 +187,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentPool:action.payload
              }
-
 
         //ממוצע של כל ההזמנות
         

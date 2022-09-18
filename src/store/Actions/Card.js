@@ -11,27 +11,23 @@ import axios from "axios";
 
 
 
-
-
-
-
 //פונקציה שמוסיפה כרטיס חדש
 export const AddCard=(card)=>{
-    console.log(card);
+    console.log("the carddd" ,card);
     return dispatch=>{
-        axios.put("",card)
+        axios.post("http://localhost:50157/api/Packege/AddCard?",card)
         .then(x=> dispatch({type:actionType.ADD_CARD,payload:card}))
         .catch(err=>console.log(err))
        
     }
 }
-//פונקציה שמעדכנת מבצע חדש
-export const AddSale=(sale)=>{
-    console.log("sale");
-    console.log(sale);
+//פונקציה שמוסיפה מבצע חדש
+export const AddSale=(Sale)=>{
+    console.log(Sale);
     return dispatch=>{
-        axios.put("",sale)
-        .then(x=> dispatch({type:actionType.ADD_SALE,payload:sale}))
+        
+        axios.post("http://localhost:50157/api/Sale/AddSale?",Sale)
+        .then(x=> dispatch({type:actionType.ADD_SALE,payload:Sale}))
         .catch(err=>console.log(err))
        
     }

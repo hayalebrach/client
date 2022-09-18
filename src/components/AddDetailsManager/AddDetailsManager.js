@@ -53,7 +53,7 @@ export default function AddDetailsManager() {
            </select><br/>
             <label>תפקיד</label><br/>
             <select  {...register("role")}>  
-                 {Role.map(Role =><option key={Role.Id} value={Role.Id}>{Role.Name}</option>)}
+                 {Role.map(Role =><option key={Role.Id} value={Role.Id}>{Role.Name} </option>)}
            </select><br/>
            
            {/* <label>:אחר</label><br/>

@@ -47,6 +47,13 @@ export const login = (data) => {
      }
  }
 
+ export  function ResetUser(){
+    return(dispatch)=>{
+        dispatch({type:actionType.RESET_USER})
+    }
+ }
+ 
+
  
 // export const updateUser=(data)=>{
 //     console.log("p");

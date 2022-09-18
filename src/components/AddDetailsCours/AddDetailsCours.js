@@ -10,13 +10,15 @@ const schema = yup.object({
     NameCours: yup.string().required(),
     Dis: yup.string().required(),
     Type:yup.string().required(),
-//ימים 
-    numPeople: yup.number().positive().integer().required(),
+//ימים
+    PeopleAmount: yup.number().positive().integer().required(),
     Price: yup.number().positive().integer().required()
 }).required();
 
 export default function AddDetailsCours() {
-    const Courses=useSelector(state =>state.Courses)
+    const Courses=useSelector(state =>state.Courses);
+    const currentPool=useSelector(state =>state.currentPool);
+    const currentUser=useSelector(state =>state.currentUser);
     const dispatch = useDispatch();
     // const user=useSelector(state=>:state.user))
 
@@ -31,16 +33,14 @@ export default function AddDetailsCours() {
     });
     const onSubmit = (data) => {
         //data.typeArr=typeArr[data.typeArr-1].Name; 
-        AddCours(data);
+        alert(data.NameCours);
+        dispatch(AddCours({IdPool:currentPool.Id,NameCours:data.NameCours,PeopleAmount:data.PeopleAmount,Dis:data.Dis,IdUser:currentUser.Id})) 
         console.log(data);
     }
-    const add=(data)=>{
-        dispatch(AddCours(data));
-
-    }
+    
 
     return (<>
-                 <h1>AddDetailsCard</h1>
+                 <h1>AddDetailsCourse</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
             <Input register={register} errors={errors} name="NameCours" lablName="שם הקורס" className="" type="text"/>
             <Input register={register} errors={errors} name="Dis" lablName="תיאור" className="" type="text" />
@@ -54,9 +54,9 @@ export default function AddDetailsCours() {
              <br/>
             <Input register={register} errors={errors} name="startHour" lablName="שעת התחלה" className="" type="number"/>
             <Input register={register} errors={errors} name="endHour" lablName="שעת סיום" className="" type="number"/>
-            <Input register={register} errors={errors} name="numPeople" lablName="מס' אנשים" className="" type="number"/>
+            <Input register={register} errors={errors} name="PeopleAmount" lablName="מס' אנשים" className="" type="number"/>
             <Input register={register} errors={errors} name="Price" lablName="מחיר" className="" type="number"/>
-            <input type="submit" onClick={add}/>
+            <input type="submit" />
         </form>
         </>);
 }

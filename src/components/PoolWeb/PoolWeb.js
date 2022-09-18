@@ -8,8 +8,8 @@ let currentPool=useSelector(state =>state.currentPool)
 return (
 <>
 <PoolNavBar/><br/><br/>
-<h1>{currentPool.name}</h1>
-<h3>{currentPool.dis}</h3>
+<h1>{currentPool.Name}</h1>
+{/* <h3>{currentPool.dis}</h3> */}
 
 
 </>

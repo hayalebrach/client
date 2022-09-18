@@ -1,27 +1,27 @@
 import * as actionType from "../actions";
 import axios from "axios";
 
-//פונקציה שמוסיפה כרטיס חדש
-export const AddCours=(cours)=>{
-    console.log(cours);
+//פונקציה שמוסיפה קורס חדש
+export const AddCours=(course)=>{
+    console.log(course);
     return dispatch=>{
-        axios.put("",cours)
-        .then(x=> dispatch({type:actionType.ADD_CARD,payload:cours}))
+        axios.post("http://localhost:50157/api/Cours/AddCourse?",course)
+        .then(x=> dispatch({type:actionType.ADD_COURS,payload:course}))
         .catch(err=>console.log(err))
        console.log("DONE!!!");
     }
 }
 
-export const GetAllCourses=()=>{
+export const GetAllCourses=(IdPool)=>{
     
-    return ()=>{
-        try{ axios.get("http://localhost:50157/api/Cours/getAllCourses")
-        .catch(err=>console.log(err))
-        }
-        catch (err) {
-          console.log(err);
-        }
-       
-       
+    return dispatch=>{
+        
+        axios.get(`http://localhost:50157/api/cours/GetCoursesByPool?IdPool=${IdPool}`)
+        .then(response=>{
+            console.log(response.data);
+            dispatch({type:actionType.GET_COURSES,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
     }
 }
+

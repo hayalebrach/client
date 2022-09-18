@@ -14,13 +14,26 @@ export const AddPool=(pool)=>{
     }
 }
 export const savePool = (data) => {
-    console.log(data.name);
+    console.log(data.Name);
     return (dispatch) => { 
         console.log("LETS GOOOO");
         dispatch({type:actionType.SAVE_POOL,payload:data});
 
     }
 
+}
+
+export const GetAllPools=()=>{
+    return dispatch=>{
+       
+        axios.get("http://localhost:50157/api/Pool/GetAllPools")
+         .then(response=>{
+            
+            console.log(response.data);
+            dispatch({type:actionType.GET_POOLS,payload:response.data})
+        })
+         .catch(err=> console.log(err))
+    }
 }
 
 
