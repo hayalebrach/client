@@ -18,6 +18,7 @@ export const AddPool=(data)=>{
         })
     }
 }
+
 //כל האיזורים
 export const getAllErea=()=>{
     return (dispach)=>{    
@@ -25,9 +26,20 @@ export const getAllErea=()=>{
         .then(response=>{
             dispach({type:actionType.ALL_EREAS,payload:response.data})
         })
-        .catch(err=> console.log(err) )
+    .catch(err=> console.log(err) )
     }
 }
+//בריכה נוכחית
+export const savePool = (data) => {
+    console.log(data.Name);
+    return (dispatch) => { 
+        console.log("LETS GOOOO");
+        dispatch({type:actionType.SAVE_POOL,payload:data});
+
+
+    }
+}
+
 //כל הימים
 export const getAllDays=()=>{
     return (dispach)=>{    
@@ -46,3 +58,20 @@ export const AddToArraySchedule = (schedule) => {
         payload:schedule
     } 
 }
+
+//ייבוא של כל הבריכות
+
+export const GetAllPools=()=>{
+    return dispatch=>{
+       
+        axios.get("http://localhost:50157/api/Pool/GetAllPools")
+         .then(response=>{
+            
+            console.log(response.data);
+            dispatch({type:actionType.GET_POOLS,payload:response.data})
+        })
+         .catch(err=> console.log(err))
+    }
+}
+
+

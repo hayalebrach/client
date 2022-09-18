@@ -57,12 +57,20 @@ export const login = (data) => {
             dispach({type:actionType.ADD_MANAGER,payload:response.data});
         },
         err=>{
-
             console.log(err)
             console.log("קרתה שגיאה")
         })
     }
 }
+
+ export  function ResetUser(){
+    return(dispatch)=>{
+        dispatch({type:actionType.RESET_USER})
+    }
+ }
+ 
+
+
  
 // export const updateUser=(data)=>{
 //     console.log("p");

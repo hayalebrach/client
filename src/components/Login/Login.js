@@ -10,7 +10,7 @@ import {useDispatch, useSelector,shallowEqual} from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-
+import {savePool} from "../../store/Actions/Pools"
 const schema = yup.object({
     Name: yup.string().required(),
     Password: yup.number().positive().integer().required()
@@ -22,10 +22,12 @@ const Login=()=>{
    useEffect(() => {
     dispatch(getAllRole());
 }, []) 
+
    const {currentUser ,Role} = useSelector(state => ({
     currentUser: state.currentUser,
     Role:state.Role
  }), shallowEqual);
+
 
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -34,11 +36,17 @@ const Login=()=>{
 
 const onSubmit = (data) => { 
     dispatch(login(data));
+
     let x=Role[currentUser.IdRole-1];
     console.log(x.TypeUser);
     console.log(currentUser.Id);
     if(x.TypeUser=="מנהל אתר")   
     nav("/MainManagerNavBar");
+    else
+    if(x.TypeUser=="מנהל בריכה"){
+        Pools.map(pool=>pool.IdUser==currentUser.Id?dispatch(savePool(pool)):null);
+        nav("/ManagerNavBar");       
+    }
     else
     nav("/UserNavBar");
     

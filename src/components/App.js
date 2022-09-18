@@ -40,6 +40,9 @@ import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
 import Test from './test';
 
+import {ResetUser} from "../store/Actions/Users"
+import {GetAllPools} from "../store/Actions/Pools"
+import { useEffect } from 'react';
 //import { shallowEqual, useSelector } from 'react-redux';
 function App() {
   let nav = useNavigate();
@@ -59,18 +62,20 @@ console.log(Schedule);
 
   // console.log(num, current_user)
 
+    useEffect(()=>{
+    dispatch(GetAllPools());
 
-  return (
+   },[])
+    return (
     <>
-
 
       <div className='smallDiv'>
          <img src="../Pic/grocery-store.png" className="img1" onClick={()=>nav("./cart")}/>
         <img src="../Pic/user.png" className="img2" onClick={()=>{if(currentUser!="")
           nav("./profile")
           else alert("עליך להתחבר כדי לצפות בפרופיל!")}}/>
-        <h3 className='f' onClick={()=>nav("./signUp")}>הרשמה</h3>
-        <h3 className='f' onClick={()=>nav("./login")}>התחברות</h3><br/>
+        <h3 className='f' onClick={()=>{nav("./signUp")}}>הרשמה</h3>
+        <h3 className='f' onClick={()=>{ nav("./login")}}>התחברות</h3><br/>
         </div>
      <div className="App" >
         
@@ -133,12 +138,15 @@ console.log(Schedule);
         <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsCours" element={<AddDetailsCours />} />
+        <Route path="ManagerNavBar/addCourse" element={<AddDetailsCours />} />
+
+        
         <Route path="MainManagerNavBar/AddPool/AddDetailsCard" element={<AddDetailsCard />} />
-        <Route path="AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
+
         
         <Route path="ShowSchedule" element={<ShowSchedule />} />
-        
+        <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
         <Route path="addCourse" element={<AddDetailsCours />} />
         <Route path="SplitButton" element={<SplitButton />} />
        {/* //<Route path="Test/:flag" element={<Test flag="false"/>} /> */}

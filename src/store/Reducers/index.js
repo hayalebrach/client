@@ -9,16 +9,10 @@ const initialState = {
         {type:"20 כניסות",price:200},
         {type:"50 כניסות",price:400}
     ],
-    //המערך המזויף של הקורסים
-    Courses:
-    [
-        {name:"שחיה",email:"lieli@gmail.com",phone:"5333255"},
-        {name:"ספורט",email:"chayush@gmail.com",phone:"05222552"},
-        {name:"ריצה",email:"sivani@gmail.com",phone:"0202225"},
-        {name:"לחימה",email:"sapirush@gmail.com",phone:"0325522"}
-    ],
+    
     //הכרטיס המבוקש
     Card:null,
+
     //המערך של המשתמשים
     usersArr:[],
     //המשתמש הנוכחי
@@ -106,9 +100,23 @@ const reducer = (state = initialState, action) => {
           case actionType.GET_USERS:
               return {
                   ...state,
-                  usersArr:[...action.payload]
+                  usersArr:action.payload
                 };
-                //עדכון משתמש
+          //מציג קורסים לבריכה
+           case actionType.GET_COURSES:
+                    return {
+                        ...state,
+                        courses_arr:action.payload
+                      };
+
+       //מציג בריכות
+        case actionType.GET_POOLS:
+            return {
+                ...state,
+                pools_arr:[...action.payload]
+              };
+          
+          //עדכון משתמש
           case actionType.UPDATE_USER:
               return{
                   ...state,
@@ -143,7 +151,15 @@ const reducer = (state = initialState, action) => {
         case actionType.ADD_COURS:{
             return{
                 ...state,
-                Courses:[...action.payload]
+                Courses:[...state.Courses,action.payload]
+            }
+        }
+        //הוספת מנהל
+        case actionType.ADD_MANAGER:{
+            return{
+                
+                 ...state,
+                 Managers:[...state.Managers,action.payload]
             };
         }
         
@@ -155,8 +171,23 @@ const reducer = (state = initialState, action) => {
                  Cards:[...action.payload]
 
             };
-        }       
+        }     
+        //איפוס משתמש
+        case actionType.RESET_USER:{
+            return{
+                ...state,
+                 currentUser:"",
+                 
 
+            };
+        }     
+
+        //הוספת בריכה
+        case actionType.ADD_POOLS:
+        return {
+            ...state,
+            Pools:[...action.payload]
+        }
         //מחיקת בריכה
         case actionType.DELETE_POOLS:
             let newArr2=[...state.pools_arr];
@@ -170,8 +201,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pools_arr:[...newArr2]
             }
-
-        
+        case actionType.SAVE_POOL:
+            return {
+                ...state,
+                currentPool:action.payload
+             }
         //ממוצע של כל ההזמנות
         
         //רכישת כרטיסים

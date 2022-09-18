@@ -14,6 +14,8 @@ export const CHOOSE_CARD="CHOOSE_CARD"
 export const CHOOSE_COURS="CHOOSE_COURS"
 //הצגת כל הבריכות
 export const GET_POOLS="GET_POOLS"
+//הצגת כל הקורסים לבריכה מסויימת
+export const GET_COURSES="GET_COURSES"
 //הוספת בריכה
 export const ADD_POOL="ADD_POOL"
 //ייבוא של כל האיזורים
@@ -33,7 +35,7 @@ export const GET_USERS="GET_USERS"
 //ממוצע של כל ההזמנות
 export const AVARGE_ORDERS="AVARGE_ORDERS"
 //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת
-export const GET_ORDERS="GTE_ORDERS"
+export const GET_ORDERS="GET_ORDERS"
 //הוספת מנהל
 export const ADD_MANAGER="ADD_MANAGER"
 //הוספת כרטיס
@@ -52,6 +54,8 @@ export const ALL_DAYS="ALL_DAYS";
 export const ADD_SCHEDULE_TO_ARRAY="ADD_SCHEDULE_TO_ARRAY";
 //קבלת לוח זמנים מהסטייט החיצוני
 export const GET_SCHEDULE="GET_SCHEDULE";
+
+export const RESET_USER="RESET_USER";
 
 
 
