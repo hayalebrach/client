@@ -7,7 +7,6 @@ export const getAllUser=()=>{
         
         axios.get("http://localhost:50157/api/user/GetAllUsers")
         .then(response=>{
-            console.log(response.data);
             dispach({type:actionType.GET_USERS,payload:response.data})
         })
         .catch(err=> console.log(err) )
@@ -68,16 +67,22 @@ export const login = (data) => {
         dispatch({type:actionType.RESET_USER})
     }
  }
- 
+ //קבלת המתמש מהמערך בריאקט לפי ת"ז
+ export const getById=(id)=>{
+    console.log("בעזרת ה' את תצליחי");
+    return{
+        type:actionType.GET_BY_ID_USER,
+        payload:id
+    }
+}
 
-
  
-// export const updateUser=(data)=>{
-//     console.log("p");
-//     console.log(data);
-//     return dispatch=>{
-//         axios.put("http://localhost:60342/api/user/Put?",data)
-//         .then(x=> dispatch({type:actionType.UPDATE_USER,payload:data}) )
-//         .catch(err=>console.log(err))
-//     }
-// } 
+export const updateUser=(data)=>{
+    console.log("uuuuu");
+    console.log(data);
+    return dispatch=>{
+        axios.put("http://localhost:50157/api/user/Put?",data)
+        .then(x=> dispatch({type:actionType.UPDATE_USER,payload:data}))
+        .catch(err=>console.log(err))
+    }
+} 

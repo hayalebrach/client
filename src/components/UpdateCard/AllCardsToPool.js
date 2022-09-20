@@ -3,7 +3,7 @@ import {getAllUser,getById} from "../../store/Actions/Users"
 import {useSelector,useDispatch,shallowEqual}from "react-redux";
 import {useNavigate} from "react-router";
 import "./AllUsers.css"
-export default function AllUsers(){
+export default function AllCardsToPool(){
   const nav=useNavigate();
   const dispatch=useDispatch();
   useEffect(() => {
@@ -19,7 +19,7 @@ const update=(Id)=>{
 }
   return(
     <>
-    <h1>משתמשים</h1>
+    <h1>כל הכרטיסים</h1>
     <ul>
         {
             usersArr.map(usersArr=><><br/> <li className="li"> {usersArr.Id} {usersArr.Name} {usersArr.Email}

@@ -1,13 +1,13 @@
 import * as actionType from "../actions";
 import axios from "axios";
-// export const UpdateCard=(card)=>{
-//       return dispatch=>{
-//           axios.get("",card)
-//           .then(x=>dispatch({type:actionType.UPDATE_CARD,payload:card}))
-//           .catch(err=>console.log(err))
-//          
-//       }
-//     }
+export const UpdateCard=(card)=>{
+      return dispatch=>{
+          axios.get("",card)
+          .then(x=>dispatch({type:actionType.UPDATE_CARD,payload:card}))
+          .catch(err=>console.log(err))
+         
+      }
+    }
 
 
 
@@ -33,3 +33,14 @@ export const AddSale=(Sale)=>{
     }
 }
 
+//כל המשתמשים
+export const getAllCard=()=>{
+    return dispach=>{
+        
+        axios.get("http://localhost:50157/api/user/GetAllUsers")
+        .then(response=>{
+            dispach({type:actionType.GET_USERS,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+}

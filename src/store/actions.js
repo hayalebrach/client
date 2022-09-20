@@ -57,8 +57,9 @@ export const GET_SCHEDULE="GET_SCHEDULE";
 
 export const RESET_USER="RESET_USER";
 
-
-
-
+//הבריכה הנוכחית
+export const SAVE_POOL="SAVE_POOL";
+//מקבלת את המשתמש מהמערך שבסטייט
+export const GET_BY_ID_USER="GET_BY_ID_USER";
 
 

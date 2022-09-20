@@ -23,9 +23,10 @@ const Login=()=>{
     dispatch(getAllRole());
 }, []) 
 
-   const {currentUser ,Role} = useSelector(state => ({
+   const {currentUser ,Role,currentPool} = useSelector(state => ({
     currentUser: state.currentUser,
-    Role:state.Role
+    Role:state.Role,
+    currentPool:state.currentPool
  }), shallowEqual);
 
 
@@ -42,13 +43,14 @@ const onSubmit = (data) => {
     console.log(currentUser.Id);
     if(x.TypeUser=="מנהל אתר")   
     nav("/MainManagerNavBar");
-    else
+   
     if(x.TypeUser=="מנהל בריכה"){
-        Pools.map(pool=>pool.IdUser==currentUser.Id?dispatch(savePool(pool)):null);
+        // alert("מנהל בריכה");
+        // currentPool.map(pool=>pool.IdUser==currentUser.Id?dispatch(savePool(pool)):null);
         nav("/ManagerNavBar");       
     }
-    else
-    nav("/UserNavBar");
+   else
+   alert("רק ה'");
     
 }
 return (<>

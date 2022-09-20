@@ -14,7 +14,7 @@ import MainManagerNavBar from './MainManagerNavBar';
 import UserNavBar from "./UserNavBar";
 import AllUsers from './AllUsers/AllUsers';
 import AllManagers from './AllManagers/AllManagers';
-import cardUpdate from './cardUpdate';
+
 // import courseUpdate from './courseUpdate';
 // import addSale from './addSale';
 import CourseDetails from './CourseDetails/CourseDetails';
@@ -40,9 +40,11 @@ import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
 import Test from './test';
 
-import {ResetUser} from "../store/Actions/Users"
-import {GetAllPools} from "../store/Actions/Pools"
+import {ResetUser} from "../store/Actions/Users";
+import {GetAllPools} from "../store/Actions/Pools";
 import { useEffect } from 'react';
+import UpdateUser from './UpdateUser/UpdateUser';
+// import { UpdateUser } from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
 function App() {
   let nav = useNavigate();
@@ -126,7 +128,7 @@ console.log(Schedule);
         <Route path="/MainManagerNavBar/home" element={<AllPools />} />
         <Route path="/buyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="cardUpdate" element={<cardUpdate />} />
+  
         <Route path="courseUpdate" element={<courseUpdate />} />
         <Route path="addSale" element={<addSale />} />
         {/* //------------הוספת בריכה------------------------ */}
@@ -148,8 +150,9 @@ console.log(Schedule);
         <Route path="ShowSchedule" element={<ShowSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
         <Route path="addCourse" element={<AddDetailsCours />} />
-        <Route path="SplitButton" element={<SplitButton />} />
-       {/* //<Route path="Test/:flag" element={<Test flag="false"/>} /> */}
+        {/* <Route path="SplitButton" element={<SplitButton />} /> */}
+        <Route path="UpdateUser/:flag" element={<UpdateUser flag="false"/>} />
+      
       </Routes>
       </div>
 

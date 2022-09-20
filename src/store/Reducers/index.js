@@ -1,18 +1,8 @@
 import * as actionType from "../actions";
 
 const initialState = {
-    //המערך המזויף של כרטיסים
-    Cards:
-    [
-        {type:"5 כניסות",price:120},
-        {type:"10 כניסות",price:170},
-        {type:"20 כניסות",price:200},
-        {type:"50 כניסות",price:400}
-    ],
-    
     //הכרטיס המבוקש
     Card:null,
-
     //המערך של המשתמשים
     usersArr:[],
     //המשתמש הנוכחי
@@ -31,7 +21,7 @@ const initialState = {
     Schedule:[],
 
     sale_arr:[],
-   
+    User:null,
     
     
     cart:[],
@@ -41,6 +31,26 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     
     switch (action.type) {
+         //עדכון משתמש
+         case actionType.UPDATE_USER:
+            return{
+                ...state,
+                currentUser:action.payload
+            };
+            
+   //מקבלת את המשתמש מהמערך שבסטייט
+        case actionType.GET_BY_ID_USER:
+            let user=null;
+            let newArr=[...state.usersArr];
+            for(let i=0;i<newArr.length;i++){
+                if(newArr[i].Id===action.payload){
+                   user=newArr[i];
+                }
+            }
+            return{
+                ...state,
+                User:user
+            }
         //הוספת לוח זמנים למערך שבstate החיצוני
         case actionType.ADD_SCHEDULE_TO_ARRAY:
             return{
@@ -116,12 +126,7 @@ const reducer = (state = initialState, action) => {
                 pools_arr:[...action.payload]
               };
           
-          //עדכון משתמש
-          case actionType.UPDATE_USER:
-              return{
-                  ...state,
-                  currentUser:action.payload
-              };
+         
           //התחברות-login
           case actionType.LOGIN:
             return {
@@ -181,13 +186,6 @@ const reducer = (state = initialState, action) => {
 
             };
         }     
-
-        //הוספת בריכה
-        case actionType.ADD_POOLS:
-        return {
-            ...state,
-            Pools:[...action.payload]
-        }
         //מחיקת בריכה
         case actionType.DELETE_POOLS:
             let newArr2=[...state.pools_arr];
@@ -201,6 +199,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pools_arr:[...newArr2]
             }
+            //בריכה הנוכחית שנבחרה
         case actionType.SAVE_POOL:
             return {
                 ...state,

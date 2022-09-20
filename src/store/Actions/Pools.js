@@ -66,8 +66,6 @@ export const GetAllPools=()=>{
        
         axios.get("http://localhost:50157/api/Pool/GetAllPools")
          .then(response=>{
-            
-            console.log(response.data);
             dispatch({type:actionType.GET_POOLS,payload:response.data})
         })
          .catch(err=> console.log(err))
