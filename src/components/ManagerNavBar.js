@@ -9,7 +9,8 @@ export default function ManagerNavBar(){
         <Link to="courseUpdate" className="navbar-brand">לעדכון הקורסים  </Link>
         <Link to="addSale" className="navbar-brand">להוספת מבצעים </Link>
         <Link to="addCourse" className="navbar-brand">להוספת קורס </Link>
-        
+        <Link to="courses" className="navbar-brand">לקורסים</Link>
+
     
     </nav>
 }

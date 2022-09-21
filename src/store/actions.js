@@ -55,11 +55,16 @@ export const ADD_SCHEDULE_TO_ARRAY="ADD_SCHEDULE_TO_ARRAY";
 //קבלת לוח זמנים מהסטייט החיצוני
 export const GET_SCHEDULE="GET_SCHEDULE";
 
-export const RESET_USER="RESET_USER";
+export const EXIT="EXIT";
 
 //הבריכה הנוכחית
 export const SAVE_POOL="SAVE_POOL";
+
+//מחיקת קורס
+export const DELETE_COURSE="DELETE_COURSE";
 //מקבלת את המשתמש מהמערך שבסטייט
 export const GET_BY_ID_USER="GET_BY_ID_USER";
+
+
 
 

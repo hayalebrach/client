@@ -11,6 +11,7 @@ import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import {savePool} from "../../store/Actions/Pools"
+import { GetAllCourses } from "../../store/Actions/Cours";
 const schema = yup.object({
     Name: yup.string().required(),
     Password: yup.number().positive().integer().required()
@@ -23,8 +24,9 @@ const Login=()=>{
     dispatch(getAllRole());
 }, []) 
 
-   const {currentUser ,Role,currentPool} = useSelector(state => ({
+   const {currentUser ,Role,currentPool,Pools} = useSelector(state => ({
     currentUser: state.currentUser,
+    Pools:state.pools_arr,
     Role:state.Role,
     currentPool:state.currentPool
  }), shallowEqual);
@@ -37,7 +39,7 @@ const Login=()=>{
 
 const onSubmit = (data) => { 
     dispatch(login(data));
-
+    
     let x=Role[currentUser.IdRole-1];
     console.log(x.TypeUser);
     console.log(currentUser.Id);
@@ -46,7 +48,7 @@ const onSubmit = (data) => {
    
     if(x.TypeUser=="מנהל בריכה"){
         // alert("מנהל בריכה");
-        // currentPool.map(pool=>pool.IdUser==currentUser.Id?dispatch(savePool(pool)):null);
+        Pools.map(pool=>pool.IdUser==currentUser.Id?(dispatch(savePool(pool)), dispatch(GetAllCourses(pool.Id))):null);
         nav("/ManagerNavBar");       
     }
    else

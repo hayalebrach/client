@@ -40,7 +40,7 @@ import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
 import Test from './test';
 
-import {ResetUser} from "../store/Actions/Users";
+import {Exit} from "../store/Actions/Users";
 import {GetAllPools} from "../store/Actions/Pools";
 import { useEffect } from 'react';
 import UpdateUser from './UpdateUser/UpdateUser';
@@ -76,8 +76,8 @@ console.log(Schedule);
         <img src="../Pic/user.png" className="img2" onClick={()=>{if(currentUser!="")
           nav("./profile")
           else alert("עליך להתחבר כדי לצפות בפרופיל!")}}/>
-        <h3 className='f' onClick={()=>{nav("./signUp")}}>הרשמה</h3>
-        <h3 className='f' onClick={()=>{ nav("./login")}}>התחברות</h3><br/>
+        <h3 className='f' onClick={()=>{dispatch(Exit()); nav("./signUp")}}>הרשמה</h3>
+        <h3 className='f' onClick={()=>{dispatch(Exit()); nav("./login")}}>התחברות</h3><br/>
         </div>
      <div className="App" >
         
@@ -101,6 +101,7 @@ console.log(Schedule);
         <Route path="courses" element={<Courses />} />
         <Route path="home/poolWeb/courses" element={<Courses />} />
         <Route path="poolWeb/courses" element={<Courses />} />
+        <Route path="ManagerNavBar/courses" element={<Courses />} />
         
        
         <Route path="cart/UserNavBar/courses" element={<Courses />} />

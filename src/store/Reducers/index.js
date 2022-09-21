@@ -159,6 +159,23 @@ const reducer = (state = initialState, action) => {
                 Courses:[...state.Courses,action.payload]
             }
         }
+
+        //מחיקת קורס
+        
+        case actionType.DELETE_COURSE:{
+            alert("HEREEE");
+            let newArr2=[...state.courses_arr];
+            alert(state.courses_arr.length);
+            for(let i=0;i<state.courses_arr.length;i++){
+                if(newArr2[i].Id==action.payload){
+                    console.log("hola"+newArr2[i]);
+                    newArr2.pop(newArr2[i]);
+                }};
+                alert("FINISHHH");
+                return{...state,
+                courses_arr:[...newArr2]}
+        }
+
         //הוספת מנהל
         case actionType.ADD_MANAGER:{
             return{
@@ -178,11 +195,12 @@ const reducer = (state = initialState, action) => {
             };
         }     
         //איפוס משתמש
-        case actionType.RESET_USER:{
+        case actionType.EXIT:{
             return{
                 ...state,
                  currentUser:"",
-                 
+                 courses_arr:[null],
+                 currentPool:"",
 
             };
         }     
