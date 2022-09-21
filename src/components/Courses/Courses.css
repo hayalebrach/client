@@ -36,3 +36,14 @@
   width: 84px;
 }
 body{text-align: center;}
+
+.ManagerButtons{
+  border-color: cornflowerblue;
+    color: black;
+    border-radius: 10px;
+    margin: 3px;
+    top: -91px;
+    right: 6px;
+    position: relative;
+    width: 47px;
+  }

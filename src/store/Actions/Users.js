@@ -62,9 +62,9 @@ export const login = (data) => {
     }
 }
 
- export  function ResetUser(){
+ export  function Exit(){
     return(dispatch)=>{
-        dispatch({type:actionType.RESET_USER})
+        dispatch({type:actionType.EXIT})
     }
  }
  //קבלת המתמש מהמערך בריאקט לפי ת"ז

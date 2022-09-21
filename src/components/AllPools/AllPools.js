@@ -13,7 +13,7 @@ export default  function AllPools(){
     
     let nav=useNavigate();
     const Func=(data)=>{
-     // dispatch(savePool(data));
+      dispatch(savePool(data));
       console.log("IM BACKK!!");
       nav("/poolWeb");
       console.log(currentPool);

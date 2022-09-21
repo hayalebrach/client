@@ -34,9 +34,9 @@ export default function AddDetailsCours() {
     });
     const onSubmit = (data) => {
         //data.typeArr=typeArr[data.typeArr-1].Name; 
-        alert(data.NameCours);
-        dispatch(AddCours({IdPool:currentPool.Id,NameCours:data.NameCours,PeopleAmount:data.PeopleAmount,Dis:data.Dis,IdUser:currentUser.Id})) 
-        console.log(data);
+       
+        dispatch(AddCours({IdPool:currentPool.Id,NameCours:data.NameCours,PeopleAmount:data.PeopleAmount,Dis:data.Dis,IdUser:currentUser.Id}));
+        
     }
     
 
