@@ -33,13 +33,13 @@ export const AddSale=(Sale)=>{
     }
 }
 
-//כל המשתמשים
-export const getAllCard=()=>{
+//כל הכרטיסים לבריכה מסוימת
+export const getAllCardByIdPool=(IdPool)=>{
     return dispach=>{
-        
-        axios.get("http://localhost:50157/api/user/GetAllUsers")
+        console.log("ה' תודה");
+        axios.get(`http://localhost:50157/api/packege/GetCardsByIdPool?IdPool=${IdPool}`)
         .then(response=>{
-            dispach({type:actionType.GET_USERS,payload:response.data})
+            dispach({type:actionType.GET_CARDS,payload:response.data})
         })
         .catch(err=> console.log(err) )
     }

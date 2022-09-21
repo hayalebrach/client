@@ -14,15 +14,16 @@ const {usersArr} = useSelector(state => ({
 }), shallowEqual);
 
 const update=(Id)=>{
-  dispatch(getById(Id));
-  nav(("/UpdateUser/"+true));
+  console.log(Id);
+  //dispatch(getById(Id));
+  //nav(("/UpdateUser/));
 }
   return(
     <>
     <h1>משתמשים</h1>
     <ul>
         {
-            usersArr.map(usersArr=><><br/> <li className="li"> {usersArr.Id} {usersArr.Name} {usersArr.Email}
+            usersArr.map(usersArr=><><br/> <li className="li" > {usersArr.Id} {usersArr.Name} {usersArr.Email}
              <input type="button" value="עדכון" onClick={()=>update(usersArr.Id)}/> <input type="button" value="מחיקה" onClick={()=>alert(usersArr.Id)}/></li></> )
         }
     </ul>

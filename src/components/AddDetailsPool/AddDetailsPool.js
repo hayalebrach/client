@@ -5,6 +5,7 @@ import Input from "../Input";
 import * as yup from "yup";
 import {getAllErea,AddPool} from "../../store/Actions/Pools";
 import { useDispatch,useSelector ,shallowEqual} from "react-redux";
+import {useNavigate} from "react-router";
 const schema = yup.object({
     IdUser:yup.number().positive().integer().required(),
     Name: yup.string().required(),  
@@ -16,7 +17,7 @@ const schema = yup.object({
 }).required();
 
 export default function AddDetailsPool() {
-
+    const nav=useNavigate()
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -36,6 +37,8 @@ export default function AddDetailsPool() {
     const onSubmit = (data) => {
         dispatch(AddPool(data));
         console.log(data);
+        nav("/MainManagerNavBar");
+        
     }
     return (<>
                  <h1>הוספת פרטי הבריכה</h1>

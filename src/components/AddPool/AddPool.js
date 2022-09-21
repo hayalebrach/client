@@ -17,7 +17,7 @@ export default function AddPool(){
   <Link to="AddDetailsCours" className="nav-link">לפרטי הקורסים</Link>
   </li>
   <li className="nav-item">
-  <Link to="AddDetailsCard" className="nav-link">לפרטי הכרטיסים</Link>  
+  <Link to="AddDetailsCard/false" className="nav-link">לפרטי הכרטיסים</Link>  
   </li>
   <li className="nav-item">
   <Link to="AddDetailsSale" className="nav-link">להוספת מבצעים</Link>  

@@ -30,16 +30,35 @@ export const getAllErea=()=>{
     }
 }
 //בריכה נוכחית
-export const savePool = (data) => {
-    console.log(data.Name);
+export const savePool = (id) => {
+    console.log(id);
     return (dispatch) => { 
-        console.log("LETS GOOOO");
-        dispatch({type:actionType.SAVE_POOL,payload:data});
+        dispatch({type:actionType.SAVE_POOL,payload:id});
 
 
     }
 }
 
+
+//הוספת לוח זמניים למערך שבסטייט הכללי
+export const AddToArraySchedule = (schedule) => {
+    console.log(schedule);
+    return {
+        type:actionType.ADD_SCHEDULE_TO_ARRAY,
+        payload:schedule
+    } 
+}
+
+export const GetAllPools=()=>{
+    console.log("ה' תעזור לי אני לא מצליחה כלום בלעדיך");
+    return dispach=>{    
+        axios.get("http://localhost:50157/api/pool/GetAllPools")
+        .then(response=>{
+            dispach({type:actionType.GET_POOLS,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+}
 //כל הימים
 export const getAllDays=()=>{
     return (dispach)=>{    
@@ -50,26 +69,3 @@ export const getAllDays=()=>{
         .catch(err=> console.log(err) )
     }
 }
-//הוספת לוח זמניים למערך שבסטייט הכללי
-export const AddToArraySchedule = (schedule) => {
-    console.log(schedule);
-    return {
-        type:actionType.ADD_SCHEDULE_TO_ARRAY,
-        payload:schedule
-    } 
-}
-
-//ייבוא של כל הבריכות
-
-export const GetAllPools=()=>{
-    return dispatch=>{
-       
-        axios.get("http://localhost:50157/api/Pool/GetAllPools")
-         .then(response=>{
-            dispatch({type:actionType.GET_POOLS,payload:response.data})
-        })
-         .catch(err=> console.log(err))
-    }
-}
-
-

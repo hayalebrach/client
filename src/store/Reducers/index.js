@@ -19,6 +19,8 @@ const initialState = {
     Days:[],
     //המערך של הלוח זמנים
     Schedule:[],
+    //מערך הכרטיסים להריכה מסוימת
+    CardsArr:[],
 
     sale_arr:[],
     User:null,
@@ -31,6 +33,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     
     switch (action.type) {
+        //ייבוא הכרטיסים לבריכה מסוימת
+        case actionType.GET_CARDS:
+            return{
+                ...state,
+                CardsArr:action.payload
+            }
          //עדכון משתמש
          case actionType.UPDATE_USER:
             return{
@@ -43,7 +51,7 @@ const reducer = (state = initialState, action) => {
             let user=null;
             let newArr=[...state.usersArr];
             for(let i=0;i<newArr.length;i++){
-                if(newArr[i].Id===action.payload){
+                if(newArr[i].Id==action.payload){
                    user=newArr[i];
                 }
             }
@@ -123,7 +131,7 @@ const reducer = (state = initialState, action) => {
         case actionType.GET_POOLS:
             return {
                 ...state,
-                pools_arr:[...action.payload]
+                poolsArr:[...action.payload]
               };
           
          
@@ -201,10 +209,18 @@ const reducer = (state = initialState, action) => {
             }
             //בריכה הנוכחית שנבחרה
         case actionType.SAVE_POOL:
-            return {
+            let pool=null;
+     
+            let newArr3=[...state.poolsArr];
+            for(let i=0;i<newArr3.length;i++){
+                if(newArr3[i].IdUser==action.payload){
+                   pool=newArr3[i];
+                }
+            }
+            return{
                 ...state,
-                currentPool:action.payload
-             }
+                currentPool:pool
+            }
         //ממוצע של כל ההזמנות
         
         //רכישת כרטיסים

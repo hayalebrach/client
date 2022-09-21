@@ -46,15 +46,17 @@ import { useEffect } from 'react';
 import UpdateUser from './UpdateUser/UpdateUser';
 // import { UpdateUser } from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
+import AllCardsToPool from "./UpdateCard/AllCardsToPool";
 function App() {
   let nav = useNavigate();
   const dispatch=useDispatch();
 
-  const { Schedule, currentUser } = useSelector(state => ({
+  const { Schedule, currentUser, currentPool } = useSelector(state => ({
     currentUser: state.currentUser,
-    Schedule: state.Schedule
+    Schedule: state.Schedule,
+    currentPool:state.currentPool
   }), shallowEqual);
-console.log(Schedule);
+console.log(currentPool);
   // console.log(Cards, Managers)
 
   // const { num, current_user } = useSelector(state => ({
@@ -66,7 +68,6 @@ console.log(Schedule);
 
     useEffect(()=>{
     dispatch(GetAllPools());
-
    },[])
     return (
     <>
@@ -115,7 +116,7 @@ console.log(Schedule);
         <Route path="home/poolWeb/about" element={<About />} />
         <Route path="poolWeb/about" element={<About />} />
         
-        
+        <Route path="ManagerNavBar/AllCardsToPool" element={<AllCardsToPool />} />
         <Route path="ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
         <Route path="UserNavBar" element={<UserNavBar />} />
@@ -142,8 +143,8 @@ console.log(Schedule);
         <Route path="MainManagerNavBar/AddPool/AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="ManagerNavBar/addCourse" element={<AddDetailsCours />} />
 
-        
-        <Route path="MainManagerNavBar/AddPool/AddDetailsCard" element={<AddDetailsCard />} />
+        <Route path="AddDetailsCard/:flag" element={<AddDetailsCard flag="true"/>} />
+        <Route path="MainManagerNavBar/AddPool/AddDetailsCard/:flag" element={<AddDetailsCard flag="false"/>} />
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
 
         

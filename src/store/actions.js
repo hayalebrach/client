@@ -6,7 +6,7 @@ export const SIGNUP="SIGNUP"
 export const UPDATE_USER="UPDATE_USER"
 //רשימת קורסים
 export const LIST_COURS="LIST_COURS"
-//הצגת כרטיסים
+//הצגת כרטיסים של הבריכה הנוכחית
 export const GET_CARDS="GET_CARDS"
 //רכישת כרטיסים
 export const CHOOSE_CARD="CHOOSE_CARD"

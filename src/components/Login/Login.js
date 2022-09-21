@@ -10,7 +10,7 @@ import {useDispatch, useSelector,shallowEqual} from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import {savePool} from "../../store/Actions/Pools"
+import {GetAllPools, savePool} from "../../store/Actions/Pools"
 const schema = yup.object({
     Name: yup.string().required(),
     Password: yup.number().positive().integer().required()
@@ -20,7 +20,7 @@ const Login=()=>{
    //פה אני מעדכנת על מנת שאני יוכל לבדוק אם מדובר במנהל
    let nav=useNavigate();
    useEffect(() => {
-    dispatch(getAllRole());
+    dispatch(getAllRole(),GetAllPools());
 }, []) 
 
    const {currentUser ,Role,currentPool} = useSelector(state => ({
@@ -28,7 +28,6 @@ const Login=()=>{
     Role:state.Role,
     currentPool:state.currentPool
  }), shallowEqual);
-
 
     const dispatch = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -45,14 +44,15 @@ const onSubmit = (data) => {
     nav("/MainManagerNavBar");
    
     if(x.TypeUser=="מנהל בריכה"){
-        // alert("מנהל בריכה");
-        // currentPool.map(pool=>pool.IdUser==currentUser.Id?dispatch(savePool(pool)):null);
-        nav("/ManagerNavBar");       
+        dispatch(savePool(currentUser.Id));
+        console.log(currentPool);
+        nav("/ManagerNavBar");   
     }
    else
    alert("רק ה'");
     
 }
+
 return (<>
 <h1>התחברות</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +62,6 @@ return (<>
         <Input register={register} errors={errors}  className="input"name="Password" lablName="סיסמא" type="number"/>
         <Link to="signUp" className="navbar-brand">עדיין לא  רשום? עבור להרשמה</Link> 
        
-      
         <input type="submit" className="button" />
         </div>
     </form></>)

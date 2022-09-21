@@ -16,6 +16,7 @@ const schema = yup.object({
 }).required();
 
 export default function AddDetailsCours() {
+  
     const Courses=useSelector(state =>state.Courses);
     const currentPool=useSelector(state =>state.currentPool);
     const currentUser=useSelector(state =>state.currentUser);
