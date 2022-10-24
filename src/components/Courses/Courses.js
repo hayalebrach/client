@@ -1,8 +1,10 @@
-import {useEffect, useState} from "react"
+import {useEffect} from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import {GetAllCourses,DeleteCourse} from "../../store/Actions/Cours";
-import "./Courses.css"
+import {GetAllCourses,DeleteCourse,Course_Enrollment,updateCourse} from "../../store/Actions/Cours";
+import {getById} from "../../store/Actions/Users"
+
+import "./Courses.css";
 export default function Courses(){
   const Courses=useSelector(state =>state.courses_arr);
   const currentPool=useSelector(state =>state.currentPool);
@@ -10,36 +12,48 @@ export default function Courses(){
 
   const dispatch = useDispatch();
   let nav=useNavigate();
- let i=0;
-
+  let i=0;
+  let Details=null;
  useEffect(()=>{
   dispatch((GetAllCourses(currentPool.Id)));
+
   
- },[])
+ },[]);
 
-  const callUs=[
-    {Phone:"035435627",Email:"azw@gmail.com"},
-    {Phone:"663782",Email:"1212@gmail.com"},
-    {Phone:"0524562253",Email:"liem@gmail.com"},
-    {Phone:"035333255",Email:"taz@gmail.com"},
-  ]
-  const details=()=>{
-    nav("/courseDetails")
+  
+   const details=(Course)=>{
+    if(currentUser==null){
+     nav("./courseEnrollment");
+    }
+    else{
+      dispatch(Course_Enrollment({IdUser:currentUser.Id,IdCours:Course.Id}))
 
+    }
+
+  }
+
+  const CallUs=(IdUser)=>{
+    dispatch(getById(IdUser));
+    var User=useSelector(state =>state.User);
+    Details={Phone:User.Phone,Email:User.Email};
+    
   }
 
   const DELETE=(CourseId)=>{
-    
-    dispatch(DeleteCourse(CourseId));
-
+      dispatch(DeleteCourse(CourseId));
   }
+
+  const UPDATE=(CourseId)=>{
+    nav("./AddDetailsCours");
+    // dispatch(updateCourse(CourseId));
+}
+  
 
   return(
     <>
     <h1>:) הקורסים שלנו</h1>
-        {Courses.map(Course=><>  <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br> יצירת קשר: {callUs[i+1].Phone} <br></br> {callUs[i+1].Email} מייל: <br></br>{Course.PeopleAmount} כמות אנשים:<br></br> {Course.Dis} אופי הקורס: <input type="button" value="לפרטים" className="button1" onClick={details}></input>
-        </div>{currentUser && currentUser.IdRole==2?(<><div><input type="button" value="מחק"  className="ManagerButtons" onClick={()=>{alert(Course.Id);DELETE(Course.Id)}}></input><input type="button" className="ManagerButtons" value="עדכן" ></input></div></>):null }
-</> )}
+        {Courses.map(Course=><>{()=>CallUs(Course.IdUser)} <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br> יצירת קשר:  <br></br> {()=>Details.Email} מייל: <br></br> פלאפון:{()=>alert(Details.Phone)}<br></br> {Course.PeopleAmount} כמות אנשים:<br></br> {Course.Dis} אופי הקורס: 
+        </div>{currentUser && currentUser.IdRole==2?(<><div><input type="button" value="מחק"  className="ManagerButtons" onClick={()=>{DELETE(Course.Id)}}></input><input type="button" onClick={()=>UPDATE(Course.Id)} className="ManagerButtons" value="עדכן" ></input></div></>):(<input type="button" value="להרשמה" className="button1" onClick={details(Course)}></input>)}</> )}
         
     </>
   )

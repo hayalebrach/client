@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
 import {AddCours} from "../../store/Actions/Cours";
+import "./AddDetailsCours.css";
 
 const schema = yup.object({
     NameCours: yup.string().required(),
@@ -43,8 +44,16 @@ export default function AddDetailsCours() {
     return (<>
                  <h1>AddDetailsCourse</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input register={register} errors={errors} name="NameCours" lablName="שם הקורס" className="" type="text"/>
-            <Input register={register} errors={errors} name="Dis" lablName="תיאור" className="" type="text" />
+            <div className="MyDiv">
+            <Input register={register} errors={errors} name="NameCours" lablName="שם הקורס" className="input1" type="text"/>
+            <Input register={register} errors={errors} name="Dis" lablName="תיאור" className="input1" type="text" />
+            <Input register={register} errors={errors} name="PeopleAmount" lablName="מס' אנשים" className="input1" type="number"/>
+            <Input register={register} errors={errors} name="Price" lablName="מחיר" className="input1" type="number"/>
+
+            </div>
+            <br/>
+
+            <div>
             <label>מגזר</label><br/>
             <select  {...register("Type")}>  
                  {typeArr.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
@@ -53,10 +62,22 @@ export default function AddDetailsCours() {
             <label>ימים</label>
             {days.map(x=><><br/><label>{x.Name}</label><input type="checkbox" key={x.Id} value={x.Id}/><br/><input type="number"placeholder="שעה"/></>)}
              <br/>
-            <Input register={register} errors={errors} name="startHour" lablName="שעת התחלה" className="" type="number"/>
-            <Input register={register} errors={errors} name="endHour" lablName="שעת סיום" className="" type="number"/>
-            <Input register={register} errors={errors} name="PeopleAmount" lablName="מס' אנשים" className="" type="number"/>
-            <Input register={register} errors={errors} name="Price" lablName="מחיר" className="" type="number"/>
+            <Input register={register} errors={errors} name="startHour" lablName="שעת התחלה" className="input1" type="number"/>
+            <Input register={register} errors={errors} name="endHour" lablName="שעת סיום" className="input1" type="number"/>
+
+
+
+
+            </div>
+.
+
+
+
+
+
+
+
+
             <input type="submit" />
         </form>
         </>);

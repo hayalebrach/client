@@ -8,12 +8,13 @@ import "./AllPools.css";
 export default  function AllPools(){
   const dispatch = useDispatch();
 
-    const Pools=useSelector(state =>state.pools_arr);
+    const Pools=useSelector(state =>state.poolsArr);
     let currentPool=useSelector(state =>state.currentPool);
     
     let nav=useNavigate();
-    const Func=(data)=>{
-      dispatch(savePool(data));
+    const Func=(pool)=>{
+      dispatch(savePool(pool));
+      
       console.log("IM BACKK!!");
       nav("/poolWeb");
       console.log(currentPool);

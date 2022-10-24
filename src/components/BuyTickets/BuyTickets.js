@@ -1,28 +1,21 @@
 import {useEffect, useState} from "react"
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import {getAllCardByIdPool} from "../../store/Actions/Card"
 import "./BuyTickets.css"
 export default function BuyTickets(){
-  const [Cards,SetCards]=useState([]);
+  const nav=useNavigate();
+  const dispatch=useDispatch();
+  let currentPool=useSelector(state =>state.currentPool);
 
-  let nav=useNavigate();
   useEffect(()=>{
-      const fakeCards=
-      [
-          {type:"5 כניסות",price:120},
-          {type:"10 כניסות",price:170},
-          {type:"20 כניסות",price:200},
-          {type:"50 כניסות",price:400}
-      ];
+    dispatch((getAllCardByIdPool(currentPool.Id)));
+    
+   },[]);
 
-      SetCards(fakeCards);
+   const Cards=useSelector(state=>state.CardsArr);
 
-  },[])
-
-  const Buy=()=>{
-    nav("/buyingForm");
-
-
-  }
+  
 
   return(
     <>
@@ -30,12 +23,14 @@ export default function BuyTickets(){
     <h3>לקניה ביחידים אנא בחר כמות</h3>
     
 
-    <input type="button" value="לרכישה" onClick={Buy}></input>
+    
     <input type="button" value="הוספה לסל"  onClick={()=>alert("התווסף בהצלחה!")}></input>
     <input type="number"></input>
+    <br/>
+    <br/>
     <ul>
         {
-        Cards.map(Card=><> <br/> <li className="li"> סוג כרטיסיה: {Card.type}<br></br> מחיר: {Card.price}</li><input type="button" value="לרכישה"  onClick={Buy}></input> <br/><input type="button" value="הוספה לסל" onClick={()=>alert("התווסף בהצלחה!")}></input></>)
+        Cards.map(Card=><>  <div className="div1"> סוג כרטיסיה: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br/><input type="button" className="button1" value="הוספה לסל" onClick={()=>alert("התווסף בהצלחה!")}></input></div></>)
         }
     </ul>
     

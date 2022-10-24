@@ -1,23 +1,21 @@
 
+
 import { useSelector } from "react-redux";
-import PoolNavBar from "../PoolNavBar";
-const PoolWeb=()=>{
+import PoolNavBar from "../PoolNavBar"
 
-let currentPool=useSelector(state =>state.currentPool)
-
-return (
-<>
-<PoolNavBar/><br/><br/>
-<h1>{currentPool.Name}</h1>
-{/* <h3>{currentPool.dis}</h3> */}
-
-
-</>
-
-)
+export default  function PoolWeb(){
+  
+    const currentPool=useSelector(state =>state.currentPool);
+    
+    return(<>
+    <h1>{currentPool.Name}</h1>
+    <PoolNavBar/>
+    </>)
+    
+  
+} 
 
 
 
-}
 
-export default PoolWeb;
+

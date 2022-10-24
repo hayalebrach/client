@@ -29,11 +29,20 @@ export const getAllErea=()=>{
     .catch(err=> console.log(err) )
     }
 }
-//בריכה נוכחית
-export const savePool = (id) => {
-    console.log(id);
+//שמירת בריכה על פי ID מנהל
+export const savePoolByManager = (ID) => {
+    
     return (dispatch) => { 
-        dispatch({type:actionType.SAVE_POOL,payload:id});
+        dispatch({type:actionType.SAVE_POOL_BY_MANAGER,payload:ID});
+
+
+    }
+}
+
+export const savePool = (pool) => {
+    
+    return (dispatch) => { 
+        dispatch({type:actionType.SAVE_POOL,payload:pool});
 
 
     }
@@ -69,3 +78,4 @@ export const getAllDays=()=>{
         .catch(err=> console.log(err) )
     }
 }
+

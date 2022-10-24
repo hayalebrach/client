@@ -1,11 +1,12 @@
 import Input from "../Input";
 import "./CourseEnrollment.css";
 import { useRef } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import React  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import {Course_Enrollment}   from "../../store/Actions/Cours";
 
 import * as yup from "yup";
 const text=()=>{
@@ -21,12 +22,21 @@ const schema = yup.object({
 }).required();
 
 
+
 const CourseEnrollment=()=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
-const onSubmit = data => {console.log(data);
-text();}
+
+const dispatch = useDispatch();
+const nav=useNavigate();
+
+
+const onSubmit = data => {
+    console.log(data);
+    dispatch(Course_Enrollment(data));
+
+    text();}
     
     return <>
     <div id="text" className="text">

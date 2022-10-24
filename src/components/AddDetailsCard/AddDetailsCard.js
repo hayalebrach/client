@@ -6,6 +6,7 @@ import * as yup from "yup";
 import {AddCard} from "../../store/Actions/Card"
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
+
 const schema = yup.object({
     Price: yup.number().positive().integer().required(),
     EntersAmount: yup.number().positive().integer().required()

@@ -30,6 +30,24 @@ export const login = (data) => {
     }
 
 }
+
+export const GetUserById = (UserId) => {
+    return (dispatch) => {        
+        try {
+            axios.get(`http://localhost:50157/api/user/GetById?Id=${UserId}`)
+            .then(res => {
+                dispatch({type:actionType.GET_BY_ID,payload:res.data});
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+        catch (err) {
+            
+            console.log(err);
+        }
+    }
+
+}
 // //הוספת משתמש
  export const AddUser=(data)=>{
      return(dispach)=> {
@@ -67,9 +85,9 @@ export const login = (data) => {
         dispatch({type:actionType.EXIT})
     }
  }
- //קבלת המתמש מהמערך בריאקט לפי ת"ז
+ //קבלת המשתמש מהמערך בריאקט לפי ת"ז
  export const getById=(id)=>{
-    console.log("בעזרת ה' את תצליחי");
+    
     return{
         type:actionType.GET_BY_ID_USER,
         payload:id

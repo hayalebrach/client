@@ -10,7 +10,7 @@ import {useDispatch, useSelector,shallowEqual} from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import {GetAllPools, savePool} from "../../store/Actions/Pools"
+import {GetAllPools, savePoolByManager} from "../../store/Actions/Pools"
 import { GetAllCourses } from "../../store/Actions/Cours";
 
 const schema = yup.object({
@@ -48,13 +48,16 @@ const onSubmit = (data) => {
    
     if(x.TypeUser=="מנהל בריכה"){
 
-        dispatch(savePool(currentUser.Id));
-        console.log(currentPool);
+        dispatch(savePoolByManager(currentUser.Id));
+        
         nav("/ManagerNavBar");   
 
     }
    else
-   alert("רק ה'");
+   if(x.TypeUser=="לקוח")
+   nav("/home");   
+
+   
     
 }
 

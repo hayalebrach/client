@@ -47,6 +47,8 @@ import UpdateUser from './UpdateUser/UpdateUser';
 // import { UpdateUser } from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
 import AllCardsToPool from "./UpdateCard/AllCardsToPool";
+import { Link } from 'react-router-dom';
+import { GetAllManagers } from '../store/Actions/Manager';
 function App() {
   let nav = useNavigate();
   const dispatch=useDispatch();
@@ -68,6 +70,7 @@ console.log(currentPool);
 
     useEffect(()=>{
     dispatch(GetAllPools());
+    dispatch(GetAllManagers());
    },[])
     return (
     <>
@@ -80,6 +83,10 @@ console.log(currentPool);
         <h3 className='f' onClick={()=>{dispatch(Exit()); nav("./signUp")}}>הרשמה</h3>
         <h3 className='f' onClick={()=>{dispatch(Exit()); nav("./login")}}>התחברות</h3><br/>
         </div>
+
+        {currentUser?( <><text className='Exit' onClick={()=>{dispatch(Exit());nav("/home")}}>יציאה</text></>):null}
+
+
      <div className="App" >
         
       <Routes >
@@ -88,19 +95,29 @@ console.log(currentPool);
         <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
         <Route path="cart/UserNavBar" element={<UserNavBar />} />
         <Route path="profile/history" element={<BuyingHistory />} />
+        <Route path="cart/BuyingForm" element={<BuyingForm />} />
         <Route path="home/poolWeb" element={<PoolWeb />} />
+        <Route path="cart/PoolWeb" element={<PoolWeb />} />
+        
         <Route path="poolWeb" element={<PoolWeb />} />
         <Route path="MainManagerNavBar/AllUsers" element={<AllUsers />} />
         <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login/>} />
         <Route path="signUp" element={<SignUp/>} />
-        <Route path="/signUp/login" element={<Login/>} />
+        <Route path="signUp/login" element={<Login/>} />
         <Route path="login/signUp" element={<SignUp/>} />
         <Route path="courseDetails" element={<CourseDetails />} />
         <Route path="home" element={<AllPools />} />
-        <Route path="managers" element={<AllManagers />} />
+        <Route path="UserNavBar/home" element={<AllPools />} />
+        
+        <Route path="MainManagerNavBar/AllManagers" element={<AllManagers />} />
         <Route path="courses" element={<Courses />} />
+        <Route path="poolWeb/courses" element={<Courses />} />
         <Route path="home/poolWeb/courses" element={<Courses />} />
+        <Route path="cart/PoolWeb/courses" element={<Courses />} />
+        
+        <Route path="ManagerNavBar/courses" element={<Courses />} />
+        
         <Route path="poolWeb/courses" element={<Courses />} />
         <Route path="ManagerNavBar/courses" element={<Courses />} />
         
@@ -124,11 +141,13 @@ console.log(currentPool);
         <Route path="/UserNavBar/courses" element={<Courses />} />
         <Route path="/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="/UserNavBar/about" element={<About />} />
-        <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment />} />
+        <Route path="/poolWeb/courses/courseEnrollment" element={<CourseEnrollment />} />
         <Route path="/buyingForm" element={<BuyingForm/>} />
         <Route path="/MainManagerNavBar/managers" element={<AllManagers />} />
         <Route path="/MainManagerNavBar/home" element={<AllPools />} />
-        <Route path="/buyingForm/finishBuying" element={<FinishBuying />} />
+        
+        <Route path="buyingForm/finishBuying" element={<FinishBuying />} />
+        <Route path="cart/BuyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="profile" element={<Profile />} />
   
         <Route path="courseUpdate" element={<courseUpdate />} />
@@ -141,7 +160,7 @@ console.log(currentPool);
         <Route path="MainManagerNavBar/AddPool/AddDetailsManager" element={<AddDetailsManager />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
-        <Route path="MainManagerNavBar/AddPool/AddDetailsCours" element={<AddDetailsCours />} />
+        <Route path="ManagerNavBar/courses/AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="ManagerNavBar/addCourse" element={<AddDetailsCours />} />
 
         <Route path="AddDetailsCard/:flag" element={<AddDetailsCard flag="true"/>} />
@@ -157,6 +176,8 @@ console.log(currentPool);
       
       </Routes>
       </div>
+
+
 
     </>)
 
