@@ -12,6 +12,8 @@ export const getAllUser=()=>{
         .catch(err=> console.log(err) )
     }
 }
+
+
 //לוגין
 export const login = (data) => {
     return (dispatch) => {        

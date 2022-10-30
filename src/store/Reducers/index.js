@@ -24,6 +24,8 @@ const initialState = {
    //הרשומים לקורס
     CourseToCustomer:[],
 
+    CallUsArr:[],
+
     sale_arr:[],
 
     User:null,
@@ -61,6 +63,7 @@ const reducer = (state = initialState, action) => {
             for(let i=0;i<state.usersArr.length;i++){
                 if(state.usersArr[i].Id==action.payload){
                    user=state.usersArr[i];
+                   state.CallUsArr.push(user);
                 }
             }
             return{
@@ -203,7 +206,7 @@ const reducer = (state = initialState, action) => {
         }
 
         //כל המנהלים
-        case actionType.Get_Managers:{
+        case actionType.GET_MANAGERS:{
             return{
                 
                  ...state,

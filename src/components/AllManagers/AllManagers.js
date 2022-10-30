@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default  function AllManagers(){
   //const Managers = useSelector((state) => state.fakeManagers);
-  let Managers=useSelector(state =>state.Managers);
+  const Managers=useSelector(state =>state.Managers);
   
   return(
     <>

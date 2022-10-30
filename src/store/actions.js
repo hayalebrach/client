@@ -76,6 +76,6 @@ export const COURSE_ENROLLMENT="COURSE_ENROLLMENT";
 
 //כל המנהלים
 
-export const Get_Managers="Get_Managers";
+export const GET_MANAGERS="GET_MANAGERS";
 //מביא משתמש לפי ID 
 export const GET_BY_ID="GET_BY_ID";

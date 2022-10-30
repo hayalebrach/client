@@ -12,14 +12,14 @@ export const AddManager=(manager)=>{
 }
 
 //כל המנהלים
-export const GetAllManagers=()=>{
+export const getAllManagers=()=>{
     
     return dispatch=>{ 
        
-        axios.get("http://localhost:50157/api/User/GetAllManagers")
+        axios.get("http://localhost:50157/api/user/GetAllManagers")
         .then(response=>{
             alert("in");
-            dispatch({type:actionType.Get_Managers,payload:response.data})
+            dispatch({type:actionType.GET_MANAGERS,payload:response.data})
         })
         .catch(err=> console.log(err) )
     }

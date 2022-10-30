@@ -9,14 +9,14 @@ export default function Courses(){
   const Courses=useSelector(state =>state.courses_arr);
   const currentPool=useSelector(state =>state.currentPool);
   const currentUser=useSelector(state =>state.currentUser);
-
+  const CallUsArr=useSelector(state =>state.CallUsArr);
   const dispatch = useDispatch();
   let nav=useNavigate();
   let i=0;
-  let Details=null;
+  
  useEffect(()=>{
+  
   dispatch((GetAllCourses(currentPool.Id)));
-
   
  },[]);
 
@@ -32,13 +32,6 @@ export default function Courses(){
 
   }
 
-  const CallUs=(IdUser)=>{
-    dispatch(getById(IdUser));
-    var User=useSelector(state =>state.User);
-    Details={Phone:User.Phone,Email:User.Email};
-    
-  }
-
   const DELETE=(CourseId)=>{
       dispatch(DeleteCourse(CourseId));
   }
@@ -47,12 +40,17 @@ export default function Courses(){
     nav("./AddDetailsCours");
     // dispatch(updateCourse(CourseId));
 }
+  const callUs=()=>{
+    dispatch(getById(Courses[0].IdUser));
+
+   }
   
 
   return(
     <>
     <h1>:) הקורסים שלנו</h1>
-        {Courses.map(Course=><>{()=>CallUs(Course.IdUser)} <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br> יצירת קשר:  <br></br> {()=>Details.Email} מייל: <br></br> פלאפון:{()=>alert(Details.Phone)}<br></br> {Course.PeopleAmount} כמות אנשים:<br></br> {Course.Dis} אופי הקורס: 
+     
+        {Courses.map(Course=><> <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br> יצירת קשר: <br></br>   מייל:    <br></br> פלאפון:<br></br> {Course.PeopleAmount} כמות אנשים:<br></br> {Course.Dis} אופי הקורס: 
         </div>{currentUser && currentUser.IdRole==2?(<><div><input type="button" value="מחק"  className="ManagerButtons" onClick={()=>{DELETE(Course.Id)}}></input><input type="button" onClick={()=>UPDATE(Course.Id)} className="ManagerButtons" value="עדכן" ></input></div></>):(<input type="button" value="להרשמה" className="button1" onClick={details(Course)}></input>)}</> )}
         
     </>

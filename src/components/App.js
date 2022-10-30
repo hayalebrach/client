@@ -48,7 +48,7 @@ import UpdateUser from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
 import AllCardsToPool from "./UpdateCard/AllCardsToPool";
 import { Link } from 'react-router-dom';
-import { GetAllManagers } from '../store/Actions/Manager';
+import { getAllManagers } from '../store/Actions/Manager';
 function App() {
   let nav = useNavigate();
   const dispatch=useDispatch();
@@ -70,7 +70,7 @@ console.log(currentPool);
 
     useEffect(()=>{
     dispatch(GetAllPools());
-    dispatch(GetAllManagers());
+    dispatch(getAllManagers());
    },[])
     return (
     <>
