@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default  function AllManagers(){
   //const Managers = useSelector((state) => state.fakeManagers);
-  let Managers=useSelector(state =>state.Managers)
-  const dispatch = useDispatch();
+  const Managers=useSelector(state =>state.Managers);
+  
   return(
     <>
      <br/>
@@ -18,7 +18,7 @@ export default  function AllManagers(){
     
     <ul>
         {
-            Managers.map(Managers=><><br/> <li className="li"><text>שם:</text> {Managers.name} <br/> <text> מספר מזהה:  </text> <br/>  {Managers.email} <text> :מייל </text> </li>  </>)
+            Managers.map(Manager=><><br/> <div className="div1"><text>שם:</text> {Manager.Name} <br/> <text> מספר מזהה:  </text> <br/>  {Manager.Email} <text> :מייל </text> </div>  </>)
         }
     </ul>
         

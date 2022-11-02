@@ -1,6 +1,18 @@
  import * as actionType from "../actions";
  import axios from "axios";
 
+//כל המשתמשים
+export const getAllUser=()=>{
+    return dispach=>{
+        
+        axios.get("http://localhost:50157/api/user/GetAllUsers")
+        .then(response=>{
+            dispach({type:actionType.GET_USERS,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+}
+
 
 //לוגין
 export const login = (data) => {
@@ -9,6 +21,24 @@ export const login = (data) => {
             axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?name=${data.Name}&password=${data.Password}`)
             .then(res => {
                 dispatch({type:actionType.LOGIN,payload:res.data});
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+        catch (err) {
+            
+            console.log(err);
+        }
+    }
+
+}
+
+export const GetUserById = (UserId) => {
+    return (dispatch) => {        
+        try {
+            axios.get(`http://localhost:50157/api/user/GetById?Id=${UserId}`)
+            .then(res => {
+                dispatch({type:actionType.GET_BY_ID,payload:res.data});
             }).catch(err => {
                 console.log(err);
             })
@@ -57,9 +87,9 @@ export const login = (data) => {
         dispatch({type:actionType.EXIT})
     }
  }
- //קבלת המתמש מהמערך בריאקט לפי ת"ז
+ //קבלת המשתמש מהמערך בריאקט לפי ת"ז
  export const getById=(id)=>{
-    console.log("בעזרת ה' את תצליחי");
+    
     return{
         type:actionType.GET_BY_ID_USER,
         payload:id

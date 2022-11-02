@@ -1,16 +1,20 @@
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router"
+import { useSearchParams } from "react-router-dom";
 import "./BuyingForm.css"
 const BuyingForm=()=>{
 
     let nav=useNavigate();
+    let cart=useSelector(state=>state.Cart);
     return(<>
     
-    <div className="buyingDiv">
+    <div >
         <h1>סיכום הזמנה</h1>
-        <h3>כרטיסיית 5 כניסות</h3>
-        <h3>מחיר:120 ש"ח</h3>
+        {
+            cart.map(cart=><div className="div1"> <b>שם הבריכה: </b>{cart.PoolName}<br/> כמות כרטיסים: {cart.CardsAmount} <br/> :תאריך קניה {cart.date} <br/>:תוקף {cart.validity}<br/> סה"כ תשלום:{cart.Pay}<br/></div> )
+        }
         
-        <h3><b>לתשלום: 120 ש"ח</b></h3>
+        
         <input type="button" value="לתשלום" onClick={()=>nav("./finishBuying")}></input>
     </div>
    

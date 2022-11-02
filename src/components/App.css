@@ -157,3 +157,12 @@ body{
   height: 0px;
 }
 
+.Exit{
+  
+  font-size: 13px;
+  position: relative;
+  top: 10px;
+  left: 602px;
+  color: black;
+}
+

@@ -10,7 +10,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { GetAllPools, savePool } from "../../store/Actions/Pools"
+import { GetAllPools, savePool,savePoolByManager } from "../../store/Actions/Pools"
 import { GetAllCourses } from "../../store/Actions/Cours";
 
 

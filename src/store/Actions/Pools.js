@@ -2,38 +2,49 @@ import axios from "axios";
 import * as actionType from "../actions";
 
 //פונקציה שמוסיפה לי בריכה חדשה
-export const AddPool=(data)=>{
+export const AddPool = (data) => {
     console.log(data)
-    return(dispach)=> {
+    return (dispach) => {
         console.log(data);
-        axios.post("http://localhost:50157/api/pool/AddPool?",data)
-            .then(response=>{
-               console.log(response.data);
-            dispach({type:actionType.ADD_POOL,payload:response.data});
-        },
-        err=>{
+        axios.post("http://localhost:50157/api/pool/AddPool?", data)
+            .then(response => {
+                console.log(response.data);
+                dispach({ type: actionType.ADD_POOL, payload: response.data });
+            },
+                err => {
 
-            console.log(err)
-            console.log("קרתה שגיאה");
-        })
+                    console.log(err)
+                    console.log("קרתה שגיאה");
+                })
     }
 }
 
 //כל האיזורים
-export const getAllErea=()=>{
-    return (dispach)=>{    
+export const getAllErea = () => {
+    return (dispach) => {
         axios.get("http://localhost:50157/api/erea/GetAllEreas")
-        .then(response=>{
-            dispach({type:actionType.ALL_EREAS,payload:response.data})
-        })
-    .catch(err=> console.log(err) )
+            .then(response => {
+                dispach({ type: actionType.ALL_EREAS, payload: response.data })
+            })
+            .catch(err => console.log(err))
     }
 }
-//בריכה נוכחית
-export const savePool = (Id) => {
-    console.log("i am hear");
-    return dispatch=> { 
-        dispatch({type:actionType.SAVE_POOL,payload:Id});
+//שמירת בריכה על פי ID מנהל
+export const savePoolByManager = (ID) => {
+
+    return (dispatch) => {
+        dispatch({ type: actionType.SAVE_POOL_BY_MANAGER, payload: ID });
+
+
+    }
+}
+
+export const savePool = (pool) => {
+
+    return (dispatch) => {
+        dispatch({ type: actionType.SAVE_POOL, payload: pool });
+
+
     }
 }
 
@@ -42,44 +53,44 @@ export const savePool = (Id) => {
 export const AddToArraySchedule = (schedule) => {
     console.log(schedule);
     return {
-        type:actionType.ADD_SCHEDULE_TO_ARRAY,
-        payload:schedule
-    } 
+        type: actionType.ADD_SCHEDULE_TO_ARRAY,
+        payload: schedule
+    }
 }
 
-export const GetAllPools=()=>{
+export const GetAllPools = () => {
     console.log("ה' תעזור לי אני לא מצליחה כלום בלעדיך");
-    return dispach=>{    
+    return dispach => {
         axios.get("http://localhost:50157/api/pool/GetAllPools")
-        .then(response=>{
-            console.log(response.data);
-            dispach({type:actionType.GET_POOLS,payload:response.data})
+            .then(response => {
+                console.log(response.data);
+                dispach({ type: actionType.GET_POOLS, payload: response.data })
 
-        })
-        .catch(err=> console.log(err) )
-        
+            })
+            .catch(err => console.log(err))
+
     }
 }
 //כל הימים
-export const getAllDays=()=>{
-    return (dispach)=>{    
+export const getAllDays = () => {
+    return (dispach) => {
         axios.get("http://localhost:50157/api/days/GetAllDays")
-        .then(response=>{
-            dispach({type:actionType.ALL_DAYS,payload:response.data})
-        })
-        .catch(err=> console.log(err) )
+            .then(response => {
+                dispach({ type: actionType.ALL_DAYS, payload: response.data })
+            })
+            .catch(err => console.log(err))
     }
 }
 //ייבוא המשתמשים לבריכה מסוימת
-export const getAllUsersByIdPool=(IdPool)=>{
+export const getAllUsersByIdPool = (IdPool) => {
     console.log("aaaaa");
     console.log(IdPool);
-    return dispatch=>{
+    return dispatch => {
         axios.get(`http://localhost:50157/api/Customr_To_Pool/GetByIdPool?IdPool=${IdPool}`)
-        .then(response=>{
-            console.log(response.data);
-            dispatch({type:actionType.GET_USERS_BY_ID_POOL,payload:response.data})
-        })
-        .catch(err=> console.log(err) )
+            .then(response => {
+                console.log(response.data);
+                dispatch({ type: actionType.GET_USERS_BY_ID_POOL, payload: response.data })
+            })
+            .catch(err => console.log(err))
     }
 }

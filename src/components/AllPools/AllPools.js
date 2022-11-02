@@ -12,8 +12,9 @@ export default  function AllPools(){
     let currentPool=useSelector(state =>state.currentPool);
     
     let nav=useNavigate();
-    const Func=(data)=>{
-      dispatch(savePool(data));
+    const Func=(pool)=>{
+      dispatch(savePool(pool));
+      
       console.log("IM BACKK!!");
       nav("/poolWeb");
       console.log(currentPool);

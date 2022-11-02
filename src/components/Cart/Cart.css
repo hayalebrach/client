@@ -8,3 +8,14 @@
     margin: 5px;
     width: 91px;
 }
+
+.Sicum {
+    border: 1px solid black;
+    width: 187px;
+    height: 74px;
+    border-radius: 29px;
+    background-color: rgb(0,0,0,0.2);
+    font-size: 16px;
+    padding: 5px;
+    font-family: cursive;
+}

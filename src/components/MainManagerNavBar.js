@@ -3,7 +3,7 @@ import "./App.css"
 export default function MainManagerNavBar(){
     return <nav>
         <Link to="AddPool" className="navbar-brand">הוספת בריכה</Link>
-        <Link to="AllUsers" className="navbar-brand"> לרשימת המשתמשים  </Link>
+        <Link to="AllManagers" className="navbar-brand"> לרשימת המשתמשים  </Link>
         <Link to="home" className="navbar-brand">לרשימת הבריכות  </Link>
 
     </nav>

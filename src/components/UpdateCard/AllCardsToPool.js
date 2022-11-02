@@ -12,8 +12,9 @@ export default function AllCardsToPool(){
   }), shallowEqual);
 
   useEffect(() => {
+    
     dispatch(getAllCardByIdPool(currentPool.Id));
-}, []);
+}, []); 
 
   const nav=useNavigate();
 

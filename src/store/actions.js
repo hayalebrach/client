@@ -60,6 +60,9 @@ export const EXIT="EXIT";
 //הבריכה הנוכחית
 export const SAVE_POOL="SAVE_POOL";
 
+//שמירת בריכה על ידי איידי של המנהל
+export const SAVE_POOL_BY_MANAGER="SAVE_POOL_BY_MANAGER";
+
 //מחיקת קורס
 export const DELETE_COURSE="DELETE_COURSE";
 //מקבלת את המשתמש מהמערך שבסטייט
@@ -73,3 +76,14 @@ export const GET_USERS_BY_ID_POOL="GET_USERS_BY_ID_POOL";
 //למנהל הבריכה-ייבוא של היסטורית הזמנות של משתמש לבריכה מסוימת
 export const GET_HISTORY_OF_USER_TO_POOL="GET_HISTORY_OF_USER_TO_POOL";
 
+//מחפש בריכה לפי השם שלה בשביל כניסה לאתר דרך קניה מסוימת 
+export const SEARCH_POOL="SEARCH_POOL";
+
+//הרשמה לקורס
+export const COURSE_ENROLLMENT="COURSE_ENROLLMENT";
+
+//כל המנהלים
+
+export const GET_MANAGERS="GET_MANAGERS";
+//מביא משתמש לפי ID 
+export const GET_BY_ID="GET_BY_ID";
