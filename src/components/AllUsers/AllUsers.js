@@ -1,33 +1,40 @@
 import {useEffect} from "react";
-import {getAllUser,getById} from "../../store/Actions/Users"
+import {getAllHistoryOfUser} from "../../store/Actions/Users"
+import {getAllUsersByIdPool} from "../../store/Actions/Pools"
 import {useSelector,useDispatch,shallowEqual}from "react-redux";
 import {useNavigate} from "react-router";
 import "./AllUsers.css"
 export default function AllUsers(){
-  const nav=useNavigate();
-  const dispatch=useDispatch();
-  useEffect(() => {
-    dispatch(getAllUser());
-}, []);
-const {usersArr} = useSelector(state => ({
-  usersArr: state.usersArr,
-}), shallowEqual);
 
-const update=(Id)=>{
-  console.log(Id);
-  //dispatch(getById(Id));
-  //nav(("/UpdateUser/));
+  const {currentPool,UsersPool,HistoryUser} = useSelector(state => ({
+    currentPool: state.currentPool,
+    UsersPool:state.UsersPool,
+    HistoryUser:state.HistoryUser
+  }), shallowEqual);
+
+  const dispatch=useDispatch();
+  const nav=useNavigate();
+  
+  useEffect(() => {
+    dispatch(getAllUsersByIdPool(currentPool.Id));
+}, []);
+
+const getHistory=(IdUser,IdPool)=>{
+    dispatch(getAllHistoryOfUser(IdPool,IdUser));
+    console.log(HistoryUser);
+   nav("/ManagerNavBar/AllUsers/TheUser");
 }
+
   return(
     <>
     <h1>משתמשים</h1>
     <ul>
         {
-            usersArr.map(usersArr=><><br/> <li className="li" > {usersArr.Id} {usersArr.Name} {usersArr.Email}
-             <input type="button" value="עדכון" onClick={()=>update(usersArr.Id)}/> <input type="button" value="מחיקה" onClick={()=>alert(usersArr.Id)}/></li></> )
+           UsersPool.map(UsersPool=><><br/> <li className="li" key={UsersPool.Id}><br/> :שם{UsersPool.NameUser}<br/>  :מייל{UsersPool.EmailUser} <br/>
+           <input type="button" value="לפרטי המשתמש" onClick={()=>getHistory(UsersPool.IdUser,UsersPool.IdPool)}/></li></> )
         }
     </ul>
-    
+      
     </>
   )
 }

@@ -3,15 +3,19 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
-import {AddCard} from "../../store/Actions/Card"
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import {AddCard,getAllCardByIdPool} from "../../store/Actions/Card"
+import { useDispatch ,useSelector} from "react-redux";
+import { useParams ,useNavigate} from "react-router";
+
+
 const schema = yup.object({
     Price: yup.number().positive().integer().required(),
     EntersAmount: yup.number().positive().integer().required()
 }).required();
 
 export default function AddDetailsCard() {
+    const nav=useNavigate();
+    const currentPool = useSelector((state) =>state.currentPool);
     let f = useParams();
     useEffect(() => {
       f=f.flag;
@@ -20,10 +24,11 @@ export default function AddDetailsCard() {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-  const dispatch=useDispatch();
+   const dispatch=useDispatch();
     const onSubmit = (data) => {
-        dispatch(AddCard({...data,IdPool:1}));
-        console.log(data);
+        dispatch(AddCard({...data,IdPool:currentPool.Id}));
+        if(f.flag=="true")
+           nav("/ManagerNavBar/AllCardsToPool");        
     }
 
     return (<>

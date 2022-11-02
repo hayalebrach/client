@@ -2,7 +2,7 @@ import * as actionType from "../actions";
 
 const initialState = {
     //הכרטיס המבוקש
-    Card:null,
+    currentCard:null,
     //המערך של המשתמשים
     usersArr:[],
     //המשתמש הנוכחי
@@ -21,18 +21,83 @@ const initialState = {
     Schedule:[],
     //מערך הכרטיסים להריכה מסוימת
     CardsArr:[],
-
+    //מערך הקורסים לבריכה מסוימת
+    courses_arr:[],
     sale_arr:[],
     User:null,
-    
-    
     cart:[],
-    courses_arr:[],
-    num:7
+    //משתמשים לבריכה
+    UsersPool:[],
+    //היסטורית משתמש לבריכה מסוימת
+    HistoryUser:[],
+    
+
 }
 const reducer = (state = initialState, action) => {
-    
+   
     switch (action.type) {
+        //היסטורית משתמש לבריכה מסוימת
+        case actionType.GET_HISTORY_OF_USER_TO_POOL:{
+             return{
+                 ...state,
+                 HistoryUser:action.payload
+             }
+
+        }
+         //ייבוא המשתמשים לבריכה מסוימת
+        case actionType.GET_USERS_BY_ID_POOL:{
+            let newArr6=action.payload;
+            let trueNewArr6=[];
+            let numUser=null;
+            let flag=true;
+            for(let i=0;i<newArr6.length;i++)
+            {
+                flag=true;
+                 numUser=newArr6[i].IdUser;
+                for(let k=i+1;k<newArr6.length;k++){
+                    if(numUser==newArr6[k].IdUser)
+                              flag=false;
+               }
+                if(flag==true){
+                    trueNewArr6.push(newArr6[i]);
+                }
+              
+            }
+            return{
+                ...state,
+                UsersPool:trueNewArr6
+            }
+        }
+        //מחיקת כרטיס
+        case actionType.DELETE_CARD:{
+            alert("DELETE_CARD");
+        }
+        //ייבוא של כרטיס לבריכה על פי ת"ז
+        case actionType.GET_BY_ID_CARD:
+            let card=null;
+            let newArr4=[state.CardsArr];
+
+            for(let i=0;i<newArr4.length;i++){
+                if(newArr4[i].Id==action.payload){
+                    card=newArr4[i];
+                }
+            }
+            return{
+                ...state,
+                currentCard:card
+            }
+          //עדכון כרטיס
+          case actionType.UPDATE_CARD:
+            let newArr5=[...state.CardsArr];
+            for(let i=0;i<newArr5.length;i++){
+                if(newArr5[i].Id==action.payload.Id){
+                    newArr5[i]=action.payload;
+                }
+            }
+          return{
+             ...state,
+             CardsArr:newArr5
+          } 
         //ייבוא הכרטיסים לבריכה מסוימת
         case actionType.GET_CARDS:
             return{
@@ -142,17 +207,6 @@ const reducer = (state = initialState, action) => {
                 currentUser:action.payload
              };
 
-
-        //   //עדכון מחיר לכרטיס
-        //   case actionType.UPDATE_CARD:
-        //       console.log("UPDATE_CARD");
-        //   return{
-        //      ...state,
-        //      Card:action.payload
-        //   } 
-
-
-
         //הוספת מבצע
         case actionType.ADD_SALE:{
             return{
@@ -196,9 +250,8 @@ const reducer = (state = initialState, action) => {
         //הוספת כרטיס
         case actionType.ADD_CARD:{
             return{
-                
                  ...state,
-                 Cards:[...action.payload]
+                 CardsArr:[...state.CardsArr,action.payload]
 
             };
         }     
@@ -214,7 +267,7 @@ const reducer = (state = initialState, action) => {
         }     
         //מחיקת בריכה
         case actionType.DELETE_POOLS:
-            let newArr2=[...state.pools_arr];
+            let newArr2=[...state.poolsArr];
             for(let i=0;i<newArr2.length;i++){
                 if(newArr2[i].Id===action.payload){
                     console.log("hola"+newArr2[i]);
@@ -223,30 +276,28 @@ const reducer = (state = initialState, action) => {
             }
             return{
                 ...state,
-                pools_arr:[...newArr2]
+                poolsArr:[...newArr2]
             }
             //בריכה הנוכחית שנבחרה
-        case actionType.SAVE_POOL:
-            let pool=null;
-     
-            let newArr3=[...state.poolsArr];
-            for(let i=0;i<newArr3.length;i++){
-                if(newArr3[i].IdUser==action.payload){
-                   pool=newArr3[i];
+            case actionType.SAVE_POOL:
+                let pool=null;
+                let newArr3=[...state.poolsArr];
+                for(let i=0;i<newArr3.length;i++){
+                    if(newArr3[i].IdUser==action.payload){
+                       pool=newArr3[i];
+                       console.log(pool);
+                    }
                 }
-            }
-            return{
-                ...state,
-                currentPool:pool
-            }
+                return{
+                    ...state,
+                    currentPool:pool
+                 }
         //ממוצע של כל ההזמנות
         
         //רכישת כרטיסים
         case actionType.CHOOSE_CARD:return state;
         //בחירת קורסים
         case actionType.CHOOSE_COURS:return state;
-        //הצגת כרטיסים
-        case actionType.GET_CARDS:return state;
         //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת
         case actionType.GET_ORDERS:return state;
         

@@ -1,17 +1,7 @@
  import * as actionType from "../actions";
  import axios from "axios";
 
-//כל המשתמשים
-export const getAllUser=()=>{
-    return dispach=>{
-        
-        axios.get("http://localhost:50157/api/user/GetAllUsers")
-        .then(response=>{
-            dispach({type:actionType.GET_USERS,payload:response.data})
-        })
-        .catch(err=> console.log(err) )
-    }
-}
+
 //לוגין
 export const login = (data) => {
     return (dispatch) => {        
@@ -76,7 +66,7 @@ export const login = (data) => {
     }
 }
 
- 
+ //עדכון משתמש
 export const updateUser=(data)=>{
     console.log("uuuuu");
     console.log(data);
@@ -86,3 +76,15 @@ export const updateUser=(data)=>{
         .catch(err=>console.log(err))
     }
 } 
+//ייבוא היסטורית משתמש לבריכה מסוימת
+export const getAllHistoryOfUser=(IdPool,IdUser)=>{
+    console.log("ה' תודה");
+    return dispatch=>{
+        axios.get(`http://localhost:50157/api/Customr_To_Pool/GetHistoryOfUser?IdPool=${IdPool}&IdUser=${IdUser}`)
+        .then(response=>{
+            console.log(response.data);
+            dispatch({type:actionType.GET_HISTORY_OF_USER_TO_POOL,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+}

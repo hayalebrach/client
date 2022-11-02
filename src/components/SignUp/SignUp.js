@@ -26,7 +26,7 @@ const dispatch = useDispatch();
         dispatch(getAllRole());
     }, []) 
 
-    const typeArr = [{ Id: 0, Name: "אישה" }, { Id: 1, Name: "גבר" }];
+    const typeArr = [{ Id: 1, Name: "אישה" }, { Id: 2, Name: "גבר" }];
     const Role = useSelector((state) =>state.Role);
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)

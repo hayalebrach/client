@@ -11,9 +11,10 @@ export const AddCours=(course)=>{
        console.log("DONE!!!");
     }
 }
-
+//פונקציה שלוקחת את הקורסים לבריכה מסוימת
 export const GetAllCourses=(IdPool)=>{
-    
+    console.log("aaaaa");
+    console.log(IdPool);
     return dispatch=>{
         
         axios.get(`http://localhost:50157/api/cours/GetCoursesByPool?IdPool=${IdPool}`)
@@ -28,7 +29,6 @@ export const GetAllCourses=(IdPool)=>{
 export const DeleteCourse=(CourseId)=>{
     
     return dispatch=>{
-        
         axios.delete(`http://localhost:50157/api/cours/DeleteCourse?Id=${CourseId}`)
         .then(response=>{
             console.log(response.data);

@@ -1,16 +1,22 @@
 import * as actionType from "../actions";
 import axios from "axios";
-export const UpdateCard=(card)=>{
-      return dispatch=>{
-          axios.get("",card)
-          .then(x=>dispatch({type:actionType.UPDATE_CARD,payload:card}))
-          .catch(err=>console.log(err))
-         
-      }
+ //קבלת הכרטיס מהמערך בריאקט לפי ת"ז
+ export const getById=(id)=>{
+    return{
+        type:actionType.GET_BY_ID_CARD,
+        payload:id
     }
-
-
-
+}
+//עדכון כרטיס
+export const updateCard=(data)=>{
+    console.log("uuuuu");
+    console.log(data);
+    return dispatch=>{
+        axios.put("http://localhost:50157/api/packege/Put?",data)
+        .then(x=> dispatch({type:actionType.UPDATE_CARD,payload:data}))
+        .catch(err=>console.log(err))
+    }
+} 
 //פונקציה שמוסיפה כרטיס חדש
 export const AddCard=(card)=>{
     console.log("the carddd" ,card);
@@ -21,6 +27,7 @@ export const AddCard=(card)=>{
        
     }
 }
+//
 //פונקציה שמוסיפה מבצע חדש
 export const AddSale=(Sale)=>{
     console.log(Sale);
@@ -44,3 +51,22 @@ export const getAllCardByIdPool=(IdPool)=>{
         .catch(err=> console.log(err) )
     }
 }
+//פונקצית מחיקה
+// export const DeletCard=(data)=>{
+//     console.log(data);
+//     console.log("uuuuu");
+//     return dispatch=>{
+//         axios.put("http://localhost:50157/api/packege/PutForDelete?",data)
+//         .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
+//         .catch(err=>console.log(err))
+//     }
+// } 
+export const DeletCard=(data)=>{
+    console.log("uuuuu");
+    console.log(data);
+    return dispatch=>{
+        axios.put("http://localhost:50157/api/packege/PutForDelete?",data)
+        .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
+        .catch(err=>console.log(err))
+    }
+}  

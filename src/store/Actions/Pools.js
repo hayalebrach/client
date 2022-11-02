@@ -30,12 +30,10 @@ export const getAllErea=()=>{
     }
 }
 //בריכה נוכחית
-export const savePool = (id) => {
-    console.log(id);
-    return (dispatch) => { 
-        dispatch({type:actionType.SAVE_POOL,payload:id});
-
-
+export const savePool = (Id) => {
+    console.log("i am hear");
+    return dispatch=> { 
+        dispatch({type:actionType.SAVE_POOL,payload:Id});
     }
 }
 
@@ -54,9 +52,12 @@ export const GetAllPools=()=>{
     return dispach=>{    
         axios.get("http://localhost:50157/api/pool/GetAllPools")
         .then(response=>{
+            console.log(response.data);
             dispach({type:actionType.GET_POOLS,payload:response.data})
+
         })
         .catch(err=> console.log(err) )
+        
     }
 }
 //כל הימים
@@ -65,6 +66,19 @@ export const getAllDays=()=>{
         axios.get("http://localhost:50157/api/days/GetAllDays")
         .then(response=>{
             dispach({type:actionType.ALL_DAYS,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+}
+//ייבוא המשתמשים לבריכה מסוימת
+export const getAllUsersByIdPool=(IdPool)=>{
+    console.log("aaaaa");
+    console.log(IdPool);
+    return dispatch=>{
+        axios.get(`http://localhost:50157/api/Customr_To_Pool/GetByIdPool?IdPool=${IdPool}`)
+        .then(response=>{
+            console.log(response.data);
+            dispatch({type:actionType.GET_USERS_BY_ID_POOL,payload:response.data})
         })
         .catch(err=> console.log(err) )
     }

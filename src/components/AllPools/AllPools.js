@@ -8,7 +8,7 @@ import "./AllPools.css";
 export default  function AllPools(){
   const dispatch = useDispatch();
 
-    const Pools=useSelector(state =>state.pools_arr);
+    const Pools=useSelector(state =>state.poolsArr);
     let currentPool=useSelector(state =>state.currentPool);
     
     let nav=useNavigate();
