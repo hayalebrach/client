@@ -82,7 +82,7 @@ function App() {
     dispatch(getAllManagers());
   }, [])
   return (<>
-
+<TryTable />
     <div className='smallDiv'>
       <img src="../Pic/grocery-store.png" className="img1" onClick={() => nav("./cart")} />
       <img src="../Pic/user.png" className="img2" onClick={() => {
@@ -249,7 +249,6 @@ function App() {
         {/* <Route path="SplitButton" element={<SplitButton />} /> */}
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
-        <Route path="TryTable" element={<TryTable />} />
       </Routes>
     </div>
 

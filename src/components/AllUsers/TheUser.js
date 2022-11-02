@@ -7,11 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {useEffect} from "react";
-import {getById} from "../../store/Actions/Users"
-import {getAllUsersByIdPool} from "../../store/Actions/Pools"
-import {useSelector,useDispatch,shallowEqual}from "react-redux";
-import {useNavigate} from "react-router";
+import { useEffect } from "react";
+import { getById } from "../../store/Actions/Users"
+import { getAllUsersByIdPool } from "../../store/Actions/Pools"
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useNavigate } from "react-router";
 import { yellow } from '@mui/material/colors';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -46,27 +46,27 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 // ];
 
 export default function TheUser() {
-  const nav=useNavigate();
-  const dispatch=useDispatch();
-  const {UsersPool,HistoryUser} = useSelector(state => ({
-      UsersPool:state.UsersPool,
-      HistoryUser:state.HistoryUser
-    }), shallowEqual);
-  const x=HistoryUser[0];
-const y=x.NameUser;
- const ComeBack=()=>{
-   nav("/ManagerNavBar/AllUsers");
- }
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+  const { UsersPool, HistoryUser } = useSelector(state => ({
+    UsersPool: state.UsersPool,
+    HistoryUser: state.HistoryUser
+  }), shallowEqual);
+  // const x = HistoryUser[0];
+  const y = HistoryUser[0]?.NameUser;
+  const ComeBack = () => {
+    nav("/ManagerNavBar/AllUsers");
+  }
 
 
 
 
   return (<>
-  <input type="button" value="חזרה לדף המשתמשים" onClick={()=>ComeBack()}/>
-  <h1>{y}</h1><br/><br/>
+    <input type="button" value="חזרה לדף המשתמשים" onClick={() => ComeBack()} />
+    <h1>{y}</h1><br /><br />
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
+        <TableHead style={{ backgroundColor: 'red', color: 'white', }}>
           <TableRow>
             <StyledTableCell align="center">תאריך קניה</StyledTableCell>
             <StyledTableCell align="center">מחיר</StyledTableCell>
@@ -76,7 +76,7 @@ const y=x.NameUser;
         <TableBody>
           {HistoryUser.map(HistoryUser => (
             <StyledTableRow key={HistoryUser.name}>
-             
+
               <StyledTableCell align="center">{HistoryUser.DateBuy}</StyledTableCell>
               <StyledTableCell align="center">{HistoryUser.Price}</StyledTableCell>
               <StyledTableCell align="center">{HistoryUser.EntersAmount}</StyledTableCell>
@@ -85,7 +85,7 @@ const y=x.NameUser;
         </TableBody>
       </Table>
     </TableContainer>
-    </>
+  </>
   );
 }
 

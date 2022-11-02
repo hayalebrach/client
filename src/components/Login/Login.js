@@ -10,7 +10,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { GetAllPools, savePool,savePoolByManager } from "../../store/Actions/Pools"
+import { GetAllPools, savePool, savePoolByManager } from "../../store/Actions/Pools"
 import { GetAllCourses } from "../../store/Actions/Cours";
 
 
@@ -30,7 +30,7 @@ const Login = () => {
 
     }, [])
 
-    const { currentUser, Role} = useSelector(state => ({
+    const { currentUser, Role } = useSelector(state => ({
         currentUser: state.currentUser,
         Pools: state.poolsArr,
         Role: state.Role
@@ -40,26 +40,27 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
+    useEffect(() => {
+        if (currentUser) {
+            switch (currentUser.IdRole) {
+                case 1:
+                    nav("/MainManagerNavBar");
+                    break;
 
-    const onSubmit = (data) => {
+                case 2: {
 
-        dispatch(login(data));
-        console.log(currentUser);
-        let x = Role[currentUser.IdRole - 1];
-        console.log(x);
-        console.log(currentUser.Id);
-        if (x.TypeUser == "מנהל אתר")
-            nav("/MainManagerNavBar");
-
-        if (x.TypeUser == "מנהל בריכה") {
-
-            dispatch(savePool(currentUser.Id));
-            nav("/ManagerNavBar");
-
+                    dispatch(savePool(currentUser.Id));
+                    nav("/ManagerNavBar");
+                    break;
+                }
+                default: {
+                    alert("רק ה'");
+                }
+            }
         }
-        else
-            alert("רק ה'");
-
+    }, [currentUser])
+    const onSubmit = (data) => {
+        dispatch(login(data));
     }
 
     return (<>

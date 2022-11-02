@@ -1,86 +1,32 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import {useEffect} from "react";
-import {getById} from "../../store/Actions/Users"
-import {getAllUsersByIdPool} from "../../store/Actions/Pools"
-import {useSelector,useDispatch,shallowEqual}from "react-redux";
-import {useNavigate} from "react-router";
-import { yellow } from '@mui/material/colors';
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-    fontSize: 25,
+import React from 'react'
+const UseDate = () => {
+  const locale = 'eb';
+  const [today, setDate] = React.useState(new Date()); // Save the current date to be able to trigger an update
 
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 25,
-  },
-}));
+  React.useEffect(() => {
+    const timer = setInterval(() => { // Creates an interval which will update the current data every minute
+      // This will trigger a rerender every component that uses the useDate hook.
+      setDate(new Date());
+    }, 60 * 1000);
+    return () => {
+      clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
+    }
+  }, []);
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+  const day = today.toLocaleDateString(locale, { weekday: 'long' });
+  const date = `${day}, ${today.getDate()} ${today.toLocaleDateString(locale, { month: 'long' })}\n\n`;
 
-function createData(DateBuy, Price, EntersAmount) {
-  return { DateBuy, Price, EntersAmount};
-}
+  const hour = today.getHours();
+  const wish = `${(hour < 12 && 'בוקר') || (hour < 17 && 'צהריים') || 'ערב'} טוב `;
 
-const rows = [
-  createData('10-12-2022', 159, 6),
-  createData('10-12-2022', 237, 9),
-  createData('10-12-2022', 262, 16),
-];
+  const time = today.toLocaleTimeString(locale, { hour: 'numeric', hour12: true, minute: 'numeric' });
 
-export default function TryTable() {
-  const nav=useNavigate();
-  const dispatch=useDispatch();
-  const {UsersPool,HistoryUser} = useSelector(state => ({
-      UsersPool:state.UsersPool,
-      HistoryUser:state.HistoryUser
-    }), shallowEqual);
-  //const name=HistoryUser[0].NameUser;
+  return (
+    <div>
+      {date},
+      {time},
+      {wish}
+    </div>);
+};
 
-
-
-
-
-  return (<>
-  <h1>שלום</h1><br/><br/>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">תאריך קניה</StyledTableCell>
-            <StyledTableCell align="center">מחיר</StyledTableCell>
-            <StyledTableCell align="center">מספר כניסות</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-             
-              <StyledTableCell align="center">{row.DateBuy}</StyledTableCell>
-              <StyledTableCell align="center">{row.Price}</StyledTableCell>
-              <StyledTableCell align="center">{row.EntersAmount}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </>
-  );
-}
+export default UseDate
