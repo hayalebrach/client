@@ -15,8 +15,9 @@ export default function AllCardsToPool(){
   const dispatch=useDispatch();
 
   useEffect(() => {
+    
     dispatch(getAllCardByIdPool(currentPool.Id));
-}, []);
+}, []); 
 
 const update=(Id)=>{
   alert(Id);

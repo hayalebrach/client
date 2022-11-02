@@ -49,7 +49,6 @@ const onSubmit = (data) => {
     if(x.TypeUser=="מנהל בריכה"){
 
         dispatch(savePoolByManager(currentUser.Id));
-        
         nav("/ManagerNavBar");   
 
     }
