@@ -1,3 +1,4 @@
+import Cart from "../../components/Cart/Cart";
 import * as actionType from "../actions";
 
 const initialState = {
@@ -317,19 +318,12 @@ const reducer = (state = initialState, action) => {
                 poolsArr: [...newArr2]
             }
         //בריכה הנוכחית שנבחרה
+        //לא לשנות פונקציה זו!!
         case actionType.SAVE_POOL:
             {
-                let pool = null;
-                let newArr3 = [...state.poolsArr];
-                for (let i = 0; i < newArr3.length; i++) {
-                    if (newArr3[i].IdUser == action.payload) {
-                        pool = newArr3[i];
-                        console.log(pool);
-                    }
-                }
                 return {
                     ...state,
-                    currentPool: pool
+                    currentPool: action.payload
                 }
             }
         // מציאת בריכה לפי שם
@@ -364,6 +358,7 @@ const reducer = (state = initialState, action) => {
                 currentPool: state.poolsArr[index]
             }
         }
+
         case actionType.SAVE_POOL:
 
             return {
@@ -393,8 +388,18 @@ const reducer = (state = initialState, action) => {
                 }
             }
 
-        //רכישת כרטיסים
-        case actionType.CHOOSE_CARD: return state;
+            case actionType.ADD_TO_CART:
+            
+                return {
+                    state,
+                    Cart:[...state.Cart,action.payload]
+
+                }
+            
+
+
+
+        
         //בחירת קורסים
         case actionType.CHOOSE_COURS: return state;
         //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת

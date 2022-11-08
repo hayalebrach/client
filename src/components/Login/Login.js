@@ -54,7 +54,7 @@ const Login = () => {
                     break;
                 }
                 default: {
-                    alert("רק ה'");
+                    nav("/home");
                 }
             }
         }

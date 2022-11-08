@@ -18,7 +18,7 @@ export const getAllManagers=()=>{
        
         axios.get("http://localhost:50157/api/user/GetAllManagers")
         .then(response=>{
-            alert("in");
+            
             dispatch({type:actionType.GET_MANAGERS,payload:response.data})
         })
         .catch(err=> console.log(err) )

@@ -15,6 +15,12 @@ export default function BuyTickets(){
 
    const Cards=useSelector(state=>state.CardsArr);
 
+   const AddToCart=()=>{
+    
+
+
+   }
+
   
 
   return(
@@ -30,7 +36,7 @@ export default function BuyTickets(){
     <br/>
     <ul>
         {
-        Cards.map(Card=><>  <div className="div1"> סוג כרטיסיה: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br/><input type="button" className="button1" value="הוספה לסל" onClick={()=>alert("התווסף בהצלחה!")}></input></div></>)
+        Cards.map(Card=><>  <div className="div1"> סוג כרטיסיה: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br/><input type="button" className="button1" value="הוספה לסל" onClick={AddToCart}></input></div></>)
         }
     </ul>
     

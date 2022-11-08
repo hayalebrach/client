@@ -87,3 +87,7 @@ export const COURSE_ENROLLMENT="COURSE_ENROLLMENT";
 export const GET_MANAGERS="GET_MANAGERS";
 //מביא משתמש לפי ID 
 export const GET_BY_ID="GET_BY_ID";
+
+//הוספת רכישה לעגלת קניות
+export const ADD_TO_CART="ADD_TO_CART";
+
