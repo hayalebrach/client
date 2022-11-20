@@ -4,10 +4,12 @@ import * as actionType from "../actions";
 const initialState = {
     //הכרטיס המבוקש
     currentCard: null,
+   //כל הקורסים
+    AllCourses:[],
     //המערך של המשתמשים
     usersArr: [],
     //המשתמש הנוכחי
-    currentUser: "",
+    currentUser:"",
     //בריכה נוכחית
     currentPool: "",
     //הוספת בריכה
@@ -38,12 +40,7 @@ const initialState = {
     //היסטורית משתמש לבריכה מסוימת
     HistoryUser: [],
 
-
-
     Managers: [],
-
-    courses_arr: [],
-
 
     Cart: [{ Id: 1, PoolName: "חמי הגעש", date: "01/01/2019", validity: "01/01/2020", CardsAmount: 5, Pay: 120 },
     { Id: 1, PoolName: "חמי הגעש", date: "01/01/2019", validity: "01/01/2020", CardsAmount: 5, Pay: 120 }],
@@ -201,6 +198,13 @@ const reducer = (state = initialState, action) => {
                 courses_arr: action.payload
             };
 
+            case actionType.GET_All_COURSES:
+            return {
+                ...state,
+                AllCourses:action.payload
+            };
+            
+
 
         //מציג בריכות
         case actionType.GET_POOLS:
@@ -326,6 +330,18 @@ const reducer = (state = initialState, action) => {
                     currentPool: action.payload
                 }
             }
+
+            case actionType.SAVE_POOL_BY_ID:
+            {
+                const index = state.poolsArr.findIndex(x => x.Id == action.payload)
+
+                return {
+                    ...state,
+                    currentPool: state.poolsArr[index],
+                }
+            }
+
+            
         // מציאת בריכה לפי שם
         case actionType.SEARCH_POOL: {
             let pool = null;
@@ -359,19 +375,24 @@ const reducer = (state = initialState, action) => {
             }
         }
 
-        case actionType.SAVE_POOL:
-
-            return {
-                ...state,
-                currentPool: action.payload
-            }
-
+        
         case actionType.COURSE_ENROLLMENT: {
+            
             return {
                 ...state,
                 CourseToCustomer: [...state.CourseToCustomer, action.payload]
             };
         }
+
+        case actionType.COURSES_TO_USER: {
+
+            return {
+                ...state,
+                CourseToCustomer:[...action.payload]
+            };
+        }
+
+        
 
         //עדכון מחיר לקורס
         case actionType.UPDATE_COURS:

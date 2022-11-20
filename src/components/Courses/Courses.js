@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
-import { GetAllCourses, DeleteCourse,Course_Enrollment } from "../../store/Actions/Cours";
+import { GetAllCoursesByPool, DeleteCourse,Course_Enrollment } from "../../store/Actions/Cours";
 import "./Courses.css"
 export default function Courses() {
 
@@ -20,17 +20,19 @@ export default function Courses() {
 
   useEffect(() => {
     alert(currentPool.Id);
-    dispatch(GetAllCourses(currentPool.Id));
+    dispatch(GetAllCoursesByPool(currentPool.Id));
 
   }, [])
 
  
   const details = (Course) => {
-    if (currentUser == null) {
+    if (currentUser === "") {
       nav("./courseEnrollment");
     }
     else {
-      dispatch(Course_Enrollment({ IdUser: currentUser.Id, IdCours: Course.Id }))
+      
+       dispatch(Course_Enrollment({ IdUser: currentUser.Id, IdCours: Course.Id ,Status:true}))
+       alert("Enrollment succided!")
 
     }
 
@@ -53,15 +55,15 @@ export default function Courses() {
       {courses_arr.map(Course => <>  <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br>
 
         <br></br>{Course.PeopleAmount} כמות אנשים:<br></br> {Course.Dis} אופי הקורס:
-        <input type="button" value="לפרטים" className="button1" onClick={details} />
 
-      </div>{currentUser && currentUser.IdRole == 5 ?
+      </div>{currentUser && currentUser.IdRole == 2 ?
         (<>
           <div>
             <input type="button" value="מחק" className="ManagerButtons" onClick={() => { alert(Course.Id); DELETE(Course.Id) }} />
             <input type="button" className="ManagerButtons" value="עדכן" />
           </div>
-        </>) : null}
+        </>) :<input type="button" value="להרשמה" className="button1" onClick={()=>details(Course)} />
+}
       </>)}
 
     </>

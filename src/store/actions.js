@@ -16,6 +16,9 @@ export const CHOOSE_COURS="CHOOSE_COURS";
 export const GET_POOLS="GET_POOLS";
 //הצגת כל הקורסים לבריכה מסויימת
 export const GET_COURSES="GET_COURSES";
+//כל הקורסים
+export const GET_All_COURSES="GET_All_COURSES";
+
 //הוספת בריכה
 export const ADD_POOL="ADD_POOL";
 //ייבוא של כל האיזורים
@@ -55,6 +58,9 @@ export const ADD_SCHEDULE_TO_ARRAY="ADD_SCHEDULE_TO_ARRAY";
 //קבלת לוח זמנים מהסטייט החיצוני
 export const GET_SCHEDULE="GET_SCHEDULE";
 
+//הצגת קורסים ללקח רשום
+export const COURSES_TO_USER="COURSES_TO_USER";
+
 export const EXIT="EXIT";
 
 //הבריכה הנוכחית
@@ -62,6 +68,10 @@ export const SAVE_POOL="SAVE_POOL";
 
 //שמירת בריכה על ידי איידי של המנהל
 export const SAVE_POOL_BY_MANAGER="SAVE_POOL_BY_MANAGER";
+
+//שמירת בריכה נוכחית על ידי איידי בריכה
+export const SAVE_POOL_BY_ID="SAVE_POOL_BY_ID";
+
 
 //מחיקת קורס
 export const DELETE_COURSE="DELETE_COURSE";

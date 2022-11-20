@@ -53,11 +53,16 @@ import UpdateCard from "./UpdateCard/UpdaeCard";
 import { getAllCardByIdPool } from "../store/Actions/Card";
 import { Link } from 'react-router-dom';
 import { getAllManagers } from '../store/Actions/Manager';
+import { GetAllCourses } from '../store/Actions/Cours';
+import { CourseToUser } from './CourseToUser/CourseToUser';
 function App() {
+
   useEffect(() => {
+    dispatch(GetAllCourses());
     dispatch(GetAllPools());
-    //dispatch(getAllCardByIdPool(currentPool.Id));
-  }, [])
+    dispatch(getAllManagers());
+  }, []);
+  
   let nav = useNavigate();
   const dispatch = useDispatch();
 
@@ -77,10 +82,7 @@ function App() {
 
   // console.log(num, current_user)
 
-  useEffect(() => {
-    dispatch(GetAllPools());
-    dispatch(getAllManagers());
-  }, [])
+  
   return (<>
 <TryTable />
     <div className='smallDiv'>
@@ -92,6 +94,7 @@ function App() {
       }} />
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./signUp") }}>הרשמה</h3>
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./login") }}>התחברות</h3><br />
+      
     </div>
 
     {currentUser ? (<><text className='Exit' onClick={() => { dispatch(Exit()); nav("/home") }}>יציאה</text></>) : null}
@@ -180,6 +183,9 @@ function App() {
         <Route path="cart/UserNavBar" element={<UserNavBar />} />
         <Route path="profile/history" element={<BuyingHistory />} />
         <Route path="home/poolWeb" element={<PoolWeb />} />
+        <Route path="profile/CourseToUser/poolWeb" element={<PoolWeb />} />
+
+        
         <Route path="poolWeb" element={<PoolWeb />} />
 
         <Route path="cart" element={<Cart />} />
@@ -216,6 +222,8 @@ function App() {
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
         <Route path="UserNavBar" element={<UserNavBar />} />
         <Route path="/UserNavBar/courses" element={<Courses />} />
+        <Route path="/profile/CourseToUser" element={<CourseToUser />} />
+        
         <Route path="/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="/UserNavBar/about" element={<About />} />
         <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment />} />

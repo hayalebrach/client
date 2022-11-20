@@ -48,6 +48,15 @@ export const savePool = (pool) => {
     }
 }
 
+export const savePoolById = (poolId) => {
+
+    return (dispatch) => {
+        dispatch({ type: actionType.SAVE_POOL_BY_ID, payload: poolId });
+
+
+    }
+}
+
 
 //הוספת לוח זמניים למערך שבסטייט הכללי
 export const AddToArraySchedule = (schedule) => {
