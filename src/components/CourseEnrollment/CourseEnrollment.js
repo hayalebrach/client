@@ -16,9 +16,9 @@ const text=()=>{
 }
 
 const schema = yup.object({
-    userName: yup.string().required(),
-    mail: yup.string().email().required(),
-    phone: yup.number().positive().integer().required()
+    IdUser: yup.number().required(),
+    IdCours: yup.number().required(),
+    Status: yup.bool().required()
 }).required();
 
 
@@ -52,9 +52,9 @@ const onSubmit = data => {
         <h1 className="x">:הרשמה לקורס שחיה</h1>
         
         <form onSubmit={handleSubmit(onSubmit)}>
-        <Input register={register} errors={errors} className="input" name="userName" lablName="שם פרטי" />
-        <Input register={register} errors={errors} className="input" name="mail" lablName="מייל "/>
-        <Input register={register} errors={errors} className="input" name="phone" lablName="פלאפון"/>
+        <Input register={register} errors={errors} className="input" name="IdUser" lablName="שם פרטי" />
+        <Input register={register} errors={errors} className="input" name="IdCours" lablName="מייל "/>
+        <Input register={register} errors={errors} className="input" name="Status" lablName="פלאפון"/>
     <input type="submit"  className="button" value="!הרשם"></input>
     </form>
     </div>

@@ -12,7 +12,7 @@ export const AddCours=(course)=>{
     }
 }
 //פונקציה שלוקחת את הקורסים לבריכה מסוימת
-export const GetAllCourses=(IdPool)=>{
+export const GetAllCoursesByPool=(IdPool)=>{
     console.log("aaaaa");
     console.log(IdPool);
     return dispatch=>{
@@ -21,6 +21,32 @@ export const GetAllCourses=(IdPool)=>{
         .then(response=>{
             console.log(response.data);
             dispatch({type:actionType.GET_COURSES,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+}
+
+export const GetAllCourses=()=>{
+    
+    return dispatch=>{
+        
+        axios.get(`http://localhost:50157/api/cours`)
+        .then(response=>{
+            console.log(response.data);
+            dispatch({type:actionType.GET_All_COURSES,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+}
+
+export const GetCoursesToUser=(IdUser)=>{
+    
+    return dispatch=>{
+        
+        axios.get(`http://localhost:50157/api/CoursToCustomer/GetCoursesByUser?IdUser=${IdUser}`)
+        .then(response=>{
+            console.log(response.data);
+            dispatch({type:actionType.COURSES_TO_USER,payload:response.data})
         })
         .catch(err=> console.log(err) )
     }
@@ -41,7 +67,7 @@ export const DeleteCourse=(CourseId)=>{
 export const Course_Enrollment=(user)=>{
     
     return dispatch=>{
-        axios.post("http://localhost:50157/api/Cours_To_Customer/Course_Enrollment?",user)
+        axios.post("http://localhost:50157/api/CoursToCustomer/Course_Enrollment?",user)
         .then(x=> dispatch({type:actionType.COURSE_ENROLLMENT,payload:user}))
         .catch(err=>console.log(err))
        

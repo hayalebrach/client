@@ -1,12 +1,15 @@
+import Cart from "../../components/Cart/Cart";
 import * as actionType from "../actions";
 
 const initialState = {
     //הכרטיס המבוקש
     currentCard: null,
+   //כל הקורסים
+    AllCourses:[],
     //המערך של המשתמשים
     usersArr: [],
     //המשתמש הנוכחי
-    currentUser: "",
+    currentUser:"",
     //בריכה נוכחית
     currentPool: "",
     //הוספת בריכה
@@ -37,12 +40,7 @@ const initialState = {
     //היסטורית משתמש לבריכה מסוימת
     HistoryUser: [],
 
-
-
     Managers: [],
-
-    courses_arr: [],
-
 
     Cart: [{ Id: 1, PoolName: "חמי הגעש", date: "01/01/2019", validity: "01/01/2020", CardsAmount: 5, Pay: 120 },
     { Id: 1, PoolName: "חמי הגעש", date: "01/01/2019", validity: "01/01/2020", CardsAmount: 5, Pay: 120 }],
@@ -200,6 +198,13 @@ const reducer = (state = initialState, action) => {
                 courses_arr: action.payload
             };
 
+            case actionType.GET_All_COURSES:
+            return {
+                ...state,
+                AllCourses:action.payload
+            };
+            
+
 
         //מציג בריכות
         case actionType.GET_POOLS:
@@ -317,21 +322,26 @@ const reducer = (state = initialState, action) => {
                 poolsArr: [...newArr2]
             }
         //בריכה הנוכחית שנבחרה
+        //לא לשנות פונקציה זו!!
         case actionType.SAVE_POOL:
             {
-                let pool = null;
-                let newArr3 = [...state.poolsArr];
-                for (let i = 0; i < newArr3.length; i++) {
-                    if (newArr3[i].IdUser == action.payload) {
-                        pool = newArr3[i];
-                        console.log(pool);
-                    }
-                }
                 return {
                     ...state,
-                    currentPool: pool
+                    currentPool: action.payload
                 }
             }
+
+            case actionType.SAVE_POOL_BY_ID:
+            {
+                const index = state.poolsArr.findIndex(x => x.Id == action.payload)
+
+                return {
+                    ...state,
+                    currentPool: state.poolsArr[index],
+                }
+            }
+
+            
         // מציאת בריכה לפי שם
         case actionType.SEARCH_POOL: {
             let pool = null;
@@ -364,19 +374,25 @@ const reducer = (state = initialState, action) => {
                 currentPool: state.poolsArr[index]
             }
         }
-        case actionType.SAVE_POOL:
 
-            return {
-                ...state,
-                currentPool: action.payload
-            }
-
+        
         case actionType.COURSE_ENROLLMENT: {
+            
             return {
                 ...state,
                 CourseToCustomer: [...state.CourseToCustomer, action.payload]
             };
         }
+
+        case actionType.COURSES_TO_USER: {
+
+            return {
+                ...state,
+                CourseToCustomer:[...action.payload]
+            };
+        }
+
+        
 
         //עדכון מחיר לקורס
         case actionType.UPDATE_COURS:
@@ -393,8 +409,18 @@ const reducer = (state = initialState, action) => {
                 }
             }
 
-        //רכישת כרטיסים
-        case actionType.CHOOSE_CARD: return state;
+            case actionType.ADD_TO_CART:
+            
+                return {
+                    state,
+                    Cart:[...state.Cart,action.payload]
+
+                }
+            
+
+
+
+        
         //בחירת קורסים
         case actionType.CHOOSE_COURS: return state;
         //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת

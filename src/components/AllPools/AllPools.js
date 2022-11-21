@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { savePool ,GetAllPools} from "../../store/Actions/Pools"
+import { savePool ,GetAllCoursesByPool} from "../../store/Actions/Pools"
 import "./AllPools.css";
 
 export default  function AllPools(){
