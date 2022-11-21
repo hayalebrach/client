@@ -243,7 +243,7 @@ function App() {
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
 
 
-        {/* <Route path="ShowSchedule" element={<ShowSchedule />} /> */}
+        <Route path="ShowSchedule" element={<ShowSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
         <Route path="addCourse" element={<AddDetailsCours />} />
         {/* <Route path="SplitButton" element={<SplitButton />} /> */}

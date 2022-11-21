@@ -13,7 +13,23 @@ export const getAllUser=()=>{
     }
 }
 
+export const loginNotDispatch = (data) => {
+    // return (dispatch) => {        
+    //     try {
+         return   axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?name=${data.Name}&password=${data.Password}`)
+        //     .then(res => {
+        //         dispatch({type:actionType.LOGIN,payload:res.data});
+        //     }).catch(err => {
+        //         console.log(err);
+        //     })
+        // }
+        // catch (err) {
+            
+        //     console.log(err);
+        // }
+    // }
 
+}
 //לוגין
 export const login = (data) => {
     return (dispatch) => {        

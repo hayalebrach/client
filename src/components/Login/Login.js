@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
-import { login } from "../../store/Actions/Users"
+import { login, loginNotDispatch } from "../../store/Actions/Users"
 import { getAllRole } from '../../store/Actions/Role'
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import "./Login.css"
@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { GetAllPools, savePool, savePoolByManager } from "../../store/Actions/Pools"
 import { GetAllCourses } from "../../store/Actions/Cours";
+import { date } from "yup/lib/locale";
+import { SettingsInputSvideoRounded } from "@material-ui/icons";
 
 
 const schema = yup.object({
@@ -61,6 +63,9 @@ const Login = () => {
     }, [currentUser])
     const onSubmit = (data) => {
         dispatch(login(data));
+
+        // loginNotDispatch(date)
+        //.then(x=>setUser(x.data))
     }
 
     return (<>
