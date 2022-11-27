@@ -1,5 +1,11 @@
 import * as actionType from "../actions";
 import axios from "axios";
+//קבלת כל משתמש לבריכה על פי ת"ז משתמש
+export const getCardsToCustomer = (data) => {
+         return axios.get(`http://localhost:50157/api/Customr_To_Pool/GetHistoryOfUser?IdUser=${data}`)
+}
+
+
  //קבלת הכרטיס מהמערך בריאקט לפי ת"ז
  export const getById=(id)=>{
     return{
