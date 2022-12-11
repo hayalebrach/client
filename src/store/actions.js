@@ -71,6 +71,8 @@ export const SAVE_POOL_BY_MANAGER="SAVE_POOL_BY_MANAGER";
 
 //שמירת בריכה נוכחית על ידי איידי בריכה
 export const SAVE_POOL_BY_ID="SAVE_POOL_BY_ID";
+//הוספת קנייה חדשה להסטוריית משתמש
+export const PURCHASING="PURCHASING";
 
 
 //מחיקת קורס
@@ -100,4 +102,8 @@ export const GET_BY_ID="GET_BY_ID";
 
 //הוספת רכישה לעגלת קניות
 export const ADD_TO_CART="ADD_TO_CART";
+
+
+export const DELETE_FROM_CART="DELETE_FROM_CART";
+
 

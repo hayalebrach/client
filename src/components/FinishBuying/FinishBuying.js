@@ -7,6 +7,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+
 
 const schema = yup.object({
    
@@ -20,7 +22,7 @@ const FinishBuying=()=>{
     const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
 });
-
+const nav=useNavigate();
 const currentUser=useSelector(state =>state.currentUser);
 const [showDiv,setShowDiv]=useState(false);
 const onSubmit=()=>{
@@ -54,10 +56,6 @@ setShowDiv(true);
     }
 
     
-
-
-    <input type="button" className="buttonn"  value="המשך לקנות"  /><br/>
-    <input type="submit" value="!שלם"  className="buttonn"></input>
     </div>
     </form>
 

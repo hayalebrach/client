@@ -1,7 +1,7 @@
 
 import './App.css';
 
-import { Routes, Route, Outlet, useNavigate } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import Login from "./Login/Login";
 import Courses from "./Courses/Courses";
 import BuyTickets from "./BuyTickets/BuyTickets";
@@ -40,7 +40,7 @@ import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
 import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
-import Test from './test';
+
 
 import { Exit } from "../store/Actions/Users";
 import { GetAllPools } from "../store/Actions/Pools";
@@ -50,8 +50,6 @@ import UpdateUser from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
 import AllCardsToPool from "./UpdateCard/AllCardsToPool";
 import UpdateCard from "./UpdateCard/UpdaeCard";
-import { getAllCardByIdPool } from "../store/Actions/Card";
-import { Link } from 'react-router-dom';
 import { getAllManagers } from '../store/Actions/Manager';
 import { GetAllCourses } from '../store/Actions/Cours';
 import { CourseToUser } from './CourseToUser/CourseToUser';
@@ -111,6 +109,7 @@ function App() {
         <Route path="cart/BuyingForm" element={<BuyingForm />} />
         <Route path="home/poolWeb" element={<PoolWeb />} />
         <Route path="cart/PoolWeb" element={<PoolWeb />} />
+        <Route path="cart/BuyingForm/home" element={<AllPools />} />
 
         <Route path="poolWeb" element={<PoolWeb />} />
         <Route path="MainManagerNavBar/AllUsers" element={<AllUsers />} />
