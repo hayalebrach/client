@@ -183,6 +183,7 @@ function App() {
         <Route path="profile/history" element={<BuyingHistory />} />
         <Route path="home/poolWeb" element={<PoolWeb />} />
         <Route path="profile/CourseToUser/poolWeb" element={<PoolWeb />} />
+        <Route path="profile/history/poolWeb" element={<PoolWeb />} />
 
         
         <Route path="poolWeb" element={<PoolWeb />} />

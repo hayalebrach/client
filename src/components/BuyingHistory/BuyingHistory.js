@@ -1,30 +1,32 @@
 
 import {useEffect, useState} from "react"
 import { useNavigate } from "react-router";
-
+import {useDispatch, useSelector} from "react-redux";
+import {getCardsToCustomer} from "../../store/Actions/Card"
+import {savePoolById} from "../../store/Actions/Pools"
+import axios from "axios";
 export default  function BuyingHistory(){
   let nav=useNavigate();
-    const [history,SetHistory]=useState([]);
-
+  const dispatch=useDispatch();
+  const [history,SetHistory]=useState([]);
+  const currentUser=useSelector(state=>state.currentUser);
   useEffect(()=>{
-      const fakeCart=
-      [
-        {date:"12/3/2019",name:"שפעים",amount:"2",price:50},
-        {date:"01/07/2020",name:"על החול",amount:"5",price:100},
-        {date:"27/09/2021",name:"רעננה",amount:"7",price:200},
-        {date:"20/03/2022",name:"עמוקים",amount:"1",price:30}
-      ];
+         getCardsToCustomer(currentUser.Id).then(x=>SetHistory(x.data))  
+  },[history])
 
-      SetHistory(fakeCart);
 
-  },[])
+  const ToPoolWeb=(IdPool)=>{
+    dispatch(savePoolById(IdPool));
+    console.log()
+    nav("./poolWeb");
 
+}
   return(
     <>
     <h1>הסטוריית הזמנות</h1>
     
         {
-            history.map(cart=><div className="div1"> <b>שם הבריכה: </b>{cart.name}<br/> כמות כרטיסים: {cart.amount} <br/> :תאריך קניה {cart.date} <br/> סה"כ שולם:{cart.price}<br/> <input type="button" className="buttonn" value="לאתר הבריכה" onClick={()=>nav("./UserNavBar")}/></div> )
+            history.map(cart=><div className="div1"> כמות כרטיסים: {cart.AmountLeft} <br/>  כרטיסים שמומשו: {cart.AmountGet} <br/>:תאריך קניה {cart.DateBuy} <br/> סה"כ שולם:{cart.TotalPrice}<br/><input type="button" value="לאתר הבריכה" onClick={()=>ToPoolWeb(cart.IdPool)} className="button1"></input></div> )
         }
    
     
