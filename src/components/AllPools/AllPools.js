@@ -8,8 +8,6 @@ import "./AllPools.css";
 export default  function AllPools(){
   const dispatch = useDispatch();
 
-
-
     const Pools=useSelector(state =>state.poolsArr);
     let currentPool=useSelector(state =>state.currentPool);
     
@@ -26,7 +24,7 @@ export default  function AllPools(){
     <>
     <br/>
     <br/>
-    <input type="date"/>
+    
     <h1>בריכות שחייה</h1>
     <ul>
         {

@@ -1,3 +1,4 @@
+
 import { actions } from "react-table";
 import Cart from "../../components/Cart/Cart";
 import * as actionType from "../actions";
@@ -37,16 +38,14 @@ const initialState = {
     sale_arr: [],
 
     User: null,
-    cart: [],
+    Cart: [],
     //משתמשים לבריכה
     UsersPool: [],
-    //היסטורית משתמש לבריכה מסוימת
+    //הסטוריית קניות המשתמש
     HistoryUser: [],
 
     Managers: [],
 
-    Cart: [{ Id: 1, PoolName: "חמי הגעש", date: "01/01/2019", validity: "01/01/2020", CardsAmount: 5, Pay: 120 },
-    { Id: 1, PoolName: "חמי הגעש", date: "01/01/2019", validity: "01/01/2020", CardsAmount: 5, Pay: 120 }],
 
     num: 7
 }
@@ -313,7 +312,9 @@ const reducer = (state = initialState, action) => {
                 currentUser: "",
                 courses_arr: [],
                 currentPool: "",
-                CardsArr: []
+                CardsArr: [],
+                Cart:[],
+                CourseToCustomer:[]
 
             };
         }
@@ -403,13 +404,46 @@ const reducer = (state = initialState, action) => {
 
         
 
-    
 
+        //עדכון מחיר לקורס
+        case actionType.UPDATE_COURS:
+            {
+                let newArr3 = state.courses_arr;
+                for (let i = 0; i < newArr3.length; i++) {
+                    if (newArr3[i].Id == action.payload.Id)
+                        newArr3[i] = action.payload;
+                }
+                return {
+                    ...state,
+                    courses_arr: newArr3
+
+                }
+            }
             case actionType.ADD_TO_CART:
             
                 return {
-                    state,
+                    ...state,
                     Cart:[...state.Cart,action.payload]
+
+                }
+
+                case actionType.DELETE_FROM_CART:{
+
+                    let newArr2 = [...state.Cart];
+                    newArr2.pop(action.payload);
+
+                    return {
+                        ...state,
+                        Cart:newArr2
+    
+                    }
+
+                }
+                case actionType.PURCHASING:
+            
+                return {
+                    ...state,
+                    HistoryUser:[...state.HistoryUser,action.payload]
 
                 }
             
