@@ -16,8 +16,6 @@ import AllUsers from './AllUsers/AllUsers';
 import TheUser from './AllUsers/TheUser';
 import TryTable from './AllUsers/TryTable';
 import AllManagers from './AllManagers/AllManagers';
-
-// import courseUpdate from './courseUpdate';
 // import addSale from './addSale';
 import CourseDetails from './CourseDetails/CourseDetails';
 //import ManagerNavBar from './ManagerNavBar';
@@ -55,6 +53,8 @@ import { Link } from 'react-router-dom';
 import { getAllManagers } from '../store/Actions/Manager';
 import { GetAllCourses } from '../store/Actions/Cours';
 import { CourseToUser } from './CourseToUser/CourseToUser';
+import UpdateCours from './UpdateCours/UpdateCours'
+import AllCoursToPool from './UpdateCours/AllCoursToPool'
 function App() {
 
   useEffect(() => {
@@ -73,6 +73,7 @@ function App() {
   }), shallowEqual);
   console.log("הבריכה הנוכחית");
   console.log(currentPool);
+  console.log(currentUser);
   // console.log(Cards, Managers)
 
   // const { num, current_user } = useSelector(state => ({
@@ -162,8 +163,6 @@ function App() {
         <Route path="buyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="cart/BuyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="profile" element={<Profile />} />
-
-        <Route path="courseUpdate" element={<courseUpdate />} />
         <Route path="addSale" element={<addSale />} />
         {/* //------------הוספת בריכה------------------------ */}
         <Route path="MainManagerNavBar/AddPool" element={<AddPool />} />
@@ -175,7 +174,7 @@ function App() {
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
         <Route path="ManagerNavBar/courses/AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="ManagerNavBar/addCourse" element={<AddDetailsCours />} />
-
+        <Route path="ManagerNavBar/AddDetailsSchedule" element={<AddDetailsSchedule/>}/>
 
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
@@ -204,7 +203,7 @@ function App() {
         <Route path="ManagerNavBar/courses" element={<Courses />} />
         <Route path="ManagerNavBar/AllUsers" element={<AllUsers />} />
         <Route path="ManagerNavBar/AllUsers/TheUser" element={<TheUser />} />
-        <Route path="ManagerNavBar/courseUpdate" element={<courseUpdate />} />
+        <Route path="ManagerNavBar/UpdateCours" element={<UpdateCours />} />
         {/* ----------------------------------------------------------------------------- */}
         <Route path="cart/UserNavBar/courses" element={<Courses />} />
         <Route path="buyTickets" element={<BuyTickets />} />
@@ -217,8 +216,9 @@ function App() {
         <Route path="cart/UserNavBar/about" element={<About />} />
         <Route path="home/poolWeb/about" element={<About />} />
         <Route path="poolWeb/about" element={<About />} />
-
-        <Route path="ManagerNavBar/AllCardsToPool" element={<AllCardsToPool />} />
+        {/* //====================================================== */}
+        {/* <Route path="poolWeb/AddDetailsSchedule" element={<AddDetailsSchedule />} /> */}
+                {/* //====================================================== */}
         <Route path="ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
         <Route path="UserNavBar" element={<UserNavBar />} />
@@ -252,12 +252,14 @@ function App() {
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
 
 
-        <Route path="ShowSchedule" element={<ShowSchedule />} />
+        {/* <Route path="ShowSchedule" element={<ShowSchedule />} /> */}
         <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
-        <Route path="addCourse" element={<AddDetailsCours />} />
+        <Route path="AddDetailsCours/:flag" element={<AddDetailsCours flag="false" />} />
         {/* <Route path="SplitButton" element={<SplitButton />} /> */}
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
+        <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />
+        <Route path="ManagerNavBar/AllCoursToPool" element={<AllCoursToPool />} />
       </Routes>
     </div>
 

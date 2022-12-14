@@ -34,7 +34,7 @@ const getHistory=(IdUser,IdPool)=>{
            <input type="button" value="לפרטי המשתמש" onClick={()=>getHistory(UsersPool.IdUser,UsersPool.IdPool)}/></li></> )
         }
     </ul>
-      
+      <input type="button" value="חזרה לדף הבית" onClick={()=>nav("/ManagerNavBar")}/>
     </>
   )
 }

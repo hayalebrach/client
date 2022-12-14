@@ -71,6 +71,9 @@ export default function TheUser() {
             <StyledTableCell align="center">תאריך קניה</StyledTableCell>
             <StyledTableCell align="center">מחיר</StyledTableCell>
             <StyledTableCell align="center">מספר כניסות</StyledTableCell>
+            <StyledTableCell align="center">מספר כניסות שמומשו</StyledTableCell>
+            <StyledTableCell align="center">בתוקף/לא בתוקף</StyledTableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -80,6 +83,9 @@ export default function TheUser() {
               <StyledTableCell align="center">{HistoryUser.DateBuy}</StyledTableCell>
               <StyledTableCell align="center">{HistoryUser.Price}</StyledTableCell>
               <StyledTableCell align="center">{HistoryUser.EntersAmount}</StyledTableCell>
+              <StyledTableCell align="center">{HistoryUser.AmountGet}</StyledTableCell>
+              <StyledTableCell align="center">{HistoryUser.Status==true?"v":"x"}</StyledTableCell>
+
             </StyledTableRow>
           ))}
         </TableBody>

@@ -1,37 +1,33 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useSelector,useDispatch,shallowEqual}from "react-redux";
 import {useNavigate} from "react-router";
 import {getAllCardByIdPool,getById,DeletCard}from "../../store/Actions/Card";
 
 export default function AllCardsToPool(){
-
   const {currentPool,CardsArr,currentCard} = useSelector(state => ({
     currentPool: state.currentPool,
     CardsArr:state.CardsArr,
     currentCard:state.currentCard
   }), shallowEqual);
-
-  useEffect(() => {
-    
+  useEffect(() => {  
     dispatch(getAllCardByIdPool(currentPool.Id));
-}, []); 
+}, [CardsArr,currentCard]); 
 
   const nav=useNavigate();
 
   const dispatch=useDispatch();
 
-
-
 const update=(Id)=>{
+  console.log(" ה' רק אתה יכול לעזור לי בזה");
+  console.log(Id);
   dispatch(getById(Id));
   nav(("/UpdateCard/"+true));
 }
 const Delet=(Id)=>{
   console.log(Id);
   console.log("שלום לכם");
-   dispatch(getById(Id));
-   console.log(currentCard);
-   dispatch(DeletCard(currentCard));
+  let card=CardsArr.find(x=>x.Id==Id)
+  dispatch(DeletCard(card)); 
 }
   return(
     <>
@@ -43,6 +39,7 @@ const Delet=(Id)=>{
         }
     </ul>
     <input type="button" value="הוספת כרטיס" onClick={()=>nav("/AddDetailsCard/true")}/>
+    <input type="button" value="חזרה לעמוד הבית" onClick={()=>nav("/ManagerNavBar")}/>
     </>
   )
 }

@@ -1,42 +1,48 @@
-import React  from "react";
+import {React,useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {useSelector,shallowEqual,useDispatch} from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
 import {AddCours} from "../../store/Actions/Cours";
+import {AllGuide} from "../../store/Actions/Users";
+import {getAllDays} from "../../store/Actions/Pools";
 import "./AddDetailsCours.css";
+import { useParams ,useNavigate} from "react-router";
 
 const schema = yup.object({
     NameCours: yup.string().required(),
     Dis: yup.string().required(),
     Type:yup.string().required(),
-//ימים
+    IdPool:yup.number(),
+    Status:yup.bool(),
     PeopleAmount: yup.number().positive().integer().required(),
-    Price: yup.number().positive().integer().required()
+    Price: yup.number().positive().integer().required(),
+    IdUser:yup.number(),
 }).required();
 
 export default function AddDetailsCours() {
-  
-    const Courses=useSelector(state =>state.Courses);
-    const currentPool=useSelector(state =>state.currentPool);
-    const currentUser=useSelector(state =>state.currentUser);
+    const nav=useNavigate();
     const dispatch = useDispatch();
-    // const user=useSelector(state=>:state.user))
+    const [Guide,SetGuide]=useState();
+    let f = useParams();
+    useEffect(() => {
+        AllGuide().then(x=>SetGuide(x.data));
+      f=f.flag;
 
-// const {user,cu}=useSelector(state=>({user:state.user,cu:state.cu}),shallowEqual)
-    const days=[{Id:1,Name:"ראשון"},{Id:2,Name:"שני"},{Id:3,Name:"שלישי"},{Id:4,Name:"רביעי"},{Id:5,Name:"חמישי"}];
+    },[Guide]);
+    console.log(f.flag);
 
-    const typeArr = [{ Id: 1, Name: "אישה" }, { Id: 2, Name: "גבר" }];
-
-
+    const {currentPool} = useSelector(state => ({
+        currentPool: state.currentPool
+    }), shallowEqual);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
     const onSubmit = (data) => {
         //data.typeArr=typeArr[data.typeArr-1].Name; 
        
-        dispatch(AddCours({IdPool:currentPool.Id,NameCours:data.NameCours,PeopleAmount:data.PeopleAmount,Dis:data.Dis,IdUser:currentUser.Id}));
+        //dispatch(AddCours({IdPool:currentPool.Id,NameCours:data.NameCours,PeopleAmount:data.PeopleAmount,Dis:data.Dis,IdUser:currentUser.Id}));
         
     }
     
@@ -49,42 +55,17 @@ export default function AddDetailsCours() {
             <Input register={register} errors={errors} name="Dis" lablName="תיאור" className="input1" type="text" />
             <Input register={register} errors={errors} name="PeopleAmount" lablName="מס' אנשים" className="input1" type="number"/>
             <Input register={register} errors={errors} name="Price" lablName="מחיר" className="input1" type="number"/>
-
+            <label>שם המדריך</label><br />
+            <select  {...register("IdDays")} className="select" >
+                {Guide.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
+            </select><br />
             </div>
-            <br/>
-
-            <div>
-            <label>מגזר</label><br/>
-            <select  {...register("Type")}>  
-                 {typeArr.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
-           </select><br/>
-
-            <label>ימים</label>
-            {days.map(x=><><br/><label>{x.Name}</label><input type="checkbox" key={x.Id} value={x.Id}/><br/><input type="number"placeholder="שעה"/></>)}
-             <br/>
-            <Input register={register} errors={errors} name="startHour" lablName="שעת התחלה" className="input1" type="number"/>
-            <Input register={register} errors={errors} name="endHour" lablName="שעת סיום" className="input1" type="number"/>
-
-
-
-
-            </div>
-.
-
-
-
-
-
-
-
-
-            <input type="submit" />
+            {f.flag=="false"?
+            <input type="submit"/>
+            :
+            <input type="submit" value="הוספה"/>
+        }
         </form>
         </>);
 }
-
-
-
-
-
 

@@ -51,7 +51,7 @@ const Login = () => {
 
                 case 2: {
 
-                    dispatch(savePool(currentUser.Id));
+                    dispatch(savePoolByManager(currentUser.Id));
                     nav("/ManagerNavBar");
                     break;
                 }

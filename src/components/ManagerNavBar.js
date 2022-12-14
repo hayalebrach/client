@@ -8,9 +8,11 @@ export default function ManagerNavBar(){
     
         <Link to="AllUsers" className="navbar-brand">צפייה בלקוחות  </Link>
         <Link to="AllCardsToPool" className="navbar-brand">לצפיה ועדכון הכרטיסים</Link>
-        <Link to="courseUpdate" className="navbar-brand">לצפיה עדכון הקורסים</Link>
+        <Link to="AllCoursToPool" className="navbar-brand">לצפיה עדכון הקורסים</Link>
         <Link to="addSale" className="navbar-brand">להוספת מבצעים </Link>
-       <Link to="courses" className="navbar-brand">לקורסים</Link>
+        {/* <Link to="courses" className="navbar-brand">לקורסים</Link> */}
+        <Link to="AddDetailsSchedule" className="navbar-brand">לצפיה בזמני בריכה</Link>
+
 
     
     </nav>
