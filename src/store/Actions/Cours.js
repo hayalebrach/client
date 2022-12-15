@@ -68,6 +68,7 @@ export const Course_Enrollment=(user)=>{
 }
 //עדכון קורס
 export const updateCours=(data)=>{
+    console.log("i am hear");
     console.log(data);
     return dispatch=>{
         axios.put("http://localhost:50157/api/Cours/Put?",data)

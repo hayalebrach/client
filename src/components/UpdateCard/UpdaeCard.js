@@ -20,7 +20,7 @@ export default function UpdateCard(){
         IdPool:currentCard.IdPool,
         Price:currentCard.Price,
         EntersAmount:currentCard.EntersAmount,
-        Status:true
+        Status:currentCard.Status
     }
   
               const change = (e) => {
@@ -32,8 +32,8 @@ export default function UpdateCard(){
             const Send=()=>{
                 console.log(cardSchema);
                 dispatch(updateCard(cardSchema));
-               // dispatch(getAllCardByIdPool(cardSchema.IdPool));
-                //console.log(CardsArr);
+               dispatch(getAllCardByIdPool(cardSchema.IdPool));
+                console.log(CardsArr);
                 nav("/ManagerNavBar/AllCardsToPool");
             }
 return (<>
@@ -48,7 +48,7 @@ return (<>
         <input type="number" className="input" name="EntersAmount" placeholder={currentCard.EntersAmount} variant="standard" onChange={change} defaultValue={currentCard.EntersAmount} disabled={f.flag=="false"}/>
         
      
-        <input type="button" className="button" onClick={()=>Send()}/></div>
+        <input type="button" className="button" value="עדכון"onClick={()=>Send()}/></div>
     </form>
     </>
 ); 

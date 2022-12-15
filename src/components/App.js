@@ -40,9 +40,9 @@ import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
 
 
-import { Exit } from "../store/Actions/Users";
+import { Exit ,getAllUser} from "../store/Actions/Users";
 import { GetAllPools } from "../store/Actions/Pools";
-import { useEffect } from 'react';
+import { useEffect ,useState} from 'react';
 import UpdateUser from './UpdateUser/UpdateUser';
 // import { UpdateUser } from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
@@ -54,24 +54,26 @@ import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
 import AllCoursToPool from './UpdateCours/AllCoursToPool'
 function App() {
-
   useEffect(() => {
     dispatch(GetAllCourses());
     dispatch(GetAllPools());
     dispatch(getAllManagers());
+    dispatch(getAllUser());
   }, []);
   
   let nav = useNavigate();
   const dispatch = useDispatch();
 
-  const { Schedule, currentUser, currentPool } = useSelector(state => ({
+  const { Schedule, currentUser, currentPool,usersArr } = useSelector(state => ({
     currentUser: state.currentUser,
     Schedule: state.Schedule,
-    currentPool: state.currentPool
+    currentPool: state.currentPool,
+    usersArr:state.usersArr
   }), shallowEqual);
   console.log("הבריכה הנוכחית");
   console.log(currentPool);
   console.log(currentUser);
+  console.log(usersArr);
   // console.log(Cards, Managers)
 
   // const { num, current_user } = useSelector(state => ({

@@ -35,7 +35,7 @@ const Delet=(Id)=>{
     <ul>
         {
             CardsArr.map(CardsArr=><><br/> <li className="li" key={CardsArr.Id}><h3>id: {CardsArr.Id}</h3><br/> מחיר:{CardsArr.Price}<br/> כמות בניסות:{CardsArr.EntersAmount}<br/>
-            <input type="button" value="עדכון" onClick={()=>update(CardsArr.Id)}/> <input type="button" value="מחיקה" onClick={()=>Delet(CardsArr.Id)}/></li></> )
+            <input type="button" value="עדכון" onClick={()=>update(CardsArr.Id)}/><br/> <input type="button" value="מחיקה" onClick={()=>Delet(CardsArr.Id)}/></li></> )
         }
     </ul>
     <input type="button" value="הוספת כרטיס" onClick={()=>nav("/AddDetailsCard/true")}/>

@@ -12,11 +12,10 @@ export default function AllCoursToPool()
     courses_arr:state.courses_arr,
     currentCours:state.currentCours,
   }), shallowEqual);
-
+//console.log(currentPool);
   useEffect(() => {  
-    dispatch(GetAllCoursesByPool(currentPool.Id));
-
-
+    if(currentPool!=null)
+      dispatch(GetAllCoursesByPool(currentPool.Id));
 }, [courses_arr,currentCours]); 
 
   const nav=useNavigate();

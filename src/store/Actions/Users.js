@@ -1,16 +1,25 @@
  import * as actionType from "../actions";
  import axios from "axios";
- //כל המצילים
+ //כל במדריכים
  export const AllGuide=()=>{
-  return axios.get("http://localhost:50157/api/User/GetAllGuide")    
+  return dispach=>{
+      axios.get("http://localhost:50157/api/User/GetAllGuide")
+      .then(response=>{
+          console.log(response.data);
+          dispach({type:actionType.GET_GUIDE,payload:response.data})
+    })
+    .catch(err=>console.log(err))}
+      
 }
 //כל המשתמשים
 export const getAllUser=()=>{
+    console.log("i am hear");
     return dispach=>{
         
         axios.get("http://localhost:50157/api/user/GetAllUsers")
         .then(response=>{
             dispach({type:actionType.GET_USERS,payload:response.data})
+            console.log(response.data);
         })
         .catch(err=> console.log(err) )
     }

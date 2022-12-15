@@ -1,7 +1,7 @@
 import{ React,useEffect,useState}  from "react";
 import { useParams,useNavigate } from "react-router";
 import {useDispatch,useSelector,shallowEqual} from "react-redux";
-import {updateCours} from "../../store/Actions/Cours";
+import {updateCours,GetAllCoursesByPool} from "../../store/Actions/Cours";
 import {AllGuide} from "../../store/Actions/Users";
 import axios from "axios";
 import { isNumber } from "axios/lib/utils";
@@ -10,17 +10,23 @@ export default function UpdateCours(){
     const dispatch = useDispatch();
     let f = useParams();
     const nav=useNavigate();
-    const [Guide,SetGuide]=useState([]);
-    useEffect(() => {
-        AllGuide().then(x=>SetGuide(x.data));       
+    
+    useEffect(() => {        
         f=f.flag;
-    }, [Guide]);
+        dispatch(AllGuide());
+    }, []);
 
-    const {currentCours,courses_arr} = useSelector(state => ({
+    const {currentCours,courses_arr, usersArr,Guide} = useSelector(state => ({
         currentCours: state.currentCours,
-        courses_arr:state.courses_arr
+        courses_arr:state.courses_arr,
+        usersArr:state.usersArr,
+        Guide:state.Guide
       }), shallowEqual);
-     let g=Guide.find(x=>x.Id==currentCours.IdUser);     
+     console.log(usersArr);
+     let g=usersArr.find(x=>x.Id==currentCours.IdUser); 
+     console.log(g);
+     console.log(Guide);
+     console.log(courses_arr);
      const coursSchema = {
         Id:currentCours.Id,
         IdPool:currentCours.IdPool,
@@ -37,16 +43,20 @@ export default function UpdateCours(){
                 const inputValue = e.target.value;
                 coursSchema[inputName] = inputValue;
                 console.log(coursSchema[inputName]);
-                console.log(coursSchema);
+            
+              
             }
+       
             
             const Send=()=>{
                 console.log(coursSchema);
                 dispatch(updateCours(coursSchema));
-                //dispatch(getAllCardByIdPool(coursSchema.IdPool));
+                console.log("updating");
+                dispatch(GetAllCoursesByPool(coursSchema.IdPool));
                 console.log(courses_arr);
-                nav("/ManagerNavBar/AllCoursToPool");
+                //nav("/ManagerNavBar/AllCoursToPool");
             }
+           
 return (<>
     <h1>עדכון</h1>
     <form>
@@ -63,7 +73,7 @@ return (<>
       {/* לבדוק איך לעשות את המדריך שיהיה placeholder */}
         <label>מדריך הקורס</label><br/>
         <select className="select" variant="standard" onChange={change} defaultValue={currentCours.IdUser} disabled={f.flag=="false"}>
-                {Guide.map(x => <option key={x.Id} value={g.Name}>{x.Name}</option>)}
+                {Guide.map(x => <option key={x.Id} defaultValue={g.Name}>{x.Name}</option>)}
             </select><br />
         <input type="button" value="עדכון" className="button" onClick={()=>Send()}/></div>
     </form>

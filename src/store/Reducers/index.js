@@ -43,7 +43,8 @@ const initialState = {
     UsersPool: [],
     //הסטוריית קניות המשתמש
     HistoryUser: [],
-
+    //כל המדריכים
+    Guide:[],
     Managers: [],
 
 
@@ -52,6 +53,22 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case actionType.GET_GUIDE:{
+            console.log("אני פה");
+            let g=[];
+            let arr=state.courses_arr;
+            console.log(arr);
+            for(let i=0;i<action.payload.length;i++){
+                
+                 if(arr.find(x=>x.IdUser==action.payload[i].Id)!=null);
+                      g.push(action.payload[i]);
+            }
+            console.log(g);
+           return{
+               ...state,
+                Guide:g
+           }
+        }
         //קבלת קורס על פי ת"ז
         case actionType.GET_COURS:{
             let c=state.courses_arr.find(x=>x.Id==action.payload);
@@ -65,15 +82,14 @@ const reducer = (state = initialState, action) => {
             //עדכון מחיר לקורס
             case actionType.UPDATE_COURS:
                 {
+                    console.log(action.payload);
                     let newArr3 = state.courses_arr;
-                    for (let i = 0; i < newArr3.length; i++) {
-                        if (newArr3[i].Id == action.payload.Id)
-                            newArr3[i] = action.payload;
-                    }
+                    let cours=newArr3.find(x=>x.Id==action.payload.Id);
+                    newArr3.pop(cours);
+                    newArr3.push(action.payload);
                     return {
-                        state,
-                        courses_arr: newArr3
-    
+                        ...state,
+                        courses_arr: newArr3   
                     }
                 }
         //מחיקת קורס
