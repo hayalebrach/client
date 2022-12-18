@@ -16,6 +16,7 @@ import { date } from "yup/lib/locale";
 import { SettingsInputSvideoRounded } from "@material-ui/icons";
 
 
+//הצבת תנאים להכנסצת ושליחת נתונים מהמסמך
 const schema = yup.object({
     Name: yup.string().required(),
     Password: yup.number().positive().integer().required()
@@ -43,6 +44,7 @@ const Login = () => {
         resolver: yupResolver(schema)
     });
     useEffect(() => {
+        //בדיקת רמת התפקיד שלך ושליחה למקום המתאים
         if (currentUser) {
             switch (currentUser.IdRole) {
                 case 1:
