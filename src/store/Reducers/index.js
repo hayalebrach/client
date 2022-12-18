@@ -1,10 +1,13 @@
 
+import { actions } from "react-table";
 import Cart from "../../components/Cart/Cart";
 import * as actionType from "../actions";
 
 const initialState = {
+    //קורס מבוקש
+    currentCours:"",
     //הכרטיס המבוקש
-    currentCard: null,
+    currentCard: "",
    //כל הקורסים
     AllCourses:[],
     //המערך של המשתמשים
@@ -40,7 +43,8 @@ const initialState = {
     UsersPool: [],
     //הסטוריית קניות המשתמש
     HistoryUser: [],
-
+    //כל המדריכים
+    Guide:[],
     Managers: [],
 
 
@@ -49,6 +53,58 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case actionType.GET_GUIDE:{
+            console.log("אני פה");
+            let g=[];
+            let arr=state.courses_arr;
+            console.log(arr);
+            for(let i=0;i<action.payload.length;i++){
+                
+                 if(arr.find(x=>x.IdUser==action.payload[i].Id)!=null);
+                      g.push(action.payload[i]);
+            }
+            console.log(g);
+           return{
+               ...state,
+                Guide:g
+           }
+        }
+        //קבלת קורס על פי ת"ז
+        case actionType.GET_COURS:{
+            let c=state.courses_arr.find(x=>x.Id==action.payload);
+            console.log(c);
+            return{
+                ...state,
+                currentCours:c
+            }
+
+        }
+            //עדכון מחיר לקורס
+            case actionType.UPDATE_COURS:
+                {
+                    console.log(action.payload);
+                    let newArr3 = state.courses_arr;
+                    let cours=newArr3.find(x=>x.Id==action.payload.Id);
+                    newArr3.pop(cours);
+                    newArr3.push(action.payload);
+                    return {
+                        ...state,
+                        courses_arr: newArr3   
+                    }
+                }
+        //מחיקת קורס
+
+        case actionType.DELETE_COURSE: {
+            alert("קורס זה נמחק מרשימת הקורסים לבריכה זו");
+        }
+        //קבלת כרטיס על פי ת"ז
+        case actionType.GET_BY_ID_CARD: {
+            return {
+                ...state,
+                currentCard:action.payload
+            }
+
+        }
         //היסטורית משתמש לבריכה מסוימת
         case actionType.GET_HISTORY_OF_USER_TO_POOL: {
             return {
@@ -82,24 +138,12 @@ const reducer = (state = initialState, action) => {
         }
         //מחיקת כרטיס
         case actionType.DELETE_CARD: {
-            alert("DELETE_CARD");
+            alert("כרטיס זה נמחק מרשימת הכרטיסים לבריכה זו");
         }
-        //ייבוא של כרטיס לבריכה על פי ת"ז
-        case actionType.GET_BY_ID_CARD:
-            let card = null;
-            let newArr4 = [state.CardsArr];
-
-            for (let i = 0; i < newArr4.length; i++) {
-                if (newArr4[i].Id == action.payload) {
-                    card = newArr4[i];
-                }
-            }
-            return {
-                ...state,
-                currentCard: card
-            }
+       
         //עדכון כרטיס
         case actionType.UPDATE_CARD:
+            
             let newArr5 = [...state.CardsArr];
             for (let i = 0; i < newArr5.length; i++) {
                 if (newArr5[i].Id == action.payload.Id) {
@@ -251,26 +295,7 @@ const reducer = (state = initialState, action) => {
             }
         }
 
-        //מחיקת קורס
-
-        case actionType.DELETE_COURSE: {
-            alert("HEREEE");
-            let newArr2 = [...state.courses_arr];
-            alert(state.courses_arr.length);
-            for (let i = 0; i < state.courses_arr.length; i++) {
-                if (newArr2[i].Id == action.payload) {
-                    console.log("hola" + newArr2[i]);
-                    newArr2.pop(newArr2[i]);
-                    break;
-                }
-            };
-            alert("FINISHHH");
-            return {
-                ...state,
-                courses_arr: newArr2
-            }
-        }
-
+        
         //הוספת מנהל
         case actionType.ADD_MANAGER: {
             return {
@@ -395,6 +420,7 @@ const reducer = (state = initialState, action) => {
 
         
 
+
         //עדכון מחיר לקורס
         case actionType.UPDATE_COURS:
             {
@@ -409,7 +435,6 @@ const reducer = (state = initialState, action) => {
 
                 }
             }
-
             case actionType.ADD_TO_CART:
             
                 return {

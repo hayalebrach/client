@@ -1,35 +1,31 @@
  import * as actionType from "../actions";
  import axios from "axios";
-
+ //כל במדריכים
+ export const AllGuide=()=>{
+  return dispach=>{
+      axios.get("http://localhost:50157/api/User/GetAllGuide")
+      .then(response=>{
+          console.log(response.data);
+          dispach({type:actionType.GET_GUIDE,payload:response.data})
+    })
+    .catch(err=>console.log(err))}
+      
+}
 //כל המשתמשים
 export const getAllUser=()=>{
+    console.log("i am hear");
     return dispach=>{
         
         axios.get("http://localhost:50157/api/user/GetAllUsers")
         .then(response=>{
             dispach({type:actionType.GET_USERS,payload:response.data})
+            console.log(response.data);
         })
         .catch(err=> console.log(err) )
     }
 }
 
-export const loginNotDispatch = (data) => {
-    // return (dispatch) => {        
-    //     try {
-         return   axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?name=${data.Name}&password=${data.Password}`)
-        //     .then(res => {
-        //         dispatch({type:actionType.LOGIN,payload:res.data});
-        //     }).catch(err => {
-        //         console.log(err);
-        //     })
-        // }
-        // catch (err) {
-            
-        //     console.log(err);
-        // }
-    // }
 
-}
 //לוגין
 export const login = (data) => {
     return (dispatch) => {        
@@ -126,7 +122,7 @@ export const updateUser=(data)=>{
 export const getAllHistoryOfUser=(IdPool,IdUser)=>{
     console.log("ה' תודה");
     return dispatch=>{
-        axios.get(`http://localhost:50157/api/Customr_To_Pool/GetHistoryOfUser?IdPool=${IdPool}&IdUser=${IdUser}`)
+        axios.get(`http://localhost:50157/api/Customr_To_Pool/GetHistoryByIdPoolAndIdUser?IdUser=${IdUser}&IdPool=${IdPool}`)
         .then(response=>{
             console.log(response.data);
             dispatch({type:actionType.GET_HISTORY_OF_USER_TO_POOL,payload:response.data})

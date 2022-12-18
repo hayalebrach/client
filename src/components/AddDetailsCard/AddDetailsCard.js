@@ -3,14 +3,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
-import {AddCard,getAllCardByIdPool} from "../../store/Actions/Card"
-import { useDispatch ,useSelector} from "react-redux";
+import {AddCard} from "../../store/Actions/Card"
+import {useSelector} from "react-redux";
 import { useParams ,useNavigate} from "react-router";
 
 
 const schema = yup.object({
     Price: yup.number().positive().integer().required(),
-    EntersAmount: yup.number().positive().integer().required()
+    EntersAmount: yup.number().positive().integer().required(),
+    IdPool:yup.number(),
+    Status:yup.bool()
 }).required();
 
 export default function AddDetailsCard() {
@@ -19,16 +21,21 @@ export default function AddDetailsCard() {
     let f = useParams();
     useEffect(() => {
       f=f.flag;
+
     },[]);
     console.log(f.flag);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-   const dispatch=useDispatch();
     const onSubmit = (data) => {
-        dispatch(AddCard({...data,IdPool:currentPool.Id}));
-        if(f.flag=="true")
-           nav("/ManagerNavBar/AllCardsToPool");        
+        data.IdPool=currentPool.Id;
+        data.Status=true;
+        console.log(data);
+        AddCard(data);
+        if(f=="true")
+            nav("/ManagerNavBar/AllCardsToPool");        
+       
+           
     }
 
     return (<>

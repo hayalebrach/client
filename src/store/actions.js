@@ -102,8 +102,12 @@ export const GET_BY_ID="GET_BY_ID";
 
 //הוספת רכישה לעגלת קניות
 export const ADD_TO_CART="ADD_TO_CART";
+//קבלת קורס לפי ת"ז
+export const GET_COURS="GET_COURS";
 
 
 export const DELETE_FROM_CART="DELETE_FROM_CART";
+//קבלת כל המדריכים
+export const GET_GUIDE="GET_GUIDE";
 
 

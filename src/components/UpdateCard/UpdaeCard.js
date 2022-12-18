@@ -2,7 +2,7 @@ import{ React,useEffect}  from "react";
 import { useParams,useNavigate } from "react-router";
 import {useDispatch,useSelector,shallowEqual} from "react-redux";
 import {updateCard,getAllCardByIdPool} from "../../store/Actions/Card";
-export default function UpdateUser(){
+export default function UpdateCard(){
     const dispatch = useDispatch();
     let f = useParams();
     const nav=useNavigate();
@@ -15,12 +15,12 @@ export default function UpdateUser(){
             CardsArr:state.CardsArr
           }), shallowEqual);
           
-      console.log(currentCard);
      const cardSchema = {
         Id:currentCard.Id,
-        IdPool:currentCard.Name,
+        IdPool:currentCard.IdPool,
         Price:currentCard.Price,
-        EntersAmount:currentCard.EntersAmount
+        EntersAmount:currentCard.EntersAmount,
+        Status:currentCard.Status
     }
   
               const change = (e) => {
@@ -30,8 +30,9 @@ export default function UpdateUser(){
               console.log(cardSchema[inputName]);
             }
             const Send=()=>{
+                console.log(cardSchema);
                 dispatch(updateCard(cardSchema));
-                dispatch(getAllCardByIdPool(cardSchema.IdPool));
+               dispatch(getAllCardByIdPool(cardSchema.IdPool));
                 console.log(CardsArr);
                 nav("/ManagerNavBar/AllCardsToPool");
             }
@@ -47,7 +48,7 @@ return (<>
         <input type="number" className="input" name="EntersAmount" placeholder={currentCard.EntersAmount} variant="standard" onChange={change} defaultValue={currentCard.EntersAmount} disabled={f.flag=="false"}/>
         
      
-        <input type="button" className="button" onClick={()=>Send()}/></div>
+        <input type="button" className="button" value="עדכון"onClick={()=>Send()}/></div>
     </form>
     </>
 ); 
