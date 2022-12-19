@@ -8,16 +8,17 @@ import "./AllPools.css";
 export default  function AllPools(){
   const dispatch = useDispatch();
 
-    const Pools=useSelector(state =>state.poolsArr);
+    const poolsArr=useSelector(state =>state.poolsArr);
     let currentPool=useSelector(state =>state.currentPool);
-    
+    // const {currentPool,courses_arr,currentCours }= useSelector(state => ({
+    //   currentPool: state.currentPool,
+    //   courses_arr:state.courses_arr,
+    //   currentCours:state.currentCours,
+    // }), shallowEqual);
     let nav=useNavigate();
     const Func=(pool)=>{
       dispatch(savePool(pool));
-      
-      console.log("IM BACKK!!");
       nav("/poolWeb");
-      console.log(currentPool);
     }
 
   return(
@@ -28,7 +29,11 @@ export default  function AllPools(){
     <h1>בריכות שחייה</h1>
     <ul>
         {
-           Pools.map(pool=> <><div  className="pool"><div>  <img src={"Pic/istockphoto-1311457374-1024x1024.jpg"} className="img"/>  </div> <br/><b>{pool.Name}</b><br/>{pool.Adress}<br/> <br/>{pool.Price}<input type="button" className="button1" value="לפרטים" onClick={()=>Func(pool)}></input></div></> )
+           poolsArr.map(Pools=> <> <div className="pool" ><div>  <img src={"Pic/istockphoto-1311457374-1024x1024.jpg"} className="img"/>  </div> 
+           <br/><b>{Pools.Name}</b>
+           <br/>{Pools.Adress}<br/> 
+           <br/>{Pools.Price}<input type="button" className="button1" value="לפרטים" onClick={()=>Func(Pools)}></input>
+             </div></> )
         }
     </ul>
     

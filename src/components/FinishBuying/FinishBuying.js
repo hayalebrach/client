@@ -139,7 +139,7 @@ export default FinishBuying;
 //     let nav=useNavigate();
 
 //     const keepBuying=()=>{
-//         nav("/home");
+//         nav("/AllPools");
 
 //     }
 

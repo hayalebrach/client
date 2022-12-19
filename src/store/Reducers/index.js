@@ -54,7 +54,6 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionType.GET_GUIDE:{
-            console.log("אני פה");
             let g=[];
             let arr=state.courses_arr;
             console.log(arr);
@@ -291,7 +290,7 @@ const reducer = (state = initialState, action) => {
         case actionType.ADD_COURS: {
             return {
                 ...state,
-                courses_arr: [...state.Courses, action.payload]
+                courses_arr: [...state.courses_arr, action.payload]
             }
         }
 

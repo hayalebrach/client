@@ -64,16 +64,17 @@ function App() {
   let nav = useNavigate();
   const dispatch = useDispatch();
 
-  const { Schedule, currentUser, currentPool,usersArr } = useSelector(state => ({
+  const { Schedule, currentUser, currentPool,usersArr ,poolsArr} = useSelector(state => ({
     currentUser: state.currentUser,
     Schedule: state.Schedule,
     currentPool: state.currentPool,
-    usersArr:state.usersArr
+    usersArr:state.usersArr,
+    poolsArr:state.poolsArr
   }), shallowEqual);
   console.log("הבריכה הנוכחית");
   console.log(currentPool);
   console.log(currentUser);
-  console.log(usersArr);
+  console.log(poolsArr);
   // console.log(Cards, Managers)
 
   // const { num, current_user } = useSelector(state => ({
@@ -98,7 +99,7 @@ function App() {
       
     </div>
 
-    {currentUser ? (<><text className='Exit' onClick={() => { dispatch(Exit()); nav("/home") }}>יציאה</text></>) : null}
+    {currentUser ? (<><text className='Exit' onClick={() => { dispatch(Exit()); nav("/AllPools") }}>יציאה</text></>) : null}
 
 
     <div className="App" >
@@ -110,9 +111,9 @@ function App() {
         <Route path="cart/UserNavBar" element={<UserNavBar />} />
         <Route path="profile/history" element={<BuyingHistory />} />
         <Route path="cart/BuyingForm" element={<BuyingForm />} />
-        <Route path="home/poolWeb" element={<PoolWeb />} />
+        <Route path="AllPools/poolWeb" element={<PoolWeb />} />
         <Route path="cart/PoolWeb" element={<PoolWeb />} />
-        <Route path="cart/BuyingForm/home" element={<AllPools />} />
+        <Route path="cart/BuyingForm/AllPools" element={<AllPools />} />
 
         <Route path="poolWeb" element={<PoolWeb />} />
         <Route path="MainManagerNavBar/AllUsers" element={<AllUsers />} />
@@ -122,13 +123,13 @@ function App() {
         <Route path="signUp/login" element={<Login />} />
         <Route path="login/signUp" element={<SignUp />} />
         <Route path="courseDetails" element={<CourseDetails />} />
-        <Route path="home" element={<AllPools />} />
-        <Route path="UserNavBar/home" element={<AllPools />} />
+        <Route path="AllPools" element={<AllPools />} />
+        <Route path="UserNavBar/AllPools" element={<AllPools />} />
 
         <Route path="MainManagerNavBar/AllManagers" element={<AllManagers />} />
         <Route path="courses" element={<Courses />} />
         <Route path="poolWeb/courses" element={<Courses />} />
-        <Route path="home/poolWeb/courses" element={<Courses />} />
+        <Route path="AllPools/poolWeb/courses" element={<Courses />} />
         <Route path="cart/PoolWeb/courses" element={<Courses />} />
 
         <Route path="ManagerNavBar/courses" element={<Courses />} />
@@ -142,11 +143,11 @@ function App() {
         <Route path="cart/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="poolWeb/buyTickets" element={<BuyTickets />} />
 
-        <Route path="home/poolWeb/buyTickets" element={<BuyTickets />} />
+        <Route path="AllPools/poolWeb/buyTickets" element={<BuyTickets />} />
 
         <Route path="about" element={<About />} />
         <Route path="cart/UserNavBar/about" element={<About />} />
-        <Route path="home/poolWeb/about" element={<About />} />
+        <Route path="AllPools/poolWeb/about" element={<About />} />
         <Route path="poolWeb/about" element={<About />} />
 
         <Route path="ManagerNavBar/AllCardsToPool" element={<AllCardsToPool />} />
@@ -159,7 +160,7 @@ function App() {
         <Route path="/poolWeb/courses/courseEnrollment" element={<CourseEnrollment />} />
         <Route path="/buyingForm" element={<BuyingForm />} />
         <Route path="/MainManagerNavBar/managers" element={<AllManagers />} />
-        <Route path="/MainManagerNavBar/home" element={<AllPools />} />
+        <Route path="/MainManagerNavBar/AllPools" element={<AllPools />} />
 
         <Route path="buyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="cart/BuyingForm/finishBuying" element={<FinishBuying />} />
@@ -182,7 +183,7 @@ function App() {
         <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
         <Route path="cart/UserNavBar" element={<UserNavBar />} />
         <Route path="profile/history" element={<BuyingHistory />} />
-        <Route path="home/poolWeb" element={<PoolWeb />} />
+        <Route path="AllPools/poolWeb" element={<PoolWeb />} />
         <Route path="profile/CourseToUser/poolWeb" element={<PoolWeb />} />
         <Route path="profile/history/poolWeb" element={<PoolWeb />} />
 
@@ -195,10 +196,10 @@ function App() {
         <Route path="/signUp/login" element={<Login />} />
         <Route path="login/signUp" element={<SignUp />} />
         <Route path="courseDetails" element={<CourseDetails />} />
-        <Route path="home" element={<AllPools />} />
+        <Route path="AllPools" element={<AllPools />} />
         <Route path="managers" element={<AllManagers />} />
         <Route path="courses" element={<Courses />} />
-        <Route path="home/poolWeb/courses" element={<Courses />} />
+        <Route path="AllPools/poolWeb/courses" element={<Courses />} />
         <Route path="poolWeb/courses" element={<Courses />} />
         {/* ----------------------------------------------------------------------------- */}
         <Route path="ManagerNavBar/courses" element={<Courses />} />
@@ -211,11 +212,11 @@ function App() {
         <Route path="cart/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="poolWeb/buyTickets" element={<BuyTickets />} />
 
-        <Route path="home/poolWeb/buyTickets" element={<BuyTickets />} />
+        <Route path="AllPools/poolWeb/buyTickets" element={<BuyTickets />} />
 
         <Route path="about" element={<About />} />
         <Route path="cart/UserNavBar/about" element={<About />} />
-        <Route path="home/poolWeb/about" element={<About />} />
+        <Route path="AllPools/poolWeb/about" element={<About />} />
         <Route path="poolWeb/about" element={<About />} />
         {/* //====================================================== */}
         {/* <Route path="poolWeb/AddDetailsSchedule" element={<AddDetailsSchedule />} /> */}
@@ -231,7 +232,7 @@ function App() {
         <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment />} />
         <Route path="/buyingForm" element={<BuyingForm />} />
         <Route path="/MainManagerNavBar/managers" element={<AllManagers />} />
-        <Route path="/MainManagerNavBar/home" element={<AllPools />} />
+        <Route path="/MainManagerNavBar/AllPools" element={<AllPools />} />
         <Route path="/buyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="profile" element={<Profile />} />
 
@@ -245,22 +246,25 @@ function App() {
         <Route path="MainManagerNavBar/AddPool/AddDetailsManager" element={<AddDetailsManager />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
-        <Route path="MainManagerNavBar/AddPool/AddDetailsCours" element={<AddDetailsCours />} />
+
 
 
         <Route path="AddDetailsCard/:flag" element={<AddDetailsCard flag="true" />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsCard/:flag" element={<AddDetailsCard flag="false" />} />
+        <Route path="MainManagerNavBar/AddPool/AddDetailsCours/:flag" element={<AddDetailsCours flag="false" />} />
+        <Route path="AddDetailsCours/:flag" element={<AddDetailsCours flag="true" />} />
+        
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
 
 
         {/* <Route path="ShowSchedule" element={<ShowSchedule />} /> */}
         <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
-        <Route path="AddDetailsCours/:flag" element={<AddDetailsCours flag="false" />} />
-        {/* <Route path="SplitButton" element={<SplitButton />} /> */}
+       
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
         <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />
         <Route path="ManagerNavBar/AllCoursToPool" element={<AllCoursToPool />} />
+                {/* <Route path="SplitButton" element={<SplitButton />} /> */}
       </Routes>
     </div>
 

@@ -19,7 +19,6 @@ export default function Courses() {
   let i = 0;
 
   useEffect(() => {
-    alert(currentPool.Id);
     dispatch(GetAllCoursesByPool(currentPool.Id));
 
   }, [])
@@ -37,34 +36,20 @@ export default function Courses() {
     }
 
   }
-
-  const DELETE = (CourseId) => {
-    dispatch(DeleteCourse(CourseId));
-  }
-  const UPDATE = (CourseId) => {
-    nav("./AddDetailsCours");
-    // dispatch(updateCourse(CourseId));
-  }
-  // const callUs = () => {
-  //   dispatch(getById(Courses[0].IdUser));
-  // }
-
   return (
     <>
       <h1>:) הקורסים שלנו</h1>
       {courses_arr.map(Course => <>  <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br>
 
-        <br></br>{Course.PeopleAmount} כמות אנשים:<br></br> {Course.Dis} אופי הקורס:
+      <br></br> {Course.Dis} אופי הקורס:
 
-      </div>{currentUser && currentUser.IdRole == 2 ?
-        (<>
-          <div>
-            <input type="button" value="מחק" className="ManagerButtons" onClick={() => { alert(Course.Id); DELETE(Course.Id) }} />
-            <input type="button" className="ManagerButtons" value="עדכן" />
-          </div>
-        </>) :<input type="button" value="להרשמה" className="button1" onClick={()=>details(Course)} />
-}
-      </>)}
+      </div>
+     
+      
+        
+      <input type="button" value="להרשמה" className="button1" onClick={()=>details(Course)} />     
+
+      </>)} 
 
     </>
   )

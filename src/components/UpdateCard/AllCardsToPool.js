@@ -68,8 +68,8 @@ const Delet=(Id)=>{
     <ul>
         {
             CardsArr.map(CardsArr=><><br/> <li className="li" key={CardsArr.Id}><h3>id: {CardsArr.Id}</h3><br/> מחיר:{CardsArr.Price}<br/> כמות בניסות:{CardsArr.EntersAmount}<br/>
-            {a==20?<input type="button" value="עדכון" onClick={()=>update(CardsArr.Id)}/>:null}
-            {a==30?<input type="button" value="מחיקה" onClick={()=>Delet(CardsArr.Id)}/>:null}
+            {a==20?<input type="button" value="עדכן" onClick={()=>update(CardsArr.Id)}/>:null}
+            {a==30?<input type="button" value="מחק" onClick={()=>Delet(CardsArr.Id)}/>:null}
             
             <br/> </li></> )
         }

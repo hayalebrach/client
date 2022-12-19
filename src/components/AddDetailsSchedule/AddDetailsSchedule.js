@@ -98,11 +98,10 @@ export default function AddDetailsSchedule() {
         else
         {
             ChekAndAdd(data).then("נוסף בהצלחה");        
-            console.log("ה' תעזור לשרה בפגישה שיהיה לה טוב ונכון והלוואי שתתחתן במהרה");
             console.log(schedule);
                  
         }
-        //לשלוח ללשרת ולבדוקשהוא יכול להכניס 
+      
                   
     }
     const Chek=()=>{

@@ -56,7 +56,7 @@ const Login = () => {
                     break;
                 }
                 default: {
-                    nav("/home");
+                    nav("/AllPools");
                 }
             }
         }

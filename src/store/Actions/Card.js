@@ -52,17 +52,7 @@ export const getAllCardByIdPool=(IdPool)=>{
         })
         .catch(err=>console.log(err) )
     }
-}
-//פונקצית מחיקה
-// export const DeletCard=(data)=>{
-//     console.log(data);
-//     console.log("uuuuu");
-//     return dispatch=>{
-//         axios.put("http://localhost:50157/api/packege/PutForDelete?",data)
-//         .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
-//         .catch(err=>console.log(err))
-//     }
-// } 
+} 
 export const DeletCard=(data)=>{
     return dispatch=>{
         axios.put("http://localhost:50157/api/Packege/PutForDelete?",data)

@@ -1,7 +1,7 @@
 
 
 import { useSelector } from "react-redux";
-import PoolNavBar from "../PoolNavBar"
+import PoolNavBar from "../PoolNavBar";
 
 export default function PoolWeb() {
 
