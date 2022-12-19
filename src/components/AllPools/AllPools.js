@@ -29,11 +29,13 @@ export default  function AllPools(){
     <h1>בריכות שחייה</h1>
     <ul>
         {
+
            poolsArr.map(Pools=> <> <div className="pool" ><div>  <img src={"Pic/istockphoto-1311457374-1024x1024.jpg"} className="img"/>  </div> 
            <br/><b>{Pools.Name}</b>
            <br/>{Pools.Adress}<br/> 
            <br/>{Pools.Price}<input type="button" className="button1" value="לפרטים" onClick={()=>Func(Pools)}></input>
              </div></> )
+
         }
     </ul>
     

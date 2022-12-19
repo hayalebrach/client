@@ -86,8 +86,9 @@ function App() {
 
   
   return (<>
-<TryTable />
+    <TryTable />
     <div className='smallDiv'>
+      <img src='../Pic/LOGO.jpg' className='logo'></img>
       <img src="../Pic/grocery-store.png" className="img1" onClick={() => nav("./cart")} />
       <img src="../Pic/user.png" className="img2" onClick={() => {
         if (currentUser != "")
@@ -105,7 +106,7 @@ function App() {
     <div className="App" >
 
       <Routes >
-        <Route path="" element={<GuessNavBar />} />
+        <Route path="" element={<AllPools />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
         <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
         <Route path="cart/UserNavBar" element={<UserNavBar />} />

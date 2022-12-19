@@ -1,5 +1,5 @@
 body{
-  background-image:url('../swimming-pool-gf0aed2820_1920.jpg');
+  background-image:url('../../public/Pic/sea-1284467_1920.jpg');
   background-size: 100%;
   color:black;
   font-family: inherit;
@@ -164,5 +164,9 @@ body{
   top: 10px;
   left: 602px;
   color: black;
+}
+.logo{
+  width: 15;
+  height: 15px;
 }
 

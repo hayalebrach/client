@@ -2,6 +2,7 @@ import React,{useEffect}  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
+import "./AddDetailsPool.css"
 import * as yup from "yup";
 import {getAllErea,AddPool} from "../../store/Actions/Pools";
 import { useDispatch,useSelector ,shallowEqual} from "react-redux";
@@ -42,12 +43,15 @@ export default function AddDetailsPool() {
     }
     return (<>
                  <h1>הוספת פרטי הבריכה</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Input register={register} errors={errors} name="Name" lablName="שם הבריכה" className="" type="text"/>
-            <Input register={register} errors={errors} name="Adress" lablName="כתובת" className="" type="text"/>
-            <Input register={register} errors={errors} name="Price" lablName="מחיר ליחיד" className="" type="number"/>
-            <Input register={register} errors={errors} name="Amount" lablName="מס' אנשים" className="" type="number"/>
-            <Input register={register} errors={errors} name="Phone" lablName="טלפון" className="" type="number"/>
+        <form onSubmit={handleSubmit(onSubmit)} className="x1">
+            <Input register={register} errors={errors} name="Name" lablName="שם הבריכה" className="input1" type="text"/>
+            <Input register={register} errors={errors} name="Adress" lablName="כתובת" className="input1" type="text"/>
+            <Input register={register} errors={errors} name="Price" lablName="מחיר ליחיד" className="input1" type="number"/>
+            <Input register={register} errors={errors} name="Amount" lablName="מס' אנשים" className="input1" type="number"/>
+            <Input register={register} errors={errors} name="Phone" lablName="טלפון" className="input1" type="number"/>
+            <Input register={register} errors={errors} name="Pic" lablName="תמונה" className="input1" type="file"/>
+
+            
             <label>איזור בארץ</label><br/>
             <select  {...register("IdErea")}  className="select" >  
                  {Erea.map(x => <option key={x.Name} value={x.Id}>{x.Name}</option>)}
