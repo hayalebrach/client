@@ -41,7 +41,7 @@ import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
 
 
 import { Exit ,getAllUser} from "../store/Actions/Users";
-import { GetAllPools } from "../store/Actions/Pools";
+import { GetAllPools ,getAllDays} from "../store/Actions/Pools";
 import { useEffect ,useState} from 'react';
 import UpdateUser from './UpdateUser/UpdateUser';
 // import { UpdateUser } from './UpdateUser/UpdateUser';
@@ -53,12 +53,14 @@ import { GetAllCourses } from '../store/Actions/Cours';
 import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
 import AllCoursToPool from './UpdateCours/AllCoursToPool'
+import {SavePlace} from './SavePlace/SavePlace';
 function App() {
   useEffect(() => {
     dispatch(GetAllCourses());
     dispatch(GetAllPools());
     dispatch(getAllManagers());
     dispatch(getAllUser());
+    dispatch(getAllDays());
   }, []);
   
   let nav = useNavigate();
@@ -258,13 +260,14 @@ function App() {
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
 
 
-        {/* <Route path="ShowSchedule" element={<ShowSchedule />} /> */}
+         <Route path="poolWeb/ShowSchedule" element={<ShowSchedule />} /> 
         <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
        
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
         <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />
         <Route path="ManagerNavBar/AllCoursToPool" element={<AllCoursToPool />} />
+        <Route path="SavePlace" element={<SavePlace/>}/>
                 {/* <Route path="SplitButton" element={<SplitButton />} /> */}
       </Routes>
     </div>

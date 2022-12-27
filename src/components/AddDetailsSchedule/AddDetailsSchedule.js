@@ -47,18 +47,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 2,
     },
 }));
-function createData(IdDays, { Type, Endhour, StartHour }) {
-    return (IdDays, { Type, Endhour, StartHour })
-}
-
-//   const schedule = [ 
-//    createData(1,{(1,'11:11','22:22')})
-//     createData(1),
-//     createData(1,2,'00:32','23:32'),
-//     createData(4,2,'00:32','23:32'),
-//     createData( 3,2,'01:32','23:32') 
-//   ];
-
 export default function AddDetailsSchedule() {
 
     let [schedule, Setschedule] = useState([]);
@@ -73,10 +61,10 @@ export default function AddDetailsSchedule() {
         
         //alert("מערכת השעות ריקה נא להכניס נתונים");
     }, [schedule])
-    const { Days, currentPool, Schedule } = useSelector(state => ({
+    const { Days, currentPool} = useSelector(state => ({
         Days: state.Days,
-        currentPool: state.currentPool,
-        Schedule: state.Schedule
+        currentPool: state.currentPool
+
     }), shallowEqual);
     const typeArr = [{ Id: 1, Name: "בנים" }, { Id: 2, Name: "בנות" }];
     const sum = 0;
@@ -127,8 +115,7 @@ export default function AddDetailsSchedule() {
             </select><br />
 
            
-            {/* <input type="number" className="" {...register("IdPool")} value={currentPool.Id} onChange={validator} /> <br/>  */}
-            
+        
             <input type="submit" value="הוסף" />
             
             
