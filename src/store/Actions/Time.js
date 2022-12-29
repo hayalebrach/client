@@ -9,10 +9,19 @@ export const GetTimeByIdPool = (IdPool) => {
 export const GetSchedule=(Id)=>{
     return axios.get(`http://localhost:50157/api/DaysToPool/Get?Id=${Id}`)
 }
+export const Schedule=(data)=>{
+    return {
+        type: actionType.GET_SCHEDULE,
+        payload: data
+    }
+}
 //שריון מקום לללקוח
 //בדיקה שיש מקום בבריכה בתאריך הרצוי
-export const GetListOfDateAndPool=(IdPool,date)=>{
+export const GetListOfDateAndPool=(IdPool)=>{
     console.log(IdPool);
-    console.log(date);
-    return axios.get(`http://localhost:50157/api/EntCustomr/GetAllNumPeople?IdPool=${IdPool}&date=${date}`)
+    return axios.get(`http://localhost:50157/api/EntCustomr/GetAllNumPeople?IdPool=${IdPool}`)
+}
+//שליחת נתוני השמירת מקום לדאטה בייס
+export const PostEntCust=(data)=>{
+    return axios.post(`http://localhost:50157/api/EntCustomr/Post?`,data);
 }

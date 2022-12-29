@@ -56,7 +56,7 @@ export const ALL_DAYS="ALL_DAYS";
 //הוספת לוח זמנים למערך שבסטייט החיצוני
 export const ADD_SCHEDULE_TO_ARRAY="ADD_SCHEDULE_TO_ARRAY";
 //קבלת לוח זמנים מהסטייט החיצוני
-export const GET_SCHEDULE="GET_SCHEDULE";
+export const GET_SCHEDULES="GET_SCHEDULES";
 
 //הצגת קורסים ללקח רשום
 export const COURSES_TO_USER="COURSES_TO_USER";
@@ -109,5 +109,6 @@ export const GET_COURS="GET_COURS";
 export const DELETE_FROM_CART="DELETE_FROM_CART";
 //קבלת כל המדריכים
 export const GET_GUIDE="GET_GUIDE";
-
+//יום מבוקש
+export const GET_SCHEDULE="GET_SCHEDULE";
 

@@ -20,6 +20,7 @@
     "dayjs": "^1.11.7",
     "mobiscroll-react": "^4.0.0",
     "react": "^17.0.2",
+    "react-datetime": "^3.2.0",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.34.0",
     "react-multi-date-picker": "^3.3.4",
