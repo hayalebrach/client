@@ -54,6 +54,7 @@ import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
 import AllCoursToPool from './UpdateCours/AllCoursToPool'
 import {SavePlace} from './SavePlace/SavePlace';
+import AddDetailsScheduleCours from './AddDetailsScheduleCours/AddDatailsScheduleCours';
 function App() {
   useEffect(() => {
     dispatch(GetAllCourses());
@@ -268,6 +269,7 @@ function App() {
         <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />
         <Route path="ManagerNavBar/AllCoursToPool" element={<AllCoursToPool />} />
         <Route path="SavePlace" element={<SavePlace/>}/>
+        <Route path="ManagerNavBar/AddDetailsScheduleCours" element={<AddDetailsScheduleCours/>}/>
                 {/* <Route path="SplitButton" element={<SplitButton />} /> */}
       </Routes>
     </div>

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import{Link} from "react-router-dom";
+import{Link, useNavigate} from "react-router-dom";
 
 import "./App.css";
 import"./ManagerNavBar.css";
 
 
 export default function ManagerNavBar(){
- 
+     const nav=useNavigate();
     return (<><nav  className="navbar navbar-default">
 
     
@@ -15,7 +15,7 @@ export default function ManagerNavBar(){
         <Link to="AllCoursToPool" className="navbar-brand">קורסים</Link>
         <Link to="addSale" className="navbar-brand">להוספת מבצעים </Link>
         <Link to="AddDetailsSchedule" className="navbar-brand">זמני בריכה</Link>
-
+         <Link to="AddDetailsScheduleCours" className="navbar-brand">זמני קורסים</Link>
     </nav>
     </>)
 }

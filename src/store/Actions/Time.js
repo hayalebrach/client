@@ -18,10 +18,16 @@ export const Schedule=(data)=>{
 //שריון מקום לללקוח
 //בדיקה שיש מקום בבריכה בתאריך הרצוי
 export const GetListOfDateAndPool=(IdPool)=>{
-    console.log(IdPool);
     return axios.get(`http://localhost:50157/api/EntCustomr/GetAllNumPeople?IdPool=${IdPool}`)
 }
 //שליחת נתוני השמירת מקום לדאטה בייס
 export const PostEntCust=(data)=>{
     return axios.post(`http://localhost:50157/api/EntCustomr/Post?`,data);
+}
+//הוספת לוח זמנים לקורסים
+export const ChekAndAddCours = (data) => {
+    return axios.put(`http://localhost:50157/api/DaysToCours/AddDaysToPool?`,data)
+}
+export const GetTimeOfCoursByIdPool = (IdPool) => {
+    return axios.get(`http://localhost:50157/api/DayToCours/GetTimeByIdPool?IdPool=${IdPool}`)
 }

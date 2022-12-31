@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import {GetListOfDateAndPool,PostEntCust} from '../../store/Actions/Time';
 import {getCardsToCustomer,updateAmountGet} from "../../store/Actions/Card";
+import { date } from "yup/lib/locale";
 const schema = yup.object({
      NumPeople: yup.number().positive().integer().required(),
      IdPool: yup.number(),
@@ -28,66 +29,93 @@ export const SavePlace=()=> {
 
 
     const [history,SetHistory]=useState([]);   
-    console.log(history);
     const [number,Setnum]=useState();
     const [flag,SetFlag]=useState();
-    console.log(flag);
     const[IdCTP,SetId]=useState();
+    //בדיקת מספר האנשים בבריכה באותו היום
+    const [ChekTheNumPeople,SetCTNP]=useState([]);
 
+    //תאריך רצוי   
+
+    // const [yaer,SetYare]=useState();
+    // const [month,SetMonth]=useState();
+    let day=0,month=0,yaer=0;
+    const [date,SetDate]=useState();
+    //console.log(date);
     useEffect(()=>{
-        getCardsToCustomer(currentUser.Id).then(x=>SetHistory(x.data))  
- },[history])
+        getCardsToCustomer(currentUser.Id).then(x=>SetHistory(x.data));
+        GetListOfDateAndPool(currentPool.Id).then(x=>SetCTNP(x.data)); 
+
+ },[history,ChekTheNumPeople])
 
 
 
-//תאריך רצוי    
-const [D,SetD]=React.useState(new Date());
+
 let WeekDay=1;//היום שבו התאריך מתקים -בשביל לבדוק  היום של שתאריך תואם את היום בלוח זמנים
 
-//בדיקת מספר האנשים בבריכה באותו היום
-const [ChekTheNumPeople,SetCTNP]=useState([]);
+
 
 
 const handleChangeDate = (event) => {
-    let a=event.target.value;
+    const a=event.target.value;
+    SetDate(a);
  ChekeTheDate(new Date(a));
 };
-
-
 //בבדיקה שהיום של הלוח שמנים הנבחר תואם את היום של התאריך
 const ChekeTheDate=(EnterDate)=>{
-    SetD(EnterDate);
-    console.log(D);
-    console.log(EnterDate);
     let a=EnterDate.getDay();
-
+    
     WeekDay +=a;//זה היום בשבוע שבו התאריך מתקים
-         if(WeekDay==currentSchedule?.IdDays)
-      GetListOfDateAndPool(currentPool.Id).then(x=>SetCTNP(x.data));     
-    else
+ if(WeekDay!=currentSchedule?.IdDays)
     alert("התאריך הנבחר אינו תואם את בחירת מערכת השעות");
 }
+
+  
 const handleChangeNumPeople = (event) => {
     console.log(event.target.value);
     let num3=parseInt(event.target.value);
     Setnum(num3);
     FlagTrue();
- 
+   
  ChekNumPeople(num3);
 };
 
 //בדיקה אם מספר אנשים זה יכול להיכנס בבריכה
 const ChekNumPeople=(NumPeople)=>{
- console.log(NumPeople);
+    if(date!=null)
+{
  let num=0;
- for(let i=0;i<ChekTheNumPeople.lenght;i++){
-     if(ChekTheNumPeople[i].EnterDate==D){
-         num+=ChekTheNumPeople[i].NumPeople;
+ let i;
+ let a,b,c;
+ for(i=0;i<ChekTheNumPeople.length;i++)
+ {
+
+      a=new Date(ChekTheNumPeople[i].EnterDate).getDate();
+      b=new Date(ChekTheNumPeople[i].EnterDate).getMonth();
+      c=new Date(ChekTheNumPeople[i].EnterDate).getFullYear();
+      day=new Date(date).getDate();
+      month=new Date(date).getMonth();
+      yaer=new Date(date).getFullYear();
+     if(c==yaer)
+     {
+        if(b==month)
+        {
+         
+            if(a==day){
+                console.log(ChekTheNumPeople[i].NumPeople);
+                num+=ChekTheNumPeople[i].NumPeople;
+            }
+        }
      }
  }    
   num+=NumPeople;
+  console.log(num);
  if(currentPool.Amount<num)
     alert("אנא נסו יום אחר בבריכה זו- מספר האנשים ביום זה חורג מהמותר בבריכה ");
+ console.log(currentPool.Amount);   
+}
+else
+alert("נא למלא קודם פרטי תאריך");
 }
 
 
@@ -124,6 +152,9 @@ const PayWithCard=(AmountLeft,AmountGet,Id)=>{
      <form onSubmit={handleSubmit(onSubmit)}>
        <label>שם הבריכה</label><br/>
       <input type="text"  readOnly defaultValue={currentPool.Name}/><br/>
+      <label>הכנס תאריך </label><br/>
+      <input {...register("EnterDate")} type="date"  onChange={handleChangeDate}/><br/>
+      <p>{errors.EnterDate?.message}</p>
       <label>שעת התחלה</label><br/>
       <input {...register("StartHour")} type="text" readOnly disabled={false} defaultValue={currentSchedule.StartHour}/><br/>
       <label>שעת סיום</label><br/>
@@ -131,14 +162,11 @@ const PayWithCard=(AmountLeft,AmountGet,Id)=>{
        <label>הכנס מספר אנשים</label><br/>
       <input {...register("NumPeople")} type="number" onChange={handleChangeNumPeople}/><br/>
       <p>{errors.NumPeople?.message}</p>
-      <label>הכנס תאריך </label><br/>
-      <input {...register("EnterDate")} type="date" onChange={handleChangeDate}/><br/>
-      <p>{errors.EnterDate?.message}</p>
      {flag==false?<input type="submit" value="סיום"/>:null}
     </form>
     {flag==true?<h4>לתשלום באמצעות כרטיסי רכישה</h4>:null}
       {flag==true?     
-        history.map(cart=>(cart.IdPool==currentPool.Id?<div className="div1"> כמות כרטיסים: {cart.AmountLeft} <br/>  כרטיסים שמומשו: {cart.AmountGet} <br/>:תאריך קניה {cart.DateBuy} <br/> סה"כ שולם:{cart.TotalPrice}<br/><input value="לתשלום" type="button" onClick={()=>PayWithCard(cart.AmountLeft,cart.AmountGet,cart.Id)}/></div>:null) )
+        history.map(cart=>(cart.IdPool==currentPool.Id?<div className="div1"> כמות כרטיסים: {cart.AmountLeft} <br/>  כרטיסים שמומשו: {cart.AmountGet} <br/>:תאריך קניה {cart.DateBuy} <br/> סה"כ שולם:{cart.TotalPrice}<br/><input value="לתשלום" type="button" onClick={()=>PayWithCard(cart.AmountLeft,cart.AmountGet,cart.Id)}/></div>:alert("על מנת לשריין מקום יש לבדוק שיש באפשרותך לשלם באמצעות כרטיסי הבריכה!!!")) )
         :null}    
   
   </>)
