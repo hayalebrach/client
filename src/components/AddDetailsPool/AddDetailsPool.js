@@ -36,6 +36,7 @@ export default function AddDetailsPool() {
     });
 
     const onSubmit = (data) => {
+        
         dispatch(AddPool(data));
         console.log(data);
         nav("/MainManagerNavBar");

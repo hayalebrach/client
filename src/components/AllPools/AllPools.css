@@ -1,12 +1,18 @@
 .img {
-    width: 218px;
-    height: 222px;
-  }
-  .pool{
-  
-    font-family: 'Times New Roman', Times, serif;
-    display: inline-table;
-    margin-bottom: 2%;
-    margin:8px;
-    background-color:white;
- }
+  width: 218px;
+  height: 222px;
+}
+
+.pool {
+
+  font-family: 'Times New Roman', Times, serif;
+  display: inline-table;
+  margin-bottom: 2%;
+  margin: 19px;
+  background-color: white;
+}
+
+body {
+  /* background-image: url('../../../public/Pic/sea-1284467_1920.jpg'); */
+
+}

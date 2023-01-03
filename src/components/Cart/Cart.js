@@ -46,14 +46,14 @@ export default  function Cart(){
     <h1>Cart</h1>
     
         {
-            Cart.map(cart=><div className="div1"> כמות כניסות:{cart.EntersAmount}<br/>  מחיר: {cart.Price} <br/><br/> <br/> <input type="button" className="buttonn" value="לאתר הבריכה"  onClick={()=>ToPoolWeb(cart.IdPool)}/> <input type="button" value="מחק" className="button1" onClick={()=>{dispatch(DeleteFromCart(cart)) }}/>
+            Cart.map(cart=><div className="Card"> כרטיסיית {cart.EntersAmount} כניסות<br/>  מחיר: {cart.Price}₪ <br/><br/> <br/> <input type="button" className="button4" value="לאתר הבריכה"  onClick={()=>ToPoolWeb(cart.IdPool)}/> <input type="button" value="מחק" className="button4" onClick={()=>{dispatch(DeleteFromCart(cart)) }}/><img src="/Pic/swimming-pool.png" className="cardImg"></img> 
             </div> )
         }
         <br/><br/>  
 
         <div className="Sicum">
          לתשלום:  {sum}₪<br/>
-        <input type="button" value="לתשלום" className="button1" onClick={()=>{nav("./BuyingForm")}}/>
+        <input type="button" value="לתשלום" className="button4" onClick={()=>{nav("./BuyingForm")}}/>
 
         </div>
        

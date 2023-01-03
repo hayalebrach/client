@@ -103,3 +103,16 @@ export const getAllUsersByIdPool = (IdPool) => {
             .catch(err => console.log(err))
     }
 }
+
+export const getAllAreas = () => {
+    
+    return dispatch => {
+        axios.get(`http://localhost:50157/api/Erea/GetAllreas`)
+            .then(response => {
+                console.log(response.data);
+                dispatch({ type: actionType.GET_ALL_AREAS, payload: response.data })
+            })
+            .catch(err => console.log(err))
+    }
+}
+

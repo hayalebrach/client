@@ -71,17 +71,24 @@ const Login = () => {
     }
 
     return (<>
-        <h1>התחברות</h1>
+    
+        
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="div1">
+            <div className="formDiv" ><br/>
+            <h3>התחברות משתמש</h3>
 
-                <Input register={register} errors={errors} className="input" name="Name" lablName="שם פרטי" type="text" />
-                <Input register={register} errors={errors} className="input" name="Password" lablName="סיסמא" type="number" />
+                <Input register={register} errors={errors} className="inputLogin" name="Name" lablName="שם פרטי" type="text" src="../Pic/user.png"/>
+                <Input register={register} errors={errors} className="inputLogin" name="Password" lablName="סיסמא" type="number" src="../Pic/padlock.png"/>
                 <Link to="signUp" className="navbar-brand">עדיין לא  רשום? עבור להרשמה</Link>
 
-                <input type="submit" className="button" />
+                <input type="submit" className="submitLogin" />
             </div>
-        </form></>)
+        </form>
+        
+        
+        </>
+        
+        )
 }
 
 

@@ -110,4 +110,7 @@ export const DELETE_FROM_CART="DELETE_FROM_CART";
 //קבלת כל המדריכים
 export const GET_GUIDE="GET_GUIDE";
 
+export const GET_ALL_AREAS="GET_ALL_AREAS";
+
+export const GET_POOL_BY_AREAID="GET_POOL_BY_AREAID";
 

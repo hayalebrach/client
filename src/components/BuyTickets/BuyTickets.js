@@ -25,16 +25,20 @@ export default function BuyTickets() {
 
   return (
     <>
+    <div className="BuyTicketsDiv">
       <h1>כרטיסיות</h1>
       <h3>לקניה ביחידים אנא בחר כמות</h3>
       <input type="button" value="הוספה לסל"  onClick={()=>AddToCart({Price:currentPool.Price*document.getElementById("amount").value,EntersAmount:document.getElementById("amount").value})} ></input>
       <input type="number" id="amount"></input>
       <br />
       <br />
+      
      
         {
-          Cards.map(Card => <>  <div className="div1"> סוג כרטיסיה: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br /><input type="button" className="button1" value="הוספה לסל" onClick={() => { AddToCart(Card) }}></input></div></>)
+          Cards.map(Card => <>  <div className="Card"> כרטיסיית {Card.EntersAmount} כניסות<br></br> מחיר: {Card.Price}₪ <br /><input type="button" className="button4" value="הוספה לסל" onClick={() => { AddToCart(Card) }}></input><img src="/Pic/swimming-pool.png" className="cardImg"></img>  </div></>)
         }
+
+       </div>
       
 
     </>

@@ -21,7 +21,7 @@ const initialState = {
     //כל ההרשאות
     Role: [],
     //כל האיזורים
-    Erea: [],
+    Areas: [],
     //כל הימים
     Days: [],
     //המערך של הלוח זמנים
@@ -263,6 +263,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentUser: action.payload
             };
+
         case actionType.GET_BY_ID:
             return {
                 ...state,
@@ -314,6 +315,14 @@ const reducer = (state = initialState, action) => {
             };
         }
 
+        case actionType.GET_ALL_AREAS: {
+            return {
+
+                ...state,
+                Areas: action.payload
+            };
+        }
+        
         //הוספת כרטיס
         case actionType.ADD_CARD: {
             return {
