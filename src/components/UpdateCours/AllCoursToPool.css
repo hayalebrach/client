@@ -1,0 +1,17 @@
+#css-1nrlq1o-MuiFormControl-root{
+    display: inline-flex;
+    flex-direction: column;
+    border: 1px black solid;
+    vertical-align: top;
+    width: 24%;
+    border-radius: 11px;
+}
+#demo-simple-select-label{
+    font-size: 20px;
+}
+#demo-simple-select{
+    font-size: 20px;
+}
+#css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+    font-size: 20px;
+}

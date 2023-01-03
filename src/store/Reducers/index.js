@@ -1,9 +1,10 @@
 
 import { actions } from "react-table";
-import Cart from "../../components/Cart/Cart";
 import * as actionType from "../actions";
 
 const initialState = {
+    //יום מבוקש
+    currentSchedule:"",
     //קורס מבוקש
     currentCours:"",
     //הכרטיס המבוקש
@@ -53,8 +54,14 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case actionType.GET_SCHEDULE:{
+            
+            return{
+                 ...state,
+            currentSchedule:action.payload
+            }
+        }
         case actionType.GET_GUIDE:{
-            console.log("אני פה");
             let g=[];
             let arr=state.courses_arr;
             console.log(arr);
@@ -271,15 +278,7 @@ const reducer = (state = initialState, action) => {
             };
 
 
-        //   //עדכון מחיר לכרטיס
-        //   case actionType.UPDATE_CARD:
-        //       console.log("UPDATE_CARD");
-        //   return{
-        //      ...state,
-        //      Card:action.payload
-        //   } 
-
-
+      
 
         //הוספת מבצע
         case actionType.ADD_SALE: {
@@ -292,7 +291,7 @@ const reducer = (state = initialState, action) => {
         case actionType.ADD_COURS: {
             return {
                 ...state,
-                courses_arr: [...state.Courses, action.payload]
+                courses_arr: [...state.courses_arr, action.payload]
             }
         }
 

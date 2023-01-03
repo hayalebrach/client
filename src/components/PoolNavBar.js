@@ -8,6 +8,7 @@ export default function PoolNavBar(){
         <Link to="buyTickets" className="navbar-brand">לרכישת כרטיסים</Link>
 
         <Link to="about" className="navbar-brand">אודות</Link>
-
+        
+        <Link to="ShowSchedule" className="navbar-brand">לוח זמנים</Link>
         </nav>)
 }

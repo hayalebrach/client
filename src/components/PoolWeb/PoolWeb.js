@@ -2,11 +2,11 @@
 
 import { fontFamily } from "@mui/system";
 import { useSelector } from "react-redux";
-import PoolNavBar from "../PoolNavBar"
 import "./PoolWeb.css"
 import 'typeface-quicksand';
 import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
+
 
 export default function PoolWeb() {
 

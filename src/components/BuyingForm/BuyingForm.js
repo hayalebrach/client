@@ -34,7 +34,7 @@ const BuyingForm=()=>{
             <br/></div> )
             
         }
-        <input type="button" className="button1"  value="המשך לקנות" onClick={()=>nav("./home")} />
+        <input type="button" className="button1"  value="המשך לקנות" onClick={()=>nav("./AllPools")} />
         <input type="button" value="!שלם"  className="button1" onClick={()=>Buy()}></input>
         
         

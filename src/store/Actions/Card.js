@@ -22,7 +22,7 @@ export const updateCard=(data)=>{
     console.log(data);
     return dispatch=>{
         axios.put("http://localhost:50157/api/Packege/Put?",data)
-        .then(x=> dispatch({type:actionType.UPDATE_CARD,payload:data}))
+        .then(x=> dispatch({type:actionType.UPDATE_CARD,payload:x.data}))
         .catch(err=>console.log(err))
     }
 } 
@@ -52,21 +52,15 @@ export const getAllCardByIdPool=(IdPool)=>{
         })
         .catch(err=>console.log(err) )
     }
-}
-//פונקצית מחיקה
-// export const DeletCard=(data)=>{
-//     console.log(data);
-//     console.log("uuuuu");
-//     return dispatch=>{
-//         axios.put("http://localhost:50157/api/packege/PutForDelete?",data)
-//         .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
-//         .catch(err=>console.log(err))
-//     }
-// } 
+} 
 export const DeletCard=(data)=>{
     return dispatch=>{
         axios.put("http://localhost:50157/api/Packege/PutForDelete?",data)
         .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
         .catch(err=>console.log(err))
     }
-}  
+} 
+export const updateAmountGet=(Id,AmountGet)=>{
+    console.log(AmountGet);
+    return axios.put(`http://localhost:50157/api/Customr_To_Pool/Put?Id=${Id}&AmountGet=${AmountGet}`)
+}

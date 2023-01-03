@@ -19,7 +19,6 @@ export default function Courses() {
   let i = 0;
 
   useEffect(() => {
-    alert(currentPool.Id);
     dispatch(GetAllCoursesByPool(currentPool.Id));
 
 
@@ -40,43 +39,15 @@ export default function Courses() {
 
   }
 
-  const CheckImg = () => {
-
-  }
-
-  const DELETE = (CourseId) => {
-    dispatch(DeleteCourse(CourseId));
-  }
-  const UPDATE = (CourseId) => {
-    nav("./AddDetailsCours");
-    // dispatch(updateCourse(CourseId));
-  }
-  // const callUs = () => {
-  //   dispatch(getById(Courses[0].IdUser));
-  // }
-
   return (
     <>
       <h1>:) הקורסים שלנו</h1>
-      {courses_arr.map(Course => <>  <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br>
+       {courses_arr.map(Course => <>  <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br>
 
-        <br></br>{Course.PeopleAmount} כמות אנשים:<br></br> {Course.Dis} אופי הקורס:<br />
-        {currentUser && currentUser.IdRole == 2 ?
-          (<>
-            <div>
-              <input type="button" value="מחק" className="ManagerButtons" onClick={() => { alert(Course.Id); DELETE(Course.Id) }} />
-              <input type="button" className="ManagerButtons" value="עדכן" />
-            </div>
-          </>) : <div class="cont">
             <button onClick={() => { if (currentUser != "") details(Course); else (alert("you gotta connect")) }} className="btn"><span>הרשם</span><img src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png" height="62" width="62" className="img2" /> </button>
 
-
           </div>
-        }
-
-      </div>
-
-      </>)}
+        </>)}
 
     </>
   )

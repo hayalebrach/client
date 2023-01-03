@@ -54,7 +54,7 @@ export default function UpdateCours(){
                 console.log("updating");
                 dispatch(GetAllCoursesByPool(coursSchema.IdPool));
                 console.log(courses_arr);
-                //nav("/ManagerNavBar/AllCoursToPool");
+                nav("/ManagerNavBar/AllCoursToPool");
             }
            
 return (<>

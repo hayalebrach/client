@@ -86,6 +86,14 @@ export const getCours = (ID) => {
 
     }
 }
+//מחיקת קורס מעמוד מנהל בריכה
+export const Delete=(data)=>{
+    return dispatch=>{
+        axios.put("http://localhost:50157/api/Cours/PutForDelete?",data)
+        .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
+        .catch(err=>console.log(err))
+    }
+} 
 
 
 
