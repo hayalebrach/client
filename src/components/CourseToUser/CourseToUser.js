@@ -1,25 +1,25 @@
 import { ClassNames } from "@emotion/react";
-import { useEffect } from "react";
+import { useEffect ,useState} from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router";
-import { GetCoursesToUser } from "../../store/Actions/Cours";
-import { savePoolById } from "../../store/Actions/Pools";
+import { GetCoursesToUser,GetAllCourses } from "../../store/Actions/Cours";
+import { SavePool } from "../../store/Actions/Pools";
 
 
 export const CourseToUser=()=>{
 const dispatch=useDispatch();
 const nav=useNavigate();
-const { CourseToCustomer, Courses,currentUser,currentPool } = useSelector(state => ({
+const { CourseToCustomer,currentUser,poolsArr } = useSelector(state => ({
     CourseToCustomer: state.CourseToCustomer,
-    Courses: state.AllCourses,
     currentUser:state.currentUser,
-    currentPool:state.currentPool
+    poolsArr:state.poolsArr
     
   }), shallowEqual);
 
-
+const [Courses,SetCourses]=useState([]);
 useEffect(() => {
     dispatch(GetCoursesToUser(currentUser.Id));
+    GetAllCourses().then(x=>SetCourses(x.data))
     }, [])
 
     function Func(Course){
@@ -28,8 +28,10 @@ useEffect(() => {
         return Courses[index];
     }
 
-    const ToPoolWeb=(poolId)=>{
-        dispatch(savePoolById(poolId));
+    const ToPoolWeb=(IdPool)=>{
+        let pool=poolsArr.find(x=>x.Id==IdPool)
+        dispatch(SavePool(pool));
+
         nav("./poolWeb");
         
 

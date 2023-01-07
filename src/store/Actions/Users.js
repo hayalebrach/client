@@ -1,33 +1,7 @@
  import * as actionType from "../actions";
  import axios from "axios";
- 
- //כל במדריכים
- export const AllGuide=()=>{
-  return dispach=>{
-      axios.get("http://localhost:50157/api/User/GetAllGuide")
-      .then(response=>{
-          console.log(response.data);
-          dispach({type:actionType.GET_GUIDE,payload:response.data})
-    })
-    .catch(err=>console.log(err))}
-      
-}
-//כל המשתמשים
-export const getAllUser=()=>{
-    console.log("i am hear");
-    return dispach=>{
-        
-        axios.get("http://localhost:50157/api/user/GetAllUsers")
-        .then(response=>{
-            dispach({type:actionType.GET_USERS,payload:response.data})
-            console.log(response.data);
-        })
-        .catch(err=> console.log(err) )
-    }
-}
 
-
-//לוגין
+ //התחברות
 export const login = (data) => {
     return (dispatch) => {        
         try {
@@ -46,6 +20,17 @@ export const login = (data) => {
 
 }
 
+ //כל במדריכים
+ export const AllGuide=()=>{
+  return dispach=>{
+      axios.get("http://localhost:50157/api/User/GetAllGuide")
+      .then(response=>{
+          console.log(response.data);
+          dispach({type:actionType.GET_GUIDE,payload:response.data})
+    })
+    .catch(err=>console.log(err))}
+      
+}
 export const GetUserById = (UserId) => {
     return (dispatch) => {        
         try {
@@ -65,35 +50,10 @@ export const GetUserById = (UserId) => {
 }
 // //הוספת משתמש
  export const AddUser=(data)=>{
-     return(dispach)=> {
-         console.log(data);
-         axios.post("http://localhost:50157/api/user/AddUser?",data)
-             .then(response=>{
-                console.log(response.data);
-             dispach({type:actionType.SIGNUP,payload:response.data});
-         },
-         err=>{
-
-             console.log(err)
-             console.log("קרתה שגיאה")
-         })
-     }
+     console.log(data);
+     data={...data,Status:true}
+     return axios.post("http://localhost:50157/api/User/AddUser?",data)
  }
- //הוספת מנהל
- export const AddManager=(data)=>{
-    return(dispach)=> {
-        console.log(data);
-        axios.post("http://localhost:50157/api/user/AddUser?",data)
-            .then(response=>{
-               console.log(response.data);
-            dispach({type:actionType.ADD_MANAGER,payload:response.data});
-        },
-        err=>{
-            console.log(err)
-            console.log("קרתה שגיאה")
-        })
-    }
-}
 
  export  function Exit(){
     return(dispatch)=>{
@@ -109,16 +69,16 @@ export const GetUserById = (UserId) => {
     }
 }
 
- //עדכון משתמש
+//  //עדכון משתמש
 export const updateUser=(data)=>{
-    console.log("uuuuu");
-    console.log(data);
-    return dispatch=>{
-        axios.put("http://localhost:50157/api/user/Put?",data)
-        .then(x=> dispatch({type:actionType.UPDATE_USER,payload:data}))
-        .catch(err=>console.log(err))
-    }
-} 
+//     console.log("uuuuu");
+//     console.log(data);
+//     return dispatch=>{
+//         axios.put("http://localhost:50157/api/user/Put?",data)
+//         .then(x=> dispatch({type:actionType.UPDATE_USER,payload:data}))
+//         .catch(err=>console.log(err))
+//     }
+ } 
 //ייבוא היסטורית משתמש לבריכה מסוימת
 export const getAllHistoryOfUser=(IdPool,IdUser)=>{
     console.log("ה' תודה");
@@ -131,3 +91,4 @@ export const getAllHistoryOfUser=(IdPool,IdUser)=>{
         .catch(err=> console.log(err) )
     }
 }
+

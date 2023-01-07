@@ -50,7 +50,7 @@ export default function UpdateCours(){
             
             const Send=()=>{
                 console.log(coursSchema);
-                dispatch(updateCours(coursSchema));
+                updateCours(coursSchema).then();
                 console.log("updating");
                 dispatch(GetAllCoursesByPool(coursSchema.IdPool));
                 console.log(courses_arr);
@@ -71,9 +71,10 @@ return (<>
         <label >מספר אנשים</label><br/>
         <input type="number" className="input"  name="PeopleAmount" placeholder={currentCours.PeopleAmount} variant="standard" onChange={change} defaultValue={currentCours.PeopleAmount} disabled={f.flag=="false"}/>
       {/* לבדוק איך לעשות את המדריך שיהיה placeholder */}
+      {console.log(Guide)}
         <label>מדריך הקורס</label><br/>
         <select className="select" variant="standard" onChange={change} defaultValue={currentCours.IdUser} disabled={f.flag=="false"}>
-                {Guide.map(x => <option key={x.Id} defaultValue={g.Name}>{x.Name}</option>)}
+                {Guide.map(x => <option key={x.Id} defaultValue={g?.Name}>{x?.Name}</option>)}
             </select><br />
         <input type="button" value="עדכון" className="button" onClick={()=>Send()}/></div>
     </form>

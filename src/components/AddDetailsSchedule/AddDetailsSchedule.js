@@ -29,9 +29,9 @@ const schema = yup.object({
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+        color: theme.palette.common.black,
         fontSize: 23,
+        border:'2px black solid'
 
     },
     [`&.${tableCellClasses.body}`]: {
@@ -120,13 +120,13 @@ export default function AddDetailsSchedule() {
             
 
         </form>
-
+כםרצ
 
 
 
         <h1>לוח זמנים</h1>
         <br />
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{backgroundColor:'#ffffff40',border:'2px black solid'}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead key={Days.IdDays} style={{ color: 'white' }}>
                     <TableRow >
@@ -135,10 +135,9 @@ export default function AddDetailsSchedule() {
                 </TableHead>
                 <TableBody>
                     <StyledTableRow>
-                        {/* {console.log(schedule, Days)} */}
-                        {Days.map(x => <StyledTableCell key={x.Id} align="center" >
+                        {Days.map(x => <StyledTableCell key={x.Id} align="center" style={{padding:'0px',border:'2px black solid',verticalAlign:'initial'}}>
                             {
-                                schedule.map(y => y.IdDays === x.Id ? <div>
+                                schedule.map(y => y.IdDays === x.Id ? <div style={{border:'1px black solid'}}>
                                     שעת התחלה: {y.StartHour}<br/>  שעת סיום: {y.EndHour}<br/> {y.Type == 0 ? "בנות" : "בנים"}
                                 </div> : null)
                             }</StyledTableCell>)}

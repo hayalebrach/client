@@ -10,7 +10,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import "./Login.css"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { GetAllPools, savePool, savePoolByManager } from "../../store/Actions/Pools"
+import { GetAllPools,SavePool} from "../../store/Actions/Pools"
 import { GetAllCourses } from "../../store/Actions/Cours";
 import { date } from "yup/lib/locale";
 import { SettingsInputSvideoRounded } from "@material-ui/icons";
@@ -33,10 +33,9 @@ const Login = () => {
 
     }, [])
 
-    const { currentUser, Role } = useSelector(state => ({
+    const { currentUser ,poolsArr} = useSelector(state => ({
         currentUser: state.currentUser,
-        Pools: state.poolsArr,
-        Role: state.Role
+        poolsArr: state.poolsArr
     }), shallowEqual);
 
 
@@ -52,8 +51,7 @@ const Login = () => {
                     break;
 
                 case 2: {
-
-                    dispatch(savePoolByManager(currentUser.Id));
+                    saveThePool(currentUser.Id);
                     nav("/ManagerNavBar");
                     break;
                 }
@@ -63,11 +61,12 @@ const Login = () => {
             }
         }
     }, [currentUser])
+    const saveThePool=(Id)=>{
+        let pool=poolsArr.find(x=>x.IdUser==Id);
+        dispatch(SavePool(pool));
+    }
     const onSubmit = (data) => {
         dispatch(login(data));
-
-        // loginNotDispatch(date)
-        //.then(x=>setUser(x.data))
     }
 
     return (<>

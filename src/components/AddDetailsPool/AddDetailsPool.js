@@ -4,9 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import "./AddDetailsPool.css"
 import * as yup from "yup";
-import {getAllErea,AddPool} from "../../store/Actions/Pools";
+import {getAllErea,AddPool,SavePool} from "../../store/Actions/Pools";
 import { useDispatch,useSelector ,shallowEqual} from "react-redux";
 import {useNavigate} from "react-router";
+import { useState } from "react";
 const schema = yup.object({
     IdUser:yup.number().positive().integer().required(),
     Name: yup.string().required(),  
@@ -20,15 +21,16 @@ const schema = yup.object({
 export default function AddDetailsPool() {
     const nav=useNavigate()
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getAllErea());
-    }, []) 
-  const { Erea, currentUser } = useSelector(state => ({
-     Erea: state.Erea,
-     currentUser: state.currentUser
+ const {currentUser,poolsArr} = useSelector(state => ({
+     currentUser: state.currentUser,
+     poolsArr:state.poolsArr
   }), shallowEqual);
-  console.log(Erea)
+  const[Erea,SetErea]=useState();
+    useEffect(() => {
+        getAllErea().then(x=>SetErea(x.data));
+    }, []) 
+ 
+  console.log(Erea);
 
     console.log(currentUser.Id);
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -36,7 +38,9 @@ export default function AddDetailsPool() {
     });
 
     const onSubmit = (data) => {
-        dispatch(AddPool(data));
+        AddPool(data).then(alert("בריכה נוספה בהצלחה"));
+        let pool=poolsArr.find(x=>x.IdUser==currentUser.Id);
+        dispatch(SavePool(pool));
         console.log(data);
         nav("/MainManagerNavBar");
         

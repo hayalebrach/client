@@ -4,7 +4,7 @@ import {useSelector,shallowEqual,useDispatch} from 'react-redux'
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
-import {AddCours} from "../../store/Actions/Cours";
+import {AddCours,GetAllCoursesByPool} from "../../store/Actions/Cours";
 import {AllGuide} from "../../store/Actions/Users";
 import "./AddDetailsCours.css";
 import { useParams ,useNavigate} from "react-router";
@@ -40,7 +40,8 @@ export default function AddDetailsCours() {
     const onSubmit = (data) => {
         data.IdPool=currentPool.Id;
         data.Status=true;
-        dispatch(AddCours(data));
+        AddCours(data).then();
+        dispatch(GetAllCoursesByPool(currentPool.Id));
         console.log("i am hear");
         if(f.flag=="true")
          nav("/ManagerNavBar/AllCoursToPool"); 

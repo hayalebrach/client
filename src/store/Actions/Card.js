@@ -4,45 +4,25 @@ import axios from "axios";
 export const getCardsToCustomer = (data) => {
          return axios.get(`http://localhost:50157/api/Customr_To_Pool/GetHistoryOfUser?IdUser=${data}`)
 }
-
-
 //  //קבלת הכרטיס מהשרת בריאקט לפי ת"ז
  export const getById=(id)=>{
-    return dispach=>{
-        axios.get(`http://localhost:50157/api/Packege/GetCardsById?Id=${id}`)
-        .then(response=>{
-            dispach({type:actionType.GET_BY_ID_CARD,payload:response.data})
-            console.log(response.data);
-        })
-        .catch(err=> console.log(err) )
-    }
+      return axios.get(`http://localhost:50157/api/Packege/GetCardsById?Id=${id}`)
+}
+export const TheCard=(data)=>{
+    return(dispach)=>dispach({
+          type:actionType.GET_CARD,
+          payload:data
+    })
 }
 //עדכון כרטיס
 export const updateCard=(data)=>{
-    console.log(data);
-    return dispatch=>{
-        axios.put("http://localhost:50157/api/Packege/Put?",data)
-        .then(x=> dispatch({type:actionType.UPDATE_CARD,payload:x.data}))
-        .catch(err=>console.log(err))
-    }
-} 
+    return  axios.put("http://localhost:50157/api/Packege/Put?",data)
+
+}
 //פונקציה שמוסיפה כרטיס חדש
 export const AddCard=(card)=>{
         axios.post("http://localhost:50157/api/Packege/AddCard?",card)    
-    }
-//
-//פונקציה שמוסיפה מבצע חדש
-export const AddSale=(Sale)=>{
-    console.log(Sale);
-    return dispatch=>{
-        
-        axios.post("http://localhost:50157/api/Sale/AddSale?",Sale)
-        .then(x=> dispatch({type:actionType.ADD_SALE,payload:x.data}))
-        .catch(err=>console.log(err))
-       
-    }
 }
-
 //כל הכרטיסים לבריכה מסוימת
 export const getAllCardByIdPool=(IdPool)=>{
     return dispach=>{
@@ -54,11 +34,7 @@ export const getAllCardByIdPool=(IdPool)=>{
     }
 } 
 export const DeletCard=(data)=>{
-    return dispatch=>{
-        axios.put("http://localhost:50157/api/Packege/PutForDelete?",data)
-        .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
-        .catch(err=>console.log(err))
-    }
+    return axios.put("http://localhost:50157/api/Packege/PutForDelete?",data)
 } 
 export const updateAmountGet=(Id,AmountGet)=>{
     console.log(AmountGet);

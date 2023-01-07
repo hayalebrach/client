@@ -2,73 +2,25 @@ import axios from "axios";
 import * as actionType from "../actions";
 
 //פונקציה שמוסיפה לי בריכה חדשה
-export const AddPool = (data) => {
-    console.log(data)
-    return (dispach) => {
-        console.log(data);
-        axios.post("http://localhost:50157/api/pool/AddPool?", data)
-            .then(response => {
-                console.log(response.data);
-                dispach({ type: actionType.ADD_POOL, payload: response.data });
-            },
-                err => {
+export const AddPool=(data)=>{
+    return axios.post("http://localhost:50157/api/pool/AddPool?", data)
 
-                    console.log(err)
-                    console.log("קרתה שגיאה");
-                })
-    }
 }
-
 //כל האיזורים
 export const getAllErea = () => {
-    return (dispach) => {
-        axios.get("http://localhost:50157/api/erea/GetAllEreas")
-            .then(response => {
-                dispach({ type: actionType.ALL_EREAS, payload: response.data })
-            })
-            .catch(err => console.log(err))
-    }
-}
-//שמירת בריכה על פי ID מנהל
-export const savePoolByManager = (ID) => {
-
-    return (dispatch) => {
-        dispatch({ type: actionType.SAVE_POOL_BY_MANAGER, payload: ID });
-
-
-    }
+     return axios.get("http://localhost:50157/api/erea/GetAllEreas")
 }
 
-export const savePool = (pool) => {
-
-    return (dispatch) => {
-        dispatch({ type: actionType.SAVE_POOL, payload: pool });
-
-
-    }
-}
-
-export const savePoolById = (poolId) => {
-
-    return (dispatch) => {
-        dispatch({ type: actionType.SAVE_POOL_BY_ID, payload: poolId });
-
-
-    }
-}
-
-
-//הוספת לוח זמניים למערך שבסטייט הכללי
-export const AddToArraySchedule = (schedule) => {
-    console.log(schedule);
-    return {
-        type: actionType.ADD_SCHEDULE_TO_ARRAY,
-        payload: schedule
+export const SavePool=(data)=>{
+    return dispach=>{
+         dispach({
+             type:actionType.SAVE_POOL,
+             payload:data
+         })
     }
 }
 
 export const GetAllPools = () => {
-    console.log("ה' תעזור לי אני לא מצליחה כלום בלעדיך");
     return dispach => {
         axios.get("http://localhost:50157/api/pool/GetAllPools")
             .then(response => {
@@ -90,15 +42,11 @@ export const getAllDays = () => {
             .catch(err => console.log(err))
     }
 }
-//ייבוא המשתמשים לבריכה מסוימת
 export const getAllUsersByIdPool = (IdPool) => {
-    console.log("aaaaa");
-    console.log(IdPool);
-    return dispatch => {
+    return (dispach) => {
         axios.get(`http://localhost:50157/api/Customr_To_Pool/GetByIdPool?IdPool=${IdPool}`)
             .then(response => {
-                console.log(response.data);
-                dispatch({ type: actionType.GET_USERS_BY_ID_POOL, payload: response.data })
+                dispach({ type: actionType.GET_USERS_BY_ID_POOL, payload: response.data })
             })
             .catch(err => console.log(err))
     }

@@ -15,16 +15,15 @@ import { useNavigate } from "react-router";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+        color: theme.palette.common.black,
         fontSize: 23,
+        border:'2px black solid'
 
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 23,
     },
 }));
-
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
@@ -67,10 +66,8 @@ export default function ShowSchedule() {
       
 
         <h1>לוח זמנים</h1>
-        <h2>בחר קודם כל יום שאתה רוצה ולאחר מכן את התאריך המדובר</h2><br/>
-      
         <br />
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{backgroundColor:'#ffffff40',border:'2px black solid'}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead key={Days.IdDays} style={{ color: 'white' }}>
                     <TableRow >
@@ -79,17 +76,16 @@ export default function ShowSchedule() {
                 </TableHead>
                 <TableBody>
                     <StyledTableRow>
-                        {Days.map(x => <StyledTableCell key={x.Id} align="center" >
+                        {Days.map(x => <StyledTableCell key={x.Id} align="center" style={{padding:'0px',border:'2px black solid',verticalAlign:'initial'}}>
                             {
-                                schedule.map(y => y.IdDays === x.Id ? <div>
-                                    שעת התחלה: {y.StartHour}<br/>  שעת סיום: {y.EndHour}<br/> {y.Type == 0 ? "בנות" : "בנים"}
-                                <input type="button" value="שריון מקום" onClick={()=>GetScheduleByIdSchedule(y.Id)}/>
+                                schedule.map(y => y.IdDays === x.Id ? <div style={{border:'1px black solid'}}>
+                                    שעת התחלה: {y.StartHour}<br/>  שעת סיום: {y.EndHour}<br/> {y.Type == 0 ? "בנות" : "בנים"}<br/><input type="button" className="savePlaceButton"value="לשמירת מקום" onClick={()=>GetScheduleByIdSchedule(y.Id)}/>
                                 </div> : null)
                             }</StyledTableCell>)}
 
 
                     </StyledTableRow>
-                    
+                    {/* ))} */}
                 </TableBody>
             </Table>
         </TableContainer>

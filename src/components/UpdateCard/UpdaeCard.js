@@ -31,8 +31,8 @@ export default function UpdateCard(){
             }
             const Send=()=>{
                 console.log(cardSchema);
-                dispatch(updateCard(cardSchema));
-               dispatch(getAllCardByIdPool(cardSchema.IdPool));
+                updateCard(cardSchema).then();
+                dispatch(getAllCardByIdPool(cardSchema.IdPool));
                 console.log(CardsArr);
                 nav("/ManagerNavBar/AllCardsToPool");
             }

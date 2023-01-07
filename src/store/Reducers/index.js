@@ -9,14 +9,12 @@ const initialState = {
     currentCours:"",
     //הכרטיס המבוקש
     currentCard: "",
-   //כל הקורסים
-    AllCourses:[],
-    //המערך של המשתמשים
-    usersArr: [],
     //המשתמש הנוכחי
     currentUser:"",
     //בריכה נוכחית
     currentPool: "",
+    //המערך של המשתמשים
+    usersArr: [],
     //הוספת בריכה
     poolsArr: [],
     //כל ההרשאות
@@ -25,35 +23,105 @@ const initialState = {
     Erea: [],
     //כל הימים
     Days: [],
-    //המערך של הלוח זמנים
-    Schedule: [],
     //מערך הכרטיסים לבריכה מסוימת
     CardsArr: [],
     //מערך הקורסים לבריכה מסוימת
     courses_arr: [],
     //הרשומים לקורס
     CourseToCustomer: [],
-
+    UsersPool:[],
     CallUsArr: [],
-
-    sale_arr: [],
-
-    User: null,
     Cart: [],
-    //משתמשים לבריכה
-    UsersPool: [],
     //הסטוריית קניות המשתמש
     HistoryUser: [],
     //כל המדריכים
     Guide:[],
     Managers: [],
-
-
-    num: 7
 }
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
+        //-------------------כרטיסים---------------------------------------
+                //קבלת כרטיס 
+                case actionType.GET_CARD: {
+                    return {
+                        ...state,
+                        currentCard:action.payload
+                    }
+        
+                }
+                //ייבוא הכרטיסים לבריכה מסוימת
+                case actionType.GET_CARDS:
+                    return {
+                        ...state,
+                        CardsArr: action.payload
+                    }
+        //----------------------בריכה---------------------------------------
+        //===============================================================
+        //היסטורית משתמש לבריכה מסוימת
+        case actionType.GET_HISTORY_OF_USER_TO_POOL: {
+            return {
+                ...state,
+                HistoryUser: action.payload
+            }
+
+        }
+        // //ייבוא המשתמשים לבריכה מסוימת
+        case actionType.GET_USERS_BY_ID_POOL: {
+            let newArr6 = action.payload;
+            let trueNewArr6 = [];
+            let numUser = null;
+            let flag = true;
+            for (let i = 0; i < newArr6.length; i++) {
+                flag = true;
+                numUser = newArr6[i].IdUser;
+                for (let k = i + 1; k < newArr6.length; k++) {
+                    if (numUser == newArr6[k].IdUser)
+                        flag = false;
+                }
+                if (flag == true) {
+                    trueNewArr6.push(newArr6[i]);
+                }
+
+            }
+            return {
+                ...state,
+                UsersPool: trueNewArr6
+            }
+        }
+  
+//מציג בריכות
+case actionType.GET_POOLS:
+    return {
+        ...state,
+        poolsArr: [...action.payload]
+    };
+
+//מחיקת בריכה
+case actionType.DELETE_POOLS:
+    let newArr2 = [...state.poolsArr];
+    for (let i = 0; i < newArr2.length; i++) {
+        if (newArr2[i].Id === action.payload) {
+            console.log("hola" + newArr2[i]);
+            newArr2.pop(newArr2[i]);
+        }
+    }
+    return {
+        ...state,
+        poolsArr: [...newArr2]
+    }
+
+
+  //בריכה הנוכחית שנבחרה
+        //לא לשנות פונקציה זו!!
+        case actionType.SAVE_POOL:
+            {
+                return {
+                    ...state,
+                    currentPool: action.payload
+                }
+            }
+//================================================================
         case actionType.GET_SCHEDULE:{
             
             return{
@@ -86,87 +154,6 @@ const reducer = (state = initialState, action) => {
             }
 
         }
-            //עדכון מחיר לקורס
-            case actionType.UPDATE_COURS:
-                {
-                    console.log(action.payload);
-                    let newArr3 = state.courses_arr;
-                    let cours=newArr3.find(x=>x.Id==action.payload.Id);
-                    newArr3.pop(cours);
-                    newArr3.push(action.payload);
-                    return {
-                        ...state,
-                        courses_arr: newArr3   
-                    }
-                }
-        //מחיקת קורס
-
-        case actionType.DELETE_COURSE: {
-            alert("קורס זה נמחק מרשימת הקורסים לבריכה זו");
-        }
-        //קבלת כרטיס על פי ת"ז
-        case actionType.GET_BY_ID_CARD: {
-            return {
-                ...state,
-                currentCard:action.payload
-            }
-
-        }
-        //היסטורית משתמש לבריכה מסוימת
-        case actionType.GET_HISTORY_OF_USER_TO_POOL: {
-            return {
-                ...state,
-                HistoryUser: action.payload
-            }
-
-        }
-        //ייבוא המשתמשים לבריכה מסוימת
-        case actionType.GET_USERS_BY_ID_POOL: {
-            let newArr6 = action.payload;
-            let trueNewArr6 = [];
-            let numUser = null;
-            let flag = true;
-            for (let i = 0; i < newArr6.length; i++) {
-                flag = true;
-                numUser = newArr6[i].IdUser;
-                for (let k = i + 1; k < newArr6.length; k++) {
-                    if (numUser == newArr6[k].IdUser)
-                        flag = false;
-                }
-                if (flag == true) {
-                    trueNewArr6.push(newArr6[i]);
-                }
-
-            }
-            return {
-                ...state,
-                UsersPool: trueNewArr6
-            }
-        }
-        //מחיקת כרטיס
-        case actionType.DELETE_CARD: {
-            alert("כרטיס זה נמחק מרשימת הכרטיסים לבריכה זו");
-        }
-       
-        //עדכון כרטיס
-        case actionType.UPDATE_CARD:
-            
-            let newArr5 = [...state.CardsArr];
-            for (let i = 0; i < newArr5.length; i++) {
-                if (newArr5[i].Id == action.payload.Id) {
-                    newArr5[i] = action.payload;
-                }
-            }
-            return {
-                ...state,
-                CardsArr: newArr5
-            }
-        //ייבוא הכרטיסים לבריכה מסוימת
-        case actionType.GET_CARDS:
-            return {
-                ...state,
-                CardsArr: action.payload
-            }
         //עדכון משתמש
         case actionType.UPDATE_USER:
             return {
@@ -188,39 +175,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 User: user
             }
-        //הוספת לוח זמנים למערך שבstate החיצוני
-        case actionType.ADD_SCHEDULE_TO_ARRAY:
-            return {
-                ...state,
-                Schedule: [...state.Schedule, action.payload]
-            }
         //כל הימים
         case actionType.ALL_DAYS:
             return {
                 ...state,
                 Days: action.payload
-            };
-        //הוספת בריכה
-        case actionType.ADD_POOL: {
-            return {
-
-                ...state,
-                poolsArr: [...state.poolsArr, action.payload],
-                currentPool: action.payload
-            };
-        }
-        //כל האיזורים
-        case actionType.ALL_EREAS:
-            return {
-                ...state,
-                Erea: action.payload
-            };
-
-        //הוספת הרשאה
-        case actionType.ADD_ROLE:
-            return {
-                ...state,
-                Role: [...state.Role, ...action.payload]
             };
         //כל ההרשאות
         case actionType.ALL_ROLE:
@@ -228,98 +187,24 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 Role: action.payload
             };
-        //הרשמה
-        case actionType.SIGNUP: {
-            return {
-                ...state,
-                usersArr: [...state.usersArr, action.payload],
-            };
-        }
-        //למנהל הראשי-הצגת המשתמשים באתר
-        case actionType.GET_USERS:
-            return {
-                ...state,
-                usersArr: action.payload
-            };
         //מציג קורסים לבריכה
         case actionType.GET_COURSES:
             return {
                 ...state,
                 courses_arr: action.payload
             };
-
-            case actionType.GET_All_COURSES:
-            return {
-                ...state,
-                AllCourses:action.payload
-            };
-            
-
-
-        //מציג בריכות
-        case actionType.GET_POOLS:
-            return {
-                ...state,
-                poolsArr: [...action.payload]
-            };
-
-
         //התחברות-login
         case actionType.LOGIN:
             return {
                 ...state,
                 currentUser: action.payload
             };
+
         case actionType.GET_BY_ID:
             return {
                 ...state,
                 User: action.payload
             };
-
-
-      
-
-        //הוספת מבצע
-        case actionType.ADD_SALE: {
-            return {
-                ...state,
-                sale_arr: [...action.payload]
-            };
-        }
-        //הוספת קורס
-        case actionType.ADD_COURS: {
-            return {
-                ...state,
-                courses_arr: [...state.courses_arr, action.payload]
-            }
-        }
-
-        
-        //הוספת מנהל
-        case actionType.ADD_MANAGER: {
-            return {
-
-                ...state,
-                Managers: [...state.Managers, action.payload]
-            };
-        }
-
-        //כל המנהלים
-        case actionType.GET_MANAGERS: {
-            return {
-
-                ...state,
-                Managers: action.payload
-            };
-        }
-
-        //הוספת כרטיס
-        case actionType.ADD_CARD: {
-            return {
-                ...state,
-                CardsArr: [...state.CardsArr, action.payload]
-            };
-        }
         //איפוס משתמש
         case actionType.EXIT: {
             return {
@@ -332,75 +217,7 @@ const reducer = (state = initialState, action) => {
                 CourseToCustomer:[]
 
             };
-        }
-        //מחיקת בריכה
-        case actionType.DELETE_POOLS:
-            let newArr2 = [...state.poolsArr];
-            for (let i = 0; i < newArr2.length; i++) {
-                if (newArr2[i].Id === action.payload) {
-                    console.log("hola" + newArr2[i]);
-                    newArr2.pop(newArr2[i]);
-                }
-            }
-            return {
-                ...state,
-                poolsArr: [...newArr2]
-            }
-        //בריכה הנוכחית שנבחרה
-        //לא לשנות פונקציה זו!!
-        case actionType.SAVE_POOL:
-            {
-                return {
-                    ...state,
-                    currentPool: action.payload
-                }
-            }
-
-            case actionType.SAVE_POOL_BY_ID:
-            {
-                const index = state.poolsArr.findIndex(x => x.Id == action.payload)
-
-                return {
-                    ...state,
-                    currentPool: state.poolsArr[index],
-                }
-            }
-
-            
-        // מציאת בריכה לפי שם
-        case actionType.SEARCH_POOL: {
-            let pool = null;
-            for (let i = 0; i < state.poolsArr.length; i++) {
-                if (state.poolsArr[i].Name == action.payload)
-                    pool = state.poolsArr[i];
-
-
-            }
-
-            return {
-                ...state,
-                currentPool: pool
-            }
-        }
-        //ממוצע של כל ההזמנות
-
-        //בריכה הנוכחית שנבחרה
-
-        case actionType.SAVE_POOL_BY_MANAGER: {
-            // let pooll = null;
-            const index = state.poolsArr.findIndex(x => x.IdUser == action.payload)
-            // for (let i = 0; i < state.poolsArr.length; i++)
-            //     if (state.poolsArr[i].IdUser == action.payload)
-            //         pooll = state.poolsArr[i];
-
-            return {
-
-                ...state,
-                currentPool: state.poolsArr[index]
-            }
-        }
-
-        
+        }  
         case actionType.COURSE_ENROLLMENT: {
             
             return {
@@ -410,30 +227,12 @@ const reducer = (state = initialState, action) => {
         }
 
         case actionType.COURSES_TO_USER: {
-
+          
             return {
                 ...state,
-                CourseToCustomer:[...action.payload]
+                CourseToCustomer:action.payload
             };
         }
-
-        
-
-
-        //עדכון מחיר לקורס
-        case actionType.UPDATE_COURS:
-            {
-                let newArr3 = state.courses_arr;
-                for (let i = 0; i < newArr3.length; i++) {
-                    if (newArr3[i].Id == action.payload.Id)
-                        newArr3[i] = action.payload;
-                }
-                return {
-                    ...state,
-                    courses_arr: newArr3
-
-                }
-            }
             case actionType.ADD_TO_CART:
             
                 return {
@@ -461,21 +260,6 @@ const reducer = (state = initialState, action) => {
                     HistoryUser:[...state.HistoryUser,action.payload]
 
                 }
-            
-
-
-
-        
-        //בחירת קורסים
-        case actionType.CHOOSE_COURS: return state;
-        //למנהל הבריכה -הצגת ההזמנות מבריכה מסוימת
-        case actionType.GET_ORDERS: return state;
-
-        //תשלום בכרטיס אשראי
-        case actionType.PAY_CRADIT_CARD: return state;
-
-        //עדכון שעות
-        case actionType.UPDATE_HOUR: return state;
         default: return state;
     }
 }

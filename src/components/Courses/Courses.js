@@ -1,40 +1,41 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
-import { GetAllCoursesByPool, DeleteCourse,Course_Enrollment } from "../../store/Actions/Cours";
+import { GetAllCoursesByPool,Course_Enrollment,GetCoursesToUser } from "../../store/Actions/Cours";
 import "./Courses.css"
 export default function Courses() {
 
-  const { courses_arr, currentUser, currentPool } = useSelector(state => ({
+  const { courses_arr, currentUser, currentPool,CourseToCustomer } = useSelector(state => ({
     currentUser: state.currentUser,
     courses_arr: state.courses_arr,
-    currentPool: state.currentPool
+    currentPool: state.currentPool,
+    CourseToCustomer:state.CourseToCustomer
   }), shallowEqual);
-
-  console.log("הבריכה הנוכחית");
-  console.log(currentPool);
-
   const dispatch = useDispatch();
   let nav = useNavigate();
-  let i = 0;
-
+  const[flag,SetFlag]=useState();
   useEffect(() => {
     dispatch(GetAllCoursesByPool(currentPool.Id));
+    dispatch(GetCoursesToUser(currentUser.Id));
 
   }, [])
-
- 
-  const details = (Course) => {
-    if (currentUser === "") {
-      nav("./courseEnrollment");
+   let c;
+  const Chek=(Course)=>{
+    console.log(CourseToCustomer);
+    c=CourseToCustomer.find(x=>x.IdUser==currentUser.Id&&x.IdCours==Course.Id);
+    console.log(c);
+    if(c!=undefined){
+       alert("קורס זה קים כבר ברשותך");
+       SetFlag(true);
     }
-    else {
-      
+    else
+       if(currentUser==="")
+         nav("./courseEnrollment")
+   }
+
+  const details = (Course) => {  
        dispatch(Course_Enrollment({ IdUser: currentUser.Id, IdCours: Course.Id ,Status:true}))
        alert("Enrollment succided!")
-
-    }
-
   }
   return (
     <>
@@ -44,12 +45,10 @@ export default function Courses() {
       <br></br> {Course.Dis} אופי הקורס:
 
       </div>
-     
-      
-        
-      <input type="button" value="להרשמה" className="button1" onClick={()=>details(Course)} />     
-
-      </>)} 
+     {flag==true?<input type="button" value="להרשם שוב" className="button1" onClick={()=>details(Course)}/>:<input type="button" value="להרשמה" className="button1" onClick={()=>Chek(Course)} />
+}
+    
+     <div/> </>)} 
 
     </>
   )
