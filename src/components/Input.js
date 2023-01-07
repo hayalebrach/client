@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
-const Input = ({ register, errors, name, lablName, className, type }) => {
+import "./input.css"
+const Input = ({ register, errors, name, lablName, className, type,src }) => {
     return <Fragment>
-        <label >{lablName} </label><br/>
-        <input type={type} className={className} {...register(name)} />
+        <img src={src}></img>
+        <input  type={type} className={className}  placeholder={lablName} {...register(name) } />
         <p>{errors[name]?.message}</p>
+        
     </Fragment>
 }
 export default Input;

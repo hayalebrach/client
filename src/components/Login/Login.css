@@ -1,9 +1,18 @@
-.input {
-    border: 2px solid cornflowerblue;
-    border-radius: 26px;
-    text-align: center;
+.inputLogin {
+  padding: 4px;
+  /* border: 2px solid cornflowerblue; */
+  border-radius: 26px;
+  background-color: rgb(0,0,0,0.1);
+  display: list-item;
+  color: #fff;
+  position: relative;
+  left: 253px;
+  margin: 10px;
+  top: -12px;
   }
-  
+  body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
   .button{
   border-color: cornflowerblue;
   position: relative;
@@ -14,3 +23,70 @@
   width: 58px;
   color:black;
   }
+  .loginDiv {
+    background-image:url('../../../public/Pic/sunglasses-1850648_1920.jpg');
+
+    width: 1270px;
+    position: relative;
+    left: -57px;
+    top: -70px;
+    z-index: -2;
+    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 597px;
+}
+
+.formDiv{
+  width: 500px;
+  height:400px;
+  position:relative;
+  left: 350px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 5px;
+  top: 80px;
+  background-image:url('../../../public/Pic/sunglasses-1850648_1920.jpg');
+  
+  background-color: white;
+}
+
+.formDiv input{
+  text-align: right;
+
+}
+
+.navbar-brand {
+  position: relative;
+  top: 70px;
+  float: right;
+  height: 39px;
+  padding: 14px 15px;
+  font-size: 20px;
+  line-height: 16px;
+  color: black;
+}
+
+
+.formDiv img{
+  width: 15px;
+  height:15px;
+  position: relative;
+  top:19px;
+  left:38px;
+
+}
+
+.submitLogin{
+  position: relative;
+    top: 22px;
+    left: 132px;
+    width: 130px;
+    height: 30px;
+    background-color: cadetblue;
+    border-radius: 5px;
+
+}
+
+

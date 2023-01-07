@@ -8,6 +8,7 @@ body{
 .App {
   text-align: center;
   padding: 50px;
+  
  
 }
 .navbar-brand {
@@ -19,6 +20,11 @@ body{
   color: black;
 
 }
+
+text:hover{
+  color:#23527c;
+}
+
 
 
 .navbar {
@@ -45,6 +51,9 @@ body{
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+.animate-img>img {
+  transition: .2s ease-in-out transform;
 }
 
 .App-header {
@@ -79,6 +88,8 @@ body{
    margin:8px;
    background-color:white;
 }
+
+
 .pool:hover{
   border: 2px solid aquamarine;
   border-radius: 10px;
@@ -135,22 +146,23 @@ body{
   width: 33px;
   height: 38px;
   position: relative;
-  left: -589px;
-  top: 19px;
+  left: -723px;
+  top: -93px;
 }
-.img2{
+.imggg {
   width: 29px;
-    height: 28px;
-    position: relative;
-    top: 20px;
-    right: 570px;
-
+  height: 28px;
+  position: relative;
+  top: -91px;
+  right: 696px;
 }
+
+
 .f{
   width: 30px;
-    position: relative;
-    left: 134px;
-    top: -52px;
+  position: relative;
+  left: 162px;
+  top: -271px;
 }
 .smallDiv{  
   z-index: 1;
@@ -165,8 +177,46 @@ body{
   left: 602px;
   color: black;
 }
-.logo{
-  width: 15;
-  height: 15px;
+.logo {
+  width: 328px;
+  position: relative;
+  top: -60px;
+  left: 440px;
+  
+  height: 253px;
 }
+
+.search {
+  width: 173px;
+    height: 470px;
+    text-align: right;                      
+    float: right;
+    position: relative;
+    top: 132px;
+    right: 32px;
+   /* border: 2px solid black; */
+    border-radius: 6px;
+    font-family: "Varela Round";
+    
+
+}
+
+.downImg{
+  width: 20px;
+    height: 20px;
+    position: relative;
+    top: -32px;
+    right: 123px;
+}
+
+
+.citiesDiv{
+  visibility:hidden;
+  
+}
+.leftImg{
+  width: 10px;
+  height: 10px;
+}
+
 

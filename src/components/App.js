@@ -22,6 +22,7 @@ import CourseDetails from './CourseDetails/CourseDetails';
 import ManagerNavBar from "./ManagerNavBar";
 //---------------הוספת בריכה---------------
 import AddPool from "./AddPool/AddPool";
+
 import AddDetailsManager from './AddDetailsManager/AddDetailsManager';
 import AddDetailsSchedule from './AddDetailsSchedule/AddDetailsSchedule';
 import AddDetailsPool from './AddDetailsPool/AddDetailsPool';
@@ -38,11 +39,11 @@ import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
 import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
+import { Exit, getAllUser } from "../store/Actions/Users";
+import { getAllAreas, getAllDays, GetAllPools } from "../store/Actions/Pools";
+import { useEffect, useState } from 'react';
 
 
-import { Exit} from "../store/Actions/Users";
-import { GetAllPools ,getAllDays} from "../store/Actions/Pools";
-import { useEffect ,useState} from 'react';
 import UpdateUser from './UpdateUser/UpdateUser';
 // import { UpdateUser } from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
@@ -56,22 +57,51 @@ import AddDetailsScheduleCours from './AddDetailsScheduleCours/AddDatailsSchedul
 function App() {
   useEffect(() => {
     dispatch(GetAllPools());
+    dispatch(getAllManagers());
+    dispatch(getAllUser());
+    dispatch(getAllAreas());
+
     dispatch(getAllDays());
   }, []);
-  
+  const [showDiv, setShowDiv] = useState(false);
   let nav = useNavigate();
   const dispatch = useDispatch();
 
-  const {currentUser, currentPool,usersArr ,poolsArr} = useSelector(state => ({
+  const { Schedule, currentUser, currentPool, usersArr,Areas,Pools } = useSelector(state => ({
     currentUser: state.currentUser,
     currentPool: state.currentPool,
-    usersArr:state.usersArr,
-    poolsArr:state.poolsArr
+    usersArr: state.usersArr,
+    Areas: state.Areas,
+    Pools:state.poolsArr
+
   }), shallowEqual);
-  console.log("הבריכה הנוכחית");
-  console.log(currentPool);
-  console.log(currentUser);
-  console.log(poolsArr);
+
+  const Search = () => {
+    
+    if(showDiv==false){
+      setShowDiv(true);
+      document.getElementById("citiesDiv").style.visibility="visible";
+    }
+    else{
+      setShowDiv(false);
+      document.getElementById("citiesDiv").style.visibility="hidden";
+    }
+
+  }
+  let sortPools=[];
+
+  const sortByCity=(areaId)=>{
+    
+      for (let i = 0; i < Pools.length; i++) 
+      if (Pools[i].IdErea == areaId) 
+        sortPools.push(Pools[i]);  
+
+      console.log(sortPools);
+      
+  }
+
+ 
+  
   // console.log(Cards, Managers)
 
   // const { num, current_user } = useSelector(state => ({
@@ -81,23 +111,38 @@ function App() {
 
   // console.log(num, current_user)
 
-  
+
   return (<>
-    <TryTable />
     <div className='smallDiv'>
-      <img src='../Pic/LOGO.jpg' className='logo'></img>
+
+      <img src='../Pic/X2.png' className='logo'></img>
       <img src="../Pic/grocery-store.png" className="img1" onClick={() => nav("./cart")} />
-      <img src="../Pic/user.png" className="img2" onClick={() => {
+      <img src="../Pic/user.png" className="imggg" onClick={() => {
         if (currentUser != "")
           nav("./profile")
         else alert("עליך להתחבר כדי לצפות בפרופיל!")
       }} />
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./signUp") }}>הרשמה</h3>
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./login") }}>התחברות</h3><br />
-      
+
     </div>
 
+
+
+    <div className='search'>
+      <h3>חיפוש ממוקד</h3>
+      <img src="../Pic/down (1).png" className='downImg' onClick={() => Search()}></img>
+      <div className='citiesDiv' id="citiesDiv">
+        {
+          Areas.map(area => <><text onClick={()=>sortByCity(area.Id)}>{area.Name}</text><img src='../Pic/Left.png' className='leftImg'></img> <br /></>)
+        }
+      </div>
+
+    </div>
+    
+
     {currentUser ? (<><text className='Exit' onClick={() => { dispatch(Exit()); nav("/AllPools") }}>יציאה</text></>) : null}
+
 
 
     <div className="App" >
@@ -174,7 +219,7 @@ function App() {
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
         <Route path="ManagerNavBar/courses/AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="ManagerNavBar/addCourse" element={<AddDetailsCours />} />
-        <Route path="ManagerNavBar/AddDetailsSchedule" element={<AddDetailsSchedule/>}/>
+        <Route path="ManagerNavBar/AddDetailsSchedule" element={<AddDetailsSchedule />} />
 
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
@@ -185,7 +230,7 @@ function App() {
         <Route path="profile/CourseToUser/poolWeb" element={<PoolWeb />} />
         <Route path="profile/history/poolWeb" element={<PoolWeb />} />
 
-        
+
         <Route path="poolWeb" element={<PoolWeb />} />
 
         <Route path="cart" element={<Cart />} />
@@ -218,13 +263,13 @@ function App() {
         <Route path="poolWeb/about" element={<About />} />
         {/* //====================================================== */}
         {/* <Route path="poolWeb/AddDetailsSchedule" element={<AddDetailsSchedule />} /> */}
-                {/* //====================================================== */}
+        {/* //====================================================== */}
         <Route path="ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
         <Route path="UserNavBar" element={<UserNavBar />} />
         <Route path="/UserNavBar/courses" element={<Courses />} />
         <Route path="/profile/CourseToUser" element={<CourseToUser />} />
-        
+
         <Route path="/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="/UserNavBar/about" element={<About />} />
         <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment />} />

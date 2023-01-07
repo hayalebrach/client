@@ -8,7 +8,7 @@ import "./AllPools.css";
 export default  function AllPools(){
   const dispatch = useDispatch();
 
-    const poolsArr=useSelector(state =>state.poolsArr);
+    const Pools=useSelector(state =>state.poolsArr);
     let currentPool=useSelector(state =>state.currentPool);
     // const {currentPool,courses_arr,currentCours }= useSelector(state => ({
     //   currentPool: state.currentPool,
@@ -27,17 +27,14 @@ export default  function AllPools(){
     <br/>
     
     <h1>בריכות שחייה</h1>
-    <ul>
+    
         {
-
-           poolsArr.map(Pools=> <> <div className="pool" ><div>  <img src={"Pic/istockphoto-1311457374-1024x1024.jpg"} className="img"/>  </div> 
-           <br/><b>{Pools.Name}</b>
-           <br/>{Pools.Adress}<br/> 
-           <br/>{Pools.Price}<input type="button" className="button1" value="לפרטים" onClick={()=>Func(Pools)}></input>
-             </div></> )
+           Pools.map(pool=> <><div  className="pool"><div>  <img src={`Pic/${pool.Pic}`} className="img"/>  </div> <br/><b>{pool.Name}</b><br/>{pool.Adress}<br/> <br/>{pool.Price}<input type="button" className="button1" value="לפרטים" onClick={()=>Func(pool)}></input></div></> )
 
         }
-    </ul>
+    
+
+    
     
     </>
   )

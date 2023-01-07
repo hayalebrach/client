@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
-import { GetAllCoursesByPool,Course_Enrollment,GetCoursesToUser } from "../../store/Actions/Cours";
+import { GetAllCoursesByPool,Course_Enrollment,DeleteCourse,GetCoursesToUser } from "../../store/Actions/Cours";
 import "./Courses.css"
 export default function Courses() {
 
@@ -18,7 +18,9 @@ export default function Courses() {
     dispatch(GetAllCoursesByPool(currentPool.Id));
     dispatch(GetCoursesToUser(currentUser.Id));
 
+
   }, [])
+
    let c;
   const Chek=(Course)=>{
     console.log(CourseToCustomer);
@@ -37,12 +39,14 @@ export default function Courses() {
        dispatch(Course_Enrollment({ IdUser: currentUser.Id, IdCours: Course.Id ,Status:true}))
        alert("Enrollment succided!")
   }
+
   return (
     <>
       <h1>:) הקורסים שלנו</h1>
-      {courses_arr.map(Course => <>  <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br>
+       {courses_arr.map(Course => <>  <div className="div1"> <b >הקורס:</b> {Course.NameCours}<br></br>
 
-      <br></br> {Course.Dis} אופי הקורס:
+            <button onClick={() => { if (currentUser != "") details(Course); else (alert("you gotta connect")) }} className="btn"><span>הרשם</span><img src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png" height="62" width="62" className="img2" /> </button>
+
 
       </div>
      {flag==true?<input type="button" value="להרשם שוב" className="button1" onClick={()=>details(Course)}/>:<input type="button" value="להרשמה" className="button1" onClick={()=>Chek(Course)} />
@@ -50,6 +54,8 @@ export default function Courses() {
     
      <div/> </>)} 
 
-    </>
-  )
-}
+ </>)}
+
+
+  
+ 
