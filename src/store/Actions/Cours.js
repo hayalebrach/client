@@ -1,15 +1,8 @@
 import * as actionType from "../actions";
 import axios from "axios";
-
-//פונקציה שמוסיפה קורס חדש
 export const AddCours=(course)=>{
-    console.log("the course: ", course);
-    return dispatch=>{
-        axios.post("http://localhost:50157/api/Cours/AddCourse?",course)
-        .then(x=> dispatch({type:actionType.ADD_COURS,payload:course}))
-        .catch(err=>console.log(err))
-       console.log("DONE!!!");
-    }
+    return axios.post("http://localhost:50157/api/Cours/AddCourse?",course)
+
 }
 //פונקציה שלוקחת את הקורסים לבריכה מסוימת
 export const GetAllCoursesByPool=(IdPool)=>{
@@ -21,43 +14,23 @@ export const GetAllCoursesByPool=(IdPool)=>{
         .catch(err=> console.log(err) )
     }
 }
-
+//פונקציה שלוקחת את כל הקורסם לכל הבריכות
 export const GetAllCourses=()=>{
-    
-    return dispatch=>{
-        
-        axios.get(`http://localhost:50157/api/cours`)
-        .then(response=>{
-            console.log(response.data);
-            dispatch({type:actionType.GET_All_COURSES,payload:response.data})
-        })
-        .catch(err=> console.log(err) )
-    }
+    return axios.get(`http://localhost:50157/api/cours`)
 }
 
 export const GetCoursesToUser=(IdUser)=>{
-    return dispatch=>{
-        
-        axios.get(`http://localhost:50157/api/CoursToCustomer/GetCoursesByUser?IdUser=${IdUser}`)
+    console.log(IdUser);
+    return (dispatch)=>{
+        axios.get(`http://localhost:50157/api/CourseToCustumer/GetCoursesByUser?IdUser=${IdUser}`)
         .then(response=>{
             console.log(response.data);
             dispatch({type:actionType.COURSES_TO_USER,payload:response.data})
+
         })
         .catch(err=> console.log(err) )
     }
 }
-
-export const DeleteCourse=(CourseId)=>{
-    return dispatch=>{
-        axios.delete(`http://localhost:50157/api/cours/DeleteCourse?Id=${CourseId}`)
-        .then(response=>{
-            console.log(response.data);
-            dispatch({type:actionType.DELETE_COURSE,payload:CourseId})
-        })
-        .catch(err=> console.log(err) )
-    }
-}
-
 export const Course_Enrollment=(user)=>{
     return dispatch=>{
         axios.post("http://localhost:50157/api/CoursToCustomer/Course_Enrollment?",user)
@@ -66,17 +39,10 @@ export const Course_Enrollment=(user)=>{
        
     }
 }
-//עדכון קורס
 export const updateCours=(data)=>{
-    console.log("i am hear");
-    console.log(data);
-    return dispatch=>{
-        axios.put("http://localhost:50157/api/Cours/Put?",data)
-        .then(x=> dispatch({type:actionType.UPDATE_COURS,payload:x.data}))
-        .catch(err=>console.log(err))
-    }
-} 
- 
+    return axios.put("http://localhost:50157/api/Cours/Put?",data)
+
+}
 //שמירת קורס על פי ID מנהל
 export const getCours = (ID) => {
 
@@ -86,14 +52,9 @@ export const getCours = (ID) => {
 
     }
 }
-//מחיקת קורס מעמוד מנהל בריכה
 export const Delete=(data)=>{
-    return dispatch=>{
-        axios.put("http://localhost:50157/api/Cours/PutForDelete?",data)
-        .then(x=> dispatch({type:actionType.DELETE_CARD,payload:data}))
-        .catch(err=>console.log(err))
-    }
-} 
+    return  axios.put("http://localhost:50157/api/Cours/PutForDelete?",data)
+}
 
 
 

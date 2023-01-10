@@ -8,6 +8,13 @@ import {GetAllCoursesByPool} from "../../store/Actions/Cours";
 import {GetTimeOfCoursByIdPool,ChekAndAddCours} from '../../store/Actions/Time';
 
 import Paper from '@mui/material/Paper';
+import {
+    withStyles,
+    Theme,
+    createStyles,
+    makeStyles,
+  } from '@material-ui/core/styles';
+
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -27,9 +34,9 @@ const schema = yup.object({
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+        color: theme.palette.common.black,
         fontSize: 23,
+        border:'2px black solid'
 
     },
     [`&.${tableCellClasses.body}`]: {
@@ -45,7 +52,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 2,
     },
 }));
-
 export default function AddDetailsScheduleCours(){
     const dispatch=useDispatch();
     const { Days, currentPool,courses_arr} = useSelector(state => ({
@@ -125,7 +131,7 @@ export default function AddDetailsScheduleCours(){
 
         <h1>לוח זמנים</h1>
         <br />
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{backgroundColor:'#ffffff40',border:'2px black solid'}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead key={Days.IdDays} style={{ color: 'white' }}>
                     <TableRow >
@@ -135,9 +141,9 @@ export default function AddDetailsScheduleCours(){
                 <TableBody>
                     <StyledTableRow>
                         {/* {console.log(schedule, Days)} */}
-                        {Days.map(x => <StyledTableCell key={x.Id} align="center" >
+                        {Days.map(x => <StyledTableCell key={x.Id} align="center" style={{padding:'0px',border:'2px black solid',verticalAlign:'initial'}}>
                             {
-                                schedule.map(y => y.IdDays === x.Id ? <div>
+                                schedule.map(y => y.IdDays === x.Id ? <div style={{border:'1px black solid'}}>
                                    {courses_arr.map(r=>(r.Id==y.IdCours?r.NameCours:null))}<br/> שעת התחלה: {y.StartHour}<br/>  שעת סיום: {y.EndHour}<br/> {y.Type == 0 ? "בנות" : "בנים"}
                                 </div> : null)
                             }</StyledTableCell>)}

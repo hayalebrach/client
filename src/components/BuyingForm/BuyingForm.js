@@ -18,7 +18,7 @@ const BuyingForm=()=>{
             x.AmountGet=cart[i].EntersAmount;
             x.AmountLeft=cart[i].EntersAmount;
             x.TotalPrice=cart[i].Price;
-            x.DateBuy=Date.now();
+            x.DateBuy=new Date();
 
             dispatch(Purchasing(x));
 
@@ -34,9 +34,11 @@ const BuyingForm=()=>{
             <img src="/Pic/swimming-pool.png" className="cardImg"></img><br/></div> )
             
         }
+
         <input type="button" className="buttonkeepBuy"  value="המשך לקנות" onClick={()=>nav("./AllPools")} /><br/>
         <input type="button" value="!שלם"  className="buttonPay" onClick={()=>Buy()}></input>
-        
+
+
         
     </div>
    

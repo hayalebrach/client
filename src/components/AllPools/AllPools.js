@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { savePool ,GetAllCoursesByPool} from "../../store/Actions/Pools"
+import { SavePool} from "../../store/Actions/Pools"
 import "./AllPools.css";
 
 export default  function AllPools(){
@@ -17,7 +17,7 @@ export default  function AllPools(){
     // }), shallowEqual);
     let nav=useNavigate();
     const Func=(pool)=>{
-      dispatch(savePool(pool));
+      dispatch(SavePool(pool));
       nav("/poolWeb");
     }
 

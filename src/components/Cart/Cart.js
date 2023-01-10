@@ -1,15 +1,22 @@
 
 import { Delete } from "@material-ui/icons";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector,shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
-import {DeleteFromCart, SearchPool} from "../../store/Actions/Cart"
-import { savePoolById } from "../../store/Actions/Pools";
+import {DeleteFromCart} from "../../store/Actions/Cart"
+import { SavePool } from "../../store/Actions/Pools";
 import "./Cart.css";
 export default  function Cart(){
   let nav=useNavigate();
   let [sum, setSum] = useState(0);
-    const Cart=useSelector(state=>state.Cart);
+
+    const { poolsArr,Cart } = useSelector(state => ({
+      Cart:state.Cart,
+      poolsArr:state.poolsArr
+      
+    }), shallowEqual);
+
+
     const dispatch=useDispatch();
 
     useEffect(() => { Sum()},[Cart]);
@@ -27,13 +34,15 @@ export default  function Cart(){
 
 
     const Func=(PoolName)=>{
-      dispatch(SearchPool(PoolName));
+      let pool=poolsArr.find(x=>x.Name==PoolName)
+      dispatch(SavePool(pool));
       nav("./PoolWeb");
 
     }
 
     const ToPoolWeb=(poolId)=>{
-      dispatch(savePoolById(poolId));
+      let pool=poolsArr.find(x=>x.Id==poolId)
+      dispatch(SavePool(pool));
       nav("./poolWeb");
       
 

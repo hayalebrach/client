@@ -1,22 +1,28 @@
 
 import {useEffect, useState} from "react"
 import { useNavigate } from "react-router";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector,shallowEqual} from "react-redux";
 import {getCardsToCustomer} from "../../store/Actions/Card"
-import {savePoolById} from "../../store/Actions/Pools"
+import {SavePool} from "../../store/Actions/Pools"
 import axios from "axios";
 export default  function BuyingHistory(){
   let nav=useNavigate();
   const dispatch=useDispatch();
   const [history,SetHistory]=useState([]);
-  const currentUser=useSelector(state=>state.currentUser);
+  
+      const {currentUser,poolsArr}= useSelector(state => ({
+      currentUser: state.currentUser,
+      poolsArr:state.poolsArr
+     
+    }), shallowEqual);
   useEffect(()=>{
          getCardsToCustomer(currentUser.Id).then(x=>SetHistory(x.data))  
   },[history])
 
 
   const ToPoolWeb=(IdPool)=>{
-    dispatch(savePoolById(IdPool));
+    let pool=poolsArr.find(x=>x.Id==IdPool)
+    dispatch(SavePool(pool));
     console.log()
     nav("./poolWeb");
 

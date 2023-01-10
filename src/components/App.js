@@ -39,8 +39,6 @@ import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
 import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
-
-
 import { Exit, getAllUser } from "../store/Actions/Users";
 import { getAllAreas, getAllDays, GetAllPools } from "../store/Actions/Pools";
 import { useEffect, useState } from 'react';
@@ -51,8 +49,6 @@ import UpdateUser from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
 import AllCardsToPool from "./UpdateCard/AllCardsToPool";
 import UpdateCard from "./UpdateCard/UpdaeCard";
-import { getAllManagers } from '../store/Actions/Manager';
-import { GetAllCourses } from '../store/Actions/Cours';
 import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
 import AllCoursToPool from './UpdateCours/AllCoursToPool'
@@ -60,19 +56,19 @@ import {SavePlace} from './SavePlace/SavePlace';
 import AddDetailsScheduleCours from './AddDetailsScheduleCours/AddDatailsScheduleCours';
 function App() {
   useEffect(() => {
-    dispatch(GetAllCourses());
     dispatch(GetAllPools());
     dispatch(getAllManagers());
     dispatch(getAllUser());
     dispatch(getAllAreas());
+
     dispatch(getAllDays());
   }, []);
   const [showDiv, setShowDiv] = useState(false);
   let nav = useNavigate();
   const dispatch = useDispatch();
+
   const { Schedule, currentUser, currentPool, usersArr,Areas,Pools } = useSelector(state => ({
     currentUser: state.currentUser,
-    Schedule: state.Schedule,
     currentPool: state.currentPool,
     usersArr: state.usersArr,
     Areas: state.Areas,
@@ -290,7 +286,7 @@ function App() {
         <Route path="AddPool" element={<AddPool />} />
         <Route path="AddDetailsPool" element={<AddDetailsPool />} />
         <Route path="AddPool/AddDetailsPool" element={<AddPool />} />
-        <Route path="MainManagerNavBar/AddPool/AddDetailsManager" element={<AddDetailsManager />} />
+        <Route path="MainManagerNavBar/AddDetailsManager" element={<AddDetailsManager />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
 

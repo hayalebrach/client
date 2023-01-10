@@ -7,9 +7,6 @@ export default function AddPool(){
   <li className="nav-item">
   <Link to="AddDetailsManager" className="nav-link">הוספת מנהל בריכה</Link>
   </li>
-  <li className="nav-item">
-  <Link to="AddDetailsPool" className="nav-link">הוספת בריכה</Link>
-  </li>
 </ul>
     </>)
 }

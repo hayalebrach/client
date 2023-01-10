@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useEffect, useState} from "react";
 import {useSelector,useDispatch,shallowEqual}from "react-redux";
 import {useNavigate} from "react-router";
-import {getAllCardByIdPool,getById,DeletCard}from "../../store/Actions/Card";
+import {getAllCardByIdPool,getById,DeletCard,TheCard}from "../../store/Actions/Card";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -24,6 +24,7 @@ export default function AllCardsToPool(){
   const dispatch=useDispatch();
   const [act, setAct] = React.useState('');
   const[a,Seta]=useState() ;
+  const [c,SetC]=useState();
   const handleChange = (event) => {
     setAct(event.target.value);
     Seta(event.target.value);
@@ -32,14 +33,18 @@ export default function AllCardsToPool(){
 const update=(Id)=>{
   console.log(" ה' רק אתה יכול לעזור לי בזה");
   console.log(Id);
-  dispatch(getById(Id));
+  getById(Id).then(x=>func(x.data));
+  
+}
+const func=(data)=>{
+
+  console.log(data);
+  dispatch(TheCard(data));
   nav(("/UpdateCard/"+true));
 }
 const Delet=(Id)=>{
-  console.log(Id);
-  console.log("שלום לכם");
   let card=CardsArr.find(x=>x.Id==Id)
-  dispatch(DeletCard(card)); 
+  DeletCard(card).then(alert("כרטיס זה נמחק מרשימת הכרטיסים לבריכה זו")); 
 }
   return(
     <>
@@ -65,15 +70,15 @@ const Delet=(Id)=>{
     </Box>
 
 
-    <ul>
+    <div className="flex-container">
         {
-            CardsArr.map(CardsArr=><><br/> <li className="li" key={CardsArr.Id}><h3>id: {CardsArr.Id}</h3><br/> מחיר:{CardsArr.Price}<br/> כמות בניסות:{CardsArr.EntersAmount}<br/>
-            {a==20?<input type="button" value="עדכן" onClick={()=>update(CardsArr.Id)}/>:null}
-            {a==30?<input type="button" value="מחק" onClick={()=>Delet(CardsArr.Id)}/>:null}
+            CardsArr.map(CardsArr=><><div className="container" key={CardsArr.Id}>מחיר:{CardsArr.Price}<br/> כמות כניסות:{CardsArr.EntersAmount}<br/>
+            {a==20?<input type="button" value="עדכן" className="Button" onClick={()=>update(CardsArr.Id)}/>:null}
+            {a==30?<input type="button" value="מחק"  className="Button" onClick={()=>Delet(CardsArr.Id)}/>:null}
             
-            <br/> </li></> )
+            <br/> </div></> )
         }
-    </ul>
+    </div>
     <input type="button" value="חזרה לעמוד הבית" onClick={()=>nav("/ManagerNavBar")}/>
 
 

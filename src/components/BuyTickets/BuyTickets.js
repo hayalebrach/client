@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector,shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
 import { getAllCardByIdPool } from "../../store/Actions/Card"
 import { addToCart } from "../../store/Actions/Cart";
@@ -8,15 +8,17 @@ import "./BuyTickets.css"
 export default function BuyTickets() {
 
   const dispatch = useDispatch();
-  const currentPool = useSelector(state => state.currentPool);
 
-
+  const { CardsArr, currentPool} = useSelector(state => ({
+    CardsArr: state.CardsArr,
+    currentPool: state.currentPool
+}), shallowEqual);
   useEffect(() => {
     dispatch(getAllCardByIdPool(currentPool.Id));
 
   }, []);
 
-  const Cards = useSelector(state => state.CardsArr);
+
 
   const AddToCart = (Card) => {
     dispatch(addToCart(Card));
@@ -35,7 +37,8 @@ export default function BuyTickets() {
       
      
         {
-          Cards.map(Card => <>  <div className="Card"> כרטיסיית {Card.EntersAmount} כניסות<br></br> מחיר: {Card.Price}₪ <br /><input type="button" className="button4" value="הוספה לסל" onClick={() => { AddToCart(Card) }}></input><img src="/Pic/swimming-pool.png" className="cardImg"></img>  </div></>)
+
+          CardsArr.map(Card =><>{Card.EntersAmount!='1'?<div className="div1">  מספר כניסות: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br /><input type="button" className="button1" value="הוספה לסל" onClick={() => { AddToCart(Card) }}></input></div>:null}</>)
         }
 
        </div>

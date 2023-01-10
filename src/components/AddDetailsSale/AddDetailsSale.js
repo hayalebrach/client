@@ -21,7 +21,7 @@ export default function AddDetailsSale() {
         resolver: yupResolver(schema)
     });
     const onSubmit = (data) => {
-        dispatch(AddSale(data));
+
         console.log(data);
     }
 

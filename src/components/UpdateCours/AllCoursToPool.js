@@ -43,8 +43,9 @@ const update=(Id)=>{
 const Delet=(Id)=>{
   console.log(Id);
   console.log("שלום לכם");
-  let cours=courses_arr.find(x=>x.Id==Id)
-  dispatch(Delete(cours)); 
+  let cours=courses_arr.find(x=>x.Id==Id);
+  alert("קורס זה נמחק מרשימת הקורסים לבריכה זו");
+  Delete(cours).then(); 
 }
   return(
     <>

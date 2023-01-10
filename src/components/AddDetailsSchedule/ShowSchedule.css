@@ -1,0 +1,12 @@
+.savePlaceButton{
+    transition-duration: 0.4s;
+    background-color:rgba(74, 206, 230, 0.541) ;
+    border-radius:17px;
+    margin:7px;
+    
+}
+.savePlaceButton:hover {
+    background-color: rgb(11 119 161 / 87%);
+    color: white;
+    border: white solid;
+  }

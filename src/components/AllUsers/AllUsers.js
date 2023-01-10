@@ -4,21 +4,20 @@ import {getAllUsersByIdPool} from "../../store/Actions/Pools"
 import {useSelector,useDispatch,shallowEqual}from "react-redux";
 import {useNavigate} from "react-router";
 import "./AllUsers.css"
+import { useState } from "react";
 export default function AllUsers(){
 
-  const {currentPool,UsersPool,HistoryUser} = useSelector(state => ({
+  const {currentPool,HistoryUser,UsersPool} = useSelector(state => ({
     currentPool: state.currentPool,
-    UsersPool:state.UsersPool,
-    HistoryUser:state.HistoryUser
+    HistoryUser:state.HistoryUser,
+    UsersPool:state.UsersPool
   }), shallowEqual);
 
   const dispatch=useDispatch();
   const nav=useNavigate();
-  
   useEffect(() => {
     dispatch(getAllUsersByIdPool(currentPool.Id));
 }, []);
-
 const getHistory=(IdUser,IdPool)=>{
     dispatch(getAllHistoryOfUser(IdPool,IdUser));
     console.log(HistoryUser);

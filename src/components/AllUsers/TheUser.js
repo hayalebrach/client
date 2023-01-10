@@ -35,15 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// function createData(DateBuy, Price, EntersAmount) {
-//   return { DateBuy, Price, EntersAmount};
-// }
 
-// const rows = [
-//   createData('10-12-2022', 159, 6),
-//   createData('10-12-2022', 237, 9),
-//   createData('10-12-2022', 262, 16),
-// ];
 
 export default function TheUser() {
   const nav = useNavigate();

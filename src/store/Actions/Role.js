@@ -10,14 +10,3 @@ export const getAllRole=()=>{
         .catch(err=> console.log(err) )
     }
 }
-//הוספת תפקיד
-export const AddRole=(data)=>{
-    return dispach=>{
-        axios.post("http://localhost:50157/api/role/AddRole?",data)
-        .then(response=>{
-            console.log(response.data);
-            dispach({type:actionType.ADD_ROLE,payload:response.data})
-        })
-        .catch(err=> console.log(err) )
-    }
-}
