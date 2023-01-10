@@ -5,3 +5,24 @@
     left: 510px;
     
 }
+
+
+.buttonkeepBuy{
+    width: 130px;
+    height: 30px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    position: relative;
+    top: 210px;
+    right: 489px;
+
+}
+.buttonPay{
+    width: 130px;
+    height: 30px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    position: relative;
+    top: -70px;
+    right: 459px;
+}

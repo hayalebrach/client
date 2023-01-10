@@ -70,7 +70,7 @@ export default function ShowSchedule() {
         <h2>בחר קודם כל יום שאתה רוצה ולאחר מכן את התאריך המדובר</h2><br/>
       
         <br />
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper}  style={{backgroundColor:"#ffffff40",border:"2px black solid"}}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead key={Days.IdDays} style={{ color: 'white' }}>
                     <TableRow >
@@ -79,7 +79,7 @@ export default function ShowSchedule() {
                 </TableHead>
                 <TableBody>
                     <StyledTableRow>
-                        {Days.map(x => <StyledTableCell key={x.Id} align="center" >
+                        {Days.map(x => <StyledTableCell key={x.Id} align="center"   style={{padding:"#0px",border:"2px solid black"}} >
                             {
                                 schedule.map(y => y.IdDays === x.Id ? <div>
                                     שעת התחלה: {y.StartHour}<br/>  שעת סיום: {y.EndHour}<br/> {y.Type == 0 ? "בנות" : "בנים"}

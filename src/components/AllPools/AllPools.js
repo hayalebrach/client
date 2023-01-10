@@ -29,7 +29,7 @@ export default  function AllPools(){
     <h1>בריכות שחייה</h1>
     
         {
-           Pools.map(pool=> <><div  className="pool"><div>  <img src={`Pic/${pool.Pic}`} className="img"/>  </div> <br/><b>{pool.Name}</b><br/>{pool.Adress}<br/> <br/>{pool.Price}<input type="button" className="button1" value="לפרטים" onClick={()=>Func(pool)}></input></div></> )
+           Pools.map(pool=> <><div  className="pool"><div>  <img src={`Pic/${pool.Pic}`} className="img"/>  </div> <br/><b className="name">{pool.Name}</b><br/><text>{pool.Adress} </text> <img src={`Pic/map.png`} className="imgLocation"/> <br/><text> מחיר: {pool.Price}</text><br/><input type="button" className="detailsButton" value="לפרטים" onClick={()=>Func(pool)}></input></div></> )
 
         }
     

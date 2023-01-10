@@ -71,6 +71,8 @@ const Login = () => {
     }
 
     return (<>
+            <img src="../Pic/cartoon-4764726_1920.png" className="cutePic"></img>
+
     
         
         <form onSubmit={handleSubmit(onSubmit)}>

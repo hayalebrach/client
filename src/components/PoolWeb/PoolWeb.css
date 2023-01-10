@@ -81,7 +81,7 @@ text{
 
 .x1{
     position: relative;
-    top: 2px;
+    top: -68px;
     left: -55px;
     color: black;
     font-size: 22px;
@@ -89,7 +89,7 @@ text{
 }
 .x2{
     position: relative;
-    top: 7px;
+    top: -46px;
     left: -30px;
     color: black;
     font-size: 22px;
@@ -125,7 +125,7 @@ text{
   }
   .wrapper text{
     position: relative;
-    top: 54px;
+    
     right: 57px;
     font-size: 23px;
     font-family: system-ui;
@@ -239,7 +239,7 @@ text{
   }
   .wrapper2 text{
     position: relative;
-    
+    top: -38px;
     right: 91px;
     font-size: 23px;
     font-family: system-ui;

@@ -26,8 +26,92 @@
 .select{
   
   color: black;
- 
+    border-radius: 5px;
+    font-family: sans-serif; 
+}
+
+.cutePic{
+  width: 120px;
+    height: 120px;
+    position: relative;
+    top: 100px;
+    left: -120px;
+    z-index: 2;
 }
   body{
     text-align: center;
+  }
+
+
+
+.formDivSignUp{
+  width: 480px;
+  height: 500px;
+  position: relative;
+  left: 310px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 5px;
+  top: -120px;
+  background-image:url('../../../public/Pic/sunglasses-1850648_1920.jpg');
+  
+  
+}
+.navbar-brand {
+  position: relative;
+  top: 70px;
+  float: right;
+  height: 39px;
+  padding: 14px 15px;
+  font-size: 20px;
+  line-height: 16px;
+  color: black;
+}
+.formDivSignUp input{
+  text-align: right;
+
+}
+
+.navbar-brand {
+  position: relative;
+  top: 70px;
+  float: right;
+  height: 39px;
+  padding: 14px 15px;
+  font-size: 20px;
+  line-height: 16px;
+  color: black;
+}
+
+
+.formDivSignUp img{
+  width: 15px;
+  height:15px;
+  position: relative;
+  top:19px;
+  left:38px;
+
+}
+
+.submitSignUp{
+  position: relative;
+  top: -18px;
+  left: 12px;
+    width: 130px;
+    height: 30px;
+    background-color: cadetblue;
+    border-radius: 5px;
+
+}
+
+.inputSignUp {
+  padding: 4px;
+  /* border: 2px solid cornflowerblue; */
+  border-radius: 26px;
+  background-color: rgb(0,0,0,0.1);
+  display: list-item;
+  color: #fff;
+  position: relative;
+  left: 253px;
+  margin: 10px;
+  top: -12px;
   }

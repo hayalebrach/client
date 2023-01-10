@@ -83,7 +83,7 @@ export default function PoolWeb() {
                         <div><span class="dot"></span></div>
                         <div><span class="dot"></span></div>
                         <div><span class="dot"></span></div>
-                        <Link to="courses" className="navbar-brand" ><text >לפרטים </text></Link>
+                        <Link to="ShowSchedule" className="navbar-brand" ><text >לפרטים </text></Link>
 
 
                     </div>

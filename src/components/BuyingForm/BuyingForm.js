@@ -30,12 +30,12 @@ const BuyingForm=()=>{
     <div >
         <h1>סיכום הזמנה</h1>
         {
-            cart.map(cart=><div className="div1"> <b>שם הבריכה: </b>{cart.PoolName}<br/> כמות כרטיסים: {cart.EntersAmount} <br/> :תאריך קניה {cart.date} <br/>:תוקף {cart.validity}<br/> סה"כ תשלום:{cart.Price*cart.EntersAmount}<br/>
-            <br/></div> )
+            cart.map(cart=><div className="Card"> <b>שם הבריכה: </b>{cart.PoolName}<br/> כמות כרטיסים: {cart.EntersAmount} <br/> :תאריך קניה {cart.date} <br/>:תוקף {cart.validity}<br/> סה"כ תשלום:{cart.Price*cart.EntersAmount}<br/>
+            <img src="/Pic/swimming-pool.png" className="cardImg"></img><br/></div> )
             
         }
-        <input type="button" className="button1"  value="המשך לקנות" onClick={()=>nav("./AllPools")} />
-        <input type="button" value="!שלם"  className="button1" onClick={()=>Buy()}></input>
+        <input type="button" className="buttonkeepBuy"  value="המשך לקנות" onClick={()=>nav("./AllPools")} /><br/>
+        <input type="button" value="!שלם"  className="buttonPay" onClick={()=>Buy()}></input>
         
         
     </div>

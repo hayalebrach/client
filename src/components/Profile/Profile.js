@@ -34,7 +34,7 @@ export default  function Profile(){
     <b onClick={MyCourses}>לקורסים שלי</b>
 
     </text>
-    <input type="button" className="button3" value="<-התנתק" onClick={LogOut}disa></input>
+    <input type="button" className="Mbutton" value="<-התנתק" onClick={LogOut}disa></input>
     </div>
 
     </>)
