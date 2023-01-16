@@ -91,4 +91,16 @@ export const getAllHistoryOfUser=(IdPool,IdUser)=>{
         .catch(err=> console.log(err) )
     }
 }
-
+export const sendMail=(body,Mail,subject)=>{
+    console.log(Mail,body,subject);
+    return axios.get(`http://localhost:50157/api/user/SendMail?body=${body}&mail=${Mail}&subject=${subject}`)
+}
+export const GetUserByMail=(mail)=>{
+    return axios.get(`http://localhost:50157/api/user/getUserByMail?mail=${mail}`)
+    
+}
+export const changeThePassword=(Id,Password)=>{
+    console.log(Id);
+    return axios.put(`http://localhost:50157/api/user/PutPassWord?PassWord=${Password}&Id=${Id}`)
+    
+}

@@ -1,0 +1,11 @@
+.zeroPass{
+    position: relative;
+    top: 35px;
+    left: 132px;
+    width: 130px;
+    height: 30px;
+    background-color: cadetblue;
+    border-radius: 5px;
+    text-align: center;
+    text-align-last: center;
+}

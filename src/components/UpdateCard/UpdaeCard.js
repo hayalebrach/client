@@ -2,6 +2,8 @@ import{ React,useEffect}  from "react";
 import { useParams,useNavigate } from "react-router";
 import {useDispatch,useSelector,shallowEqual} from "react-redux";
 import {updateCard,getAllCardByIdPool} from "../../store/Actions/Card";
+import "../Login/Login.css";
+import "./AllCardsToPool.css";
 export default function UpdateCard(){
     const dispatch = useDispatch();
     let f = useParams();
@@ -36,20 +38,18 @@ export default function UpdateCard(){
                 console.log(CardsArr);
                 nav("/ManagerNavBar/AllCardsToPool");
             }
-return (<>
-    <h1>עדכון</h1>
+return (<> 
+     <div className="formDiv">
+    <h1>עדכון כרטיס</h1>
     <form>
-        <div className="div1">
-
-        <label >מחיר</label><br/>
-        <input type="number" className="input"  name="Price" placeholder={currentCard.Price} variant="standard" onChange={change} defaultValue={currentCard.Price} disabled={f.flag=="false"}/>
-        
-        <label >מספר כניסות</label><br/>
-        <input type="number" className="input" name="EntersAmount" placeholder={currentCard.EntersAmount} variant="standard" onChange={change} defaultValue={currentCard.EntersAmount} disabled={f.flag=="false"}/>
-        
-     
-        <input type="button" className="button" value="עדכון"onClick={()=>Send()}/></div>
+        <label>מחיר</label><br/><br/>
+        <input type="number" className="updateCard"  name="Price" placeholder={currentCard.Price} variant="standard" onChange={change} defaultValue={currentCard.Price} disabled={f.flag=="false"}/>
+        <br/>
+        <label>מספר כניסות</label><br/>   <br/>
+        <input type="number" className="updateCard" name="EntersAmount" placeholder={currentCard.EntersAmount} variant="standard" onChange={change} defaultValue={currentCard.EntersAmount} disabled={f.flag=="false"}/>
+        <br/>
+        <input type="button" className="buttonUpdateCard"  value="עדכון" onClick={()=>Send()}/>
     </form>
-    </>
+    </div> </>
 ); 
 }

@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import "./AllCardsToPool.css";
+import '../Cart/Cart.css';
 export default function AllCardsToPool(){
   const {currentPool,CardsArr,currentCard} = useSelector(state => ({
     currentPool: state.currentPool,
@@ -31,7 +32,6 @@ export default function AllCardsToPool(){
   };
 
 const update=(Id)=>{
-  console.log(" ה' רק אתה יכול לעזור לי בזה");
   console.log(Id);
   getById(Id).then(x=>func(x.data));
   
@@ -68,25 +68,14 @@ const Delet=(Id)=>{
         </Select>
       </FormControl>
     </Box>
-
-
-    <div className="flex-container">
-        {
-            CardsArr.map(CardsArr=><><div className="container" key={CardsArr.Id}>מחיר:{CardsArr.Price}<br/> כמות כניסות:{CardsArr.EntersAmount}<br/>
-            {a==20?<input type="button" value="עדכן" className="Button" onClick={()=>update(CardsArr.Id)}/>:null}
-            {a==30?<input type="button" value="מחק"  className="Button" onClick={()=>Delet(CardsArr.Id)}/>:null}
-            
+        <div className="divCard">{
+            CardsArr.map(CardsArr=><><div className="Card" key={CardsArr.Id}>מחיר:{CardsArr.Price}<br/> כמות כניסות:{CardsArr.EntersAmount}<br/>
+            {a==20?<input type="button" value="עדכן" className="button4" onClick={()=>update(CardsArr.Id)}/>:null}
+            {a==30?<input type="button" value="מחק"  className="button4" onClick={()=>Delet(CardsArr.Id)}/>:null}
+            <img src="/Pic/swimming-pool.png" className="cardImg"></img>
             <br/> </div></> )
-        }
-    </div>
-    <input type="button" value="חזרה לעמוד הבית" onClick={()=>nav("/ManagerNavBar")}/>
-
-
-
-
-
-
-
+       } </div>
+   
     </>
   )
 }

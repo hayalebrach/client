@@ -8,8 +8,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import "./AllCoursToPool.css";
-
+import '../Cart/Cart.css';
+import './AllCoursToPool.css';
 export default function AllCoursToPool()
 {
   const {currentPool,courses_arr,currentCours }= useSelector(state => ({
@@ -66,19 +66,16 @@ const Delet=(Id)=>{
         </Select>
       </FormControl>
     </Box>
-    <ul>
-        {
-            courses_arr.map(courses_arr=><><br/> <li className="li" key={courses_arr.Id}><h3>שם הקורס: {courses_arr.NameCours}</h3><br/> תאור:{courses_arr.Dis}<br/>  מחיר:{courses_arr.Price}<br/>
+    
+    <div className="divCard">{
+            courses_arr.map(courses_arr=><><div className="Card" key={courses_arr.Id}><h3>שם הקורס: {courses_arr.NameCours}</h3><br/> תאור:{courses_arr.Dis}<br/>  מחיר:{courses_arr.Price}<br/>
         
-         {a==20?<input type="button" value="עדכן" onClick={()=>update(courses_arr.Id)}/>:null}
-         {a==30?<input type="button" value="מחק" onClick={()=>Delet(courses_arr.Id)}/>:null}
+         {a==20?<input type="button" value="עדכן" className="button4" onClick={()=>update(courses_arr.Id)}/>:null}
+         {a==30?<input type="button" value="מחק" className="button4" onClick={()=>Delet(courses_arr.Id)}/>:null}
+         <img src="/Pic/swimming-pool.png" className="cardImg"></img>
+             </div></> )
         
-             </li></> )
-        
-        }
-    </ul>
-
-    <input type="button" value="חזרה לעמוד הבית" onClick={()=>nav("/ManagerNavBar")}/>
-    </>
+       } </div>
+        </>
   )
 }

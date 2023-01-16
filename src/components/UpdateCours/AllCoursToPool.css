@@ -15,3 +15,23 @@
 #css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
     font-size: 20px;
 }
+.divCard{
+    width:70%;
+    height: 100%;
+    /* border: 4px black solid; */
+    display: inline-block;
+    position: relative;
+    top: 55px;
+}
+.formDivUpdateCourse{
+    width: 542px;
+    height: 541px;
+    position: relative;
+    left:600px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 5px;
+  top: 80px;
+  background-image:url('../../../public/Pic/sunglasses-1850648_1920.jpg');
+  
+  background-color: white;
+}

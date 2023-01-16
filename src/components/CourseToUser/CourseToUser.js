@@ -23,8 +23,7 @@ useEffect(() => {
     GetAllCourses().then(x=>SetCourses(x.data))
     }, [])
 
-    function Func(Course){
-        
+    function Func(Course){        
         const index = Courses.findIndex(x => x.Id == Course.IdCours)
         return Courses[index];
     }
@@ -47,10 +46,7 @@ useEffect(() => {
     const ToPoolWeb=(IdPool)=>{
         let pool=poolsArr.find(x=>x.Id==IdPool)
         dispatch(SavePool(pool));
-
         nav("./poolWeb");
-        
-
     }
     
 return CourseToCustomer.map(Course=><div className="Mdiv2"><> {Func2()} <img src={Course.img}  className="courseImg" />  <b> קורס {Func(Course).NameCours } </b> <br/> <text>{Func(Course).Dis}</text><br/> בלבדד<text> {Func(Course).Price}₪  </text> <br/><input type="button" value="לאתר הבריכה" onClick={()=>ToPoolWeb( Func(Course).IdPool)} className="button1"></input></></div>)

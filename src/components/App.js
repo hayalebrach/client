@@ -39,11 +39,9 @@ import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
 import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
-import { Exit, getAllUser } from "../store/Actions/Users";
+import { Exit} from "../store/Actions/Users";
 import { getAllAreas, getAllDays, GetAllPools } from "../store/Actions/Pools";
 import { useEffect, useState } from 'react';
-
-
 import UpdateUser from './UpdateUser/UpdateUser';
 // import { UpdateUser } from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
@@ -54,13 +52,11 @@ import UpdateCours from './UpdateCours/UpdateCours'
 import AllCoursToPool from './UpdateCours/AllCoursToPool'
 import {SavePlace} from './SavePlace/SavePlace';
 import AddDetailsScheduleCours from './AddDetailsScheduleCours/AddDatailsScheduleCours';
+import TofesForgteTheKode from './TofesForgetTheKode/TofesForgtTheKode';
 function App() {
   useEffect(() => {
     dispatch(GetAllPools());
-    dispatch(getAllManagers());
-    dispatch(getAllUser());
     dispatch(getAllAreas());
-
     dispatch(getAllDays());
   }, []);
   const [showDiv, setShowDiv] = useState(false);
@@ -111,17 +107,40 @@ function App() {
 
   // console.log(num, current_user)
 
+  const goToPage=()=>{
+    switch(currentUser.IdRole){
+      case 1:
+        nav("/MainManagerNavBar");
+        break;
 
+    case 2: {
+        nav("/ManagerNavBar");
+        break;
+    }
+    default:
+      break;
+    }
+  }
   return (<>
     <div className='smallDiv'>
 
       <img src='../Pic/X2.png' className='logo'></img>
-      <img src="../Pic/grocery-store.png" className="img1" onClick={() => nav("./cart")} />
+      {
+        currentUser.IdRole!=1&&currentUser.IdRole!=2?
+        <img src="../Pic/grocery-store.png" className="img1" onClick={() => nav("./cart")} />
+        :null
+      }
       <img src="../Pic/user.png" className="imggg" onClick={() => {
         if (currentUser != "")
           nav("./profile")
         else alert("עליך להתחבר כדי לצפות בפרופיל!")
       }} />
+      {currentUser!=""&&currentUser.IdRole!=5?
+      <img  src="../Pic/home_36.png" className="home" onClick={()=>goToPage()}/>
+     :null}
+     {currentUser.IdRole==5&&currentPool!=""?
+        <img  src="../Pic/home.png" className="home" onClick={()=>nav("/poolWeb")}/>
+     :null}
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./signUp") }}>הרשמה</h3>
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./login") }}>התחברות</h3><br />
 
@@ -148,6 +167,7 @@ function App() {
     <div className="App" >
 
       <Routes >
+        <Route path="login/TofesForgteTheKode/AllPools" element={<AllPools/>}/>
         <Route path="" element={<AllPools />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
         <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
@@ -310,6 +330,8 @@ function App() {
         <Route path="SavePlace" element={<SavePlace/>}/>
         <Route path="ManagerNavBar/AddDetailsScheduleCours" element={<AddDetailsScheduleCours/>}/>
                 {/* <Route path="SplitButton" element={<SplitButton />} /> */}
+        <Route path="login/TofesForgteTheKode" element={<TofesForgteTheKode/>}/>
+
       </Routes>
     </div>
 

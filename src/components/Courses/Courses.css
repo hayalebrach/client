@@ -230,9 +230,13 @@ span{
 b{
     font-size: 20px;
 }
+<<<<<<< Updated upstream
 
 .Mdiv2{
     
+=======
+.Mdiv2{  
+>>>>>>> Stashed changes
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     border-radius: 5px;
     background-image:url('../../../public/Pic/sunglasses-1850648_1920.jpg');

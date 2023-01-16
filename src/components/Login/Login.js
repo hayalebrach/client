@@ -1,4 +1,3 @@
-//import { useNavigate } from "react-router";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,7 +13,6 @@ import { GetAllPools,SavePool} from "../../store/Actions/Pools"
 import { GetAllCourses } from "../../store/Actions/Cours";
 import { date } from "yup/lib/locale";
 import { SettingsInputSvideoRounded } from "@material-ui/icons";
-
 
 //הצבת תנאים להכנסצת ושליחת נתונים מהמסמך
 const schema = yup.object({
@@ -80,6 +78,10 @@ const Login = () => {
 
                 <Input register={register} errors={errors} className="inputLogin" name="Name" lablName="שם פרטי" type="text" src="../Pic/user.png"/>
                 <Input register={register} errors={errors} className="inputLogin" name="Password" lablName="סיסמא" type="number" src="../Pic/padlock.png"/>
+                <Link to="TofesForgteTheKode" className="forgetThePath">שכחתי סיסמא</Link>
+
+               
+               
                 <Link to="signUp" className="navbar-brand">עדיין לא  רשום? עבור להרשמה</Link>
 
                 <input type="submit" className="submitLogin" />

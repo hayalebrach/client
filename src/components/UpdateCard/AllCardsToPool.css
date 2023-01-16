@@ -15,26 +15,8 @@
 #css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
     font-size: 20px;
 }
-.container{
-    background-color: #06c9ef75;
-    color: #0e0d0d;
-    width: 20%;
-    height: 25%;
-    margin: 10px;
-    text-align: center;
-    line-height: 43px;
-    font-size: 23px;
-}
-.container:hover{
-    border: 7px #e9e498 solid;
-    border-radius: 12px;
-}
-.flex-container{
-    display: flex;
-    height: 70vmin;
-    border: 1px black solid;
-}
-.Button{
+
+/* .Button{
     transition-duration: 0.4s;
     background-color: #e9e498;
     color:#06c9ef75;
@@ -46,4 +28,29 @@
     background-color: rgb(11 119 161 / 87%);
     color: #e9e498;
     border:#06c9ef75 solid;
+} */
+.updateCard{
+    text-align: center;
+    padding: 4px;
+    /* border: 2px solid cornflowerblue; */
+    border-radius: 26px;
+    background-color: rgb(0,0,0,0.1);
+    display: list-item;
+    color:black;
+    position: relative;
+    left: 125px;
+    margin: 10px;
+    top: -12px;
+    width: 240px;
+    height: 30px;
+}
+.buttonUpdateCard{
+    position: relative;
+    top: 22px;
+    left: 11px;
+    width: 130px;
+    height: 30px;
+    background-color: cadetblue;
+    border-radius: 5px;
+     
 }

@@ -189,10 +189,12 @@ case actionType.DELETE_POOLS:
             };
         //מציג קורסים לבריכה
         case actionType.GET_COURSES:
+            {
+                console.log(action.payload);
             return {
                 ...state,
                 courses_arr: action.payload
-            };
+            }};
         //התחברות-login
         case actionType.LOGIN:
             return {
@@ -205,35 +207,11 @@ case actionType.DELETE_POOLS:
                 ...state,
                 User: action.payload
             };
-        //הוספת קורס
-        case actionType.ADD_COURS: {
-            return {
-                ...state,
-                courses_arr: [...state.courses_arr, action.payload]
-            }
-        }
-        //כל המנהלים
-        case actionType.GET_MANAGERS: {
-            return {
-
-                ...state,
-                Managers: action.payload
-            };
-        }
-
         case actionType.GET_ALL_AREAS: {
             return {
 
                 ...state,
                 Areas: action.payload
-            };
-        }
-        
-        //הוספת כרטיס
-        case actionType.ADD_CARD: {
-            return {
-                ...state,
-                CardsArr: [...state.CardsArr, action.payload]
             };
         }
         //איפוס משתמש

@@ -223,5 +223,12 @@ text:hover{
   width: 10px;
   height: 10px;
 }
-
+.home{
+  width: 30px;
+  height: 30px; 
+  display: inline-block;
+  position: relative;
+  top: -91px;
+  right: 675px;
+}
 
