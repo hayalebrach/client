@@ -18,12 +18,6 @@ const schema = yup.object({
 export default function AddDetailsCard() {
     const nav=useNavigate();
     const currentPool = useSelector((state) =>state.currentPool);
-    let f = useParams();
-    useEffect(() => {
-      f=f.flag;
-
-    },[]);
-    console.log(f.flag);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
@@ -32,8 +26,7 @@ export default function AddDetailsCard() {
         data.Status=true;
         console.log(data);
         AddCard(data);
-        if(f=="true")
-            nav("/ManagerNavBar/AllCardsToPool");        
+        nav("/ManagerNavBar/BuyTickets");        
        
            
     }
@@ -43,11 +36,8 @@ export default function AddDetailsCard() {
         <form onSubmit={handleSubmit(onSubmit)}>
             <Input register={register} errors={errors} name="Price" lablName="מחיר" className="" type="number"/>
             <Input register={register} errors={errors} name="EntersAmount" lablName="כמות כניסות" className="" type="number" />
-            {f.flag=="false"?
-            <input type="submit"/>
-            :
+
             <input type="submit" value="הוספה"/>
-        }
         </form>
         </>);
 }

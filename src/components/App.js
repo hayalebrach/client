@@ -1,6 +1,5 @@
 
 import './App.css';
-
 import { Routes, Route, useNavigate } from "react-router";
 import Login from "./Login/Login";
 import Courses from "./Courses/Courses";
@@ -45,7 +44,6 @@ import { useEffect, useState } from 'react';
 import UpdateUser from './UpdateUser/UpdateUser';
 // import { UpdateUser } from './UpdateUser/UpdateUser';
 //import { shallowEqual, useSelector } from 'react-redux';
-import AllCardsToPool from "./UpdateCard/AllCardsToPool";
 import UpdateCard from "./UpdateCard/UpdaeCard";
 import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
@@ -212,7 +210,7 @@ function App() {
         <Route path="AllPools/poolWeb/about" element={<About />} />
         <Route path="poolWeb/about" element={<About />} />
 
-        <Route path="ManagerNavBar/AllCardsToPool" element={<AllCardsToPool />} />
+        <Route path="ManagerNavBar/BuyTickets" element={<BuyTickets />} />
         <Route path="ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="MainManagerNavBar" element={<MainManagerNavBar />} />
         <Route path="UserNavBar" element={<UserNavBar />} />

@@ -3,7 +3,7 @@ import { useParams,useNavigate } from "react-router";
 import {useDispatch,useSelector,shallowEqual} from "react-redux";
 import {updateCard,getAllCardByIdPool} from "../../store/Actions/Card";
 import "../Login/Login.css";
-import "./AllCardsToPool.css";
+import "./UpdateCard.css";
 export default function UpdateCard(){
     const dispatch = useDispatch();
     let f = useParams();
@@ -36,7 +36,7 @@ export default function UpdateCard(){
                 updateCard(cardSchema).then();
                 dispatch(getAllCardByIdPool(cardSchema.IdPool));
                 console.log(CardsArr);
-                nav("/ManagerNavBar/AllCardsToPool");
+                nav("/ManagerNavBar/BuyTickets");
             }
 return (<> 
      <div className="formDiv">

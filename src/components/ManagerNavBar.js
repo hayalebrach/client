@@ -11,7 +11,7 @@ export default function ManagerNavBar(){
 
     
         <Link to="AllUsers" className="navbar-brand">לקוחות בריכה</Link>
-        <Link to="AllCardsToPool" className="navbar-brand">כרטיסים</Link>
+        <Link to="BuyTickets" className="navbar-brand">כרטיסים</Link>
         <Link to="Courses" className="navbar-brand">קורסים</Link>
         <Link to="addSale" className="navbar-brand">להוספת מבצעים </Link>
         <Link to="AddDetailsSchedule" className="navbar-brand">זמני בריכה</Link>

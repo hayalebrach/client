@@ -12,6 +12,7 @@ export default function Courses() {
     CourseToCustomer: state.CourseToCustomer,
     currentCours:state.currentCours
   }), shallowEqual);
+
   const dispatch = useDispatch();
   let nav = useNavigate();
   const [flag, SetFlag] = useState();
@@ -22,7 +23,7 @@ export default function Courses() {
     if(currentPool!=null)
       dispatch(GetAllCoursesByPool(currentPool.Id));
   }, [courses_arr])
-
+  //console.log(courses_arr);
 
   const details = (Course) => {
     if (currentUser === "") {
@@ -71,7 +72,7 @@ return (
   <>
     <h1>:) הקורסים שלנו</h1>
     {currentUser.IdRole==2?<input type="button" value="הוספת קורס" onClick={()=>nav("/AddDetailsCours/true")}/>:null}
-    {courses_arr.map(Course => <><div className="Mdiv2"><img src={`Pic/${Course.img}`} className="courseImg"></img><br /><b >קורס  {Course.NameCours}</b><br /> <text>{Course.Dis}</text> <br /><text>{Course.Price}₪</text>
+    {courses_arr.map(Course => <><div className="Mdiv2"><img src={`${Course.img}`} className="courseImg"></img><br /><b >קורס  {Course.NameCours}</b><br /> <text>{Course.Dis}</text> <br /><text>{Course.Price}₪</text>
 
 {currentUser.IdRole==2?
 <>
