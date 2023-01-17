@@ -189,12 +189,10 @@ case actionType.DELETE_POOLS:
             };
         //מציג קורסים לבריכה
         case actionType.GET_COURSES:
-            {
-                console.log(action.payload);
             return {
                 ...state,
                 courses_arr: action.payload
-            }};
+            };
         //התחברות-login
         case actionType.LOGIN:
             return {

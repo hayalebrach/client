@@ -71,19 +71,17 @@ export default function PoolWeb() {
                     <div className="wrapper2">
                         <img src={"Pic/clock.png"} className="savePlaceIcon" />
                         <h3>ימים ושעות פעילות</h3>
-<<<<<<< Updated upstream
 
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <div><span class="dot"></span></div>
-                        <Link to="ShowSchedule" className="navbar-brand" ><text >לפרטים </text></Link>
-=======
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+
                         <div><span className="dot"></span></div>                       
                         <div><span className="dot"></span></div>                       
                         <div><span className="dot"></span></div>                      
@@ -94,8 +92,6 @@ export default function PoolWeb() {
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
                         <Link to="courses" className="navbar-brand" ><text >לפרטים </text></Link>
->>>>>>> Stashed changes
-
 
                     </div>
 

@@ -49,7 +49,6 @@ import AllCardsToPool from "./UpdateCard/AllCardsToPool";
 import UpdateCard from "./UpdateCard/UpdaeCard";
 import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
-import AllCoursToPool from './UpdateCours/AllCoursToPool'
 import {SavePlace} from './SavePlace/SavePlace';
 import AddDetailsScheduleCours from './AddDetailsScheduleCours/AddDatailsScheduleCours';
 import TofesForgteTheKode from './TofesForgetTheKode/TofesForgtTheKode';
@@ -326,7 +325,6 @@ function App() {
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
         <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />
-        <Route path="ManagerNavBar/AllCoursToPool" element={<AllCoursToPool />} />
         <Route path="SavePlace" element={<SavePlace/>}/>
         <Route path="ManagerNavBar/AddDetailsScheduleCours" element={<AddDetailsScheduleCours/>}/>
                 {/* <Route path="SplitButton" element={<SplitButton />} /> */}

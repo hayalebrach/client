@@ -6,7 +6,6 @@ export const AddCours=(course)=>{
 }
 //פונקציה שלוקחת את הקורסים לבריכה מסוימת
 export const GetAllCoursesByPool=(IdPool)=>{
-    console.log(IdPool);
     return dispatch=>{      
         axios.get(`http://localhost:50157/api/cours/GetCoursesByPool?IdPool=${IdPool}`)
         .then(response=>{
@@ -22,11 +21,9 @@ export const GetAllCourses=()=>{
 }
 
 export const GetCoursesToUser=(IdUser)=>{
-    console.log(IdUser);
     return (dispatch)=>{
         axios.get(`http://localhost:50157/api/CourseToCustumer/GetCoursesByUser?IdUser=${IdUser}`)
         .then(response=>{
-            console.log(response.data);
             dispatch({type:actionType.COURSES_TO_USER,payload:response.data})
 
         })

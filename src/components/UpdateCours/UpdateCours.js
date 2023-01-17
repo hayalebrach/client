@@ -6,8 +6,6 @@ import {AllGuide} from "../../store/Actions/Users";
 import axios from "axios";
 import { isNumber } from "axios/lib/utils";
 import "../Login/Login.css";
-import "../UpdateCard/AllCardsToPool.css";
-import "./AllCoursToPool.css";
 export default function UpdateCours(){
     const dispatch = useDispatch();
     let f = useParams();
@@ -56,7 +54,7 @@ export default function UpdateCours(){
                 console.log("updating");
                 dispatch(GetAllCoursesByPool(coursSchema.IdPool));
                 console.log(courses_arr);
-                nav("/ManagerNavBar/AllCoursToPool");
+                nav("/ManagerNavBar/Courses");
             }
            
 return (<>
