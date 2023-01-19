@@ -3,7 +3,28 @@ import * as actionType from "../actions";
 
 //פונקציה שמוסיפה לי בריכה חדשה
 export const AddPool=(data)=>{
-    return axios.post("http://localhost:50157/api/pool/AddPool?", data)
+
+    return axios.post("http://localhost:50157/api/pool/AddPool?", data);
+        
+
+}
+// export const AddPool=(data)=>{
+
+//     return dispach => {
+//         axios.post("http://localhost:50157/api/pool/AddPool?", data)
+//             .then(response => {
+//                 console.log(response.data);
+//                 dispach({ type: actionType.ADD_POOL, payload: response.data })
+
+//             })
+//             .catch(err => console.log(err))
+
+//     }
+     
+
+// }
+export const AddIImagePool=(data)=>{
+    return axios.post("http://localhost:50157/api/Images/uploadImag", data)
 
 }
 //כל האיזורים
@@ -63,4 +84,15 @@ export const getAllAreas = () => {
             .catch(err => console.log(err))
     }
 }
+
+export const updatePool = (data) => {
+    
+    return dispach=>{
+        dispach({
+            type:actionType.UPDATE_PIC,
+            payload:data
+        })
+   }
+}
+
 

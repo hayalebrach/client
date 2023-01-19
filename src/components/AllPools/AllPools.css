@@ -35,3 +35,43 @@ body {
     background-color: cadetblue;
     border-radius: 5px;
 }
+
+.search {
+  width: 173px;
+    height: 470px;
+    text-align: right;                      
+    float: right;
+    position: relative;
+    right: 32px;
+   /* border: 2px solid black; */
+    border-radius: 6px;
+    font-family: "Varela Round";
+    
+
+}
+
+.downImg{
+  width: 20px;
+    height: 20px;
+    position: relative;
+    top: -32px;
+    right: 123px;
+}
+
+
+.citiesDiv{
+  visibility:hidden;
+  
+}
+.maxPriceButton{
+  position: relative;
+    
+    right: 94px;
+}
+.priceInput{
+  text-align:right;
+  border:2px solid gray;
+  width:130px;
+  position:relative;
+  right:-33px;
+}

@@ -52,4 +52,15 @@ export const GET_POOL_BY_AREAID="GET_POOL_BY_AREAID";
 //יום מבוקש
 export const GET_SCHEDULE="GET_SCHEDULE";
 
+//סינון לפי ערים
+export const SORT_POOLS_BY_AREA="SORT_POOLS_BY_AREA";
+
+//סינון לפי מחיר
+export const SORT_POOLS_BY_PRICE="SORT_POOLS_BY_PRICE";
+
+export const GET_ALL_CARDS="GET_ALL_CARDS";
+export const UPDATE_PIC="UPDATE_PIC";
+
+export const ADD_POOL="ADD_POOL";
+
 

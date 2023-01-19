@@ -3,6 +3,8 @@ import { actions } from "react-table";
 import * as actionType from "../actions";
 
 const initialState = {
+
+
     //יום מבוקש
     currentSchedule:"",
     //קורס מבוקש
@@ -17,6 +19,7 @@ const initialState = {
     usersArr: [],
     //הוספת בריכה
     poolsArr: [],
+    poolsArr2:[],
     //כל ההרשאות
     Role: [],
     //כל האיזורים
@@ -25,6 +28,8 @@ const initialState = {
     Days: [],
     //מערך הכרטיסים לבריכה מסוימת
     CardsArr: [],
+    //כל הכרטיסיות
+    allCards:[],
     //מערך הקורסים לבריכה מסוימת
     courses_arr: [],
     //הרשומים לקורס
@@ -49,6 +54,13 @@ const reducer = (state = initialState, action) => {
                         currentCard:action.payload
                     }
         
+                }
+                case actionType.ADD_POOL:{
+                    return{
+                        ...state,
+                        poolsArr: [...state.poolsArr,action.payload],
+                    }
+
                 }
                 //ייבוא הכרטיסים לבריכה מסוימת
                 case actionType.GET_CARDS:
@@ -94,7 +106,8 @@ const reducer = (state = initialState, action) => {
 case actionType.GET_POOLS:
     return {
         ...state,
-        poolsArr: [...action.payload]
+        poolsArr: [...action.payload],
+        
     };
 
 //מחיקת בריכה
@@ -161,6 +174,18 @@ case actionType.DELETE_POOLS:
                 currentUser: action.payload
             };
 
+            case actionType.UPDATE_PIC:{
+                let arr=  [...state.poolsArr];
+               for(let i=0;i<arr.length;i++){
+                if(arr[i].Id==action.payload.ItemId){
+                   arr[i].Pic=action.payload.Image}
+               }
+                return {
+                    ...state,
+                   poolsArr:arr
+                };
+            }
+
         //מקבלת את המשתמש מהמערך שבסטייט
         case actionType.GET_BY_ID_USER:
             let user = null;
@@ -205,21 +230,8 @@ case actionType.DELETE_POOLS:
                 ...state,
                 User: action.payload
             };
-        //הוספת קורס
-        case actionType.ADD_COURS: {
-            return {
-                ...state,
-                courses_arr: [...state.courses_arr, action.payload]
-            }
-        }
-        //כל המנהלים
-        case actionType.GET_MANAGERS: {
-            return {
-
-                ...state,
-                Managers: action.payload
-            };
-        }
+        
+        
 
         case actionType.GET_ALL_AREAS: {
             return {
@@ -229,13 +241,7 @@ case actionType.DELETE_POOLS:
             };
         }
         
-        //הוספת כרטיס
-        case actionType.ADD_CARD: {
-            return {
-                ...state,
-                CardsArr: [...state.CardsArr, action.payload]
-            };
-        }
+       
         //איפוס משתמש
         case actionType.EXIT: {
             return {
@@ -291,6 +297,25 @@ case actionType.DELETE_POOLS:
                     HistoryUser:[...state.HistoryUser,action.payload]
 
                 }
+
+                case actionType.SORT_POOLS_BY_AREA:{
+                    return{
+                    ...state,
+                   poolsArr2:action.payload}
+                }
+
+                case actionType.SORT_POOLS_BY_PRICE:{
+                    return{
+                    ...state,
+                   poolsArr2:action.payload}
+                }
+
+                case actionType.GET_ALL_CARDS:{
+                    return{ ...state,
+                    allCards:action.payload}
+                }
+
+                
         default: return state;
     }
 }

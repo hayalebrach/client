@@ -15,6 +15,7 @@ import UserNavBar from "./UserNavBar";
 import AllUsers from './AllUsers/AllUsers';
 import TheUser from './AllUsers/TheUser';
 import TryTable from './AllUsers/TryTable';
+
 import AllManagers from './AllManagers/AllManagers';
 // import addSale from './addSale';
 import CourseDetails from './CourseDetails/CourseDetails';
@@ -52,56 +53,42 @@ import UpdateCard from "./UpdateCard/UpdaeCard";
 import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
 import AllCoursToPool from './UpdateCours/AllCoursToPool'
-import {SavePlace} from './SavePlace/SavePlace';
+import { SavePlace } from './SavePlace/SavePlace';
+import { Statistics } from './Statistics/Statistics';
+
 import AddDetailsScheduleCours from './AddDetailsScheduleCours/AddDatailsScheduleCours';
+
+import Try from './Try/Try';
+import { getAllCards } from '../store/Actions/Card';
 function App() {
+  const [POPUP, setPOPUP] = useState(false);
+
+
   useEffect(() => {
     dispatch(GetAllPools());
-    dispatch(getAllManagers());
-    dispatch(getAllUser());
     dispatch(getAllAreas());
-
     dispatch(getAllDays());
+    dispatch(getAllCards());
   }, []);
-  const [showDiv, setShowDiv] = useState(false);
+  setTimeout(() => {
+    setPOPUP(true);
+  }, 5000);
+
+
   let nav = useNavigate();
   const dispatch = useDispatch();
 
-  const { Schedule, currentUser, currentPool, usersArr,Areas,Pools } = useSelector(state => ({
+  const { Schedule, currentUser, currentPool, usersArr, Areas, Pools } = useSelector(state => ({
     currentUser: state.currentUser,
     currentPool: state.currentPool,
     usersArr: state.usersArr,
     Areas: state.Areas,
-    Pools:state.poolsArr
+    Pools: state.poolsArr
 
   }), shallowEqual);
 
-  const Search = () => {
-    
-    if(showDiv==false){
-      setShowDiv(true);
-      document.getElementById("citiesDiv").style.visibility="visible";
-    }
-    else{
-      setShowDiv(false);
-      document.getElementById("citiesDiv").style.visibility="hidden";
-    }
 
-  }
-  let sortPools=[];
 
-  const sortByCity=(areaId)=>{
-    
-      for (let i = 0; i < Pools.length; i++) 
-      if (Pools[i].IdErea == areaId) 
-        sortPools.push(Pools[i]);  
-
-      console.log(sortPools);
-      
-  }
-
- 
-  
   // console.log(Cards, Managers)
 
   // const { num, current_user } = useSelector(state => ({
@@ -115,32 +102,20 @@ function App() {
   return (<>
     <div className='smallDiv'>
 
-      <img src='../Pic/X2.png' className='logo'></img>
-      <img src="../Pic/grocery-store.png" className="img1" onClick={() => nav("./cart")} />
-      <img src="../Pic/user.png" className="imggg" onClick={() => {
-        if (currentUser != "")
-          nav("./profile")
-        else alert("עליך להתחבר כדי לצפות בפרופיל!")
-      }} />
+      <img src='../Pic/X2.png' className='logo' alt="" onClick={() => nav("")} />
+      <img src="../Pic/grocery-store.png" alt="" className="img1" onClick={() => nav("./cart")} />
+      {currentUser ? <img src="../Pic/user.png" alt="" className="imggg" onClick={() => nav("./profile")} /> : null}
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./signUp") }}>הרשמה</h3>
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./login") }}>התחברות</h3><br />
 
     </div>
+    {POPUP ? <div className='PopUp' id="Popup">
+      <h1>?עוד לא רשומים אצלינו</h1>
+      <h3 onClick={() => { document.getElementById("Popup").style.display = "none"; nav("./login"); }}>!הרשמה בקליק</h3>
+      <input className='PopupButton' type='button' onClick={() => document.getElementById("Popup").style.display = "none"} value="X" />
 
 
-
-    <div className='search'>
-      <h3>חיפוש ממוקד</h3>
-      <img src="../Pic/down (1).png" className='downImg' onClick={() => Search()}></img>
-      <div className='citiesDiv' id="citiesDiv">
-        {
-          Areas.map(area => <><text onClick={()=>sortByCity(area.Id)}>{area.Name}</text><img src='../Pic/Left.png' className='leftImg'></img> <br /></>)
-        }
-      </div>
-
-    </div>
-    
-
+    </div> : null}
     {currentUser ? (<><text className='Exit' onClick={() => { dispatch(Exit()); nav("/AllPools") }}>יציאה</text></>) : null}
 
 
@@ -216,10 +191,13 @@ function App() {
         <Route path="AddPool/AddDetailsPool" element={<AddPool />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsManager" element={<AddDetailsManager />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
-        <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
+        <Route path="MainManagerNavBar/AddDetailsPool" element={<AddDetailsPool />} />
         <Route path="ManagerNavBar/courses/AddDetailsCours" element={<AddDetailsCours />} />
         <Route path="ManagerNavBar/addCourse" element={<AddDetailsCours />} />
+        
         <Route path="ManagerNavBar/AddDetailsSchedule" element={<AddDetailsSchedule />} />
+        <Route path="ManagerNavBar/poolWeb" element={<PoolWeb />} />
+
 
         <Route path="" element={<GuessNavBar />} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
@@ -296,20 +274,20 @@ function App() {
         <Route path="MainManagerNavBar/AddPool/AddDetailsCard/:flag" element={<AddDetailsCard flag="false" />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsCours/:flag" element={<AddDetailsCours flag="false" />} />
         <Route path="AddDetailsCours/:flag" element={<AddDetailsCours flag="true" />} />
-        
+
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
 
 
-         <Route path="poolWeb/ShowSchedule" element={<ShowSchedule />} /> 
+        <Route path="poolWeb/ShowSchedule" element={<ShowSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
-       
+
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
         <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />
         <Route path="ManagerNavBar/AllCoursToPool" element={<AllCoursToPool />} />
-        <Route path="SavePlace" element={<SavePlace/>}/>
-        <Route path="ManagerNavBar/AddDetailsScheduleCours" element={<AddDetailsScheduleCours/>}/>
-                {/* <Route path="SplitButton" element={<SplitButton />} /> */}
+        <Route path="SavePlace" element={<SavePlace />} />
+        <Route path="ManagerNavBar/AddDetailsScheduleCours" element={<AddDetailsScheduleCours />} />
+        {/* <Route path="SplitButton" element={<SplitButton />} /> */}
       </Routes>
     </div>
 

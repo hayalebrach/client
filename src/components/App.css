@@ -12,7 +12,8 @@ body{
 }
 .App {
   text-align: center;
-  padding: 50px;
+    padding: 50px;
+   
   
  
 }
@@ -191,37 +192,54 @@ text:hover{
   height: 253px;
 }
 
-.search {
-  width: 173px;
-    height: 470px;
-    text-align: right;                      
-    float: right;
-    position: relative;
-    top: 132px;
-    right: 32px;
-   /* border: 2px solid black; */
-    border-radius: 6px;
-    font-family: "Varela Round";
-    
 
-}
-
-.downImg{
-  width: 20px;
-    height: 20px;
-    position: relative;
-    top: -32px;
-    right: 123px;
-}
-
-
-.citiesDiv{
-  visibility:hidden;
-  
-}
 .leftImg{
   width: 10px;
   height: 10px;
 }
 
+.PopUp {
+  background-image:url('../../public/Pic/sunglasses-1850648_1920.jpg');
+  border-radius: 5px;
+  background-size: 130%;
+  padding: 32px;
+  width: 472px;
+  height: 396px;
+ 
+  position: fixed;
+  left: 360px;
+  top: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+.PopUp::after{
+  content:'';
+  position: absolute;
+  z-index: -1;
+  inset:0;
+  opacity: .5;
+  background: white;
+
+}
+
+
+
+.PopUp-inner{
+  position:relative;
+  padding:32px;
+  width:100%;
+  max-width: 640px;
+  background-color: #FFF;
+
+}
+.PopupButton {
+  position: absolute;
+  top: 26px;
+  right: 226px;
+
+}
 

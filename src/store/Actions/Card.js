@@ -40,3 +40,15 @@ export const updateAmountGet=(Id,AmountGet)=>{
     console.log(AmountGet);
     return axios.put(`http://localhost:50157/api/Customr_To_Pool/Put?Id=${Id}&AmountGet=${AmountGet}`)
 }
+
+
+export const getAllCards=()=>{
+    return dispach=>{
+        axios.get("http://localhost:50157/api/Packege/GetAllCards").then(x=>{
+            dispach({type:actionType.GET_ALL_CARDS,payload:x.data})
+        })
+        .catch(err=>console.log(err) )
+    }
+} 
+
+

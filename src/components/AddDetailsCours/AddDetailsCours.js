@@ -47,6 +47,11 @@ export default function AddDetailsCours() {
          nav("/ManagerNavBar/AllCoursToPool"); 
 
     }
+
+    const handleChange = (e) => {
+        
+         }
+        
     
 
     return (<>
@@ -61,6 +66,7 @@ export default function AddDetailsCours() {
             <select  {...register("IdUser")} className="select" >
                 {Guide.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
             </select><br />
+            <input  accept="image/*" type="file"  onChange={handleChange}/>
             </div>
             {f.flag=="false"?
             <input type="submit"/>
