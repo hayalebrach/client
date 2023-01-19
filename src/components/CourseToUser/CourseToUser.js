@@ -17,6 +17,7 @@ export const CourseToUser = () => {
     }), shallowEqual);
 
 
+
     const [Courses, SetCourses] = useState(null);
     useEffect(() => {
         dispatch(GetCoursesToUser(currentUser.Id));
@@ -31,9 +32,9 @@ export const CourseToUser = () => {
 
     }
 
-    function Func(Course) {
-
-        let index = Courses.findIndex(x => x.Id == Course.IdCours);
+ 
+    function Func(Course){        
+        const index = Courses.findIndex(x => x.Id == Course.IdCours)
         return Courses[index];
     }
 
@@ -41,9 +42,7 @@ export const CourseToUser = () => {
     const ToPoolWeb = (IdPool) => {
         let pool = poolsArr.find(x => x.Id == IdPool);
         dispatch(SavePool(pool));
-
         nav("./poolWeb");
-
 
     }
 

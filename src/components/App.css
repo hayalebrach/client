@@ -198,6 +198,7 @@ text:hover{
   height: 10px;
 }
 
+
 .PopUp {
   background-image:url('../../public/Pic/sunglasses-1850648_1920.jpg');
   border-radius: 5px;
@@ -239,7 +240,16 @@ text:hover{
 .PopupButton {
   position: absolute;
   top: 26px;
-  right: 226px;
+  right: 226px;}
+
+
+.home{
+  width: 30px;
+  height: 30px; 
+  display: inline-block;
+  position: relative;
+  top: -91px;
+  right: 675px;
 
 }
 

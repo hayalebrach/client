@@ -10,6 +10,7 @@ export const GetAllCoursesByPool=(IdPool)=>{
         axios.get(`http://localhost:50157/api/cours/GetCoursesByPool?IdPool=${IdPool}`)
         .then(response=>{
             dispatch({type:actionType.GET_COURSES,payload:response.data})
+            
         })
         .catch(err=> console.log(err) )
     }
@@ -20,11 +21,9 @@ export const GetAllCourses=()=>{
 }
 
 export const GetCoursesToUser=(IdUser)=>{
-    console.log(IdUser);
     return (dispatch)=>{
         axios.get(`http://localhost:50157/api/CourseToCustumer/GetCoursesByUser?IdUser=${IdUser}`)
         .then(response=>{
-            console.log(response.data);
             dispatch({type:actionType.COURSES_TO_USER,payload:response.data})
 
         })

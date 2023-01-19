@@ -1,50 +1,78 @@
 import { useEffect } from "react"
-import { useDispatch, useSelector,shallowEqual } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
-import { getAllCardByIdPool } from "../../store/Actions/Card"
+import { getAllCardByIdPool, getById, DeletCard, TheCard } from "../../store/Actions/Card"
 import { addToCart } from "../../store/Actions/Cart";
 
 import "./BuyTickets.css"
-export default function BuyTickets() {
+export const BuyTickets = () => {
 
   const dispatch = useDispatch();
-
-  const { CardsArr, currentPool} = useSelector(state => ({
+  const nav = useNavigate();
+  const { CardsArr, currentPool, currentUser } = useSelector(state => ({
     CardsArr: state.CardsArr,
-    currentPool: state.currentPool
-}), shallowEqual);
+    currentPool: state.currentPool,
+    currentUser: state.currentUser
+  }), shallowEqual);
   useEffect(() => {
     dispatch(getAllCardByIdPool(currentPool.Id));
 
   }, []);
 
+  const update = (Id) => {
+    console.log(Id);
+    getById(Id).then(x => func(x.data));
 
+  }
+  const func = (data) => {
+
+    console.log(data);
+    dispatch(TheCard(data));
+    nav(("/UpdateCard/" + true));
+  }
+  const Delet = (Id) => {
+    let card = CardsArr.find(x => x.Id == Id)
+    DeletCard(card).then(alert("כרטיס זה נמחק מרשימת הכרטיסים לבריכה זו"));
+  }
 
   const AddToCart = (Card) => {
     dispatch(addToCart(Card));
-    
+
   }
 
   return (
     <>
-    <div className="BuyTicketsDiv">
-      <h1>המחירון שלנו  </h1>
-      <h3>לקניה ביחידים אנא בחר כמות</h3><br/>
-      <input type="number" id="amount" className="input1" style={{color:"black"}} ></input>
-      <input type="button" value="הוספה לסל" className="button4" onClick={()=>AddToCart({Price:currentPool.Price*document.getElementById("amount").value,EntersAmount:document.getElementById("amount").value})} ></input>
+      <div className="BuyTicketsDiv">
+        <h1>המחירון שלנו  </h1>
+        <h3>לקניה ביחידים אנא בחר כמות</h3><br />
+        <input type="number" id="amount" className="input1" style={{ color: "black" }} ></input>
+        <input type="button" value="הוספה לסל" className="button4" onClick={() => AddToCart({ Price: currentPool.Price * document.getElementById("amount").value, EntersAmount: document.getElementById("amount").value })} ></input>
 
-      <br />
-      <br />
-      
-     
+        {currentUser.IdRole == 2 ? <input type="button" value="הוספת קורס" onClick={() => nav("/AddDetailsCard/true")} /> : <>  <h3>לקניה ביחידים אנא בחר כמות</h3>
+          <input type="button" value="הוספה לסל" onClick={() => AddToCart({ Price: currentPool.Price * document.getElementById("amount").value, EntersAmount: document.getElementById("amount").value })} ></input>
+          <input type="number" id="amount"></input>
+          <br />
+          <br />
+        </>}
+
         {
 
-          CardsArr.map(Card =><>{Card.EntersAmount!='1'?<div className="Card">  מספר כניסות: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br /><input type="button" className="button4" value="הוספה לסל" onClick={() => { AddToCart(Card) }}></input></div>:null}</>)
+          CardsArr.map(Card => <>{Card.EntersAmount != '1' ? <div className="Card">  מספר כניסות: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br />
+            {currentUser.IdRole == 2 ?
+              <>
+                <input type="button" value="עדכן" className="Mbutton1" onClick={() => update(Card.Id)} />
+                <input type="button" value="מחק" className="Mbutton1" onClick={() => Delet(Card.Id)} />
+              </>
+              :
+              <input type="button4" className="button1" value="הוספה לסל" onClick={() => { AddToCart(Card) }}></input>
+            }
+          </div> : null}</>)
         }
 
-       </div>
-      
+      </div >
+
 
     </>
   )
 }
+export default BuyTickets;

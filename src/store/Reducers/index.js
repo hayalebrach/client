@@ -230,8 +230,6 @@ case actionType.DELETE_POOLS:
                 ...state,
                 User: action.payload
             };
-        
-        
 
         case actionType.GET_ALL_AREAS: {
             return {
@@ -240,8 +238,7 @@ case actionType.DELETE_POOLS:
                 Areas: action.payload
             };
         }
-        
-       
+
         //איפוס משתמש
         case actionType.EXIT: {
             return {

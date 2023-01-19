@@ -22,13 +22,9 @@ const schema = yup.object({
 export default function AddDetailsCours() {
     const nav=useNavigate();
     const dispatch = useDispatch();
-    let f = useParams();
     useEffect(() => {
         dispatch(AllGuide());
-      f=f.flag;
-
     },[]);
-    console.log(f.flag);
 
     const {currentPool,Guide} = useSelector(state => ({
         currentPool: state.currentPool,
@@ -42,9 +38,7 @@ export default function AddDetailsCours() {
         data.Status=true;
         AddCours(data).then();
         dispatch(GetAllCoursesByPool(currentPool.Id));
-        console.log("i am hear");
-        if(f.flag=="true")
-         nav("/ManagerNavBar/AllCoursToPool"); 
+         nav("/ManagerNavBar/Courses"); 
 
     }
 
@@ -68,11 +62,7 @@ export default function AddDetailsCours() {
             </select><br />
             <input  accept="image/*" type="file"  onChange={handleChange}/>
             </div>
-            {f.flag=="false"?
-            <input type="submit"/>
-            :
             <input type="submit" value="הוספה"/>
-        }
         </form>
         </>);
 }

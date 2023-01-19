@@ -6,7 +6,7 @@
   display: list-item;
   color: #fff;
   position: relative;
-  left: 253px;
+  left:149px;
   margin: 10px;
   top: -12px;
   }
@@ -35,7 +35,6 @@
   border-radius: 5px;
   top: -100px;
   background-image:url('../../../public/Pic/sunglasses-1850648_1920.jpg');
-  
   background-color: white;
 }
 
@@ -46,7 +45,7 @@
 
 .navbar-brand {
   position: relative;
-  top: 70px;
+  top: 95px;
   float: right;
   height: 39px;
   padding: 14px 15px;
@@ -61,25 +60,36 @@
   height:15px;
   position: relative;
   top:19px;
-  left:38px;
+  left: -71px;
 
 }
 
 .submitLogin{
   position: relative;
-    top: 22px;
+    top: 35px;
     left: 132px;
     width: 130px;
     height: 30px;
     background-color: cadetblue;
     border-radius: 5px;
+    text-align: center;
+    text-align-last: center;
 
 }
+
 .pass{
   width: 15px;
   height:15px;
   position: relative;
   top: -334px;
-  left: -5px;}
+  left: -5px;
+}
 
+
+
+.forgetThePath{
+color: black;
+top: 15px;
+position: relative;
+}
 

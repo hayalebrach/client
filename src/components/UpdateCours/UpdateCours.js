@@ -5,7 +5,7 @@ import {updateCours,GetAllCoursesByPool} from "../../store/Actions/Cours";
 import {AllGuide} from "../../store/Actions/Users";
 import axios from "axios";
 import { isNumber } from "axios/lib/utils";
-
+import "../Login/Login.css";
 export default function UpdateCours(){
     const dispatch = useDispatch();
     let f = useParams();
@@ -54,30 +54,28 @@ export default function UpdateCours(){
                 console.log("updating");
                 dispatch(GetAllCoursesByPool(coursSchema.IdPool));
                 console.log(courses_arr);
-                nav("/ManagerNavBar/AllCoursToPool");
+                nav("/ManagerNavBar/Courses");
             }
            
 return (<>
-    <h1>עדכון</h1>
+     <div className="formDivUpdateCourse">
+    <h1>עדכון קורס</h1>
     <form>
-        <div className="div1">
-
         <label >מחיר</label><br/>
-        <input type="number" className="input"  name="Price" placeholder={currentCours.Price} variant="standard" onChange={change} defaultValue={currentCours.Price} disabled={f.flag=="false"}/>
+        <input type="number" className="updateCard"  name="Price" placeholder={currentCours.Price} variant="standard" onChange={change} defaultValue={currentCours.Price} disabled={f.flag=="false"}/>
         <label >שם הקורס</label><br/>
-        <input type="text" className="input"  name="NameCours" placeholder={currentCours.NameCours} variant="standard" onChange={change} defaultValue={currentCours.NameCours} disabled={f.flag=="false"}/>
+        <input type="text" className="updateCard"  name="NameCours" placeholder={currentCours.NameCours} variant="standard" onChange={change} defaultValue={currentCours.NameCours} disabled={f.flag=="false"}/>
         <label >תיאור</label><br/>
-        <input type="text" className="input"  name="Dis" placeholder={currentCours.Dis} variant="standard" onChange={change} defaultValue={currentCours.Dis} disabled={f.flag=="false"}/>
+        <input type="text" className="updateCard"  name="Dis" placeholder={currentCours.Dis} variant="standard" onChange={change} defaultValue={currentCours.Dis} disabled={f.flag=="false"}/>
         <label >מספר אנשים</label><br/>
-        <input type="number" className="input"  name="PeopleAmount" placeholder={currentCours.PeopleAmount} variant="standard" onChange={change} defaultValue={currentCours.PeopleAmount} disabled={f.flag=="false"}/>
-      {/* לבדוק איך לעשות את המדריך שיהיה placeholder */}
+        <input type="number" className="updateCard"  name="PeopleAmount" placeholder={currentCours.PeopleAmount} variant="standard" onChange={change} defaultValue={currentCours.PeopleAmount} disabled={f.flag=="false"}/>
       {console.log(Guide)}
         <label>מדריך הקורס</label><br/>
         <select className="select" variant="standard" onChange={change} defaultValue={currentCours.IdUser} disabled={f.flag=="false"}>
                 {Guide.map(x => <option key={x.Id} defaultValue={g?.Name}>{x?.Name}</option>)}
             </select><br />
-        <input type="button" value="עדכון" className="button" onClick={()=>Send()}/></div>
+        <input type="button" value="עדכון" className="buttonUpdateCard" onClick={()=>Send()}/>
     </form>
-    </>
+    </div></>
 ); 
 }
