@@ -9,6 +9,10 @@
     border: 1px solid black;
   }
 
+  .classicDiv{
+    border: 2px solid black;
+  }
+
   .css-1mo8wde-MuiTableCell-root.MuiTableCell-head
   {
     background-color: red !important;

@@ -27,12 +27,12 @@ const getHistory=(IdUser,IdPool)=>{
   return(
     <>
     <h1>משתמשים</h1>
-    <ul>
+    
         {
-           UsersPool.map(UsersPool=><><br/> <li className="li" key={UsersPool.Id}><br/> :שם{UsersPool.NameUser}<br/>  :מייל{UsersPool.EmailUser} <br/>
-           <input type="button" value="לפרטי המשתמש" onClick={()=>getHistory(UsersPool.IdUser,UsersPool.IdPool)}/></li></> )
+           UsersPool.map(UsersPool=><><div className="classicDiv"><br/>   {UsersPool.Id}<br/> :שם{UsersPool.NameUser}<br/>  :מייל{UsersPool.EmailUser} <br/>
+           <input type="button" value="לפרטי המשתמש" onClick={()=>getHistory(UsersPool.IdUser,UsersPool.IdPool)}/></div></> )
         }
-    </ul>
+    
       <input type="button" value="חזרה לדף הבית" onClick={()=>nav("/ManagerNavBar")}/>
     </>
   )

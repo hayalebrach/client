@@ -1,15 +1,17 @@
-import React,{useEffect}  from "react";
+import React, { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import "./AddDetailsPool.css";
 import * as yup from "yup";
-import {getAllAreas,AddPool,SavePool,AddErea,getErea} from "../../store/Actions/Pools";
+import {AddIImagePool,getAllErea,getAllAreas,AddPool,SavePool,AddErea,getErea, updatePool} from "../../store/Actions/Pools";
 import {AddCard} from "../../store/Actions/Card";
-import { useDispatch,useSelector ,shallowEqual} from "react-redux";
-import {useNavigate} from "react-router";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useNavigate } from "react-router";
 import { useState } from "react";
+import AddImage from "./addImage";
 const schema = yup.object({
+
     IdUser:yup.number(),
     Name: yup.string().required("זהו שדה חובה"),  
     IdErea:yup.number(),
@@ -18,33 +20,44 @@ const schema = yup.object({
     Amount: yup.number().positive().integer().required("זהו שדה חובה"),
     Phone: yup.number().positive().integer().required("זהו שדה חובה")
 }).required();
-
 export default function AddDetailsPool() {
-    const nav=useNavigate()
+    const nav = useNavigate();
+    const [Id, setId] = useState(null);
     const dispatch = useDispatch();
+
     let [erea,SetErea]=useState([]);
     useEffect(() => {
         dispatch(getAllAreas());
         getErea().then(x=>SetErea(x.data));
         console.log(erea);     
       }, [erea]);
+
  const {currentUser,poolsArr,currentPool} = useSelector(state => ({
      currentUser: state.currentUser,
      poolsArr:state.poolsArr,
      currentPool:state.currentPool
   }), shallowEqual);
-  let [f,Setf]=useState("false");
+
     console.log(currentUser.Id);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
+   const [f,Setf]=useState("false");
    const [Name,SetName]=useState();
    const change=(e)=>{
        SetName(e.target.value);
        console.log(Name);
    }
     const onSubmit = (data) => {
-        AddPool(data).then(alert("בריכה נוספה בהצלחה"));
+    AddPool(data)
+    .then(x => {
+    setId(x.data.Id);
+    alert("id", Id);
+    alert("בריכה נוספה בהצלחה");
+});
+// let pool = poolsArr.find(x => x.IdUser === currentUser.Id);
+// console.log(data);
+// nav("/MainManagerNavBar");
         let pool=poolsArr.find(x=>x.IdUser==currentUser.Id);
         dispatch(SavePool(pool));
         console.log(data);
@@ -82,7 +95,9 @@ export default function AddDetailsPool() {
             <input type="submit" className="submitLogin" value="אישור"/>
             </div>
         </form>
-        </>);
+         {Id ?<AddImage Id={Id}/> :null}
+        
+    </>);
 }
 
 

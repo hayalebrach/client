@@ -1,5 +1,6 @@
  import * as actionType from "../actions";
  import axios from "axios";
+import { object } from "yup";
 
  //התחברות
 export const login = (data) => {
@@ -90,6 +91,11 @@ export const getAllHistoryOfUser=(IdPool,IdUser)=>{
         .catch(err=> console.log(err) )
     }
 }
+
+export const getCustomerToPool=()=>{
+    return axios.get("http://localhost:50157/api/Customr_To_Pool");
+}
+
 export const sendMail=(body,Mail,subject)=>{
     console.log(Mail,body,subject);
     return axios.get(`http://localhost:50157/api/user/SendMail?body=${body}&mail=${Mail}&subject=${subject}`)
@@ -112,3 +118,4 @@ export const LastDate=(data)=>{
 export const getTheGuid=(data)=>{
     axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?name=${data.Name}&password=${data.Password}`)
 }
+

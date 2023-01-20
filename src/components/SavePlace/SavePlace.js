@@ -1,6 +1,7 @@
 import React,{ useEffect,useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Input from "../Input";
+import "./SavePlace.css"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -149,6 +150,27 @@ const PayWithCard=(AmountLeft,AmountGet,Id)=>{
 }
 
   return(<>
+   <div className="area" >
+            <ul className="circles">
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`}className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+                    <li><img src={`Pic/seaball.png`} className="moovIMG"/></li>
+            </ul>
+    </div >  
      <h1>SavePlace</h1> 
      <form onSubmit={handleSubmit(onSubmit)}>
        <label>שם הבריכה</label><br/>
@@ -169,7 +191,6 @@ const PayWithCard=(AmountLeft,AmountGet,Id)=>{
       {flag==true?     
         history.map(cart=>(cart.IdPool==currentPool.Id?<div className="div1"> כמות כרטיסים: {cart.AmountLeft} <br/>  כרטיסים שמומשו: {cart.AmountGet} <br/>:תאריך קניה {cart.DateBuy} <br/> סה"כ שולם:{cart.TotalPrice}<br/><input value="לתשלום" type="button" onClick={()=>PayWithCard(cart.AmountLeft,cart.AmountGet,cart.Id)}/></div>:null) )
         :null}    
-  
   </>)
     
 

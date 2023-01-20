@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from "react";
+//import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
@@ -20,6 +21,7 @@ const schema = yup.object({
     Password: yup.string().min(4,"סיסמא חיבת להכיל לפחות 4 ספרות").matches(/[0-9]/,"סיסמא חיבת להכיל מספרים").required("זהו שדה חובה")
 }).required();
 
+
 const Login = () => {
     //תאריך נוכחי
     const today=new Date();
@@ -28,6 +30,7 @@ const Login = () => {
     //פה אני מעדכנת על מנת שאני יוכל לבדוק אם מדובר במנהל
     let nav = useNavigate();
     const dispatch = useDispatch();
+    const [passwordShown, setPasswordShown] = useState(true);
     useEffect(() => {
         dispatch(getAllRole());
         dispatch(GetAllPools());
@@ -77,6 +80,12 @@ const Login = () => {
     const onSubmit = (data) => {
         dispatch(login(data));
     }
+    const showHidePassword =()=>{
+        
+         setPasswordShown(!passwordShown);
+        {passwordShown==true?document.getElementById("pass").src="../Pic/eye.png":document.getElementById("pass").src="../Pic/invisible.png"}
+
+    }
 
     return (<>
             <img src="../Pic/cartoon-4764726_1920.png" className="cutePic"></img>
@@ -86,17 +95,16 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)}>    
             <div className="formDiv" ><br/>
             <h3>התחברות משתמש</h3>
-
-                <Input register={register} errors={errors} className="inputLogin" name="Name" lablName="שם מלא" type="text" src="../Pic/user.png"/>
+                <Input register={register} errors={errors} className="inputLogin" name="Name" lablName="שם פרטי" type="text" src="../Pic/user.png"/>
+                <Input register={register} errors={errors} className="inputLogin" name="Password" lablName="סיסמא"   type={passwordShown ? "password" : "text"}  />
                 <Input register={register} errors={errors} className="inputLogin" name="Password" lablName="סיסמא" type="number" src="../Pic/padlock.png"/>
                 <Link to="TofesForgteTheKode" className="forgetThePath">שכחתי סיסמא</Link>
-
-               
-               
                 <Link to="signUp" className="navbar-brand">עדיין לא  רשום? עבור להרשמה</Link>
 
                 <input type="submit" className="submitLogin" />
             </div>
+            <img src="../Pic/invisible.png" id="pass" className="pass" onClick={()=>showHidePassword()}/>
+
         </form>
         
         

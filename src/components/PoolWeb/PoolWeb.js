@@ -50,6 +50,19 @@ export default function PoolWeb() {
                     <div className="wrapper">
                         <h3>? רוצים לשחות כמו מקצוענים</h3>
                         <img src={"Pic/swimming-silhouette.png"} className="savePlaceIcon" /><br /><br />
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>                       
                         <div><span className="dot"></span></div>                       
                         <div><span className="dot"></span></div> 
@@ -81,6 +94,7 @@ export default function PoolWeb() {
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
+                        <Link to="ShowSchedule" className="navbar-brand" ><text >לפרטים </text></Link>
 
                         <div><span className="dot"></span></div>                       
                         <div><span className="dot"></span></div>                       
@@ -94,9 +108,6 @@ export default function PoolWeb() {
                         <Link to="courses" className="navbar-brand" ><text >לפרטים </text></Link>
 
                     </div>
-
-
-
 
 
                 </div>

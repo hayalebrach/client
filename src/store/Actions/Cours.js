@@ -16,7 +16,7 @@ export const GetAllCoursesByPool=(IdPool)=>{
 }
 //פונקציה שלוקחת את כל הקורסם לכל הבריכות
 export const GetAllCourses=()=>{
-    return axios.get(`http://localhost:50157/api/cours`)
+ return axios.get(`http://localhost:50157/api/cours`);
 }
 
 export const GetCoursesToUser=(IdUser)=>{

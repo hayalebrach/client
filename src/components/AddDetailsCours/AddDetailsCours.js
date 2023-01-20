@@ -45,6 +45,10 @@ export default function AddDetailsCours() {
 
     }
 
+    const handleChange = (e) => {
+        
+         }
+        
     return (<>
                  <h1>AddDetailsCourse</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -56,10 +60,16 @@ export default function AddDetailsCours() {
             <label>שם המדריך</label><br />
             <select  {...register("IdUser")} className="select" >
                 {Guide.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
+
             </select><br /><br/>
              <input value="הוספת מדריך חדש" type="button"  onClick={()=>nav("/SignUp")}/>
             <input type="submit" value="הוספה" className="submitLogin"/>
-         </div>
+         
+
+           
+            <input  accept="image/*" type="file"  onChange={handleChange}/>
+            <input type="submit" value="הוספה"/>
+</div>
         </form>
         </>);
 }
