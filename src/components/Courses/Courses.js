@@ -2,15 +2,17 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
 import { GetAllCoursesByPool, Course_Enrollment, Delete,getCours, GetCoursesToUser } from "../../store/Actions/Cours";
+import {AllGuide} from "../../store/Actions/Users";
 import "./Courses.css"
 export default function Courses() {
 
-  const { courses_arr, currentUser, currentPool, CourseToCustomer,currentCours } = useSelector(state => ({
+  const { courses_arr, currentUser, currentPool, CourseToCustomer,currentCours ,Guide} = useSelector(state => ({
     currentUser: state.currentUser,
     courses_arr: state.courses_arr,
     currentPool: state.currentPool,
     CourseToCustomer: state.CourseToCustomer,
-    currentCours:state.currentCours
+    currentCours:state.currentCours,
+    Guide:state.Guide
   }), shallowEqual);
 
   const dispatch = useDispatch();
@@ -18,20 +20,23 @@ export default function Courses() {
   const [flag, SetFlag] = useState();
 
   useEffect(() => {
+    
     if(currentUser.Id!=undefined)
       dispatch(GetCoursesToUser(currentUser.Id));
-    if(currentPool!=null)
+    if(currentPool!=null){
+      dispatch(AllGuide(currentPool.Id));
       dispatch(GetAllCoursesByPool(currentPool.Id));
-  }, [courses_arr])
-  //console.log(courses_arr);
+
+    }
+  }, [courses_arr,Guide]);
 
   const details = (Course) => {
     if (currentUser === "") {
-      // nav("./courseEnrollment");
       alert("עליך להיות מחובר כדי להרשם!");
     }
     else {
-      dispatch(Course_Enrollment({ IdUser: currentUser.Id, IdCours: Course.Id, Status: true }))
+      alert(" ברוך הבא לקורס  "+Course.NameCours)
+      dispatch(Course_Enrollment({ IdUser: currentUser.Id, IdCours: Course.Id, Status: true,IdPool:Course.IdPool }))
     }
 }
 
@@ -46,9 +51,12 @@ export default function Courses() {
           SetFlag(true);
 
         }
-        else
-          if (currentUser === "")
-            nav("./courseEnrollment")
+        else{
+          details(Course);
+        }
+        
+          
+          
       }
 
 //עדכון ומחיקה למנהל בריכה
@@ -71,8 +79,11 @@ const Delet=(Id)=>{
 return (
   <>
     <h1>:) הקורסים שלנו</h1>
-    {currentUser.IdRole==2?<input type="button" value="הוספת קורס" onClick={()=>nav("/AddDetailsCours/true")}/>:null}
-    {courses_arr.map(Course => <><div className="Mdiv2"><img src={`${Course.img}`} className="courseImg"></img><br /><b >קורס  {Course.NameCours}</b><br /> <text>{Course.Dis}</text> <br /><text>{Course.Price}₪</text>
+    {currentUser.IdRole==2?<input type="button" value="הוספת קורס" onClick={()=>nav("/AddDetailsCours")}/>:null}
+    {courses_arr.map(Course => <><div className="Mdiv2"><img src={`${Course.img}`} className="courseImg"></img><br /><b >קורס  {Course.NameCours}</b><br /> <text>{Course.Dis}</text> <br />
+    <text>{(Guide.find(x=>x.Id==Course.IdUser)).Name}  שם המדריך</text><br/>
+    <text>{(Guide.find(x=>x.Id==Course.IdUser)).Phone}  טלפון מדריך</text><br/>
+    <text>{Course.Price}₪</text>
 
 {currentUser.IdRole==2?
 <>

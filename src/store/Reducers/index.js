@@ -132,13 +132,11 @@ case actionType.DELETE_POOLS:
         case actionType.GET_GUIDE:{
             let g=[];
             let arr=state.courses_arr;
-            console.log(arr);
             for(let i=0;i<action.payload.length;i++){
                 
                  if(arr.find(x=>x.IdUser==action.payload[i].Id)!=null);
-                      g.push(action.payload[i]);
+                      g.push();
             }
-            console.log(g);
            return{
                ...state,
                 Guide:g

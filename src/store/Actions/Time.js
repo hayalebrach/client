@@ -22,6 +22,7 @@ export const GetListOfDateAndPool=(IdPool)=>{
 }
 //שליחת נתוני השמירת מקום לדאטה בייס
 export const PostEntCust=(data)=>{
+    console.log(data);
     return axios.post(`http://localhost:50157/api/EntCustomr/Post?`,data);
 }
 //הוספת לוח זמנים לקורסים

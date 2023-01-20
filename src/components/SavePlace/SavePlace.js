@@ -58,6 +58,7 @@ let WeekDay=1;//היום שבו התאריך מתקים -בשביל לבדוק  
 
 const handleChangeDate = (event) => {
     const a=event.target.value;
+    console.log(a);
     SetDate(a);
  ChekeTheDate(new Date(a));
 };
@@ -129,7 +130,7 @@ const onSubmit = (data) => {
     data.IdCustomerToPool=IdCTP;
     data.IdPool=currentPool.Id;
     console.log(data);
-    PostEntCust(data).then(console.log("תודה רבה לך ה' שהצלחתי")); 
+    PostEntCust(data).then(); 
 
 }
 const FlagTrue=()=>{
@@ -166,7 +167,7 @@ const PayWithCard=(AmountLeft,AmountGet,Id)=>{
     </form>
     {flag==true?<h4>לתשלום באמצעות כרטיסי רכישה</h4>:null}
       {flag==true?     
-        history.map(cart=>(cart.IdPool==currentPool.Id?<div className="div1"> כמות כרטיסים: {cart.AmountLeft} <br/>  כרטיסים שמומשו: {cart.AmountGet} <br/>:תאריך קניה {cart.DateBuy} <br/> סה"כ שולם:{cart.TotalPrice}<br/><input value="לתשלום" type="button" onClick={()=>PayWithCard(cart.AmountLeft,cart.AmountGet,cart.Id)}/></div>:alert("על מנת לשריין מקום יש לבדוק שיש באפשרותך לשלם באמצעות כרטיסי הבריכה!!!")) )
+        history.map(cart=>(cart.IdPool==currentPool.Id?<div className="div1"> כמות כרטיסים: {cart.AmountLeft} <br/>  כרטיסים שמומשו: {cart.AmountGet} <br/>:תאריך קניה {cart.DateBuy} <br/> סה"כ שולם:{cart.TotalPrice}<br/><input value="לתשלום" type="button" onClick={()=>PayWithCard(cart.AmountLeft,cart.AmountGet,cart.Id)}/></div>:null) )
         :null}    
   
   </>)

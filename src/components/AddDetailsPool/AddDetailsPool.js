@@ -2,68 +2,85 @@ import React,{useEffect}  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
-import "./AddDetailsPool.css"
+import "./AddDetailsPool.css";
 import * as yup from "yup";
-import {getAllErea,AddPool,SavePool} from "../../store/Actions/Pools";
+import {getAllAreas,AddPool,SavePool,AddErea,getErea} from "../../store/Actions/Pools";
+import {AddCard} from "../../store/Actions/Card";
 import { useDispatch,useSelector ,shallowEqual} from "react-redux";
 import {useNavigate} from "react-router";
 import { useState } from "react";
 const schema = yup.object({
-    IdUser:yup.number().positive().integer().required(),
-    Name: yup.string().required(),  
-    IdErea:yup.string().required(), 
-    Adress: yup.string().required(), 
-    Price: yup.number().positive().integer().required(),
-    Amount: yup.number().positive().integer().required(),
-    Phone: yup.number().positive().integer().required()
+    IdUser:yup.number(),
+    Name: yup.string().required("זהו שדה חובה"),  
+    IdErea:yup.number(),
+    Adress: yup.string().required("זהו שדה חובה"), 
+    Price: yup.number().positive().integer().required("זהו שדה חובה"),
+    Amount: yup.number().positive().integer().required("זהו שדה חובה"),
+    Phone: yup.number().positive().integer().required("זהו שדה חובה")
 }).required();
 
 export default function AddDetailsPool() {
     const nav=useNavigate()
     const dispatch = useDispatch();
- const {currentUser,poolsArr} = useSelector(state => ({
-     currentUser: state.currentUser,
-     poolsArr:state.poolsArr
-  }), shallowEqual);
-  const[Erea,SetErea]=useState();
+    let [erea,SetErea]=useState([]);
     useEffect(() => {
-        getAllErea().then(x=>SetErea(x.data));
-    }, []) 
- 
-  console.log(Erea);
-
+        dispatch(getAllAreas());
+        getErea().then(x=>SetErea(x.data));
+        console.log(erea);     
+      }, [erea]);
+ const {currentUser,poolsArr,currentPool} = useSelector(state => ({
+     currentUser: state.currentUser,
+     poolsArr:state.poolsArr,
+     currentPool:state.currentPool
+  }), shallowEqual);
+  let [f,Setf]=useState("false");
     console.log(currentUser.Id);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-
+   const [Name,SetName]=useState();
+   const change=(e)=>{
+       SetName(e.target.value);
+       console.log(Name);
+   }
     const onSubmit = (data) => {
         AddPool(data).then(alert("בריכה נוספה בהצלחה"));
         let pool=poolsArr.find(x=>x.IdUser==currentUser.Id);
         dispatch(SavePool(pool));
         console.log(data);
+        AddCard({IdPool:currentPool.Id,EntersAmount:1,Price:data.Price,Status:true});
         nav("/MainManagerNavBar");
         
     }
+    const AddNewErea=()=>{
+        Setf("true");
+        console.log(Name);
+        AddErea({Name:Name});
+    }
+   
     return (<>
                  <h1>הוספת פרטי הבריכה</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="x1">
-            <Input register={register} errors={errors} name="Name" lablName="שם הבריכה" className="input1" type="text"/>
-            <Input register={register} errors={errors} name="Adress" lablName="כתובת" className="input1" type="text"/>
-            <Input register={register} errors={errors} name="Price" lablName="מחיר ליחיד" className="input1" type="number"/>
-            <Input register={register} errors={errors} name="Amount" lablName="מס' אנשים" className="input1" type="number"/>
-            <Input register={register} errors={errors} name="Phone" lablName="טלפון" className="input1" type="number"/>
-            <Input register={register} errors={errors} name="Pic" lablName="תמונה" className="input1" type="file"/>
-
-            
-            <label>איזור בארץ</label><br/>
-            <select  {...register("IdErea")}  className="select" >  
-                 {Erea.map(x => <option key={x.Name} value={x.Id}>{x.Name}</option>)}
+        <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="formDivSignUp" >
+            <Input register={register} errors={errors} name="Name" lablName="שם הבריכה" className="inputLogin" type="text"/>
+            <Input register={register} errors={errors} name="Adress" lablName="כתובת" className="inputLogin" type="text"/>
+            <Input register={register} errors={errors} name="Price" lablName="מחיר ליחיד" className="inputLogin" type="number"/>
+            <Input register={register} errors={errors} name="Amount" lablName="מס' אנשים" className="inputLogin" type="number"/>
+            <Input register={register} errors={errors} name="Phone" lablName="טלפון" className="inputLogin" type="number"/>
+            <Input register={register} errors={errors} name="Pic" lablName="תמונה" className="inputLogin" type="file"/>
+      
+           <label>מיקום</label><br/>
+           <select  {...register("IdErea")}  className="select" >  
+                 {erea.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
            </select><br/>
-            
-            
-            <input type="number" className="" {...register("IdUser")} value={currentUser.Id}/> 
-            <input type="submit" className="button" value="אישור"/>
+
+        {f=="false"?<>
+         <input type="text" placeholder="מקום אחר"  className="inputLogin" onChange={change}/>
+         <input type="button" value="הוספת מקום אחר"  className="submitLogin"onClick={()=>AddNewErea()}/><br/>
+        </>:null}
+           
+            <input type="submit" className="submitLogin" value="אישור"/>
+            </div>
         </form>
         </>);
 }

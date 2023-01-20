@@ -16,8 +16,7 @@ export const BuyTickets=()=> {
 }), shallowEqual);
   useEffect(() => {
     dispatch(getAllCardByIdPool(currentPool.Id));
-
-  }, []);
+  }, [CardsArr]);
 
   const update=(Id)=>{
     console.log(Id);
@@ -44,7 +43,7 @@ export const BuyTickets=()=> {
     <>
     <div className="BuyTicketsDiv">
       <h1>כרטיסיות</h1>
-    {currentUser.IdRole==2?<input type="button" value="הוספת קורס" onClick={()=>nav("/AddDetailsCard/true")}/>:<>  <h3>לקניה ביחידים אנא בחר כמות</h3>
+    {currentUser.IdRole==2?<input type="button" value="הוספת כרטיס" onClick={()=>nav("/AddDetailsCard")}/>:<>  <h3>לקניה ביחידים אנא בחר כמות</h3>
       <input type="button" value="הוספה לסל"  onClick={()=>AddToCart({Price:currentPool.Price*document.getElementById("amount").value,EntersAmount:document.getElementById("amount").value})} ></input>
       <input type="number" id="amount"></input>
       <br />

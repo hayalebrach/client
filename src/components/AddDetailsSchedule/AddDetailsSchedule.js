@@ -19,9 +19,9 @@ import {ChekAndAdd,GetTimeByIdPool} from '../../store/Actions/Time'
 import { object } from "yup/lib/locale";
 
 const schema = yup.object({
-    StartHour: yup.string().required(),
-    EndHour: yup.string().required(),
-    Type: yup.number().positive().integer().required(),
+    StartHour: yup.string().required("זהו שדה חובה"),
+    EndHour: yup.string().required("זהו שדה חובה"),
+    Type: yup.number().positive().integer().required("זהו שדה חובה"),
     IdDays: yup.number().positive().integer(),
     IdPool: yup.number().positive().integer(),
     Status:yup.string()
@@ -96,31 +96,31 @@ export default function AddDetailsSchedule() {
     }
  
     return (<>
-        <h1>AddDetailsSchedule</h1>
+
         <h2>הוספת לוח זמנים של הבריכה</h2>
         <br />
-        <br />
-        <br />
+        
         <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <div className="formDiv" >
             <label>יום</label><br />
-            <select  {...register("IdDays")} className="select" onChange={validator} >
+            <select  {...register("IdDays")} className="inputSelect" onChange={validator} >
                 {Days.map(x => <option key={x.TypeUser} value={x.Id}>{x.NameDay}</option>)}
             </select><br />
-            <Input register={register} errors={errors} name="StartHour" lablName="שעת התחלה" className="" type="time" onChange={validator} />
-            <Input register={register} errors={errors} name="EndHour" lablName="שעת סיום" className="" type="time" onChange={validator} />
+            <Input register={register} errors={errors} name="StartHour" lablName="שעת התחלה" className="inputTime" type="time" onChange={validator} />
+            <Input register={register} errors={errors} name="EndHour" lablName="שעת סיום" className="inputTime" type="time" onChange={validator} />
             <label>מגזר</label><br />
-            <select  {...register("Type")} className="select" onChange={validator}>
+            <select  {...register("Type")} className="inputSelect" onChange={validator}>
                 {typeArr.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
             </select><br />
 
            
         
-            <input type="submit" value="הוסף" />
+            <input type="submit" value="הוספה" className="submitLogin"/>
             
-            
+           </div> 
 
         </form>
-כםרצ
+
 
 
 

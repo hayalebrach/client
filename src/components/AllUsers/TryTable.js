@@ -14,8 +14,9 @@ const UseDate = () => {
   }, []);
 
   const day = today.toLocaleDateString(locale, { weekday: 'long' });
-  const date = `${day}, ${today.getDate()} ${today.toLocaleDateString(locale, { month: 'long' })}\n\n`;
-
+  const date = `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`;
+  // const date=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+  const  d=`${today.getDate()}`
   const hour = today.getHours();
   const wish = `${(hour < 12 && 'בוקר') || (hour < 17 && 'צהריים') || 'ערב'} טוב `;
 
@@ -23,9 +24,9 @@ const UseDate = () => {
 
   return (
     <div>
-      {date},
-      {time},
-      {wish}
+      {date}
+      {/* {time},
+      {wish} */}
     </div>);
 };
 

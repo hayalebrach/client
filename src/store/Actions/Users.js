@@ -23,9 +23,8 @@ export const login = (data) => {
  //כל במדריכים
  export const AllGuide=()=>{
   return dispach=>{
-      axios.get("http://localhost:50157/api/User/GetAllGuide")
+      axios.get("http://localhost:50157/api/RolesToPool/GetTheGuideToPool")
       .then(response=>{
-          console.log(response.data);
           dispach({type:actionType.GET_GUIDE,payload:response.data})
     })
     .catch(err=>console.log(err))}
@@ -103,4 +102,13 @@ export const changeThePassword=(Id,Password)=>{
     console.log(Id);
     return axios.put(`http://localhost:50157/api/user/PutPassWord?PassWord=${Password}&Id=${Id}`)
     
+}
+//פונקציה שמעדכנת כניסה אחרונה
+export const LastDate=(data)=>{
+    data.LastEntery=new Date();
+    console.log(data);
+    return axios.put(`http://localhost:50157/api/user/LastEnteryDate?`,data)
+}
+export const getTheGuid=(data)=>{
+    axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?name=${data.Name}&password=${data.Password}`)
 }

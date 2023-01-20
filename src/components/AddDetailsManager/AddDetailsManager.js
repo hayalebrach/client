@@ -1,17 +1,19 @@
 
-import{ React}  from "react";
+import{ React,useEffect}  from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
-import {useDispatch} from "react-redux";
-import {AddUser,login} from "../../store/Actions/Users"
+import {useDispatch, useSelector,shallowEqual} from "react-redux";
+import {AddUser,login} from "../../store/Actions/Users";
+import {getAllRole} from "../../store/Actions/Role";
+
 import { useNavigate } from "react-router";
 const schema = yup.object({
-    Name: yup.string().required(),
-    Password: yup.number(),
-    Email: yup.string().email().required(),
-    Phone: yup.string(),
+    Name: yup.string().required("זהו שדה חובה"),
+    Password: yup.string().min(4,"סיסמא חיבת להכיל לפחות 4 ספרות").matches(/[0-9]/,"סיסמא חיבת להכיל מספרים").required("זהו שדה חובה"),
+    Email: yup.string().email("כתובת מייל לא תקינה").required("זהו שדה חובה"),
+    Phone: yup.string().required("זהו שדה חובה"),
     Type: yup.number().positive().integer(),
     LastEntery:yup.date(),
     IdRole:yup.number(),
@@ -20,6 +22,12 @@ const schema = yup.object({
 const AddDetailsManager=()=>{
 const nav=useNavigate()
 const dispatch = useDispatch();
+const {Role} = useSelector(state => ({
+    Role: state.Role
+ }), shallowEqual);
+useEffect(() => {
+    dispatch(getAllRole());
+  }, [])
 
     const typeArr = [{ Id: 1, Name: "אישה" }, { Id: 2, Name: "גבר" }];
 
@@ -29,28 +37,38 @@ const dispatch = useDispatch();
 
      const onSubmit=(data)=>{ 
       console.log("jvbkfbdsvahv");
-    if(data.Type==2){
+      if(data.Type==2){
         data.Type=0;
     }
-     data.IdRole=2;
+     
      data.LastEntery=new Date();
      console.log(data);
-     AddUser(data).then();
-     dispatch(login(data));
-     //nav("/AddDetailsPool");
+     //AddUser(data).then();
+     if(data.IdRole==2)
+     nav("/AddDetailsPool");
+    
+       if(data.IdRole==1){
+           alert("נוסף בהצלחה בתור מנהל האתר");
+           nav("/MainManagerNavBar");
+       }
+           
      
     }
 return (<>
     <h1>הוספת מנהל בריכה</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="div1">
-        <Input register={register} errors={errors} className="input" name="Name" lablName="שם מלא" />
-        <Input register={register} errors={errors} className="input" name="Password" lablName="סיסמא" /> 
-        <Input register={register} errors={errors}className="input"  name="Email" lablName="מייל" />
-        <Input register={register} errors={errors} className="input"name="Phone" lablName="פלאפון" />
+        <div className="formDivSignUp" >
+        <Input register={register} errors={errors} className="inputLogin" type="text" name="Name" lablName="שם מלא" />
+        <Input register={register} errors={errors} className="inputLogin" type="text" name="Password" lablName="סיסמא" /> 
+        <Input register={register} errors={errors}className="inputLogin"  type="text" name="Email" lablName="מייל" />
+        <Input register={register} errors={errors} className="inputLogin" type="text" name="Phone" lablName="פלאפון" />
         <label>מגזר</label><br/>
             <select  {...register("Type")}  className="select" >  
                  {typeArr.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
+           </select><br/>
+         <label>תפקיד</label><br/>
+           <select  {...register("IdRole")}  className="select" >  
+                 {Role.map(x => <option key={x.Id} value={x.Id}>{x.TypeUser}</option>)}
            </select><br/>
         <input type="submit" className="button" value="אישור"/></div>
     </form>

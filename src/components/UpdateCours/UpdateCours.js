@@ -10,18 +10,20 @@ export default function UpdateCours(){
     const dispatch = useDispatch();
     let f = useParams();
     const nav=useNavigate();
-    
-    useEffect(() => {        
-        f=f.flag;
-        dispatch(AllGuide());
-    }, []);
-
-    const {currentCours,courses_arr, usersArr,Guide} = useSelector(state => ({
+    const {currentCours,courses_arr, usersArr,Guide,currentPool} = useSelector(state => ({
         currentCours: state.currentCours,
         courses_arr:state.courses_arr,
         usersArr:state.usersArr,
-        Guide:state.Guide
+        Guide:state.Guide,
+        currentPool:state.currentPool
       }), shallowEqual);
+    useEffect(() => {        
+        f=f.flag;
+        if(currentPool!=null)
+            dispatch(AllGuide(currentPool.Id));
+    }, []);
+
+
      console.log(usersArr);
      let g=usersArr.find(x=>x.Id==currentCours.IdUser); 
      console.log(g);

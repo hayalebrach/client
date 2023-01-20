@@ -10,7 +10,6 @@ export const GetAllCoursesByPool=(IdPool)=>{
         axios.get(`http://localhost:50157/api/cours/GetCoursesByPool?IdPool=${IdPool}`)
         .then(response=>{
             dispatch({type:actionType.GET_COURSES,payload:response.data})
-            
         })
         .catch(err=> console.log(err) )
     }
@@ -54,7 +53,9 @@ export const getCours = (ID) => {
 export const Delete=(data)=>{
     return  axios.put("http://localhost:50157/api/Cours/PutForDelete?",data)
 }
-
+export const postGuideToPool=(data)=>{
+    return axios.post(`http://localhost:50157/api/RolesToPool/AddGuide?`,data);
+}
 
 
 
