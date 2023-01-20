@@ -94,7 +94,14 @@ export const getAllHistoryOfUser=(IdPool,IdUser)=>{
 }
 
 export const getCustomerToPool=()=>{
-    return axios.get("http://localhost:50157/api/Customr_To_Pool");
+    return dispatch=>{
+        axios.get("http://localhost:50157/api/Customr_To_Pool").then(response=>{
+            console.log(response.data);
+            dispatch({type:actionType.Customer_To_Pool,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+     
 }
 
 export const sendMail=(body,Mail,subject)=>{
@@ -110,4 +117,16 @@ export const changeThePassword=(Id,Password)=>{
     return axios.put(`http://localhost:50157/api/user/PutPassWord?PassWord=${Password}&Id=${Id}`)
     
 }
+
+export const getAllUsers=()=>{
+    return dispatch=>{
+        axios.get("http://localhost:50157/api/User/GetAllUsers").then(response=>{
+            
+            dispatch({type:actionType.ALL_USERS,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+     
+}
+
 

@@ -41,35 +41,36 @@ export const BuyTickets = () => {
   }
 
   return (
-    <>
-      <div className="BuyTicketsDiv">
-        <h1>המחירון שלנו  </h1>
-        <h3>לקניה ביחידים אנא בחר כמות</h3><br />
-        <input type="number" id="amount" className="input1" style={{ color: "black" }} ></input>
-        <input type="button" value="הוספה לסל" className="button4" onClick={() => AddToCart({ Price: currentPool.Price * document.getElementById("amount").value, EntersAmount: document.getElementById("amount").value })} ></input>
-
-        {currentUser.IdRole == 2 ? <input type="button" value="הוספת קורס" onClick={() => nav("/AddDetailsCard/true")} /> : <>  <h3>לקניה ביחידים אנא בחר כמות</h3>
-          <input type="button" value="הוספה לסל" onClick={() => AddToCart({ Price: currentPool.Price * document.getElementById("amount").value, EntersAmount: document.getElementById("amount").value })} ></input>
-          <input type="number" id="amount"></input>
-          <br />
-          <br />
-        </>}
+    <>  {currentUser.IdRole==2?
+      <>
+      <div className="classicDiv"></div>
+      <h1>מחירון</h1>
+      <input type="button" value="הוספת כרטיסיה" onClick={() => nav("/AddDetailsCard/true")} />
+      </>
+    : <> <h1>המחירון שלנו  </h1>
+      <h3>לקניה ביחידים אנא בחר כמות</h3><br />
+       <input type="number" id="amount" className="input1" style={{ color: "black" }} />
+       <input type="button" value="הוספה לסל" className="button4" onClick={() => AddToCart({ Price: currentPool.Price * document.getElementById("amount").value, EntersAmount: document.getElementById("amount").value })} ></input>
+       
+    </>
+    }
+        <br/><br/>
 
         {
 
-          CardsArr.map(Card => <>{Card.EntersAmount != '1' ? <div className="Card">  מספר כניסות: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br />
+          CardsArr.map(Card => <>{Card.EntersAmount != '1' ? <div className="Card"> <br/><br/><br/><br/>     כניסות: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br />
             {currentUser.IdRole == 2 ?
               <>
                 <input type="button" value="עדכן" className="Mbutton1" onClick={() => update(Card.Id)} />
                 <input type="button" value="מחק" className="Mbutton1" onClick={() => Delet(Card.Id)} />
               </>
               :
-              <input type="button4" className="button1" value="הוספה לסל" onClick={() => { AddToCart(Card) }}></input>
+              <img src="../Pic/add-to-cart.png" className="AddPic"  onClick={() => { AddToCart(Card) }}/>
             }
           </div> : null}</>)
         }
 
-      </div >
+      
 
 
     </>

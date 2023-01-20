@@ -317,5 +317,16 @@ text{
     background-color: black;
   }
 
+  .PicManager{
+    width:150px;
+    height: 150px;
+  }
+
+  .chageIMG{
+    position: relative;
+    left:500px;
+    
+  }
+
 
  

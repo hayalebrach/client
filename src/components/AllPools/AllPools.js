@@ -85,8 +85,8 @@ export default function AllPools() {
         </div> <br /><b className="name">{pool.Name}</b><br />
           <text>{pool.Adress} </text> <img src={`Pic/map.png`} alt="" className="imgLocation" />
           <br /><text> מחיר: {pool.Price}</text><br />
-          {pool.Id === selectedId  ?<AddImage type="File" Id={pool.Id} /> :
-            <input type="button" value="החלפת תמונה" onClick={() => setSelected(pool.Id)}/>}<br/>
+          {/* {pool.Id === selectedId  ?<AddImage type="File" Id={pool.Id} /> :
+            <input type="button" value="החלפת תמונה" onClick={() => setSelected(pool.Id)}/>}<br/> */}
           <input type="button" className="detailsButton" value="לפרטים" onClick={() => Func(pool)} />
         </div></>)}</>
 

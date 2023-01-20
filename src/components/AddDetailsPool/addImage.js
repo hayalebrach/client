@@ -20,7 +20,8 @@ export default function AddImage({Id}) {
     }
     return (
         <Fragment>
-            <input lablName="תמונה" type="file" onChange={uploedFile} />
+           
+            <input lablName="תמונה" type="file" className="chageIMG"  onChange={uploedFile} />
             <input type="button" value="החל תמונה" onClick={save}/>
         </Fragment> 
     );

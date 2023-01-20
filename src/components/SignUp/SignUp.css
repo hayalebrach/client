@@ -35,7 +35,7 @@
     height: 120px;
     position: relative;
     top: 100px;
-    left: -120px;
+    left: -205px;
     z-index: 2;
 }
   body{
@@ -83,7 +83,7 @@
 }
 
 
-.formDivSignUp img{
+.formDivSignUpimg{
   width: 15px;
   height:15px;
   position: relative;
@@ -114,4 +114,12 @@
   left: 253px;
   margin: 10px;
   top: -12px;
+  }
+
+  .pass2{
+    width: 15px;
+    height:15px;
+    position: relative;
+    top: -184px;
+    left: 53px;
   }

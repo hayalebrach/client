@@ -6,12 +6,14 @@ import "./PoolWeb.css"
 import 'typeface-quicksand';
 import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
+import AddImage from "../AddDetailsPool/addImage";
 
 
 export default function PoolWeb() {
 
 
     const currentPool = useSelector(state => state.currentPool);
+    const currentUser = useSelector(state => state.currentUser);
 
     const MouseOver = (e) => {
         e.target.style.width = "110px";
@@ -24,16 +26,26 @@ export default function PoolWeb() {
 
     }
 
-    return (
-        <>
+    return (<>
+        {currentUser.IdRole == 2 ? <> <div>
+             <h3>{currentPool.Name}</h3><br />
+             <img src={`Pic/pin.png`} className="locationIcon" alt="" />  <h3>  <b>{currentPool.Adress}</b></h3>
+             <img src={`Pic/${currentPool.Pic}`} alt="" className="PicManager" /><br/>
+             <AddImage type="File" Id={currentPool.Id} />
+             
+        </div>    </> 
+        
+        
+        
+        : <>
             <div className="PoolWebDiv">
-                
+
                 <h1>{currentPool.Name}</h1><br />
-                <img src={`Pic/pin.png`} className="locationIcon" />  <h3> מחכים לכם ברחוב <b>{currentPool.Adress}</b></h3>
+                <img src={`Pic/pin.png`} className="locationIcon" ALT="" />  <h3> מחכים לכם ברחוב <b>{currentPool.Adress}</b></h3>
                 <div>
-                    <img src={`Pic/${currentPool.Pic}`} className="Pic" />
+                    <img src={`Pic/${currentPool.Pic}`} alt="" className="Pic" />
                     <div className="savePlace">
-                        <img src={"Pic/calendar.png"} className="savePlaceIcon" /><br /><br />
+                        <img src={"Pic/calendar.png"} alt="" className="savePlaceIcon" /><br /><br />
                         <text>   !רוצים לשחות?      חובה להזמין מקום   </text>
                         <Link to="ShowSchedule" className="navbar-brand"><text className="x1">שריין עכשיו</text></Link>
 
@@ -41,7 +53,7 @@ export default function PoolWeb() {
                     </div>
 
                     <div className="buyTickets">
-                        <img src={"Pic/ticket.png"} className="buyTicketsIcon" /><br />
+                        <img src={"Pic/ticket.png"} className="buyTicketsIcon" alt="" /><br />
 
                         <Link to="buyTickets" className="navbar-brand" ><text className="x2">לרכישת כרטיסים</text></Link>
 
@@ -49,7 +61,7 @@ export default function PoolWeb() {
 
                     <div className="wrapper">
                         <h3>? רוצים לשחות כמו מקצוענים</h3>
-                        <img src={"Pic/swimming-silhouette.png"} className="savePlaceIcon" /><br /><br />
+                        <img src={"Pic/swimming-silhouette.png"} className="savePlaceIcon" alt="" /><br /><br />
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
@@ -63,27 +75,27 @@ export default function PoolWeb() {
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div> 
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div> 
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                      
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                      
-                        <div><span className="dot"></span></div>                    
-                        <div><span className="dot"></span></div>                
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
+                        <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
                         <Link to="courses" className="navbar-brand" ><text >למגוון קורסים</text></Link>
                     </div>
 
                     <div className="wrapper2">
-                        <img src={"Pic/clock.png"} className="savePlaceIcon" />
-                        <h3>ימים ושעות פעילות</h3>
+                        <img src={"Pic/loupe.png"} className="savePlaceIcon" alt="" />
+                        <h3>...קצת עלינו</h3>
 
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
@@ -94,18 +106,8 @@ export default function PoolWeb() {
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
                         <div><span className="dot"></span></div>
-                        <Link to="ShowSchedule" className="navbar-brand" ><text >לפרטים </text></Link>
+                        <Link to="about" className="navbar-brand" ><text >לפרטים </text></Link>
 
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                      
-                        <div><span className="dot"></span></div>                       
-                        <div><span className="dot"></span></div>                      
-                        <div><span className="dot"></span></div>                    
-                        <div><span className="dot"></span></div>                
-                        <div><span className="dot"></span></div>
-                        <div><span className="dot"></span></div>
-                        <Link to="courses" className="navbar-brand" ><text >לפרטים </text></Link>
 
                     </div>
 
@@ -130,13 +132,15 @@ export default function PoolWeb() {
                 </div >
 
                 <div className="bottomDiv">xxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
-                
-                
+
+
 
 
 
             </div>
-        </>)
+        </>}
+
+    </>)
 
 
 }

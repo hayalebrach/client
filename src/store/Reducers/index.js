@@ -30,10 +30,15 @@ const initialState = {
     CardsArr: [],
     //כל הכרטיסיות
     allCards:[],
+    allCourses:[],
+    allUsers:[],
     //מערך הקורסים לבריכה מסוימת
     courses_arr: [],
     //הרשומים לקורס
     CourseToCustomer: [],
+
+    AllCourseToCustomer:[],
+    CustomerToPool:[],
     UsersPool:[],
     CallUsArr: [],
     Cart: [],
@@ -52,6 +57,21 @@ const reducer = (state = initialState, action) => {
                     return {
                         ...state,
                         currentCard:action.payload
+                    }
+        
+                }
+                case actionType.ALL_COURSES: {
+                    return {
+                        ...state,
+                        allCourses:action.payload
+                    }
+        
+                }
+
+                case actionType.ALL_USERS: {
+                    return {
+                        ...state,
+                        allUsers:action.payload
                     }
         
                 }
@@ -267,6 +287,13 @@ case actionType.DELETE_POOLS:
                 CourseToCustomer:action.payload
             };
         }
+
+        case actionType.ALL_COURSES_TO_CUSTOMER:{
+            return {
+                ...state,
+                AllCourseToCustomer:action.payload
+            };
+        }
             case actionType.ADD_TO_CART:
             
                 return {
@@ -310,6 +337,13 @@ case actionType.DELETE_POOLS:
                 case actionType.GET_ALL_CARDS:{
                     return{ ...state,
                     allCards:action.payload}
+                }
+
+                case actionType.Customer_To_Pool:{
+                    return{
+                        ...state,
+                        CustomerToPool:action.payload
+                    }
                 }
 
                 

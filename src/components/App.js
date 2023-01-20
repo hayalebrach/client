@@ -39,7 +39,7 @@ import SignUp from "./SignUp/SignUp";
 import BuyingHistory from './BuyingHistory/BuyingHistory';
 import PoolWeb from './PoolWeb/PoolWeb';
 import ShowSchedule from './AddDetailsSchedule/ShowSchedule';
-import { Exit} from "../store/Actions/Users";
+import { Exit, getAllUsers} from "../store/Actions/Users";
 import { getAllAreas, getAllDays, GetAllPools } from "../store/Actions/Pools";
 import { useEffect, useState } from 'react';
 import UpdateUser from './UpdateUser/UpdateUser';
@@ -48,13 +48,13 @@ import UpdateUser from './UpdateUser/UpdateUser';
 import UpdateCard from "./UpdateCard/UpdaeCard";
 import { CourseToUser } from './CourseToUser/CourseToUser';
 import UpdateCours from './UpdateCours/UpdateCours'
-import AllCoursToPool from './UpdateCours/AllCoursToPool'
 import { SavePlace } from './SavePlace/SavePlace';
 import { Statistics } from './Statistics/Statistics';
 import AddDetailsScheduleCours from './AddDetailsScheduleCours/AddDatailsScheduleCours';
 import Try from './Try/Try';
 import { getAllCards } from '../store/Actions/Card';
 import TofesForgteTheKode from './TofesForgetTheKode/TofesForgtTheKode';
+import { GetAllCourses } from '../store/Actions/Cours';
 function App() {
   const [POPUP, setPOPUP] = useState(false);
 
@@ -64,6 +64,8 @@ function App() {
     dispatch(getAllAreas());
     dispatch(getAllDays());
     dispatch(getAllCards());
+    dispatch(GetAllCourses());
+    dispatch(getAllUsers());
   }, []);
   setTimeout(() => {
     setPOPUP(true);
@@ -111,21 +113,15 @@ function App() {
     <div className='smallDiv'>
 
      
-      <img src='../Pic/X2.png' className='logo'></img>
+      <img src='../Pic/X2.png' className='logo' alt="" onClick={()=>nav("")}></img>
       {
         currentUser.IdRole!=1&&currentUser.IdRole!=2?
-        <img src="../Pic/grocery-store.png" className="img1" onClick={() => nav("./cart")} />
+        <img src="../Pic/grocery-store.png" className="img1" alt="" onClick={() => nav("./cart")} />
         :null
       }
 
       {currentUser ? <img src="../Pic/user.png" alt="" className="imggg" onClick={() => nav("./profile")} /> : null}
 
-      {currentUser!=""&&currentUser.IdRole!=5?
-      <img  src="../Pic/home_36.png" className="home" onClick={()=>goToPage()}/>
-     :null}
-     {currentUser.IdRole==5&&currentPool!=""?
-        <img  src="../Pic/home.png" className="home" onClick={()=>nav("/poolWeb")}/>
-     :null}
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./signUp") }}>הרשמה</h3>
       <h3 className='f' onClick={() => { dispatch(Exit()); nav("./login") }}>התחברות</h3><br />
 
@@ -306,7 +302,6 @@ function App() {
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
         <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />
-        <Route path="ManagerNavBar/AllCoursToPool" element={<AllCoursToPool />} />
         <Route path="SavePlace" element={<SavePlace />} />
         <Route path="ManagerNavBar/AddDetailsScheduleCours" element={<AddDetailsScheduleCours />} />
         {/* <Route path="SplitButton" element={<SplitButton />} /> */}

@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import "./SignUp.css"
 import { Link, useNavigate } from "react-router-dom";
 import {AddUser,login} from "../../store/Actions/Users"
+import { useState } from "react";
 const schema = yup.object({
     Name: yup.string().required(),
     Password: yup.number(),
@@ -18,8 +19,10 @@ const schema = yup.object({
 
 }).required();
 
-const SignUp=()=>{
 
+
+const SignUp=()=>{
+const [passwordShown, setPasswordShown] = useState(true);
 const dispatch = useDispatch();
 
 const nav=useNavigate();
@@ -42,6 +45,13 @@ const nav=useNavigate();
         nav("/AllPools");
 
     }
+
+    const showHidePassword =()=>{
+        
+        setPasswordShown(!passwordShown);
+       {passwordShown==true?document.getElementById("pass").src="../Pic/eye.png":document.getElementById("pass").src="../Pic/invisible.png"}
+
+   }
 return (<>
         <img src="../Pic/cartoon-4764726_1920.png" className="cutePic"></img>
 
@@ -51,11 +61,11 @@ return (<>
 
         <div className="formDivSignUp">
         <h3>הרשמה</h3>
-        <Input register={register} errors={errors} className="inputSignUp" name="Name" src="../Pic/user.png" lablName="שם פרטי" />
-        <Input register={register} errors={errors} className="inputSignUp" name="Password" lablName="סיסמא" src="../Pic/padlock.png" /> 
-        <Input register={register} errors={errors}className="inputSignUp"  name="Email" lablName="מייל" src="../Pic/email.png" />
-        <Input register={register} errors={errors}  className="inputSignUp"name="Phone" lablName="פלאפון" src="../Pic/phone.png" />
-
+        <Input register={register} errors={errors} className="inputSignUp" name="Name" src="../Pic/user.png" c="formDivSignUpimg" lablName="שם פרטי" />
+        <Input register={register} errors={errors} className="inputSignUp" name="Password" lablName="סיסמא"   type={passwordShown ? "password" : "text"} /> 
+        <Input register={register} errors={errors}className="inputSignUp"  name="Email" lablName="מייל" c="formDivSignUpimg" src="../Pic/email.png" />
+        <Input register={register} errors={errors}  className="inputSignUp"name="Phone" lablName="פלאפון" c="formDivSignUpimg" src="../Pic/phone.png" />
+        <img src="../Pic/invisible.png" id="pass" className="pass2" onClick={()=>showHidePassword()}/>
         <label>מגזר</label><br/>
             <select  {...register("Type")}  className="select" >  
                  {typeArr.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}

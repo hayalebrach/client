@@ -89,7 +89,6 @@ const Login = () => {
 
                 <Input register={register} errors={errors} className="inputLogin" name="Name" lablName="שם פרטי" type="text" src="../Pic/user.png"/>
                 <Input register={register} errors={errors} className="inputLogin" name="Password" lablName="סיסמא"   type={passwordShown ? "password" : "text"}  />
-                <Input register={register} errors={errors} className="inputLogin" name="Password" lablName="סיסמא" type="number" src="../Pic/padlock.png"/>
                 <Link to="TofesForgteTheKode" className="forgetThePath">שכחתי סיסמא</Link>
 
                
