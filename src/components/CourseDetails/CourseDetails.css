@@ -10,13 +10,12 @@
   
 }
 .button1{
-  border-color: cornflowerblue;
   position: relative;
   top: 8px;
   right:3px;
   border-radius: 10px;
   color: black;
-
+  border: 2px solid cornflowerblue;
   margin: 10px;
   width: 93px;
   

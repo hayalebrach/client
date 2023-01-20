@@ -9,32 +9,31 @@ import { SavePool } from "../../store/Actions/Pools";
 export const CourseToUser = () => {
     const dispatch = useDispatch();
     const nav = useNavigate();
-    const { CourseToCustomer, currentUser, poolsArr } = useSelector(state => ({
+    const { CourseToCustomer, currentUser, poolsArr,Courses } = useSelector(state => ({
         CourseToCustomer: state.CourseToCustomer,
         currentUser: state.currentUser,
-        poolsArr: state.poolsArr
+        poolsArr: state.poolsArr,
+        Courses:state.allCourses
 
     }), shallowEqual);
 
-
-
-    const [Courses, SetCourses] = useState(null);
     useEffect(() => {
+        
         dispatch(GetCoursesToUser(currentUser.Id));
-        GetAllCourses().then(x=>{fff(x.data)})
-        console.log("AYOOO",Courses);
-    }, [Courses])
+       
+        console.log("all",Courses);
+        console.log("touser",CourseToCustomer);
+       
+    },[])
 
-    const fff=(data)=>{
-        console.log("xxxx",data);
-        SetCourses(data);
-        console.log("COURSES",Courses);
-
-    }
-
- 
-    function Func(Course){        
-        const index = Courses.findIndex(x => x.Id == Course.IdCours)
+    function Func(Course){  
+        let index;
+        for(let i=0;i<Courses.length;i++){
+            if(Courses[i].Id==Course.IdCours)
+             index =i;
+        }      
+        
+       
         return Courses[index];
     }
 

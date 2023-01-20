@@ -16,14 +16,33 @@ export const GetAllCoursesByPool=(IdPool)=>{
 }
 //פונקציה שלוקחת את כל הקורסם לכל הבריכות
 export const GetAllCourses=()=>{
- return axios.get(`http://localhost:50157/api/cours`);
+    return dispatch=>{
+        axios.get(`http://localhost:50157/api/cours`).then(response=>{
+            
+            dispatch({type:actionType.ALL_COURSES,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+ 
 }
-
+//קורסים למשתמש לפי משתמש
 export const GetCoursesToUser=(IdUser)=>{
     return (dispatch)=>{
-        axios.get(`http://localhost:50157/api/CourseToCustumer/GetCoursesByUser?IdUser=${IdUser}`)
+        axios.get(`http://localhost:50157/api/CoursToCustomer/GetCoursesByUser?IdUser=${IdUser}`)
         .then(response=>{
             dispatch({type:actionType.COURSES_TO_USER,payload:response.data})
+
+        })
+        .catch(err=> console.log(err) )
+    }
+}
+
+//כל הקורסים שנרשמו אליהם
+export const GetAllCoursesToUser=(IdUser)=>{
+    return (dispatch)=>{
+        axios.get(`http://localhost:50157/api/CoursToCustomer`)
+        .then(response=>{
+            dispatch({type:actionType.ALL_COURSES_TO_CUSTOMER,payload:response.data})
 
         })
         .catch(err=> console.log(err) )
@@ -56,6 +75,7 @@ export const Delete=(data)=>{
 export const postGuideToPool=(data)=>{
     return axios.post(`http://localhost:50157/api/RolesToPool/AddGuide?`,data);
 }
+
 
 
 

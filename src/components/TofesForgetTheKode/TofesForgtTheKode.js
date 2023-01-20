@@ -70,7 +70,7 @@ export default function TofesForgetTheKode () {
 
 {f=="false"?<>
 <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="formDiv" ><br/>
+            <div className="formDiv2" ><br/>
             <h3>שכחתי סיסמא</h3>
             <br/>
           

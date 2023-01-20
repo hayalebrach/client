@@ -18,6 +18,10 @@ export const ALL_ROLE="ALL_ROLE";
 export const ALL_DAYS="ALL_DAYS";
 //הצגת קורסים ללקח רשום
 export const COURSES_TO_USER="COURSES_TO_USER";
+//הצגת הקורסיםם
+export const ALL_COURSES="ALL_COURSES";
+//כל המשתמשים
+export const ALL_USERS="ALL_USERS";
 //יציאה
 export const EXIT="EXIT";
 //הבריכה הנוכחית
@@ -63,4 +67,6 @@ export const UPDATE_PIC="UPDATE_PIC";
 
 export const ADD_POOL="ADD_POOL";
 
+export const Customer_To_Pool="Customer_To_Pool";
 
+export const ALL_COURSES_TO_CUSTOMER="ALL_COURSES_TO_CUSTOMER";
