@@ -17,7 +17,7 @@ export const BuyTickets = () => {
   useEffect(() => {
     dispatch(getAllCardByIdPool(currentPool.Id));
 
-  }, []);
+  }, [CardsArr]);
 
   const update = (Id) => {
     console.log(Id);
@@ -30,6 +30,7 @@ export const BuyTickets = () => {
     dispatch(TheCard(data));
     nav(("/UpdateCard/" + true));
   }
+
   const Delet = (Id) => {
     let card = CardsArr.find(x => x.Id == Id)
     DeletCard(card).then(alert("כרטיס זה נמחק מרשימת הכרטיסים לבריכה זו"));

@@ -59,7 +59,7 @@ export default function AddDetailsCours() {
             </select><br /><br/>
              <input value="הוספת מדריך חדש" type="button"  onClick={()=>nav("/SignUp")}/>
             <input type="submit" value="הוספה" className="submitLogin"/>
-            <input  accept="image/*" type="file"  onChange={handleChange}/>
+            {/* <input  accept="image/*" type="file"  onChange={handleChange}/> */}
 </div>
         </form>
         </>);
