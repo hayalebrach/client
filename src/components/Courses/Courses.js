@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
+
 import {AllGuide} from "../../store/Actions/Users";
 import { Link } from "react-router-dom";
 import { GetAllCoursesByPool, Course_Enrollment, Delete, getCours, GetCoursesToUser } from "../../store/Actions/Cours";
@@ -8,8 +9,7 @@ import { GetTimeOfCoursByIdPool } from "../../store/Actions/Time";
 import "./Courses.css"
 export default function Courses() {
 
-
-  const { courses_arr, currentUser, currentPool, CourseToCustomer,currentCours ,Guide,TimeToCourses} = useSelector(state => ({
+  const { courses_arr, currentUser, currentPool, CourseToCustomer,currentCours,Guide,TimeToCourses} = useSelector(state => ({
     currentUser: state.currentUser,
     courses_arr: state.courses_arr,
     currentPool: state.currentPool,
@@ -29,7 +29,8 @@ export default function Courses() {
     if(currentUser.Id!=undefined)
       dispatch(GetCoursesToUser(currentUser.Id));
 
-    if (currentPool != null){
+    if(currentPool!=null){
+
       dispatch(GetAllCoursesByPool(currentPool.Id));
       dispatch(GetTimeOfCoursByIdPool(currentPool.Id));
     }

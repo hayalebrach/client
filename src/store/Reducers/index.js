@@ -51,11 +51,22 @@ const initialState = {
     //כל המדריכים
     Guide:[],
     Managers: [],
+
     TimeToCourses:[],
+
+    currentManager:""
+
 }
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case actionType.MANAGER: {
+            return {
+                ...state,
+                currentManager:action.payload
+            }
+
+        }
         //-------------------כרטיסים---------------------------------------
                 //קבלת כרטיס 
                 case actionType.GET_CARD: {
@@ -66,6 +77,7 @@ const reducer = (state = initialState, action) => {
         
                 }
                 case actionType.ALL_COURSES: {
+
                     return {
                         ...state,
                         allCourses:action.payload
@@ -167,19 +179,6 @@ case actionType.DELETE_POOLS:
             currentSchedule:action.payload
             }
         }
-        case actionType.GET_GUIDE:{
-            let g=[];
-            let arr=state.courses_arr;
-            for(let i=0;i<action.payload.length;i++){
-                
-                 if(arr.find(x=>x.IdUser==action.payload[i].Id)!=null);
-                      g.push();
-            }
-           return{
-               ...state,
-                Guide:g
-           }
-        }
         //קבלת קורס על פי ת"ז
         case actionType.GET_COURS:{
             let c=state.courses_arr.find(x=>x.Id==action.payload);
@@ -236,11 +235,28 @@ case actionType.DELETE_POOLS:
                 Role: action.payload
             };
         //מציג קורסים לבריכה
-        case actionType.GET_COURSES:
-            return {
-                ...state,
-                courses_arr: action.payload
-            };
+        case actionType.GET_COURSES:{
+            let g=[];
+            let x;
+            let arr=action.payload;
+            console.log(arr);
+            for(let i=0;i<arr.length;i++){
+                console.log(arr[i]);
+                 if(state.allUsers.find(x=>x.Id==arr[i].IdUser)!=null);{
+                    x=state.allUsers.find(x=>x.Id==arr[i].IdUser);
+                    if(g.find(e=>e.Id==x.Id)==null){
+                        g.push(x);
+                    }
+                 }
+                     
+            }
+            //console.log(g);
+           return{
+               ...state,
+               courses_arr: action.payload,
+                Guide:g
+           }
+        };
         //התחברות-login
         case actionType.LOGIN:
             return {

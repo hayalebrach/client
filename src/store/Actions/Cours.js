@@ -83,9 +83,6 @@ export const getCours = (ID) => {
 export const Delete=(data)=>{
     return  axios.put("http://localhost:50157/api/Cours/PutForDelete?",data)
 }
-export const postGuideToPool=(data)=>{
-    return axios.post(`http://localhost:50157/api/RolesToPool/AddGuide?`,data);
-}
 
 
 

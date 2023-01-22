@@ -19,8 +19,6 @@ export default function UpdateCours(){
       }), shallowEqual);
     useEffect(() => {        
         f=f.flag;
-        if(currentPool!=null)
-            dispatch(AllGuide(currentPool.Id));
     }, []);
 
 

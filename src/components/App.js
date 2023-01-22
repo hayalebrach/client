@@ -74,15 +74,14 @@ function App() {
 
   let nav = useNavigate();
   const dispatch = useDispatch();
-  const { Schedule, currentUser, currentPool, usersArr,Areas,Pools } = useSelector(state => ({
+  const { Schedule, currentUser, currentPool, usersArr,Areas,Pools,allUsers} = useSelector(state => ({
     currentUser: state.currentUser,
     currentPool: state.currentPool,
     usersArr: state.usersArr,
     Areas: state.Areas,
-    Pools: state.poolsArr
-
+    Pools: state.poolsArr,
+    allUsers:state.allUsers
   }), shallowEqual);
-
 
 
   // console.log(Cards, Managers)

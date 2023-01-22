@@ -5,9 +5,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
 import * as yup from "yup";
 import {useDispatch, useSelector,shallowEqual} from "react-redux";
-import {AddUser,login} from "../../store/Actions/Users";
+import {AddUser,getTheGuid,getAllUsers,users} from "../../store/Actions/Users";
 import {getAllRole} from "../../store/Actions/Role";
-
+import {TheManagerPool} from "../../store/Actions/Manager";
 import { useNavigate } from "react-router";
 const schema = yup.object({
     Name: yup.string().required("זהו שדה חובה"),
@@ -22,8 +22,9 @@ const schema = yup.object({
 const AddDetailsManager=()=>{
 const nav=useNavigate()
 const dispatch = useDispatch();
-const {Role} = useSelector(state => ({
-    Role: state.Role
+const {Role,allUsers} = useSelector(state => ({
+    Role: state.Role,
+    allUsers:state.allUsers
  }), shallowEqual);
 useEffect(() => {
     dispatch(getAllRole());
@@ -43,9 +44,13 @@ useEffect(() => {
      
      data.LastEntery=new Date();
      console.log(data);
-     //AddUser(data).then();
-     if(data.IdRole==2)
-     nav("/AddDetailsPool");
+     AddUser(data).then();
+
+     if(data.IdRole==2){
+        TheManagerPool(data);
+        nav("/AddDetailsPool");
+     }
+     
     
        if(data.IdRole==1){
            alert("נוסף בהצלחה בתור מנהל האתר");
@@ -53,6 +58,11 @@ useEffect(() => {
        }
            
      
+    }
+    const fun=(x)=>{
+        alert(x.data);
+       TheManagerPool(x.data);
+       nav("/AddDetailsPool");
     }
 return (<>
     <h1>הוספת מנהל בריכה</h1>

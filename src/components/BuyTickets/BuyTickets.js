@@ -16,7 +16,8 @@ export const BuyTickets = () => {
   }), shallowEqual);
   useEffect(() => {
     dispatch(getAllCardByIdPool(currentPool.Id));
-  }, [CardsArr]);
+
+  }, []);
 
   const update = (Id) => {
     console.log(Id);
@@ -39,26 +40,24 @@ export const BuyTickets = () => {
 
   }
 
-  return (<>
 
-      {currentUser.IdRole==2?
-      <>
-      
-      <h1>מחירון</h1>
-      <input type="button" value="הוספת כרטיסיה" onClick={() => nav("/AddDetailsCard")} />
+  return (
+    <> 
+     {currentUser.IdRole==2?
+      <><h1>מחירון</h1>
+      <input type="button" value="הוספת כרטיסיה" onClick={() => nav("/AddDetailsCard/true")} />
       </>
-    : <> <h1>המחירון שלנו  </h1>
-      <h3>לקניה ביחידים אנא בחר כמות</h3><br />
-       <input type="number" id="amount" className="input1" style={{ color: "black" }} />
-       <input type="button" value="הוספה לסל" className="button4" onClick={() => AddToCart({ Price: currentPool.Price * document.getElementById("amount").value, EntersAmount: document.getElementById("amount").value })} ></input>
-       
-    </>}
+      
+    : 
+       <> <h1>המחירון שלנו  </h1>
+          <h3>לקניה ביחידים אנא בחר כמות</h3><br />
+         <input type="number" id="amount" className="input1" style={{ color: "black" }} />
+         <input type="button" value="הוספה לסל" className="button4" onClick={() => AddToCart({ Price: currentPool.Price * document.getElementById("amount").value, EntersAmount: document.getElementById("amount").value })} ></input>
+       </>}
+
     
         <br/><br/>
-         <br />
-        
-          {CardsArr.map(Card => <><div className="Card"> <br/><br/><br/><br/>     כניסות: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br />
-          
+          {CardsArr.map(Card => <>{Card.EntersAmount != '1' ? <div className="Card"> <br/><br/><br/><br/>     כניסות: {Card.EntersAmount}<br></br> מחיר: {Card.Price} <br />
             {currentUser.IdRole == 2 ?
               <>
                 <input type="button" value="עדכן" className="Mbutton1" onClick={() => update(Card.Id)} />
@@ -67,12 +66,9 @@ export const BuyTickets = () => {
               :
               <img src="../Pic/add-to-cart.png" alt="" className="AddPic"  onClick={() => { AddToCart(Card) }}/>
             }
-          </div></>)
+
+          </div> : null}</>)
         }
-
-      
-
-
     </>
   )
 }

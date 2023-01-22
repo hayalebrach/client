@@ -22,16 +22,6 @@ export const login = (data) => {
 
 }
 
- //כל במדריכים
- export const AllGuide=()=>{
-  return dispach=>{
-      axios.get("http://localhost:50157/api/RolesToPool/GetTheGuideToPool")
-      .then(response=>{
-          dispach({type:actionType.GET_GUIDE,payload:response.data})
-    })
-    .catch(err=>console.log(err))}
-      
-}
 export const GetUserById = (UserId) => {
     return (dispatch) => {        
         try {
@@ -51,7 +41,7 @@ export const GetUserById = (UserId) => {
 }
 // //הוספת משתמש
  export const AddUser=(data)=>{
-     console.log(data);
+
      data={...data,Status:true}
      return axios.post("http://localhost:50157/api/User/AddUser?",data)
  }
@@ -135,18 +125,21 @@ export const LastDate=(data)=>{
     return axios.put(`http://localhost:50157/api/user/LastEnteryDate?`,data)
 }
 export const getTheGuid=(data)=>{
+   
     axios.get(`http://localhost:50157/api/user/GetByIdAndPassword?name=${data.Name}&password=${data.Password}`)
 }
 
 export const getAllUsers=()=>{
     return dispatch=>{
         axios.get("http://localhost:50157/api/User/GetAllUsers").then(response=>{
-            
             dispatch({type:actionType.ALL_USERS,payload:response.data})
         })
         .catch(err=> console.log(err) )
     }
      
+}
+export const users=()=>{
+    return axios.get("http://localhost:50157/api/User/GetAllUsers")
 }
 
 

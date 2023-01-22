@@ -45,9 +45,6 @@ export const ADD_TO_CART="ADD_TO_CART";
 export const GET_COURS="GET_COURS";
 //מחיקה מעגלת קניות
 export const DELETE_FROM_CART="DELETE_FROM_CART";
-//קבלת כל המדריכים
-export const GET_GUIDE="GET_GUIDE";
-
 
 export const GET_ALL_AREAS="GET_ALL_AREAS";
 
@@ -74,4 +71,7 @@ export const ALL_COURSES_TO_CUSTOMER="ALL_COURSES_TO_CUSTOMER";
 export const TIME_TO_COURSE_BY_POOL_ID="TIME_TO_COURSE_BY_POOL_ID";
 export const CUSTOMER_TO_POOL_BY_ID_POOL="CUSTOMER_TO_POOL_BY_ID_POOL";
 export const COURSES_TO_USER_BY_ID_POOL ="COURSES_TO_USER_BY_ID_POOL";
+
+//שמירת מנהל בריכה
+export const MANAGER="MANAGER";
 

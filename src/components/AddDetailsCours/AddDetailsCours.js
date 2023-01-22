@@ -26,12 +26,8 @@ export default function AddDetailsCours() {
     
     const {currentPool,Guide} = useSelector(state => ({
         currentPool: state.currentPool,
-        Guide:state.Guide,
+        Guide:state.Guide
     }), shallowEqual);
-    useEffect(() => {
-        if(currentPool!=null)
-           dispatch(AllGuide(currentPool.Id));
-    },[Guide]);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
@@ -60,15 +56,10 @@ export default function AddDetailsCours() {
             <label>שם המדריך</label><br />
             <select  {...register("IdUser")} className="select" >
                 {Guide.map(x => <option key={x.Id} value={x.Id}>{x.Name}</option>)}
-
             </select><br /><br/>
              <input value="הוספת מדריך חדש" type="button"  onClick={()=>nav("/SignUp")}/>
             <input type="submit" value="הוספה" className="submitLogin"/>
-         
-
-           
             <input  accept="image/*" type="file"  onChange={handleChange}/>
-            <input type="submit" value="הוספה"/>
 </div>
         </form>
         </>);
