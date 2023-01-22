@@ -21,6 +21,7 @@ export const updateCard=(data)=>{
 }
 //פונקציה שמוסיפה כרטיס חדש
 export const AddCard=(card)=>{
+        console.log(card);
         axios.post("http://localhost:50157/api/Packege/AddCard?",card)    
 }
 //כל הכרטיסים לבריכה מסוימת

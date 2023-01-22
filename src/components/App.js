@@ -29,7 +29,6 @@ import AddDetailsPool from './AddDetailsPool/AddDetailsPool';
 import AddDetailsCours from './AddDetailsCours/AddDetailsCours';
 import AddDetailsCard from './AddDetailsCard/AddDetailsCard';
 import AddDetailsSale from "./AddDetailsSale/AddDetailsSale";
-import CourseEnrollment from "./CourseEnrollment/CourseEnrollment"
 import SplitButton from './SplitButton';
 import BuyingForm from './BuyingForm/BuyingForm';
 import FinishBuying from './FinishBuying/FinishBuying';
@@ -75,8 +74,7 @@ function App() {
 
   let nav = useNavigate();
   const dispatch = useDispatch();
-
-  const { Schedule, currentUser, currentPool, usersArr, Areas, Pools } = useSelector(state => ({
+  const { Schedule, currentUser, currentPool, usersArr,Areas,Pools } = useSelector(state => ({
     currentUser: state.currentUser,
     currentPool: state.currentPool,
     usersArr: state.usersArr,
@@ -135,7 +133,6 @@ function App() {
 
     </div> : null}
     {currentUser ? (<><text className='Exit' onClick={() => { dispatch(Exit()); nav("/AllPools") }}>יציאה</text></>) : null}
-
 
 
     <div className="App" >
@@ -272,7 +269,6 @@ function App() {
 
         <Route path="/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="/UserNavBar/about" element={<About />} />
-        <Route path="/courseDetails/courseEnrollment" element={<CourseEnrollment />} />
         <Route path="/buyingForm" element={<BuyingForm />} />
         <Route path="/MainManagerNavBar/managers" element={<AllManagers />} />
         <Route path="/MainManagerNavBar/AllPools" element={<AllPools />} />
@@ -289,20 +285,11 @@ function App() {
         <Route path="MainManagerNavBar/AddDetailsManager" element={<AddDetailsManager />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSchedule" element={<AddDetailsSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsPool" element={<AddDetailsPool />} />
-
-
-
-        <Route path="AddDetailsCard/:flag" element={<AddDetailsCard flag="true" />} />
-        <Route path="MainManagerNavBar/AddPool/AddDetailsCard/:flag" element={<AddDetailsCard flag="false" />} />
-        <Route path="MainManagerNavBar/AddPool/AddDetailsCours/:flag" element={<AddDetailsCours flag="false" />} />
-        <Route path="AddDetailsCours/:flag" element={<AddDetailsCours flag="true" />} />
-
+        <Route path="AddDetailsCard" element={<AddDetailsCard/>} />
+        <Route path="AddDetailsCours" element={<AddDetailsCours/>} />
         <Route path="AddPool/AddDetailsSale" element={<AddDetailsSale />} />
-
-
         <Route path="poolWeb/ShowSchedule" element={<ShowSchedule />} />
         <Route path="MainManagerNavBar/AddPool/AddDetailsSale" element={<AddDetailsSale />} />
-
         <Route path="UpdateUser/:flag" element={<UpdateUser flag="false" />} />
         <Route path="UpdateCard/:flag" element={<UpdateCard flag="false" />} />
         <Route path="UpdateCours/:flag" element={<UpdateCours flag="false" />} />

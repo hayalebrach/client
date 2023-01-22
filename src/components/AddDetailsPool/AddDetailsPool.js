@@ -2,63 +2,71 @@ import React, { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from "../Input";
-import "./AddDetailsPool.css"
+import "./AddDetailsPool.css";
 import * as yup from "yup";
-import { getAllErea, AddPool, SavePool,AddIImagePool,updatePool,getErea, getAllAreas,AddErea } from "../../store/Actions/Pools";
+import {AddIImagePool,getAllErea,getAllAreas,AddPool,SavePool,AddErea,getErea, updatePool} from "../../store/Actions/Pools";
+import {AddCard} from "../../store/Actions/Card";
+
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import AddImage from "./addImage";
 const schema = yup.object({
-    IdUser: yup.number().positive().integer().required(),
-    Name: yup.string().required(),
-    IdErea: yup.string().required(),
-    Adress: yup.string().required(),
-    Price: yup.number().positive().integer().required(),
-    Amount: yup.number().positive().integer().required(),
-    Phone: yup.number().positive().integer().required()
-}).required();
 
+    IdUser:yup.number(),
+    Name: yup.string().required("זהו שדה חובה"),  
+    IdErea:yup.number(),
+    Adress: yup.string().required("זהו שדה חובה"), 
+    Price: yup.number().positive().integer().required("זהו שדה חובה"),
+    Amount: yup.number().positive().integer().required("זהו שדה חובה"),
+    Phone: yup.number().positive().integer().required("זהו שדה חובה")
+}).required();
 export default function AddDetailsPool() {
     const nav = useNavigate();
     const [Id, setId] = useState(null);
 
     const dispatch = useDispatch();
-    const { currentUser, poolsArr } = useSelector(state => ({
-        currentUser: state.currentUser,
-        poolsArr: state.poolsArr
-    }), shallowEqual);
+    let [erea,Seterea]=useState([]);
 
-       const [f,Setf]=useState("false");
+   const [f,Setf]=useState("false");
    const [Name,SetName]=useState();
    const change=(e)=>{
        SetName(e.target.value);
        console.log(Name);
    }
-   let [erea,Seterea]=useState([]);
-
    useEffect(() => {
-       dispatch(getAllAreas());
-       getErea().then(x=>Seterea(x.data));   
-     }, [erea]);
+    dispatch(getAllAreas());
+    getErea().then(x=>Seterea(x.data));
+    console.log(erea);     
+  }, [erea]);
+ 
+   const {currentUser,poolsArr,currentPool} = useSelector(state => ({
+     currentUser: state.currentUser,
+     poolsArr:state.poolsArr,
+     currentPool:state.currentPool
+  }), shallowEqual);
 
-  
 
-    console.log(currentUser.Id);
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
-
+   
     const onSubmit = (data) => {
-        AddPool(data)
-            .then(x => {
-                setId(x.data.Id);
-                alert("id", Id);
-                alert("בריכה נוספה בהצלחה")
-            });
-       // let pool = poolsArr.find(x => x.IdUser === currentUser.Id);
-       // console.log(data);
-        // nav("/MainManagerNavBar");
+    AddPool(data)
+    .then(x => {
+    setId(x.data.Id);
+    alert("id", Id);
+    alert("בריכה נוספה בהצלחה");
+});
+// let pool = poolsArr.find(x => x.IdUser === currentUser.Id);
+// console.log(data);
+// nav("/MainManagerNavBar");
+        let pool=poolsArr.find(x=>x.IdUser==currentUser.Id);
+        dispatch(SavePool(pool));
+        console.log(data);
+        AddCard({IdPool:currentPool.Id,EntersAmount:1,Price:data.Price,Status:true});
+        nav("/MainManagerNavBar");
+        
     }
 
     const AddNewErea=()=>{
@@ -87,6 +95,7 @@ export default function AddDetailsPool() {
         </>:null}
 
             <input type="submit" className="button" value="אישור" />
+
         </form>
          {Id ?<AddImage Id={Id}/> :null}
         

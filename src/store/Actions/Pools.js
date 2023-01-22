@@ -77,6 +77,7 @@ export const getAllUsersByIdPool = (IdPool) => {
     }
 
 }
+//כל האיזורים
 export const getAllAreas = () => {
     
     return dispatch => {
@@ -87,6 +88,15 @@ export const getAllAreas = () => {
             })
             .catch(err => console.log(err))
     }
+}
+export const AddErea=(data)=>{
+    return axios.post(`http://localhost:50157/api/Erea/Post`,data)
+}
+export const GetByName=(Name)=>{
+    return axios.get(`http://localhost:50157/api/Erea/GetByName?Name=${Name}`)
+}
+export const getErea=()=>{
+    return axios.get(`http://localhost:50157/api/Erea/GetAllreas`)
 }
 
 export const updatePool = (data) => {
@@ -99,9 +109,3 @@ export const updatePool = (data) => {
    }
 }
 
-export const AddErea=(data)=>{
-    return axios.post(`http://localhost:50157/api/Erea/Post`,data)
-}
-export const getErea=()=>{
-    return axios.get(`http://localhost:50157/api/Erea/GetAllreas`)
-}

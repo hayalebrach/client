@@ -9,8 +9,8 @@ import { useParams ,useNavigate} from "react-router";
 
 
 const schema = yup.object({
-    Price: yup.number().positive().integer().required(),
-    EntersAmount: yup.number().positive().integer().required(),
+    Price: yup.number().positive().integer().required("זהו שדה חובה"),
+    EntersAmount: yup.number().positive().integer().required("זהו שדה חובה"),
     IdPool:yup.number(),
     Status:yup.bool()
 }).required();
@@ -34,10 +34,12 @@ export default function AddDetailsCard() {
     return (<>
                  <h1>הוספת כרטיסים</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input register={register} errors={errors} name="Price" lablName="מחיר" className="" type="number"/>
-            <Input register={register} errors={errors} name="EntersAmount" lablName="כמות כניסות" className="" type="number" />
+        <div className="formDiv" ><br/>
+            <Input register={register} errors={errors} name="Price" lablName="מחיר" className="inputLogin" type="number"/>
+            <Input register={register} errors={errors} name="EntersAmount" lablName="כמות כניסות" className="inputLogin" type="number" />
 
-            <input type="submit" value="הוספה"/>
+            <input type="submit" value="הוספה" className="submitLogin"/>
+            </div>
         </form>
         </>);
 }
