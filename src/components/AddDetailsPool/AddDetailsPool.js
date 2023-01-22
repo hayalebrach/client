@@ -8,8 +8,13 @@ import * as yup from "yup";
 import {AddCard} from "../../store/Actions/Card";
 
 import {getTheGuid,getAllUsers} from "../../store/Actions/Users";
+<<<<<<< Updated upstream
 import { getAllErea, AddPool, SavePool,AddIImagePool,updatePool,getErea, getAllAreas,AddErea } from "../../store/Actions/Pools";
 
+=======
+import {AddCard} from "../../store/Actions/Card";
+import { getAllErea, AddPool, SavePool,AddIImagePool,updatePool,getErea, getAllAreas,AddErea ,GetAllPools} from "../../store/Actions/Pools";
+>>>>>>> Stashed changes
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
 import { useState } from "react";
@@ -82,8 +87,8 @@ export default function AddDetailsPool() {
                 alert("id", Id);
                 alert("בריכה נוספה בהצלחה")
             });
-       let pool = poolsArr.find(x => x.IdUser === currentUser.Id);
-       console.log(data);
+       dispatch(GetAllPools());
+       let pool = poolsArr.find(x => x.IdUser === data.IdUser);
         nav("/MainManagerNavBar");
     }
 
