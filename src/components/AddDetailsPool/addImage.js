@@ -11,12 +11,12 @@ export default function AddImage({Id}) {
         setFile(target.files[0]);
     }
     const save = () => {
-        alert(Id);
+        
         const formData = new FormData();
         console.log("im File",File );
         formData.append('Image',File);
-        formData.append('ItemId', Id ? Id : 0);
-         AddIImagePool(formData).then(dispatch(updatePool(formData)));
+        formData.append('ItemId', Id==true ? Id : 0);
+         AddIImagePool(formData).then(dispatch(uploedFile(formData)));
     }
     return (
         <Fragment>

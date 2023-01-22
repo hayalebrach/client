@@ -20,3 +20,11 @@
     padding: 5px;
     font-family: cursive;
 }
+.delete{
+    width: 25px;
+    position: relative;
+    height: 25px;
+    right: 45px;
+    top: 25px;
+}
+

@@ -16,9 +16,10 @@ const Func=(data)=>{
      <br/>
      
    
-    <h1>מפרסמים</h1>
+    <h1>מפרסמים</h1>  
+
         {Managers?
-            Managers.map(Manager=><><br/> <div className="div1"><text>שם:</text> {Manager.Name} <br/> <text> מספר מזהה:  </text> <br/>  {Manager.Email} <text> :מייל </text> </div>  </>)
+            Managers.map(Manager=><> <div className="classicDiv" > {Manager.Name}<text> :שם</text> <br/> <br/>  {Manager.Email} <text> :מייל </text> </div>  </>)
        :null}
     </>
   )

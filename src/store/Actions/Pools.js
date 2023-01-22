@@ -27,6 +27,10 @@ export const AddIImagePool=(data)=>{
     return axios.post("http://localhost:50157/api/Images/uploadImag", data)
 
 }
+// export const UpdateIImagePool=(data)=>{
+//     return axios.post("http://localhost:50157/api/Images/updateImag", data)
+
+// }
 //כל האיזורים
 export const getAllErea = () => {
      return axios.get("http://localhost:50157/api/erea/GetAllEreas")
@@ -95,4 +99,9 @@ export const updatePool = (data) => {
    }
 }
 
-
+export const AddErea=(data)=>{
+    return axios.post(`http://localhost:50157/api/Erea/Post`,data)
+}
+export const getErea=()=>{
+    return axios.get(`http://localhost:50157/api/Erea/GetAllreas`)
+}

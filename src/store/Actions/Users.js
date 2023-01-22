@@ -1,6 +1,7 @@
  import * as actionType from "../actions";
  import axios from "axios";
 import { object } from "yup";
+import { Pool } from "@material-ui/icons";
 
  //התחברות
 export const login = (data) => {
@@ -95,9 +96,20 @@ export const getAllHistoryOfUser=(IdPool,IdUser)=>{
 
 export const getCustomerToPool=()=>{
     return dispatch=>{
-        axios.get("http://localhost:50157/api/Customr_To_Pool").then(response=>{
+        axios.get("http://localhost:50157/api/Customr_To_Pool/AllCustomersToPool").then(response=>{
             console.log(response.data);
             dispatch({type:actionType.Customer_To_Pool,payload:response.data})
+        })
+        .catch(err=> console.log(err) )
+    }
+     
+}
+export const getCustomerToPoolByPoolId=(PoolId)=>{
+    return dispatch=>{
+       
+        axios.get(`http://localhost:50157/api/Customr_To_Pool/CustomersToPool?IdPool=${PoolId}`).then(response=>{
+            console.log(response.data);
+            dispatch({type:actionType.CUSTOMER_TO_POOL_BY_ID_POOL,payload:response.data})
         })
         .catch(err=> console.log(err) )
     }

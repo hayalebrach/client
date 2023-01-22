@@ -1,20 +1,27 @@
 
 
 import { fontFamily } from "@mui/system";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./PoolWeb.css"
 import 'typeface-quicksand';
 import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
 import AddImage from "../AddDetailsPool/addImage";
+import { useEffect } from "react";
+import { GetTimeOfCoursByIdPool } from "../../store/Actions/Time";
 
 
 export default function PoolWeb() {
-
-
     const currentPool = useSelector(state => state.currentPool);
     const currentUser = useSelector(state => state.currentUser);
 
+  const dispatch=useDispatch();
+    useEffect(() => {
+          dispatch(GetTimeOfCoursByIdPool(currentPool.Id));
+        
+      }, [])
+
+    
     const MouseOver = (e) => {
         e.target.style.width = "110px";
         e.target.style.height = "110px";
@@ -41,7 +48,7 @@ export default function PoolWeb() {
             <div className="PoolWebDiv">
 
                 <h1>{currentPool.Name}</h1><br />
-                <img src={`Pic/pin.png`} className="locationIcon" ALT="" />  <h3> מחכים לכם ברחוב <b>{currentPool.Adress}</b></h3>
+                <img src={`Pic/pin.png`} className="locationIcon" alt="" />  <h3> מחכים לכם ברחוב <b>{currentPool.Adress}</b></h3>
                 <div>
                     <img src={`Pic/${currentPool.Pic}`} alt="" className="Pic" />
                     <div className="savePlace">

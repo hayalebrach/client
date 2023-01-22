@@ -38,6 +38,17 @@ export const GetCoursesToUser=(IdUser)=>{
     }
 }
 
+export const GetCoursesToUserByIdPool=(IdPool)=>{
+    return (dispatch)=>{
+        axios.get(`http://localhost:50157/api/CoursToCustomer/GetCoursesToUserByIdPool?IdPool=${IdPool}`)
+        .then(response=>{
+            dispatch({type:actionType.COURSES_TO_USER_BY_ID_POOL,payload:response.data})
+
+        })
+        .catch(err=> console.log(err) )
+    }
+}
+
 //כל הקורסים שנרשמו אליהם
 export const GetAllCoursesToUser=(IdUser)=>{
     return (dispatch)=>{

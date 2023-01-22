@@ -36,9 +36,13 @@ const initialState = {
     courses_arr: [],
     //הרשומים לקורס
     CourseToCustomer: [],
+    CourseToCustomerByPool:[],
 
     AllCourseToCustomer:[],
+    //כל הקניות
     CustomerToPool:[],
+    //קניות לבריכה מסוימת
+    CustomerToPoolByIdPool:[],
     UsersPool:[],
     CallUsArr: [],
     Cart: [],
@@ -47,6 +51,7 @@ const initialState = {
     //כל המדריכים
     Guide:[],
     Managers: [],
+    TimeToCourses:[],
 }
 const reducer = (state = initialState, action) => {
 
@@ -195,7 +200,7 @@ case actionType.DELETE_POOLS:
             };
 
             case actionType.UPDATE_PIC:{
-                let arr=  [...state.poolsArr];
+                let arr=state.poolsArr;
                for(let i=0;i<arr.length;i++){
                 if(arr[i].Id==action.payload.ItemId){
                    arr[i].Pic=action.payload.Image}
@@ -343,6 +348,31 @@ case actionType.DELETE_POOLS:
                     return{
                         ...state,
                         CustomerToPool:action.payload
+                    }
+                }
+                case actionType.CUSTOMER_TO_POOL_BY_ID_POOL:{
+                    return{
+                        ...state,
+                        CustomerToPoolByIdPool:action.payload
+                    }
+                }
+
+                
+
+
+
+                case actionType.TIME_TO_COURSE_BY_POOL_ID:{
+                    return{
+                        ...state,
+                        TimeToCourses:action.payload
+                    }
+
+                }
+
+                case actionType.COURSES_TO_USER_BY_ID_POOL:{
+                    return{
+                        ...state,
+                        CourseToCustomerByPool:action.payload
                     }
                 }
 

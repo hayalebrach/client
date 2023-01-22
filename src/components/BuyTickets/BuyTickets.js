@@ -43,7 +43,7 @@ export const BuyTickets = () => {
   return (
     <>  {currentUser.IdRole==2?
       <>
-      <div className="classicDiv"></div>
+      
       <h1>מחירון</h1>
       <input type="button" value="הוספת כרטיסיה" onClick={() => nav("/AddDetailsCard/true")} />
       </>

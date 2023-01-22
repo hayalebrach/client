@@ -55,6 +55,7 @@ import Try from './Try/Try';
 import { getAllCards } from '../store/Actions/Card';
 import TofesForgteTheKode from './TofesForgetTheKode/TofesForgtTheKode';
 import { GetAllCourses } from '../store/Actions/Cours';
+import CourseSchedule from "./CourseSchedule/CourseSchedule"
 function App() {
   const [POPUP, setPOPUP] = useState(false);
 
@@ -141,7 +142,7 @@ function App() {
 
       <Routes >
         <Route path="login/TofesForgteTheKode/AllPools" element={<AllPools/>}/>
-        <Route path="" element={<AllPools />} />
+        <Route path="" element={<AllPools/>} />
         <Route path="GuessNavBar" element={<GuessNavBar />} />
         <Route path="profile/GuessNavBar" element={<GuessNavBar />} />
         <Route path="cart/UserNavBar" element={<UserNavBar />} />
@@ -167,6 +168,8 @@ function App() {
         <Route path="poolWeb/courses" element={<Courses />} />
         <Route path="AllPools/poolWeb/courses" element={<Courses />} />
         <Route path="cart/PoolWeb/courses" element={<Courses />} />
+        <Route path="MainManagerNavBar/statistics" element={<Statistics />} />
+        <Route path="ManagerNavBar/statistics" element={<Statistics />} />
 
         <Route path="ManagerNavBar/courses" element={<Courses />} />
 
@@ -193,11 +196,12 @@ function App() {
         <Route path="/UserNavBar/courses" element={<Courses />} />
         <Route path="/UserNavBar/buyTickets" element={<BuyTickets />} />
         <Route path="/UserNavBar/about" element={<About />} />
-        <Route path="/poolWeb/courses/courseEnrollment" element={<CourseEnrollment />} />
         <Route path="/buyingForm" element={<BuyingForm />} />
         <Route path="/MainManagerNavBar/managers" element={<AllManagers />} />
         <Route path="/MainManagerNavBar/AllPools" element={<AllPools />} />
-
+        <Route path="poolWeb/courses/CourseSchedule" element={<CourseSchedule />} />
+        
+        <Route path="/ManagerNavBar/Courses/CourseSchedule" element={<CourseSchedule />} />
         <Route path="buyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="cart/BuyingForm/finishBuying" element={<FinishBuying />} />
         <Route path="profile" element={<Profile />} />

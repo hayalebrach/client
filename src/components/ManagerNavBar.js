@@ -17,6 +17,8 @@ export default function ManagerNavBar(){
         <Link to="AddDetailsSchedule" className="navbar-brand">זמני בריכה</Link>
         <Link to="AddDetailsScheduleCours" className="navbar-brand">זמני קורסים</Link>
         <Link to="poolWeb" className="navbar-brand">לבריכה שלי</Link>
+        <Link to="statistics" className="navbar-brand">סטטסטיקות </Link>
+
 
     </nav>
     </>)

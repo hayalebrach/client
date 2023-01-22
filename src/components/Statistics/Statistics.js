@@ -1,24 +1,42 @@
-import React, { useEffect } from "react";
-import {
-    Chart, PieSeries, Title
-} from '@devexpress/dx-react-chart-material-ui';
+import React, { useEffect, useState } from "react";
 import "./Statistics.css"
-import { shallowEqual, useSelector } from "react-redux";
-import { getCustomerToPool } from "../../store/Actions/Users"
-import { GetAllCoursesToUser } from "../../store/Actions/Cours";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { getCustomerToPool, getCustomerToPoolByPoolId } from "../../store/Actions/Users"
+import { GetTimeOfCoursByIdPool } from "../../store/Actions/Time";
+import { getAllCardByIdPool } from "../../store/Actions/Card";
+import { GetAllCoursesByPool, GetCoursesToUserByIdPool } from "../../store/Actions/Cours";
+import { PieChart, Pie} from 'recharts'
 
 
 export const Statistics = () => {
 
-    const { Courses, Pools, PackagesToPool, CustomerToPool, AllCourseToCustomer } = useSelector(state => ({
+    const { Courses,currentUser, Pools, PackagesToPool, CustomerToPool, AllCourseToCustomer,currentPool,CustomerToPoolByIdPool,CourseToCustomerByPool } = useSelector(state => ({
         Courses: state.courses_arr,
         Pools: state.poolsArr,
         PackagesToPool: state.CardsArr,
         CustomerToPool: state.CustomerToPool,
-        AllCourseToCustomer: state.AllCourseToCustomer
+        CustomerToPoolByIdPool:state.CustomerToPoolByIdPool,
+        AllCourseToCustomer: state.AllCourseToCustomer,
+        currentPool:state.currentPool,
+        CourseToCustomerByPool:state.CourseToCustomerByPool,
+        currentUser:state.currentUser
     }), shallowEqual);
 
-    let PoolsStatistic = [];
+    const [flag,setFlag ] = useState(false);
+    const [PoolsStatistic,setPoolsStatistic ] = useState([]);
+    
+    const dispatch=useDispatch();
+    
+
+    useEffect(() => {
+        dispatch(getCustomerToPool());
+        dispatch(getCustomerToPoolByPoolId(currentPool.Id));
+        dispatch(getAllCardByIdPool(currentPool.Id));
+        dispatch(GetAllCoursesByPool(currentPool.Id));
+        dispatch(GetCoursesToUserByIdPool(currentPool.Id));
+        
+      
+    }, [])
 
     let x = 0, sumAll = 0, sumOne = 0;
 
@@ -29,83 +47,102 @@ export const Statistics = () => {
     //   }, []);
 
     const mostProfitablePool = () => {
-        alert("hi")
-        PoolsStatistic = [{Id:null,Sum:0,Percent:0}];
+        
+        setPoolsStatistic([]) ;
+        let arr=[];
         for (let i = 0; i < Pools.length; i++) {
             for (let j = 0; j < CustomerToPool.length; j++) {
-                if (Pools.Id[i] == CustomerToPool[j].IdPool) {
-                    sumOne += CustomerToPool.TotalPrice;
+                if (Pools[i].Id == CustomerToPool[j].IdPool) {
+                    sumOne += CustomerToPool[j].TotalPrice;
+                    
                 }
             }
-            PoolsStatistic[x].Id = Pools[i].Id;
-            PoolsStatistic[x++].Sum = sumOne;
+            arr.push({name:Pools[i].Name,Sum:sumOne,Percent:null})
+            
             sumAll += sumOne;
             sumOne = 0;
-
-
         }
-        for (let i = 0; i < PoolsStatistic.length; i++) {
-            PoolsStatistic[i].Percent = ((PoolsStatistic[i].sum) / sumAll) * 0.1;
+        for (let i = 0; i < arr.length; i++) {
+            if( arr[i].Sum!=0)
+            arr[i].Percent = ((arr[i].Sum) / sumAll) * 100;
         }
         sumAll = 0;
-        console.log(PoolsStatistic);
+       setPoolsStatistic(arr);
+        setFlag(true);
 
     }
 
+
     const mostProfitableCourse = () => {
+        console.log(CourseToCustomerByPool);
+        let arr=[];
         x = 0;
         let count = 0;
-        PoolsStatistic = [];
+        setPoolsStatistic([]);
         for (let i = 0; i < Courses.length; i++) {
-
-            for (let j = 0; j < Courses.length; j++) {
-                if (Courses[i].Id == AllCourseToCustomer[j].IdCours) {
+            for (let j = 0; j < CourseToCustomerByPool.length; j++) {
+                if (Courses[i].Id == CourseToCustomerByPool[j].IdCours) {
                     count++;
                 }
             }
-            PoolsStatistic[x].Id = Courses[i].Id;
-            PoolsStatistic[x++].numOfEnrollment = count;
+            arr.push({name:Courses[i].NameCours,Sum:count,Percent:null})
             sumAll += count;
             count = 0;
         }
-        for (let i = 0; i < PoolsStatistic.length; i++) {
-            PoolsStatistic[i].percent = ((PoolsStatistic[i].sum) / sumAll) * 0.1;
+        
+        for (let i = 0; i < arr.length; i++) {
+            if( arr[i].Sum!=0)
+            arr[i].Percent = ((arr[i].Sum) / sumAll) * 100;
         }
-        sumAll = 0;
         console.log(PoolsStatistic);
+        sumAll = 0;
+        setFlag(true);
+        setPoolsStatistic(arr);
+
+
     }
 
     const mostProfitablePackage = () => {
+        let arr=[];
         x = 0;
-        PoolsStatistic = [];
+        setPoolsStatistic([]);
         for (let i = 0; i < PackagesToPool.length; i++) {
-
-            for (let j = 0; j < CustomerToPool.length; j++) {
-                if (PackagesToPool[i].Id == CustomerToPool[j].IdPackage) {
-                    sumOne += CustomerToPool.TotalPrice;
+            for (let j = 0; j < CustomerToPoolByIdPool.length; j++) {
+                if (PackagesToPool[i].Id == CustomerToPoolByIdPool[j].IdPackage) {
+                    sumOne += CustomerToPoolByIdPool[j].TotalPrice;
                 }
             }
-            PoolsStatistic[x].sum = sumOne;
-            PoolsStatistic[x++].Id = PackagesToPool[i].Id;
+
+            arr.push({name:PackagesToPool[i].EntersAmount,Sum:sumOne,Percent:null})
+
             sumAll += sumOne;
             sumOne = 0;
-
-
         }
-        for (let i = 0; i < PoolsStatistic.length; i++) {
-            PoolsStatistic[i].percent = ((PoolsStatistic[i].sum) / sumAll) * 0.1;
+        
+        for (let i = 0; i < arr.length; i++) {
+            arr[i].Percent = (((arr[i].Sum) / sumAll) * 100);
         }
         sumAll = 0;
+        setPoolsStatistic(arr);
+        setFlag(true);
         console.log(PoolsStatistic);
     }
 
 
 
     return (<>
-        <h1>dddddddddddddddd</h1>
-        <input type="button" value="בריכה הכי ריווחית" onClick={() => mostProfitablePool()} />
-        <input type="button" value="סטטיסטיקת רישום לקורס " onClick={() => mostProfitableCourse()} />
-        <input type="button" value="הכרטיסיה הכי נקניית" onClick={() => mostProfitablePackage()} />
+        <h1>STATISTICS:</h1>
+        {currentUser.IdRole==1?<><input type="button" value="בריכה הכי ריווחית" onClick={() =>mostProfitablePool() } />
+        
+        </>
+        :<><input type="button" value="סטטיסטיקת רישום לקורס " onClick={() => mostProfitableCourse()} />
+        <input type="button" value="הכרטיסיה הכי נקניית" onClick={() => mostProfitablePackage()} /></>
+}
+        {flag==true?<PieChart  className="pie" width={400} height={400}>
+          <Pie data={PoolsStatistic} dataKey="Sum" label="name" outerRadius={200} fill="blue" title="STATISTICS" />
+        </PieChart>:null}
+
+        {PoolsStatistic.map(x=><>שם :{x.name} סה"כ  :{x.Sum} <br/> אחוז :{x.Percent}% <br/></>)}
     </>
     );
 }

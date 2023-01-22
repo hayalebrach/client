@@ -5,6 +5,7 @@ export default function MainManagerNavBar(){
         <Link to="AddDetailsPool" className="navbar-brand">הוספת בריכה</Link>
         <Link to="AllManagers" className="navbar-brand"> לרשימת המשתמשים  </Link>
         <Link to="AllPools" className="navbar-brand">לרשימת הבריכות  </Link>
+        <Link to="statistics" className="navbar-brand">סטטסטיקות </Link>
 
     </nav>
 }

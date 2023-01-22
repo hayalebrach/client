@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { GetAllCoursesByPool, Course_Enrollment, Delete, getCours, GetCoursesToUser } from "../../store/Actions/Cours";
+import { GetTimeOfCoursByIdPool } from "../../store/Actions/Time";
 import "./Courses.css"
 export default function Courses() {
 
-  const { courses_arr, currentUser, currentPool, CourseToCustomer, currentCours } = useSelector(state => ({
+  const { courses_arr, currentUser, currentPool, CourseToCustomer, currentCours,TimeToCourses } = useSelector(state => ({
     currentUser: state.currentUser,
     courses_arr: state.courses_arr,
     currentPool: state.currentPool,
     CourseToCustomer: state.CourseToCustomer,
-    currentCours: state.currentCours
+    currentCours: state.currentCours,
+    TimeToCourses:state.TimeToCourses
   }), shallowEqual);
 
   const dispatch = useDispatch();
@@ -21,9 +24,13 @@ export default function Courses() {
 
     if (currentUser.Id != undefined)
       dispatch(GetCoursesToUser(currentUser.Id));
-    if (currentPool != null)
+    if (currentPool != null){
       dispatch(GetAllCoursesByPool(currentPool.Id));
-  }, [courses_arr])
+      dispatch(GetTimeOfCoursByIdPool(currentPool.Id));
+    }
+
+      
+  }, [])
   //console.log(courses_arr);
 
   const details = (Course) => {
@@ -39,7 +46,6 @@ export default function Courses() {
 
   let c;
   const Chek = (Course) => {
-    console.log(CourseToCustomer);
     c = CourseToCustomer.find(x => x.IdUser == currentUser.Id && x.IdCours == Course.Id);
     console.log(c);
     if (c != undefined) {
@@ -67,24 +73,51 @@ export default function Courses() {
     alert("קורס זה נמחק מרשימת הקורסים לבריכה זו");
     Delete(cours).then();
   }
+  
 
+//   function Func(Course){  
+//    let TimeArr=[];
+//     for(let i=0;i<TimeToCourses.length;i++){
+//         if(TimeToCourses[i].IdCours==Course.Id)
+//           TimeArr.push(TimeToCourses[i]);
+ 
+//     }  
+
+//     return TimeArr;
+    
+    
+// }
 
   return (
     <>
-      <h1>:) הקורסים שלנו</h1>
-      {currentUser.IdRole == 2 ? <input type="button" value="הוספת קורס" onClick={() => nav("/AddDetailsCours/true")} /> : null}
-      {courses_arr.map(Course => <><div className="Mdiv2"><img src={`${Course.img}`} className="courseImg"></img><br /><b >קורס  {Course.NameCours}</b><br /> <text>{Course.Dis}</text> <br /><text>{Course.Price}₪</text>
+      {currentUser.IdRole ==2?
+        <>
+          <h1>:) קורסי הבריכה </h1>
+          <input type="button" className="buttonn" value="הוספת קורס" onClick={() => nav("/AddDetailsCours/true")} style={{position:"relative" ,top:"20px"}} />
+        </> : <>
+          <h1>:) הקורסים שלנו</h1></>}
+          
+          <br/><br/>
+          {courses_arr.map(Course => <><div className="Mdiv2"><img src={`${Course.img}`}alt="" className="courseImg"></img> <br /><b >קורס  {Course.NameCours}</b><br /> <text>{Course.Dis}</text> <br /><text>{Course.Price}₪</text>
+            <br/>
+            <Link to="CourseSchedule" className="navbar-brand">לזמני הקורס</Link>    
 
-        {currentUser.IdRole == 2 ?
-          <>
-            <input type="button" value="עדכן" className="Mbutton1" onClick={() => update(Course.Id)} />
-            <input type="button" value="מחק" className="Mbutton1" onClick={() => Delet(Course.Id)} />
-          </>
-          : <>
-            {flag == true ? <input type="button" value="להרשם שוב" className="Mbutton1" onClick={() => details(Course)} /> : <input type="button" value="להרשמה" className="Mbutton1" onClick={() => Chek(Course)} />}
+            
+          {currentUser.IdRole == 2 ?
+            <>
+            <div className="DelUpdButtons">
+              <input type="button" value="עדכן" className="button" onClick={() => update(Course.Id)} />
+              <input type="button" value="מחק" className="button" onClick={() => Delet(Course.Id)} />
+              </div>
+            </>
+            : <>
+              {flag == true ? <input type="button" value="להרשם שוב" className="Mbutton1" onClick={() => details(Course)} /> :<><br/> <input type="button" className="buttonn" value="להרשמה"  onClick={() => Chek(Course)} /></>}
 
-          </>}
-      </div></>)}</>)
+            </>}</div></>)}
+
+      
+      </>)
+  
 
 }
 

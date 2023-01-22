@@ -70,3 +70,8 @@ export const ADD_POOL="ADD_POOL";
 export const Customer_To_Pool="Customer_To_Pool";
 
 export const ALL_COURSES_TO_CUSTOMER="ALL_COURSES_TO_CUSTOMER";
+
+export const TIME_TO_COURSE_BY_POOL_ID="TIME_TO_COURSE_BY_POOL_ID";
+export const CUSTOMER_TO_POOL_BY_ID_POOL="CUSTOMER_TO_POOL_BY_ID_POOL";
+export const COURSES_TO_USER_BY_ID_POOL ="COURSES_TO_USER_BY_ID_POOL";
+

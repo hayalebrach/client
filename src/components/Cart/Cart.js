@@ -42,6 +42,7 @@ export default  function Cart(){
 
     const ToPoolWeb=(poolId)=>{
       let pool=poolsArr.find(x=>x.Id==poolId)
+      console.log(pool);
       dispatch(SavePool(pool));
       nav("./poolWeb");
       
@@ -55,7 +56,7 @@ export default  function Cart(){
     <h1>Cart</h1>
     
         {
-            Cart.map(cart=><div className="Card"> כרטיסיית {cart.EntersAmount} כניסות<br/>  מחיר: {cart.Price}₪ <br/><br/> <br/> <input type="button" className="button4" value="לאתר הבריכה"  onClick={()=>ToPoolWeb(cart.IdPool)}/> <input type="button" value="מחק" className="button4" onClick={()=>{dispatch(DeleteFromCart(cart)) }}/><img src="/Pic/swimming-pool.png" className="cardImg"></img> 
+            Cart.map(cart=><div className="Card"> כרטיסיית {cart.EntersAmount} כניסות<br/>  מחיר: {cart.Price}₪ <br/><br/> <br/> <input type="button" className="button4" value="לאתר הבריכה"  onClick={()=>ToPoolWeb(cart.IdPool)}/> <img  src="../Pic/bin.png" className="delete" onClick={()=>{dispatch(DeleteFromCart(cart)) }}/> 
             </div> )
         }
         <br/><br/>  

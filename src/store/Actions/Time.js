@@ -28,6 +28,14 @@ export const PostEntCust=(data)=>{
 export const ChekAndAddCours = (data) => {
     return axios.put(`http://localhost:50157/api/DaysToCours/AddDaysToPool?`,data)
 }
-export const GetTimeOfCoursByIdPool = (IdPool) => {
-    return axios.get(`http://localhost:50157/api/DayToCours/GetTimeByIdPool?IdPool=${IdPool}`)
+
+export const GetTimeOfCoursByIdPool=(IdPool)=>{
+    return (dispatch)=>{
+        axios.get(`http://localhost:50157/api/DayToCours/GetTimeByIdPool?IdPool=${IdPool}`)
+        .then(response=>{
+            dispatch({type:actionType.TIME_TO_COURSE_BY_POOL_ID ,payload:response.data})
+               
+        })
+        .catch(err=> console.log(err) )
+    }
 }
