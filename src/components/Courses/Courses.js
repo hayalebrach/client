@@ -36,7 +36,7 @@ export default function Courses() {
     }
 
       
-  }, [])
+  }, [courses_arr])
   //console.log(courses_arr);
 
 
@@ -125,16 +125,16 @@ export default function Courses() {
 return (
   <>
     <h1>:) הקורסים שלנו</h1>
-    {currentUser.IdRole==2?<input type="button" value="הוספת קורס" onClick={()=>nav("/AddDetailsCours")}/>:null}
+    {currentUser.IdRole==2?<input type="button" value="הוספת קורס" onClick={()=>nav("/AddDetailsCours")}/>:null}<br/>
     {courses_arr.map(Course => <><div className="Mdiv2"><img src={`${Course.img}`} className="courseImg"></img><br /><b >קורס  {Course.NameCours}</b><br /> <text>{Course.Dis}</text> <br />
     <text>{(Guide.find(x=>x.Id==Course.IdUser)).Name}  שם המדריך</text><br/>
     <text>{(Guide.find(x=>x.Id==Course.IdUser)).Phone}  טלפון מדריך</text><br/>
-    <text>{Course.Price}₪</text>
+    <text> <b>{Course.Price}₪ </b>  </text>
     <Link to="CourseSchedule" className="navbar-brand">לזמני הקורס</Link>   
         {currentUser.IdRole == 2 ?
           <>
-            <input type="button" value="עדכן" className="Mbutton1" onClick={() => update(Course.Id)} />
-            <input type="button" value="מחק" className="Mbutton1" onClick={() => Delet(Course.Id)} />
+            <input type="button" value="עדכן" className="button" onClick={() => update(Course.Id)} />
+            <input type="button" value="מחק" className="button" onClick={() => Delet(Course.Id)} />
           </>
           : <>
             {flag == true ? <input type="button" value="להרשם שוב" className="Mbutton1" onClick={() => details(Course)} /> : <input type="button" value="להרשמה" className="Mbutton1" onClick={() => Chek(Course)} />}

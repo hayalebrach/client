@@ -17,7 +17,7 @@ export const BuyTickets = () => {
   useEffect(() => {
     dispatch(getAllCardByIdPool(currentPool.Id));
 
-  }, []);
+  }, [CardsArr]);
 
   const update = (Id) => {
     console.log(Id);
