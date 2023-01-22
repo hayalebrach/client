@@ -3,7 +3,7 @@ import * as actionType from "../actions";
 
 //פונקציה שמוסיפה לי בריכה חדשה
 export const AddPool=(data)=>{
-
+    console.log(data);
     return axios.post("http://localhost:50157/api/pool/AddPool?", data);
         
 
@@ -40,7 +40,6 @@ export const GetAllPools = () => {
     return dispach => {
         axios.get("http://localhost:50157/api/pool/GetAllPools")
             .then(response => {
-                console.log(response.data);
                 dispach({ type: actionType.GET_POOLS, payload: response.data })
 
             })
@@ -74,7 +73,6 @@ export const getAllAreas = () => {
     return dispatch => {
         axios.get(`http://localhost:50157/api/Erea/GetAllreas`)
             .then(response => {
-                console.log(response.data);
                 dispatch({ type: actionType.GET_ALL_AREAS, payload: response.data })
             })
             .catch(err => console.log(err))
@@ -83,12 +81,13 @@ export const getAllAreas = () => {
 export const AddErea=(data)=>{
     return axios.post(`http://localhost:50157/api/Erea/Post`,data)
 }
-export const GetByName=(Name)=>{
-    return axios.get(`http://localhost:50157/api/Erea/GetByName?Name=${Name}`)
-}
 export const getErea=()=>{
     return axios.get(`http://localhost:50157/api/Erea/GetAllreas`)
 }
+export const GetByName=(Name)=>{
+    return axios.get(`http://localhost:50157/api/Erea/GetByName?Name=${Name}`)
+}
+
 
 export const updatePool = (data) => {
     

@@ -6,8 +6,8 @@ import * as yup from "yup";
 import {useDispatch,useSelector,shallowEqual} from "react-redux";
 import "./SignUp.css"
 import { Link, useNavigate } from "react-router-dom";
-import {AddUser,login,getTheGuid} from "../../store/Actions/Users";
-import {postGuideToPool} from "../../store/Actions/Cours";
+import {AddUser,login} from "../../store/Actions/Users";
+
 const schema = yup.object({
     Name: yup.string().required("זהו שדה חובה"),
     Password: yup.string().min(4,"סיסמא חיבת להכיל לפחות 4 ספרות").matches(/[0-9]/,"סיסמא חיבת להכיל מספרים").required("זהו שדה חובה"),
@@ -50,9 +50,10 @@ const nav=useNavigate();
         
         if(currentUser)
         {
-            if(currentUser.IdRole==2)
-            getTheGuid(data).then(x=>func(x.data))
-               
+            if(currentUser.IdRole==2){
+                nav("/AddDetailsCours");
+            }
+          
         }
         else{
 
@@ -60,10 +61,6 @@ const nav=useNavigate();
             nav("/AllPools");
         }
         
-    }
-    const func=(data)=>{
-        postGuideToPool({IdRole:3,IdUser:data.IdUser,IdPool:currentPool.Id});
-        nav("/AddDetailsCours");
     }
 
     const showHidePassword =()=>{
@@ -82,7 +79,6 @@ return (<>
         <div className="formDivSignUp">
 
         {currentUser.IdRole==2?<h3>הרשמת מדריך</h3>:null}
-        {currentUser.IdRole==1?<h3>הרשמת מנהל בריכה/מנהל אתר</h3>:null}
         {currentUser?null:<h3>הרשמה</h3>}
         <Input register={register} errors={errors} className="inputSignUp" name="Name" src="../Pic/user.png" c="formDivSignUpimg" lablName="שם פרטי" />
         <Input register={register} errors={errors} className="inputSignUp" name="Password" lablName="סיסמא"   type={passwordShown ? "password" : "text"} /> 

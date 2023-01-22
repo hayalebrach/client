@@ -45,9 +45,6 @@ export const ADD_TO_CART="ADD_TO_CART";
 export const GET_COURS="GET_COURS";
 //מחיקה מעגלת קניות
 export const DELETE_FROM_CART="DELETE_FROM_CART";
-//קבלת כל המדריכים
-export const GET_GUIDE="GET_GUIDE";
-
 
 export const GET_ALL_AREAS="GET_ALL_AREAS";
 
@@ -70,3 +67,5 @@ export const ADD_POOL="ADD_POOL";
 export const Customer_To_Pool="Customer_To_Pool";
 
 export const ALL_COURSES_TO_CUSTOMER="ALL_COURSES_TO_CUSTOMER";
+//שמירת מנהל בריכה
+export const MANAGER="MANAGER";

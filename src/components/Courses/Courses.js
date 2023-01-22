@@ -3,11 +3,10 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useNavigate } from "react-router";
 
 import { GetAllCoursesByPool, Course_Enrollment, Delete,getCours, GetCoursesToUser } from "../../store/Actions/Cours";
-import {AllGuide} from "../../store/Actions/Users";
 import "./Courses.css"
 export default function Courses() {
 
-  const { courses_arr, currentUser, currentPool, CourseToCustomer,currentCours ,Guide} = useSelector(state => ({
+  const { courses_arr, currentUser, currentPool, CourseToCustomer,currentCours,Guide} = useSelector(state => ({
     currentUser: state.currentUser,
     courses_arr: state.courses_arr,
     currentPool: state.currentPool,
@@ -25,7 +24,6 @@ export default function Courses() {
     if(currentUser.Id!=undefined)
       dispatch(GetCoursesToUser(currentUser.Id));
     if(currentPool!=null){
-      dispatch(AllGuide(currentPool.Id));
       dispatch(GetAllCoursesByPool(currentPool.Id));
     }
   }, [courses_arr,Guide]);
